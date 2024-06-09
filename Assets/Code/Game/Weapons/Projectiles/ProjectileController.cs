@@ -1,6 +1,4 @@
 using ArenaShooter.Components;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArenaShooter.Weapons.Projectiles
@@ -12,7 +10,6 @@ namespace ArenaShooter.Weapons.Projectiles
         private float _moveSpeed;
 
         private MoveComponent _moveComponent;
-
 
         private void Start()
         {

@@ -149,7 +149,7 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 5
       y: 4
       width: 32
       height: 32
@@ -164,12 +164,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_1
     originalName: 
-    pivot: {x: 0.25330734, y: 0.46418983}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 36
+      x: 37
       y: 4
       width: 32
       height: 32
@@ -189,11 +189,31 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 68
+      x: 69
       y: 4
       width: 32
       height: 32
     spriteID: ac095316a20deb94b884dafdd4d301f5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Dev-sprites_3
+    originalName: 
+    pivot: {x: 0.16577148, y: 0.46816862}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 101
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 35ae4d6785997304bb253e5fec810675
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -215,7 +235,7 @@ ScriptedImporter:
       cellRect:
         x: 0
         y: 480
-        width: 86
+        width: 127
         height: 29
       spriteId: 994aa7472ed319141ab2bd85eec1b018
     linkedCells: []

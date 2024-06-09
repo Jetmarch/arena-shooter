@@ -29,6 +29,7 @@ namespace ArenaShooter.Weapons
         private float _maxBottomSideZRotation = 360f;
 
         private Camera _camera;
+        private Vector3 _lastMousePos;
 
         [Inject]
         private void Construct(BaseInputController inputController)
@@ -40,6 +41,12 @@ namespace ArenaShooter.Weapons
         {
             _weaponSetController = GetComponent<WeaponSetController>();
             _camera = Camera.main;
+            _weaponSetController.WeaponChanged += OnWeaponChanged;
+        }
+
+        private void OnWeaponChanged()
+        {
+            RotateWeapon(_lastMousePos);
         }
 
         private void OnEnable()
@@ -54,20 +61,23 @@ namespace ArenaShooter.Weapons
 
         private void OnMouseMove(Vector3 mousePos)
         {
-            RotateWeapon(mousePos);
-
             //TODO: Перенести в отдельный класс?
             ChangeWeaponSide();
+            RotateWeapon(mousePos);
+            _lastMousePos = mousePos;
         }
 
         private void RotateWeapon(Vector3 mousePos)
         {
+            //TODO: Подумать над поворотом оружия у ботов
             var currentWeapon = _weaponSetController.CurrentWeapon;
-            var targetPos = _camera.ScreenToWorldPoint(mousePos) - transform.position;
-            targetPos = new Vector3(targetPos.x, targetPos.y, 0f);
-            
-            var targetRot = Quaternion.LookRotation(targetPos, currentWeapon.transform.TransformDirection(Vector3.up));
-            currentWeapon.transform.rotation = new Quaternion(0f, 0f, targetRot.z, targetRot.w);
+
+            Vector3 mouseWorldPoint = _camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0f));
+
+            float angleRad = Mathf.Atan2(mouseWorldPoint.y - transform.position.y, mouseWorldPoint.x - transform.position.x);
+            float angle = (180 / Mathf.PI) * angleRad;
+
+            currentWeapon.transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
         private void ChangeWeaponSide()
@@ -76,10 +86,12 @@ namespace ArenaShooter.Weapons
             if ((currentWeapon.transform.eulerAngles.z > _minUpperSideZRotation && currentWeapon.transform.eulerAngles.z < _maxUpperSideZRotation) || (currentWeapon.transform.eulerAngles.z > _minBottomSideZRotation && currentWeapon.transform.eulerAngles.z < _maxBottomSideZRotation))
             {
                 currentWeapon.transform.position = _weaponRightSide.position;
+                currentWeapon.gameObject.GetComponent<SpriteRenderer>().flipY = false;
             }
             else
             {
                 currentWeapon.transform.position = _weaponLeftSide.position;
+                currentWeapon.gameObject.GetComponent<SpriteRenderer>().flipY = true;
             }
         }
     }
