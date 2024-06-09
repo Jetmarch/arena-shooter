@@ -13,10 +13,9 @@ namespace ArenaShooter.Weapons
         private BaseInputController _inputController;
 
         [SerializeField]
-        private Weapon[] _weapons;
+        private WeaponHandler[] _weapons;
 
         private int _selectedWeaponIndex;
-        public Weapon CurrentWeapon => _weapons[_selectedWeaponIndex];
-
+        public WeaponHandler CurrentWeapon => _weapons[_selectedWeaponIndex];
     }
 }
