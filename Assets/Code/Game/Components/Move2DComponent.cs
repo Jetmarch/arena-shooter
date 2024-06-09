@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace ArenaShooter.Components
 {
-    [RequireComponent(typeof(Rigidbody))]
-    public class MoveComponent : MonoBehaviour
+    [RequireComponent(typeof(Rigidbody2D))]
+    public sealed class Move2DComponent : MonoBehaviour
     {
-        private Rigidbody _rigidbody;
+        private Rigidbody2D _rigidbody;
 
         private void Start()
         {
-            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody = GetComponent<Rigidbody2D>();
         }
 
         public void OnMoveFixedUpdate(Vector2 moveVector, float speed)

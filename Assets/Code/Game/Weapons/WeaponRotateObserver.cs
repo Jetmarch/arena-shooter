@@ -10,7 +10,7 @@ namespace ArenaShooter.Weapons
     /// <summary>
     /// Поворачивает оружие персонажа в сторону указателя мыши
     /// </summary>
-    public class WeaponRotateController : MonoBehaviour
+    public sealed class WeaponRotateObserver : MonoBehaviour
     {
         private BaseInputController _inputController;
         private WeaponSetController _weaponSetController;

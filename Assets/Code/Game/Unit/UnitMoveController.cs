@@ -9,13 +9,13 @@ namespace ArenaShooter.Units
     /// Позволяет передвигать юнита с помощью BaseInputController
     /// </summary>
 
-    [RequireComponent(typeof(MoveComponent))]
+    [RequireComponent(typeof(Move2DComponent))]
     [RequireComponent(typeof(UnitConditionContainer))]
     public sealed class UnitMoveController : MonoBehaviour
     {
         private UnitConditionContainer _conditionContainer;
         private BaseInputController _inputController;
-        private MoveComponent _moveComponent;
+        private Move2DComponent _moveComponent;
 
         [Inject]
         private void Constuct(BaseInputController inputController)
@@ -27,7 +27,7 @@ namespace ArenaShooter.Units
         {
             //TODO: Конструировать с помощью Zenject
             _conditionContainer = GetComponent<UnitConditionContainer>();
-            _moveComponent = GetComponent<MoveComponent>();
+            _moveComponent = GetComponent<Move2DComponent>();
         }
 
         private void OnEnable()

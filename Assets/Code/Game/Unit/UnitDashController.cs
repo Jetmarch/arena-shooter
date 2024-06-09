@@ -10,12 +10,12 @@ namespace ArenaShooter.Units
     /// <summary>
     /// Позволяет делать рывок
     /// </summary>
-    [RequireComponent(typeof(MoveComponent))]
+    [RequireComponent(typeof(Move2DComponent))]
     [RequireComponent(typeof(UnitConditionContainer))]
     public sealed class UnitDashController : MonoBehaviour
     {
         private UnitConditionContainer _conditionContainer;
-        private MoveComponent _moveComponent;
+        private Move2DComponent _moveComponent;
         private BaseInputController _inputController;
 
         [SerializeField]
@@ -31,7 +31,7 @@ namespace ArenaShooter.Units
         {
             //_inputController = GetComponent<BaseInputController>();
             _conditionContainer = GetComponent<UnitConditionContainer>();
-            _moveComponent = GetComponent<MoveComponent>();
+            _moveComponent = GetComponent<Move2DComponent>();
 
             //_inputController.Dash += OnDash;
         }

@@ -37,7 +37,6 @@ namespace ArenaShooter.Units
         public void OnShoot()
         {
             _weaponSet.CurrentWeapon.Shoot();
-            Debug.Log("Shoot");
         }
     }
 }

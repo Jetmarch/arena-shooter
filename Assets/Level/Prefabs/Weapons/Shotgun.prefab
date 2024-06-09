@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5456043046058722814}
   - component: {fileID: 6818508893573676880}
+  - component: {fileID: 1392578503020627855}
   - component: {fileID: 441182567367261693}
+  - component: {fileID: 5976815053789852209}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -85,6 +87,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1392578503020627855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165602316576653474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0e95d06d4d4044e92f0840de8c30ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAmmoInBackpack: 250
+  currentAmmoInBackpack: 250
+  maxAmmoInClip: 5
+  currentAmmoInClip: 5
+  reloadSpeed: 1
+  rateOfFire: 0.7
+  _projectilePrefab: {fileID: 8061884974603674031, guid: c9bb74df81296f748940be2e21216618, type: 3}
+  _isReloading: 0
 --- !u!114 &441182567367261693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,10 +119,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f595fc12c723f3f4688e117255b7386e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmoInBackpack: -1
-  currentAmmoInBackpack: -1
-  maxAmmoInClip: 6
-  currentAmmoInClip: 6
-  reloadSpeed: 0.7
-  rateOfFire: 0.5
-  _projectilePrefab: {fileID: 8061884974603674031, guid: c9bb74df81296f748940be2e21216618, type: 3}
+--- !u!114 &5976815053789852209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165602316576653474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de2ca35414125a42b8f14d1c06670aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

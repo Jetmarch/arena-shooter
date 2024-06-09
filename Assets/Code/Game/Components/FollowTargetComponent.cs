@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ArenaShooter.Components
 {
-    public class FollowTargetComponent : MonoBehaviour
+    public sealed class FollowTargetComponent : MonoBehaviour
     {
         [SerializeField]
         private Vector3 _offset;
