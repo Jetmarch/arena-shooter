@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3704094585770241830}
   - component: {fileID: 6510732210156589349}
   - component: {fileID: -3168753188071757533}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RevolverProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

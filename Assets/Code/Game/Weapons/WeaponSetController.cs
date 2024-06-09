@@ -2,6 +2,7 @@ using ArenaShooter.Inputs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -15,10 +16,10 @@ namespace ArenaShooter.Weapons
         private BaseInputController _inputController;
 
         [SerializeField]
-        private WeaponShootLHandler[] _weapons;
+        private WeaponConditionContainer[] _weapons;
         [SerializeField]
         private int _selectedWeaponIndex;
-        public WeaponShootLHandler CurrentWeapon => _weapons[_selectedWeaponIndex];
+        public WeaponConditionContainer CurrentWeapon => _weapons[_selectedWeaponIndex];
 
         public event Action WeaponChanged;
 
@@ -43,6 +44,7 @@ namespace ArenaShooter.Weapons
 
         private void OnChangeWeaponUp()
         {
+            if (!CanChangeWeapon()) return;
             _selectedWeaponIndex++;
             if (_selectedWeaponIndex > _weapons.Length - 1)
             {
@@ -54,6 +56,7 @@ namespace ArenaShooter.Weapons
 
         private void OnChangeWeaponDown()
         {
+            if (!CanChangeWeapon()) return;
             _selectedWeaponIndex--;
             if(_selectedWeaponIndex < 0)
             {
@@ -61,6 +64,15 @@ namespace ArenaShooter.Weapons
             }
             ActivateSelectedWeapon();
             WeaponChanged?.Invoke();
+        }
+
+        private bool CanChangeWeapon()
+        {
+            foreach (var weapon in _weapons)
+            {
+                if (weapon.IsReloading) return false;
+            }
+            return true;
         }
 
         private void ActivateSelectedWeapon()

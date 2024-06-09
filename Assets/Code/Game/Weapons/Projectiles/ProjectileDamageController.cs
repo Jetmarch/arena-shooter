@@ -1,8 +1,6 @@
 using ArenaShooter.Components;
 using ArenaShooter.Units;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArenaShooter.Weapons.Projectiles
@@ -28,7 +26,7 @@ namespace ArenaShooter.Weapons.Projectiles
 
         private void OnEnable()
         {
-            if(_triggerComponent != null)
+            if (_triggerComponent != null)
             {
                 _triggerComponent.TriggerOn += OnHit;
             }

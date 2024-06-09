@@ -28,6 +28,7 @@ namespace ArenaShooter.Weapons
 
         private void OnDisable()
         {
+            //TODO: Пофиксить баг со сменой оружия во время перезарядки
             _inputController.Reload -= OnReload;
         }
 

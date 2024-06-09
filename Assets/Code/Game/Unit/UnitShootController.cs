@@ -1,5 +1,6 @@
 using ArenaShooter.Inputs;
 using ArenaShooter.Weapons;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,7 @@ namespace ArenaShooter.Units
     /// <summary>
     /// ѕозвол€ет стрел€ть из выбранного оружи€
     /// </summary>
+    [Obsolete]
     public sealed class UnitShootController : MonoBehaviour
     {
         private BaseInputController _inputController;
@@ -36,7 +38,7 @@ namespace ArenaShooter.Units
 
         public void OnShoot()
         {
-            _weaponSet.CurrentWeapon.Shoot();
+            //_weaponSet.CurrentWeapon.OnShoot();
         }
     }
 }

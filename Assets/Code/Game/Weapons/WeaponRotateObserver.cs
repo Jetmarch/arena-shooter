@@ -13,23 +13,30 @@ namespace ArenaShooter.Weapons
     public sealed class WeaponRotateObserver : MonoBehaviour
     {
         private BaseInputController _inputController;
-        private WeaponSetController _weaponSetController;
 
         [SerializeField]
         private Transform _weaponLeftSide;
         [SerializeField]
         private Transform _weaponRightSide;
         [SerializeField]
-        private float _minUpperSideZRotation = 0f;
+        private float _minUpperSideZRotationRight = 0f;
         [SerializeField]
-        private float _maxUpperSideZRotation = 102f;
+        private float _maxUpperSideZRotationRight = 102f;
         [SerializeField]
-        private float _minBottomSideZRotation = 240f;
+        private float _minBottomSideZRotationRight = 240f;
         [SerializeField]
-        private float _maxBottomSideZRotation = 360f;
+        private float _maxBottomSideZRotationRight = 360f;
+
+        [SerializeField]
+        private float _minUpperSideZRotationLeft = 135f;
+        [SerializeField]
+        private float _maxUpperSideZRotationLeft = 225f;
+
+        [SerializeField]
+        private float _spaceBetweenSides = 50f;
 
         private Camera _camera;
-        private Vector3 _lastMousePos;
+        private bool _isWeaponOnRightSide;
 
         [Inject]
         private void Construct(BaseInputController inputController)
@@ -39,14 +46,7 @@ namespace ArenaShooter.Weapons
 
         private void Start()
         {
-            _weaponSetController = GetComponent<WeaponSetController>();
             _camera = Camera.main;
-            _weaponSetController.WeaponChanged += OnWeaponChanged;
-        }
-
-        private void OnWeaponChanged()
-        {
-            RotateWeapon(_lastMousePos);
         }
 
         private void OnEnable()
@@ -64,34 +64,39 @@ namespace ArenaShooter.Weapons
             //TODO: Перенести в отдельный класс?
             ChangeWeaponSide();
             RotateWeapon(mousePos);
-            _lastMousePos = mousePos;
         }
 
         private void RotateWeapon(Vector3 mousePos)
         {
             //TODO: Подумать над поворотом оружия у ботов
-            var currentWeapon = _weaponSetController.CurrentWeapon;
 
             Vector3 mouseWorldPoint = _camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0f));
 
             float angleRad = Mathf.Atan2(mouseWorldPoint.y - transform.position.y, mouseWorldPoint.x - transform.position.x);
             float angle = (180 / Mathf.PI) * angleRad;
 
-            currentWeapon.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
         private void ChangeWeaponSide()
         {
-            var currentWeapon = _weaponSetController.CurrentWeapon;
-            if ((currentWeapon.transform.eulerAngles.z > _minUpperSideZRotation && currentWeapon.transform.eulerAngles.z < _maxUpperSideZRotation) || (currentWeapon.transform.eulerAngles.z > _minBottomSideZRotation && currentWeapon.transform.eulerAngles.z < _maxBottomSideZRotation))
+            //TODO: Пофиксить баг с частой сменой стороны оружия, когда курсор мыши находится прямо на персонаже
+            if ((transform.eulerAngles.z > _minUpperSideZRotationRight && transform.eulerAngles.z < _maxUpperSideZRotationRight) 
+                || (transform.eulerAngles.z > _minBottomSideZRotationRight && transform.eulerAngles.z < _maxBottomSideZRotationRight))
             {
-                currentWeapon.transform.position = _weaponRightSide.position;
-                currentWeapon.gameObject.GetComponent<SpriteRenderer>().flipY = false;
+                if (_isWeaponOnRightSide) return;
+                transform.position = _weaponRightSide.position;
+                gameObject.GetComponent<SpriteRenderer>().flipY = false;
+                _isWeaponOnRightSide = true;
+                Debug.Log("ChangeWeaponSide: Right");
             }
-            else
+            else if ((transform.eulerAngles.z > _minUpperSideZRotationLeft && transform.eulerAngles.z < _maxUpperSideZRotationLeft))
             {
-                currentWeapon.transform.position = _weaponLeftSide.position;
-                currentWeapon.gameObject.GetComponent<SpriteRenderer>().flipY = true;
+                if (!_isWeaponOnRightSide) return;
+                transform.position = _weaponLeftSide.position;
+                gameObject.GetComponent<SpriteRenderer>().flipY = true;
+                _isWeaponOnRightSide = false;
+                Debug.Log("ChangeWeaponSide: Left");
             }
         }
     }
