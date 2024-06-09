@@ -62,11 +62,12 @@ namespace ArenaShooter.Weapons
 
         private void RotateWeapon(Vector3 mousePos)
         {
-            var newPos = _camera.ScreenToWorldPoint(mousePos);
-            newPos = new Vector3(newPos.x, newPos.y, 0f);
             var currentWeapon = _weaponSetController.CurrentWeapon;
-            var newRot = Quaternion.LookRotation(newPos, currentWeapon.transform.TransformDirection(Vector3.up));
-            currentWeapon.transform.rotation = new Quaternion(0f, 0f, newRot.z, newRot.w);
+            var targetPos = _camera.ScreenToWorldPoint(mousePos) - transform.position;
+            targetPos = new Vector3(targetPos.x, targetPos.y, 0f);
+            
+            var targetRot = Quaternion.LookRotation(targetPos, currentWeapon.transform.TransformDirection(Vector3.up));
+            currentWeapon.transform.rotation = new Quaternion(0f, 0f, targetRot.z, targetRot.w);
         }
 
         private void ChangeWeaponSide()
