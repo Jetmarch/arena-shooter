@@ -29,12 +29,12 @@ namespace ArenaShooter.Inputs
             base.Update();
         }
 
-        protected override Vector2 GetMousePos()
+        public override Vector3 GetMousePos()
         {
             return Input.mousePosition;
         }
 
-        protected override Vector2 GetMoveVector()
+        public override Vector2 GetMoveVector()
         {
             Vector2 moveVector = Vector2.zero;
             if (Input.GetKey(_moveUpKey))

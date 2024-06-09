@@ -6,15 +6,15 @@ namespace ArenaShooter.Inputs
     public abstract class BaseInputController : MonoBehaviour
     {
         public event Action<Vector2> Move;
-        public event Action<Vector2> MouseMove;
+        public event Action<Vector3> MouseMove;
         public event Action Dash;
         public event Action ChangeWeaponUp;
         public event Action ChangeWeaponDown;
         public event Action Shoot;
         public event Action Reload;
 
-        protected abstract Vector2 GetMousePos();
-        protected abstract Vector2 GetMoveVector();
+        public abstract Vector3 GetMousePos();
+        public abstract Vector2 GetMoveVector();
         protected abstract bool IsChangeWeaponDown();
         protected abstract bool IsChangeWeaponUp();
         protected abstract bool IsDash();

@@ -1,44 +1,51 @@
+using ArenaShooter.Components;
 using ArenaShooter.Inputs;
 using UnityEngine;
+using Zenject;
 
 namespace ArenaShooter.Units
 {
     /// <summary>
-    /// Позволяет передвигать юнита c rigidBody
+    /// Позволяет передвигать юнита с помощью BaseInputController
     /// </summary>
-    [RequireComponent(typeof(Rigidbody))]
+
+    [RequireComponent(typeof(MoveComponent))]
     [RequireComponent(typeof(UnitConditionContainer))]
     public sealed class UnitMoveController : MonoBehaviour
     {
         private UnitConditionContainer _conditionContainer;
-        private Rigidbody _rigidbody;
-
         private BaseInputController _inputController;
+        private MoveComponent _moveComponent;
+
+        [Inject]
+        private void Constuct(BaseInputController inputController)
+        {
+            _inputController = inputController;
+        }
 
         private void Start()
         {
             //TODO: Конструировать с помощью Zenject
-            _inputController = GetComponent<BaseInputController>();
             _conditionContainer = GetComponent<UnitConditionContainer>();
-            _rigidbody = GetComponent<Rigidbody>();
-
-            _inputController.Move += OnMove;
+            _moveComponent = GetComponent<MoveComponent>();
         }
 
         private void OnEnable()
         {
-            if (_inputController == null) return;
             _inputController.Move += OnMove;
         }
 
         private void OnDisable()
         {
+            if (_inputController == null) return;
             _inputController.Move -= OnMove;
         }
 
         public void OnMove(Vector2 moveVector)
         {
-            _rigidbody.velocity = moveVector * Time.fixedDeltaTime * (_conditionContainer.BaseSpeed + _conditionContainer.AdditionalSpeed);
+            if (_conditionContainer.IsDashing) return;
+
+            _moveComponent.OnMoveFixedUpdate(moveVector, _conditionContainer.BaseSpeed + _conditionContainer.AdditionalSpeed);
         }
     }
 }

@@ -1,6 +1,7 @@
 using ArenaShooter.Inputs;
 using ArenaShooter.Weapons;
 using UnityEngine;
+using Zenject;
 
 namespace ArenaShooter.Units
 {
@@ -12,17 +13,19 @@ namespace ArenaShooter.Units
         private BaseInputController _inputController;
         private WeaponSetController _weaponSet;
 
+        [Inject]
+        private void Constuct(BaseInputController inputController)
+        {
+            _inputController = inputController;
+        }
+
         private void Start()
         {
-            _inputController = GetComponent<BaseInputController>();
             _weaponSet = GetComponent<WeaponSetController>();
-
-            _inputController.Shoot += OnShoot;
         }
 
         private void OnEnable()
         {
-            if (_inputController == null) return;
             _inputController.Shoot += OnShoot;
         }
 
