@@ -23,8 +23,6 @@ namespace ArenaShooter.Weapons
                 var spreadRotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + Random.Range(_minSpreadAngle, _maxSpreadAngle));
                 Instantiate(_weaponContainer.ProjectilePrefab, transform.position, spreadRotation);
             }
-            //TODO: Вывести в отдельную механику
-            _weaponContainer.CurrentAmmoInClip--;
         }
     }
 }

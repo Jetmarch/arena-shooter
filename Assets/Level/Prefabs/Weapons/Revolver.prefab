@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1610326859159231703}
   - component: {fileID: 7963146312427705933}
   - component: {fileID: 8562621223834955325}
+  - component: {fileID: 3990724147446308217}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -146,7 +147,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponLeftSide: {fileID: 0}
   _weaponRightSide: {fileID: 0}
-  _minUpperSideZRotation: 0
-  _maxUpperSideZRotation: 102
-  _minBottomSideZRotation: 240
-  _maxBottomSideZRotation: 360
+  _minUpperSideZRotationRight: 0
+  _maxUpperSideZRotationRight: 102
+  _minBottomSideZRotationRight: 240
+  _maxBottomSideZRotationRight: 360
+  _minUpperSideZRotationLeft: 0
+  _maxUpperSideZRotationLeft: 102
+  _spaceBetweenSides: 50
+--- !u!114 &3990724147446308217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691436118815922653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76401d6edb83d94ba3633a9749f1be5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amountOfAmmoOnOneShot: 1

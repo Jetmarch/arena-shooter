@@ -18,7 +18,6 @@ namespace ArenaShooter.Weapons
             if (!CanShoot()) return;
 
             Instantiate(_weaponContainer.ProjectilePrefab, transform.position, transform.rotation);
-            _weaponContainer.CurrentAmmoInClip--;
         }
     }
 }

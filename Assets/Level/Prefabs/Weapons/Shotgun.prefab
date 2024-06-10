@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5976815053789852209}
   - component: {fileID: 6448429917284143664}
   - component: {fileID: 7370565892695866985}
+  - component: {fileID: 5890339115033308338}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -134,10 +135,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponLeftSide: {fileID: 0}
   _weaponRightSide: {fileID: 0}
-  _minUpperSideZRotation: 0
-  _maxUpperSideZRotation: 102
-  _minBottomSideZRotation: 240
-  _maxBottomSideZRotation: 360
+  _minUpperSideZRotationRight: 0
+  _maxUpperSideZRotationRight: 102
+  _minBottomSideZRotationRight: 240
+  _maxBottomSideZRotationRight: 360
+  _minUpperSideZRotationLeft: 0
+  _maxUpperSideZRotationLeft: 102
+  _spaceBetweenSides: 50
 --- !u!114 &7370565892695866985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,3 +157,16 @@ MonoBehaviour:
   _countOfProjectilesInShot: 4
   _minSpreadAngle: -5
   _maxSpreadAngle: 5
+--- !u!114 &5890339115033308338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165602316576653474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76401d6edb83d94ba3633a9749f1be5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amountOfAmmoOnOneShot: 1
