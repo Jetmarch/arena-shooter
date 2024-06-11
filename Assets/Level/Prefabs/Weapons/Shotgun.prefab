@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7165602316576653474
+--- !u!1 &6112578343978209686
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5456043046058722814}
-  - component: {fileID: 6818508893573676880}
-  - component: {fileID: 1392578503020627855}
-  - component: {fileID: 5976815053789852209}
-  - component: {fileID: 6448429917284143664}
-  - component: {fileID: 7370565892695866985}
-  - component: {fileID: 5890339115033308338}
+  - component: {fileID: 7778962330784892539}
+  - component: {fileID: 1898828930790085030}
   m_Layer: 0
-  m_Name: Shotgun
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &5456043046058722814
+  m_IsActive: 1
+--- !u!4 &7778962330784892539
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7165602316576653474}
+  m_GameObject: {fileID: 6112578343978209686}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4124, y: 0.087, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 5456043046058722814}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6818508893573676880
+--- !u!212 &1898828930790085030
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7165602316576653474}
+  m_GameObject: {fileID: 6112578343978209686}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -83,12 +78,49 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7165602316576653474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5456043046058722814}
+  - component: {fileID: 1392578503020627855}
+  - component: {fileID: 5976815053789852209}
+  - component: {fileID: 6448429917284143664}
+  - component: {fileID: 7370565892695866985}
+  - component: {fileID: 5890339115033308338}
+  m_Layer: 0
+  m_Name: Shotgun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5456043046058722814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165602316576653474}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4124, y: 0.087, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7778962330784892539}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1392578503020627855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,12 +168,12 @@ MonoBehaviour:
   _weaponLeftSide: {fileID: 0}
   _weaponRightSide: {fileID: 0}
   _minUpperSideZRotationRight: 0
-  _maxUpperSideZRotationRight: 102
+  _maxUpperSideZRotationRight: 45
   _minBottomSideZRotationRight: 240
   _maxBottomSideZRotationRight: 360
-  _minUpperSideZRotationLeft: 0
-  _maxUpperSideZRotationLeft: 102
-  _spaceBetweenSides: 50
+  _minUpperSideZRotationLeft: 135
+  _maxUpperSideZRotationLeft: 225
+  _spaceBetweenSides: 15
 --- !u!114 &7370565892695866985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,8 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _countOfProjectilesInShot: 4
-  _minSpreadAngle: -5
-  _maxSpreadAngle: 5
+  _minSpreadAngle: -10
+  _maxSpreadAngle: 10
 --- !u!114 &5890339115033308338
 MonoBehaviour:
   m_ObjectHideFlags: 0

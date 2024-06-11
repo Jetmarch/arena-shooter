@@ -75,28 +75,33 @@ namespace ArenaShooter.Weapons
             float angleRad = Mathf.Atan2(mouseWorldPoint.y - transform.position.y, mouseWorldPoint.x - transform.position.x);
             float angle = (180 / Mathf.PI) * angleRad;
 
-            transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            //transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+            //transform.RotateAround(_inputController.gameObject.transform.position, Vector3.forward, angle * Time.deltaTime * 5f);
+
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Debug.Log(angle);
         }
 
         private void ChangeWeaponSide()
         {
-            //TODO: Пофиксить баг с частой сменой стороны оружия, когда курсор мыши находится прямо на персонаже
             if ((transform.eulerAngles.z > _minUpperSideZRotationRight && transform.eulerAngles.z < _maxUpperSideZRotationRight) 
                 || (transform.eulerAngles.z > _minBottomSideZRotationRight && transform.eulerAngles.z < _maxBottomSideZRotationRight))
             {
                 if (_isWeaponOnRightSide) return;
-                transform.position = _weaponRightSide.position;
-                gameObject.GetComponent<SpriteRenderer>().flipY = false;
+                
+                //TODO: Переместить логику в отдельный класс
+                gameObject.GetComponentInChildren<SpriteRenderer>().flipY = false;
                 _isWeaponOnRightSide = true;
-                Debug.Log("ChangeWeaponSide: Right");
+                
             }
             else if ((transform.eulerAngles.z > _minUpperSideZRotationLeft && transform.eulerAngles.z < _maxUpperSideZRotationLeft))
             {
                 if (!_isWeaponOnRightSide) return;
-                transform.position = _weaponLeftSide.position;
-                gameObject.GetComponent<SpriteRenderer>().flipY = true;
+                
+                gameObject.GetComponentInChildren<SpriteRenderer>().flipY = true;
                 _isWeaponOnRightSide = false;
-                Debug.Log("ChangeWeaponSide: Left");
+                
             }
         }
     }
