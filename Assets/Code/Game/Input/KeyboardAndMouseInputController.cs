@@ -19,11 +19,6 @@ namespace ArenaShooter.Inputs
         [SerializeField]
         private KeyCode _reloadKey = KeyCode.R;
 
-        protected override void FixedUpdate()
-        {
-            base.FixedUpdate();
-        }
-
         protected override void Update()
         {
             base.Update();

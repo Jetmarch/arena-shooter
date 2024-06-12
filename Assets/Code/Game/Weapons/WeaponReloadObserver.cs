@@ -23,12 +23,12 @@ namespace ArenaShooter.Weapons
 
         private void OnEnable()
         {
-            _inputController.Reload += OnReload;
+            _inputController.OnReload += OnReload;
         }
 
         private void OnDisable()
         {
-            _inputController.Reload -= OnReload;
+            _inputController.OnReload -= OnReload;
         }
 
         public void OnReload()

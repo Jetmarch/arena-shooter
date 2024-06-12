@@ -31,15 +31,15 @@ namespace ArenaShooter.Weapons
 
         private void OnEnable()
         {
-            _inputController.ChangeWeaponUp += OnChangeWeaponUp;
-            _inputController.ChangeWeaponDown += OnChangeWeaponDown;
+            _inputController.OnChangeWeaponUp += OnChangeWeaponUp;
+            _inputController.OnChangeWeaponDown += OnChangeWeaponDown;
 
         }
 
         private void OnDisable()
         {
-            _inputController.ChangeWeaponUp -= OnChangeWeaponUp;
-            _inputController.ChangeWeaponDown -= OnChangeWeaponDown;
+            _inputController.OnChangeWeaponUp -= OnChangeWeaponUp;
+            _inputController.OnChangeWeaponDown -= OnChangeWeaponDown;
         }
 
         private void OnChangeWeaponUp()

@@ -51,12 +51,12 @@ namespace ArenaShooter.Weapons
 
         private void OnEnable()
         {
-            _inputController.MouseMove += OnMouseMove;
+            _inputController.OnMouseMove += OnMouseMove;
         }
 
         private void OnDisable()
         {
-            _inputController.MouseMove -= OnMouseMove;
+            _inputController.OnMouseMove -= OnMouseMove;
         }
 
         private void OnMouseMove(Vector3 mousePos)
@@ -80,7 +80,6 @@ namespace ArenaShooter.Weapons
             //transform.RotateAround(_inputController.gameObject.transform.position, Vector3.forward, angle * Time.deltaTime * 5f);
 
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            Debug.Log(angle);
         }
 
         private void ChangeWeaponSide()

@@ -25,12 +25,12 @@ namespace ArenaShooter.Weapons
 
         protected virtual void OnEnable()
         {
-            _inputController.Shoot += OnShoot;
+            _inputController.OnShoot += OnShoot;
         }
 
         protected virtual void OnDisable()
         {
-            _inputController.Shoot -= OnShoot;
+            _inputController.OnShoot -= OnShoot;
         }
 
         protected bool CanShoot()

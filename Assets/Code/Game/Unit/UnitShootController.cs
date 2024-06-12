@@ -28,12 +28,12 @@ namespace ArenaShooter.Units
 
         private void OnEnable()
         {
-            _inputController.Shoot += OnShoot;
+            _inputController.OnShoot += OnShoot;
         }
 
         private void OnDisable()
         {
-            _inputController.Shoot -= OnShoot;
+            _inputController.OnShoot -= OnShoot;
         }
 
         public void OnShoot()

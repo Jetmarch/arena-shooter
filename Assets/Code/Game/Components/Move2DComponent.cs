@@ -7,7 +7,11 @@ namespace ArenaShooter.Components
     [RequireComponent(typeof(Rigidbody2D))]
     public sealed class Move2DComponent : MonoBehaviour
     {
+        private float _moveSpeed;
+
         private Rigidbody2D _rigidbody;
+
+        private Vector2 _velocity;
 
         private void Start()
         {
@@ -16,7 +20,13 @@ namespace ArenaShooter.Components
 
         public void OnMoveFixedUpdate(Vector2 moveVector, float speed)
         {
-            _rigidbody.velocity = moveVector * Time.fixedDeltaTime * speed;
+            _velocity = moveVector;
+            _moveSpeed = speed;
+        }
+
+        private void FixedUpdate()
+        {
+            _rigidbody.velocity = _velocity * Time.fixedDeltaTime * _moveSpeed;
         }
     }
 }

@@ -1,37 +1,48 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ArenaShooter.AI
 {
-    public class StateMachine : MonoBehaviour
+    public class StateMachine
     {
-        private List<IState> _states;
+        private List<BaseState> _states;
 
-        private IState _currentState;
+        private BaseState _currentState;
 
-        public IState CurrentState { get { return _currentState; } }
-        public event Action<IState> StateChanged;
+        public BaseState CurrentState { get { return _currentState; } }
+        public event Action<BaseState> StateChanged;
 
         public StateMachine()
         {
-            _states = new List<IState>();
+            _states = new List<BaseState>();
         }
 
-        public void AddState(IState state)
+        public void AddState(BaseState state)
         {
             _states.Add(state);
         }
 
-        public void SetCurrentState(IState state)
+        public void SetCurrentState(BaseState state)
         {
             _currentState = state;
         }
 
-        public void UpdateCurrentState()
+        public void Update()
         {
+            CheckStateTransitions();
             _currentState.Update();
+        }
+
+        private void CheckStateTransitions()
+        {
+            foreach (var transition in _currentState.Transitions)
+            {
+                if (transition.IsConditionMet())
+                {
+                    _currentState = transition.NextState;
+                    StateChanged?.Invoke(_currentState);
+                }
+            }
         }
     }
 }

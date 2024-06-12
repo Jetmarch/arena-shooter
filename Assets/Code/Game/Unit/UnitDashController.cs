@@ -38,17 +38,18 @@ namespace ArenaShooter.Units
 
         private void OnEnable()
         {
-            _inputController.Dash += OnDash;
+            _inputController.OnDash += OnDash;
         }
         private void OnDisable()
         {
             if (_inputController == null) return;
 
-            _inputController.Dash -= OnDash;
+            _inputController.OnDash -= OnDash;
         }
 
         private void FixedUpdate()
         {
+            //TODO: Передавать условие черзе CompositeCondition
             if (!_conditionContainer.IsDashing) return;
 
             _moveComponent.OnMoveFixedUpdate(_dashVector, _conditionContainer.DashSpeed);

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArenaShooter.Inputs
@@ -7,39 +5,45 @@ namespace ArenaShooter.Inputs
 
     public class AIInputController : BaseInputController
     {
+        private Vector2 _moveVector;
+        public void SetMoveVector(Vector2 value)
+        {
+            _moveVector = value;
+        }
+
         public override Vector3 GetMousePos()
         {
-            throw new System.NotImplementedException();
+            return Vector3.zero;
         }
 
         public override Vector2 GetMoveVector()
         {
-            throw new System.NotImplementedException();
+            return _moveVector;
         }
 
         protected override bool IsChangeWeaponDown()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         protected override bool IsChangeWeaponUp()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         protected override bool IsDash()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         protected override bool IsReload()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         protected override bool IsShoot()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
     }
 }

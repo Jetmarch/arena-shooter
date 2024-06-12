@@ -7,6 +7,7 @@ namespace ArenaShooter.Units
 {
     /// <summary>
     /// Позволяет передвигать юнита с помощью BaseInputController
+    /// TODO: Переделать под GRASP Controller
     /// </summary>
 
     [RequireComponent(typeof(Move2DComponent))]
@@ -17,8 +18,7 @@ namespace ArenaShooter.Units
         private BaseInputController _inputController;
         private Move2DComponent _moveComponent;
 
-        [Inject]
-        private void Constuct(BaseInputController inputController)
+        public void Constuct(BaseInputController inputController)
         {
             _inputController = inputController;
         }
@@ -32,13 +32,12 @@ namespace ArenaShooter.Units
 
         private void OnEnable()
         {
-            _inputController.Move += OnMove;
+            _inputController.OnMove += OnMove;
         }
 
         private void OnDisable()
         {
-            if (_inputController == null) return;
-            _inputController.Move -= OnMove;
+            _inputController.OnMove -= OnMove;
         }
 
         public void OnMove(Vector2 moveVector)
