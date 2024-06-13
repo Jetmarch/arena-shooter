@@ -34,7 +34,7 @@ namespace ArenaShooter.AI
         {
             Debug.Log("Attack!");
             _isAttacking = true;
-            _inputController.SetMoveVector(Vector2.zero);
+            _inputController.Move(Vector2.zero);
 
             for (int i = 0; i < _container.AttackCount; i++)
             {

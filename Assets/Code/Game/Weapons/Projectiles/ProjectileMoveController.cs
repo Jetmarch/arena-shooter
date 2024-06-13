@@ -19,7 +19,7 @@ namespace ArenaShooter.Weapons.Projectiles
 
         private void FixedUpdate()
         {
-            _moveComponent.OnMoveFixedUpdate(transform.right, _conditionContainer.MoveSpeed);
+            _moveComponent.Move(transform.right, _conditionContainer.MoveSpeed);
         }
     }
 }

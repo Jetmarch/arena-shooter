@@ -13,7 +13,7 @@ namespace ArenaShooter.Weapons
     /// </summary>
     public sealed class WeaponSetController : MonoBehaviour
     {
-        private BaseInputController _inputController;
+        
 
         [SerializeField]
         private WeaponConditionContainer[] _weapons;
@@ -22,9 +22,10 @@ namespace ArenaShooter.Weapons
         public WeaponConditionContainer CurrentWeapon => _weapons[_selectedWeaponIndex];
 
         public event Action WeaponChanged;
+        private IChangeWeaponInputProvider _inputController;
 
         [Inject]
-        private void Construct(BaseInputController inputController)
+        private void Construct(IChangeWeaponInputProvider inputController)
         {
             _inputController = inputController;
         }

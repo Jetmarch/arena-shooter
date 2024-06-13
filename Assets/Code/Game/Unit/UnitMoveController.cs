@@ -15,10 +15,10 @@ namespace ArenaShooter.Units
     public sealed class UnitMoveController : MonoBehaviour
     {
         private UnitConditionContainer _conditionContainer;
-        private BaseInputController _inputController;
+        private IMoveInputProvider _inputController;
         private Move2DComponent _moveComponent;
 
-        public void Constuct(BaseInputController inputController)
+        public void Constuct(IMoveInputProvider inputController)
         {
             _inputController = inputController;
         }
@@ -44,7 +44,7 @@ namespace ArenaShooter.Units
         {
             if (_conditionContainer.IsDashing) return;
 
-            _moveComponent.OnMoveFixedUpdate(moveVector, _conditionContainer.BaseSpeed + _conditionContainer.AdditionalSpeed);
+            _moveComponent.Move(moveVector, _conditionContainer.BaseSpeed + _conditionContainer.AdditionalSpeed);
         }
     }
 }

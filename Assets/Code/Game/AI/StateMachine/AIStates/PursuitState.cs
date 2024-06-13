@@ -23,7 +23,7 @@ namespace ArenaShooter.AI
             Debug.Log("Pursuit");
             var desiredVelocity = (_target.position - _owner.position).normalized;
 
-            _inputController.SetMoveVector(desiredVelocity);
+            _inputController.Move(desiredVelocity);
         }
 
         public bool IsTargetInDistanceOfAttack()

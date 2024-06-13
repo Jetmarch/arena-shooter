@@ -9,9 +9,11 @@ namespace ArenaShooter.Weapons
     public sealed class WeaponReloadObserver : MonoBehaviour
     {
         private WeaponConditionContainer _weaponContainer;
-        private BaseInputController _inputController;
+        private IReloadInputProvider _inputController;
+
+
         [Inject]
-        private void Construct(BaseInputController inputController)
+        private void Construct(IReloadInputProvider inputController)
         {
             _inputController = inputController;
         }

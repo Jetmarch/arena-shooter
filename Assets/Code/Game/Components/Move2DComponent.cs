@@ -13,12 +13,14 @@ namespace ArenaShooter.Components
 
         private Vector2 _velocity;
 
+        public Vector2 Velocity { get { return _velocity; } }
+
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        public void OnMoveFixedUpdate(Vector2 moveVector, float speed)
+        public void Move(Vector2 moveVector, float speed)
         {
             _velocity = moveVector;
             _moveSpeed = speed;

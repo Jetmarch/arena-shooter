@@ -11,7 +11,7 @@ namespace ArenaShooter.Installers
         private AIStateMachineFactory _stateMachineFactory;
 
         [SerializeField]
-        private BaseInputController _currentInputController;
+        private KeyboardAndMouseInputController _currentInputController;
 
         [SerializeField]
         private Transform _player;
@@ -21,6 +21,10 @@ namespace ArenaShooter.Installers
             Container.BindInstance(_currentInputController).AsSingle();
             Container.BindInstance(_player).AsSingle();
             Container.BindInstance(_stateMachineFactory).AsSingle();
+
+            Container.Bind(typeof(IMoveInputProvider), typeof(IMouseMoveInputProvider),
+                typeof(IShootInputProvider), typeof(IReloadInputProvider),
+                typeof(IChangeWeaponInputProvider), typeof(IDashInputProvider)).FromInstance(_currentInputController);
         }
 
 #if UNITY_EDITOR

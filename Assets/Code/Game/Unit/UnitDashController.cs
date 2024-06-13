@@ -16,24 +16,21 @@ namespace ArenaShooter.Units
     {
         private UnitConditionContainer _conditionContainer;
         private Move2DComponent _moveComponent;
-        private BaseInputController _inputController;
+        private IDashInputProvider _inputController;
 
         [SerializeField]
         private Vector2 _dashVector;
 
         [Inject]
-        private void Construct(BaseInputController inputController)
+        private void Construct(IDashInputProvider inputController)
         {
             _inputController = inputController;
         }
 
         private void Start()
         {
-            //_inputController = GetComponent<BaseInputController>();
             _conditionContainer = GetComponent<UnitConditionContainer>();
             _moveComponent = GetComponent<Move2DComponent>();
-
-            //_inputController.Dash += OnDash;
         }
 
         private void OnEnable()
@@ -52,7 +49,7 @@ namespace ArenaShooter.Units
             //TODO: Передавать условие черзе CompositeCondition
             if (!_conditionContainer.IsDashing) return;
 
-            _moveComponent.OnMoveFixedUpdate(_dashVector, _conditionContainer.DashSpeed);
+            _moveComponent.Move(_dashVector, _conditionContainer.DashSpeed);
         }
 
         public void OnDash()
@@ -60,7 +57,7 @@ namespace ArenaShooter.Units
             if (_conditionContainer.IsDashing) return;
 
             StartCoroutine(Dashing());
-            _dashVector = _inputController.GetMoveVector().normalized;
+            _dashVector = _moveComponent.Velocity;
         }
 
         private IEnumerator Dashing()

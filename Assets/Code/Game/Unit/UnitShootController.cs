@@ -12,11 +12,11 @@ namespace ArenaShooter.Units
     [Obsolete]
     public sealed class UnitShootController : MonoBehaviour
     {
-        private BaseInputController _inputController;
+        private IShootInputProvider _inputController;
         private WeaponSetController _weaponSet;
 
         [Inject]
-        private void Constuct(BaseInputController inputController)
+        private void Constuct(IShootInputProvider inputController)
         {
             _inputController = inputController;
         }

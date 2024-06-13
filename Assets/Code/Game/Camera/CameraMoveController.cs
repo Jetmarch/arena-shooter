@@ -18,10 +18,10 @@ namespace ArenaShooter.CameraControllers
 
         private FollowTargetComponent _followTargetComponent;
         private Camera _camera;
-        private BaseInputController _inputController;
+        private IMouseMoveInputProvider _inputController;
 
         [Inject]
-        public void Constuct(BaseInputController inputController)
+        public void Constuct(IMouseMoveInputProvider inputController)
         {
             _inputController = inputController;
         }
@@ -32,9 +32,25 @@ namespace ArenaShooter.CameraControllers
             _followTargetComponent = GetComponent<FollowTargetComponent>();
         }
 
-        private void FixedUpdate()
+        private void OnEnable()
         {
-            var mousePos = _camera.ScreenToWorldPoint(_inputController.GetMousePos());
+            _inputController.OnMouseMove += OnMouseMove;
+        }
+
+        private void OnDisable()
+        {
+            _inputController.OnMouseMove -= OnMouseMove;
+        }
+
+        private void OnMouseMove(Vector3 mousePos)
+        {
+            Follow(mousePos);
+        }
+
+        private void Follow(Vector3 position)
+        {
+            //TODO: ƒобавить контроллер
+            var mousePos = _camera.ScreenToWorldPoint(position);
             mousePos.z = 0;
             // амера фиксируетс€ на точке между игроком и указателем мыши
             var newTargetPosition = (_player.position + mousePos) * 0.5f;

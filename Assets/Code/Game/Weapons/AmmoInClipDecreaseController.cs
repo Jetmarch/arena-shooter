@@ -13,10 +13,10 @@ namespace ArenaShooter.Weapons
         private int _amountOfAmmoOnOneShot = 1;
 
         private WeaponConditionContainer _weaponConditionContainer;
-        private BaseInputController _inputController;
+        private IShootInputProvider _inputController;
 
         [Inject]
-        private void Construct(BaseInputController inputController)
+        private void Construct(IShootInputProvider inputController)
         {
             _inputController = inputController;
         }

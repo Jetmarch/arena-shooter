@@ -12,8 +12,6 @@ namespace ArenaShooter.Weapons
     /// </summary>
     public sealed class WeaponRotateObserver : MonoBehaviour
     {
-        private BaseInputController _inputController;
-
         [SerializeField]
         private Transform _weaponLeftSide;
         [SerializeField]
@@ -37,9 +35,10 @@ namespace ArenaShooter.Weapons
 
         private Camera _camera;
         private bool _isWeaponOnRightSide;
+        private IMouseMoveInputProvider _inputController;
 
         [Inject]
-        private void Construct(BaseInputController inputController)
+        private void Construct(IMouseMoveInputProvider inputController)
         {
             _inputController = inputController;
         }
@@ -61,23 +60,16 @@ namespace ArenaShooter.Weapons
 
         private void OnMouseMove(Vector3 mousePos)
         {
-            //TODO: Перенести в отдельный класс?
             ChangeWeaponSide();
             RotateWeapon(mousePos);
         }
 
         private void RotateWeapon(Vector3 mousePos)
         {
-            //TODO: Подумать над поворотом оружия у ботов
-
             Vector3 mouseWorldPoint = _camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0f));
 
             float angleRad = Mathf.Atan2(mouseWorldPoint.y - transform.position.y, mouseWorldPoint.x - transform.position.x);
             float angle = (180 / Mathf.PI) * angleRad;
-
-            //transform.rotation = Quaternion.Euler(0f, 0f, angle);
-
-            //transform.RotateAround(_inputController.gameObject.transform.position, Vector3.forward, angle * Time.deltaTime * 5f);
 
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }

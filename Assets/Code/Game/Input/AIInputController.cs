@@ -1,49 +1,22 @@
+using System;
 using UnityEngine;
 
 namespace ArenaShooter.Inputs
 {
 
-    public class AIInputController : BaseInputController
+    public class AIInputController : MonoBehaviour, IShootInputProvider, IMoveInputProvider
     {
-        private Vector2 _moveVector;
-        public void SetMoveVector(Vector2 value)
+        public event Action OnShoot;
+        public event Action<Vector2> OnMove;
+
+        public void Move(Vector2 value)
         {
-            _moveVector = value;
+            OnMove?.Invoke(value);
         }
 
-        public override Vector3 GetMousePos()
+        public void Shoot()
         {
-            return Vector3.zero;
-        }
-
-        public override Vector2 GetMoveVector()
-        {
-            return _moveVector;
-        }
-
-        protected override bool IsChangeWeaponDown()
-        {
-            return false;
-        }
-
-        protected override bool IsChangeWeaponUp()
-        {
-            return false;
-        }
-
-        protected override bool IsDash()
-        {
-            return false;
-        }
-
-        protected override bool IsReload()
-        {
-            return false;
-        }
-
-        protected override bool IsShoot()
-        {
-            return false;
+            OnShoot?.Invoke();
         }
     }
 }

@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace ArenaShooter.Inputs
 {
-    public sealed class KeyboardAndMouseInputController : BaseInputController
+    public sealed class KeyboardAndMouseInputController : MonoBehaviour, IMoveInputProvider, IMouseMoveInputProvider,
+        IShootInputProvider, IReloadInputProvider, IChangeWeaponInputProvider, IDashInputProvider
     {
         [SerializeField]
         private KeyCode _moveUpKey = KeyCode.W;
@@ -19,17 +20,31 @@ namespace ArenaShooter.Inputs
         [SerializeField]
         private KeyCode _reloadKey = KeyCode.R;
 
-        protected override void Update()
+        public event Action<Vector2> OnMove;
+        public event Action<Vector3> OnMouseMove;
+        public event Action OnShoot;
+        public event Action OnReload;
+        public event Action OnChangeWeaponUp;
+        public event Action OnChangeWeaponDown;
+        public event Action OnDash;
+
+        private void Update()
         {
-            base.Update();
+            MouseMove();
+            Move();
+            ChangeWeaponDown();
+            ChangeWeaponUp();
+            Dash();
+            Reload();
+            Shoot();
         }
 
-        public override Vector3 GetMousePos()
+        private void MouseMove()
         {
-            return Input.mousePosition;
+            OnMouseMove?.Invoke(Input.mousePosition);
         }
 
-        public override Vector2 GetMoveVector()
+        private void Move()
         {
             Vector2 moveVector = Vector2.zero;
             if (Input.GetKey(_moveUpKey))
@@ -48,55 +63,47 @@ namespace ArenaShooter.Inputs
             {
                 moveVector += Vector2.left;
             }
-            return moveVector;
+            OnMove?.Invoke(moveVector);
         }
 
-        protected override bool IsChangeWeaponDown()
+        private void ChangeWeaponDown()
         {
             if (Input.mouseScrollDelta.y < 0)
             {
-                return true;
+                OnChangeWeaponDown?.Invoke();
             }
-
-            return false;
         }
 
-        protected override bool IsChangeWeaponUp()
+        private void ChangeWeaponUp()
         {
             if (Input.mouseScrollDelta.y > 0)
             {
-                return true;
+                OnChangeWeaponUp?.Invoke();
             }
-
-            return false;
         }
 
-        protected override bool IsDash()
+        private void Dash()
         {
             if (Input.GetKeyDown(_dashKey))
             {
-                return true;
+                OnDash?.Invoke();
             }
-            return false;
         }
 
-        protected override bool IsReload()
+        private void Reload()
         {
             if (Input.GetKeyDown(_reloadKey))
             {
-                return true;
+                OnReload?.Invoke();
             }
-
-            return false;
         }
 
-        protected override bool IsShoot()
+        private void Shoot()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                return true;
+                OnShoot?.Invoke();
             }
-            return false;
         }
     }
 }

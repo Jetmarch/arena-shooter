@@ -10,10 +10,10 @@ namespace ArenaShooter.Weapons
     public abstract class BaseWeaponShootObserver : MonoBehaviour
     {
         protected WeaponConditionContainer _weaponContainer;
-        protected BaseInputController _inputController;
+        protected IShootInputProvider _inputController;
 
         [Inject]
-        private void Construct(BaseInputController inputController)
+        private void Construct(IShootInputProvider inputController)
         {
             _inputController = inputController;
         }

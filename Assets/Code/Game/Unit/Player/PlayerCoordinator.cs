@@ -18,7 +18,7 @@ namespace ArenaShooter.Units.Player
 
 
         [Inject]
-        private void Construct(BaseInputController inputController)
+        private void Construct(IMoveInputProvider inputController)
         {
             _moveController.Constuct(inputController);
         }
