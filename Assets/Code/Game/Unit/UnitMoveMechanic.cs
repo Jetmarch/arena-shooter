@@ -12,7 +12,7 @@ namespace ArenaShooter.Units
 
     [RequireComponent(typeof(Move2DComponent))]
     [RequireComponent(typeof(UnitConditionContainer))]
-    public sealed class UnitMoveController : MonoBehaviour
+    public sealed class UnitMoveMechanic : MonoBehaviour
     {
         private UnitConditionContainer _conditionContainer;
         private IMoveInputProvider _inputController;

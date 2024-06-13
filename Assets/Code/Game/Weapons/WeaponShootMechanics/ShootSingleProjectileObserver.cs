@@ -6,7 +6,7 @@ using Zenject;
 
 namespace ArenaShooter.Weapons
 {
-    public class ShootSingleProjectileObserver : BaseWeaponShootObserver
+    public class ShootSingleProjectileObserver : BaseWeaponShootMechanic
     {
         protected override void Start()
         {
@@ -17,7 +17,7 @@ namespace ArenaShooter.Weapons
         {
             if (!CanShoot()) return;
 
-            Instantiate(_weaponContainer.ProjectilePrefab, transform.position, transform.rotation);
+            Instantiate(_weaponContainer.ProjectilePrefab, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation);
         }
     }
 }

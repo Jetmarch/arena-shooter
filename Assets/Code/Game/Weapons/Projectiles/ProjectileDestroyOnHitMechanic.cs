@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace ArenaShooter.Weapons.Projectiles
 {
-    public class ProjectileDestroyOnHitObserver : MonoBehaviour
+    public class ProjectileDestroyOnHitMechanic : MonoBehaviour
     {
-        private ProjectileDamageController _damageController;
+        private ProjectileDamageMechanic _damageController;
 
         private void Start()
         {
-            _damageController = GetComponent<ProjectileDamageController>();
+            _damageController = GetComponent<ProjectileDamageMechanic>();
             _damageController.HitGameObject += OnHit;
         }
 

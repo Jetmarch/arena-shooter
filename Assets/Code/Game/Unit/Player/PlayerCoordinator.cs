@@ -10,9 +10,9 @@ namespace ArenaShooter.Units.Player
         [SerializeField]
         private UnitConditionContainer _conditionContainer;
         [SerializeField]
-        private UnitMoveController _moveController;
+        private UnitMoveMechanic _moveController;
         [SerializeField]
-        private UnitDashController _dashController;
+        private UnitDashMechanic _dashController;
         [SerializeField]
         private WeaponSetController _weaponSetController;
 
@@ -27,8 +27,8 @@ namespace ArenaShooter.Units.Player
         private void OnValidate()
         {
             _conditionContainer = GetComponent<UnitConditionContainer>();
-            _moveController = GetComponent<UnitMoveController>();
-            _dashController = GetComponent<UnitDashController>();
+            _moveController = GetComponent<UnitMoveMechanic>();
+            _dashController = GetComponent<UnitDashMechanic>();
             _weaponSetController = GetComponent<WeaponSetController>();
         }
 #endif

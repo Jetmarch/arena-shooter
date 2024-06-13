@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ArenaShooter.Weapons
 {
-    public class ShootProjectileBurstObserver : BaseWeaponShootObserver
+    public class ShootProjectileBurstObserver : BaseWeaponShootMechanic
     {
         [SerializeField]
         private int _countOfProjectilesInShot = 4;
@@ -20,8 +20,8 @@ namespace ArenaShooter.Weapons
 
             for (int i = 0; i < _countOfProjectilesInShot; i++)
             {
-                var spreadRotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + Random.Range(_minSpreadAngle, _maxSpreadAngle));
-                Instantiate(_weaponContainer.ProjectilePrefab, transform.position, spreadRotation);
+                var spreadRotation = Quaternion.Euler(_projectileSpawnPoint.eulerAngles.x, _projectileSpawnPoint.eulerAngles.y, _projectileSpawnPoint.eulerAngles.z + Random.Range(_minSpreadAngle, _maxSpreadAngle));
+                Instantiate(_weaponContainer.ProjectilePrefab, _projectileSpawnPoint.position, spreadRotation);
             }
         }
     }

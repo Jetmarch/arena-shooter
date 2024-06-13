@@ -12,7 +12,7 @@ namespace ArenaShooter.Units
     /// </summary>
     [RequireComponent(typeof(Move2DComponent))]
     [RequireComponent(typeof(UnitConditionContainer))]
-    public sealed class UnitDashController : MonoBehaviour
+    public sealed class UnitDashMechanic : MonoBehaviour
     {
         private UnitConditionContainer _conditionContainer;
         private Move2DComponent _moveComponent;

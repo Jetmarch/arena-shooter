@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ArenaShooter.Weapons.Projectiles
 {
     [RequireComponent(typeof(Move2DComponent))]
-    public sealed class ProjectileMoveController : MonoBehaviour
+    public sealed class ProjectileMoveMechanic : MonoBehaviour
     {
         [SerializeField]
         private ProjectileConditionContainer _conditionContainer;

@@ -20,6 +20,8 @@ namespace ArenaShooter.CameraControllers
         private Camera _camera;
         private IMouseMoveInputProvider _inputController;
 
+        private Vector3 _mousePos;
+
         [Inject]
         public void Constuct(IMouseMoveInputProvider inputController)
         {
@@ -44,7 +46,12 @@ namespace ArenaShooter.CameraControllers
 
         private void OnMouseMove(Vector3 mousePos)
         {
-            Follow(mousePos);
+            _mousePos = mousePos;
+        }
+
+        private void FixedUpdate()
+        {
+            Follow(_mousePos);
         }
 
         private void Follow(Vector3 position)

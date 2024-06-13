@@ -7,10 +7,13 @@ using Zenject;
 
 namespace ArenaShooter.Weapons
 {
-    public abstract class BaseWeaponShootObserver : MonoBehaviour
+    public abstract class BaseWeaponShootMechanic : MonoBehaviour
     {
+        [SerializeField]
+        protected Transform _projectileSpawnPoint;
         protected WeaponConditionContainer _weaponContainer;
         protected IShootInputProvider _inputController;
+        
 
         [Inject]
         private void Construct(IShootInputProvider inputController)

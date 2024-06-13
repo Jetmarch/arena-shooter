@@ -10,7 +10,7 @@ namespace ArenaShooter.Units
     /// ѕозвол€ет стрел€ть из выбранного оружи€
     /// </summary>
     [Obsolete]
-    public sealed class UnitShootController : MonoBehaviour
+    public sealed class UnitShootMechanic : MonoBehaviour
     {
         private IShootInputProvider _inputController;
         private WeaponSetController _weaponSet;

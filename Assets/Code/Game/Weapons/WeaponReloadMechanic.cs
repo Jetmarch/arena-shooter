@@ -6,7 +6,7 @@ using Zenject;
 
 namespace ArenaShooter.Weapons
 {
-    public sealed class WeaponReloadObserver : MonoBehaviour
+    public sealed class WeaponReloadMechanic : MonoBehaviour
     {
         private WeaponConditionContainer _weaponContainer;
         private IReloadInputProvider _inputController;

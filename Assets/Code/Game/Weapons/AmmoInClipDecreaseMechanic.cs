@@ -7,7 +7,7 @@ using Zenject;
 namespace ArenaShooter.Weapons
 {
 
-    public class AmmoInClipDecreaseController : MonoBehaviour
+    public class AmmoInClipDecreaseMechanic : MonoBehaviour
     {
         [SerializeField]
         private int _amountOfAmmoOnOneShot = 1;

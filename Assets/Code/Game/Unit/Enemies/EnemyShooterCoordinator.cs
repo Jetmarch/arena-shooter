@@ -10,7 +10,7 @@ namespace ArenaShooter.Units.Enemies
     public class EnemyShooterCoordinator : MonoBehaviour
     {
         [SerializeField]
-        private UnitMoveController _moveController;
+        private UnitMoveMechanic _moveController;
         [SerializeField]
         private AIInputController _inputController;
 
@@ -24,7 +24,7 @@ namespace ArenaShooter.Units.Enemies
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            _moveController = GetComponent<UnitMoveController>();
+            _moveController = GetComponent<UnitMoveMechanic>();
             _inputController = GetComponent<AIInputController>();
         }
 #endif

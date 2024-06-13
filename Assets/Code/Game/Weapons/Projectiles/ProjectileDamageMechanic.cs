@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ArenaShooter.Weapons.Projectiles
 {
     [RequireComponent(typeof(Trigger2DComponent))]
-    public class ProjectileDamageController : MonoBehaviour
+    public class ProjectileDamageMechanic : MonoBehaviour
     {
         [SerializeField]
         private ProjectileConditionContainer _conditionContainer;
@@ -39,7 +39,6 @@ namespace ArenaShooter.Weapons.Projectiles
 
         private void OnHit(Collider2D obj)
         {
-            Debug.Log($"Hit something: {obj.name}");
             HitGameObject?.Invoke(obj.gameObject);
 
             var unitConditionContainer = obj.gameObject.GetComponent<UnitConditionContainer>();

@@ -10,7 +10,7 @@ namespace ArenaShooter.Weapons
     /// <summary>
     /// Поворачивает оружие персонажа в сторону указателя мыши
     /// </summary>
-    public sealed class WeaponRotateObserver : MonoBehaviour
+    public sealed class WeaponRotateMechanic : MonoBehaviour
     {
         [SerializeField]
         private Transform _weaponLeftSide;
