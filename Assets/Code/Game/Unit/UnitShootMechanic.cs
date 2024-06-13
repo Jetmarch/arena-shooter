@@ -13,7 +13,7 @@ namespace ArenaShooter.Units
     public sealed class UnitShootMechanic : MonoBehaviour
     {
         private IShootInputProvider _inputController;
-        private WeaponSetController _weaponSet;
+        private WeaponChangeMechanic _weaponSet;
 
         [Inject]
         private void Constuct(IShootInputProvider inputController)
@@ -23,7 +23,7 @@ namespace ArenaShooter.Units
 
         private void Start()
         {
-            _weaponSet = GetComponent<WeaponSetController>();
+            _weaponSet = GetComponent<WeaponChangeMechanic>();
         }
 
         private void OnEnable()

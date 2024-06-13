@@ -1,21 +1,20 @@
 using ArenaShooter.Inputs;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using Zenject;
 
 namespace ArenaShooter.Weapons
 {
     /// <summary>
-    /// Поворачивает оружие персонажа в сторону указателя мыши
+    /// Отражает спрайт оружия по оси Y
     /// </summary>
-    public sealed class WeaponRotateMechanic : MonoBehaviour
+    public class WeaponFlipSpriteMechanic : MonoBehaviour
     {
-        private Camera _camera;
-       
         private IMouseMoveInputProvider _inputController;
-        
+
+        private SpriteRenderer _spriteRenderer;
+
         public void Construct(IMouseMoveInputProvider inputController)
         {
             _inputController = inputController;
@@ -24,7 +23,7 @@ namespace ArenaShooter.Weapons
 
         private void Start()
         {
-            _camera = Camera.main;
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
         private void OnEnable()
@@ -41,21 +40,23 @@ namespace ArenaShooter.Weapons
 
         private void OnMouseMove(Vector3 mousePos)
         {
-            
-            RotateWeapon(mousePos);
+            FlipWeaponSprite(mousePos);
         }
 
-        private void RotateWeapon(Vector3 mousePos)
+        private void FlipWeaponSprite(Vector3 mousePos)
         {
-            if (_camera == null) return;
-
-            Vector3 mouseWorldPoint = _camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0f));
-
-            float angleRad = Mathf.Atan2(mouseWorldPoint.y - transform.position.y, mouseWorldPoint.x - transform.position.x);
-            float angle = (180 / Mathf.PI) * angleRad;
-
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            if (_spriteRenderer == null) return;
+            //Проверяка на какой половине экрана находится указатель мыши
+            //Левая сторона
+            if(mousePos.x < Screen.width * 0.5f)
+            {
+                _spriteRenderer.flipY = true;
+            }
+            //Правая сторона
+            else
+            {
+                _spriteRenderer.flipY = false;
+            }
         }
-
     }
 }

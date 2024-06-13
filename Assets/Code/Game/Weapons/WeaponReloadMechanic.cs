@@ -12,10 +12,10 @@ namespace ArenaShooter.Weapons
         private IReloadInputProvider _inputController;
 
 
-        [Inject]
-        private void Construct(IReloadInputProvider inputController)
+        public void Construct(IReloadInputProvider inputController)
         {
             _inputController = inputController;
+            _inputController.OnReload += OnReload;
         }
 
         private void Start()
@@ -25,11 +25,15 @@ namespace ArenaShooter.Weapons
 
         private void OnEnable()
         {
+            if (_inputController == null) return;
+
             _inputController.OnReload += OnReload;
         }
 
         private void OnDisable()
         {
+            if (_inputController == null) return;
+
             _inputController.OnReload -= OnReload;
         }
 

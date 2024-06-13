@@ -21,6 +21,7 @@ namespace ArenaShooter.Units
         public void Constuct(IMoveInputProvider inputController)
         {
             _inputController = inputController;
+            _inputController.OnMove += OnMove;
         }
 
         private void Start()
@@ -32,11 +33,13 @@ namespace ArenaShooter.Units
 
         private void OnEnable()
         {
+            if (_inputController == null) return;
             _inputController.OnMove += OnMove;
         }
 
         private void OnDisable()
         {
+            if (_inputController == null) return;
             _inputController.OnMove -= OnMove;
         }
 

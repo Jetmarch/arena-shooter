@@ -17,7 +17,7 @@ namespace ArenaShooter.AI
 
         public override void Update()
         {
-            Debug.Log("Idle state here");
+            //Debug.Log("Idle state here");
         }
 
         public bool IsTargetInDistanceOfAggro()

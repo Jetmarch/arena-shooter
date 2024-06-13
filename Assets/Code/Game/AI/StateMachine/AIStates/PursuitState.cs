@@ -20,7 +20,7 @@ namespace ArenaShooter.AI
 
         public override void Update()
         {
-            Debug.Log("Pursuit");
+            //Debug.Log("Pursuit");
             var desiredVelocity = (_target.position - _owner.position).normalized;
 
             _inputController.Move(desiredVelocity);

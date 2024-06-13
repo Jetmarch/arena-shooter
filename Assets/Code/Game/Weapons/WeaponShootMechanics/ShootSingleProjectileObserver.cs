@@ -16,7 +16,7 @@ namespace ArenaShooter.Weapons
         public override void OnShoot()
         {
             if (!CanShoot()) return;
-
+            //TODO: Использовать _projectileFactory
             Instantiate(_weaponContainer.ProjectilePrefab, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation);
         }
     }

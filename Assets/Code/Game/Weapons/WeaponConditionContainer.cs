@@ -6,7 +6,6 @@ namespace ArenaShooter.Weapons
 {
     public sealed class WeaponConditionContainer : MonoBehaviour
     {
-        //TODO: Перенести в SO
         [SerializeField]
         private int maxAmmoInBackpack;
         [SerializeField]
@@ -30,6 +29,7 @@ namespace ArenaShooter.Weapons
         public int CurrentAmmoInClip { get => currentAmmoInClip; set => currentAmmoInClip = value; }
         public float ReloadSpeed { get => reloadSpeed; set => reloadSpeed = value; }
         public float RateOfFire { get => rateOfFire; set => rateOfFire = value; }
+        //TODO: Заменить на ProjectileType
         public GameObject ProjectilePrefab { get => _projectilePrefab; set => _projectilePrefab = value; }
         public bool IsReloading { get => _isReloading; set => _isReloading = value; }
     }

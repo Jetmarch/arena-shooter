@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ArenaShooter.Weapons.Projectiles
 {
-    public class ProjectileSpawner : MonoBehaviour
+    public class ProjectileFactory : MonoBehaviour
     {
         
     }

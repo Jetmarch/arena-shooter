@@ -24,7 +24,7 @@ namespace ArenaShooter.AI
 
         public override void Update()
         {
-            Debug.Log("Attack!");
+            //Debug.Log("Attack!");
             if (_isAttacking) return;
 
             _coroutineStarter.StartCoroutine(Attack());
@@ -32,13 +32,13 @@ namespace ArenaShooter.AI
 
         private IEnumerator Attack()
         {
-            Debug.Log("Attack!");
+            //Debug.Log("Attack!");
             _isAttacking = true;
             _inputController.Move(Vector2.zero);
 
             for (int i = 0; i < _container.AttackCount; i++)
             {
-                Debug.Log("Shoot!");
+                //Debug.Log("Shoot!");
                 _inputController.Shoot();
                 yield return new WaitForSeconds(_container.TimeBetweenAttacks);
             }

@@ -10,10 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7264404260985484298}
   - component: {fileID: 4044972201489623911}
-  - component: {fileID: 1610326859159231703}
   - component: {fileID: 7963146312427705933}
+  - component: {fileID: 1610326859159231703}
   - component: {fileID: 8562621223834955325}
   - component: {fileID: 3990724147446308217}
+  - component: {fileID: 129208723245824243}
+  - component: {fileID: 7760761116206240617}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -57,18 +59,6 @@ MonoBehaviour:
   rateOfFire: 0.5
   _projectilePrefab: {fileID: 8061884974603674031, guid: c9bb74df81296f748940be2e21216618, type: 3}
   _isReloading: 0
---- !u!114 &1610326859159231703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691436118815922653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1de2ca35414125a42b8f14d1c06670aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7963146312427705933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +72,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSpawnPoint: {fileID: 7793381685314662207}
+--- !u!114 &1610326859159231703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691436118815922653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de2ca35414125a42b8f14d1c06670aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8562621223834955325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,15 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67c1b27aad476d4cb8c81e4b0bc2928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponLeftSide: {fileID: 0}
-  _weaponRightSide: {fileID: 0}
-  _minUpperSideZRotationRight: 0
-  _maxUpperSideZRotationRight: 45
-  _minBottomSideZRotationRight: 240
-  _maxBottomSideZRotationRight: 360
-  _minUpperSideZRotationLeft: 135
-  _maxUpperSideZRotationLeft: 225
-  _spaceBetweenSides: 15
 --- !u!114 &3990724147446308217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +109,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _amountOfAmmoOnOneShot: 1
+--- !u!114 &129208723245824243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691436118815922653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edf678e93ff8134ca95f2681114f72d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7760761116206240617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691436118815922653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d355cf080debf4aba71e07d3126bf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shootMechanic: {fileID: 7963146312427705933}
 --- !u!1 &7062365355083917099
 GameObject:
   m_ObjectHideFlags: 0

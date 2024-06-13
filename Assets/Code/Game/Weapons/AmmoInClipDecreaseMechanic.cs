@@ -15,10 +15,10 @@ namespace ArenaShooter.Weapons
         private WeaponConditionContainer _weaponConditionContainer;
         private IShootInputProvider _inputController;
 
-        [Inject]
-        private void Construct(IShootInputProvider inputController)
+        public void Construct(IShootInputProvider inputController)
         {
             _inputController = inputController;
+            _inputController.OnShoot += OnShoot;
         }
 
         private void Start()
@@ -28,11 +28,13 @@ namespace ArenaShooter.Weapons
 
         private void OnEnable()
         {
+            if (_inputController == null) return;
             _inputController.OnShoot += OnShoot;
         }
 
         private void OnDisable()
         {
+            if (_inputController == null) return;
             _inputController.OnShoot -= OnShoot;
         }
 

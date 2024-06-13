@@ -21,6 +21,7 @@ namespace ArenaShooter.Weapons
             for (int i = 0; i < _countOfProjectilesInShot; i++)
             {
                 var spreadRotation = Quaternion.Euler(_projectileSpawnPoint.eulerAngles.x, _projectileSpawnPoint.eulerAngles.y, _projectileSpawnPoint.eulerAngles.z + Random.Range(_minSpreadAngle, _maxSpreadAngle));
+                //TODO: Использовать _projectileFactory
                 Instantiate(_weaponContainer.ProjectilePrefab, _projectileSpawnPoint.position, spreadRotation);
             }
         }
