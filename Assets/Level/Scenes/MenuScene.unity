@@ -305,8 +305,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 268550243
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 5171125220873100548, guid: 0edae087b5e546f49be2028c44709213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1910,6 +1910,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1744988021}
     m_Modifications:
+    - target: {fileID: 769251535284104164, guid: 8e5ee7e0c7f32b941903077fd8e1927d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 769251535284104164, guid: 8e5ee7e0c7f32b941903077fd8e1927d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564410983
+      objectReference: {fileID: 0}
     - target: {fileID: 1691436118815922653, guid: 8e5ee7e0c7f32b941903077fd8e1927d, type: 3}
       propertyPath: m_Name
       value: Revolver
@@ -1983,6 +1991,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1744988021}
     m_Modifications:
+    - target: {fileID: 1898828930790085030, guid: 0bfe999124580e34aa3f4acc6c24b323, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898828930790085030, guid: 0bfe999124580e34aa3f4acc6c24b323, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564410983
+      objectReference: {fileID: 0}
     - target: {fileID: 5456043046058722814, guid: 0bfe999124580e34aa3f4acc6c24b323, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
