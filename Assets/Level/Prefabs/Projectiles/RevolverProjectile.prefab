@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3704094585770241830}
   - component: {fileID: 6510732210156589349}
   - component: {fileID: -3168753188071757533}
+  - component: {fileID: 17986641294685647}
   m_Layer: 6
   m_Name: RevolverProjectile
   m_TagString: Untagged
@@ -231,3 +232,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88448af78b66ec542b1be4c5b7bdbe4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &17986641294685647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8061884974603674031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5ca28a2405127489911b48f4b9c943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delayInSec: 5
