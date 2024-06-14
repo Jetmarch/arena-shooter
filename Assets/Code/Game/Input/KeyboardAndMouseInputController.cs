@@ -4,7 +4,8 @@ using UnityEngine;
 namespace ArenaShooter.Inputs
 {
     public sealed class KeyboardAndMouseInputController : MonoBehaviour, IMoveInputProvider, IMouseMoveInputProvider,
-        IShootInputProvider, IReloadInputProvider, IChangeWeaponInputProvider, IDashInputProvider
+        IShootInputProvider, IReloadInputProvider, IChangeWeaponInputProvider, IDashInputProvider,
+        IGameUpdateListener
     {
         [SerializeField]
         private KeyCode _moveUpKey = KeyCode.W;
@@ -28,7 +29,19 @@ namespace ArenaShooter.Inputs
         public event Action OnChangeWeaponDown;
         public event Action OnDash;
 
-        private void Update()
+        //private void Update()
+        //{
+        //    MouseMove();
+        //    Move();
+        //    ChangeWeaponDown();
+        //    ChangeWeaponUp();
+        //    Dash();
+        //    Reload();
+        //    Shoot();
+        //}
+
+
+        public void OnUpdate(float delta)
         {
             MouseMove();
             Move();
@@ -105,5 +118,6 @@ namespace ArenaShooter.Inputs
                 OnShoot?.Invoke();
             }
         }
+
     }
 }
