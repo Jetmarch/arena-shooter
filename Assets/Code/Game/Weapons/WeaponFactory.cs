@@ -21,7 +21,7 @@ namespace ArenaShooter.Weapons
         }
 
         [SerializeField]
-        List<WeaponFactoryData> _weapons;
+        private List<WeaponFactoryData> _weapons;
 
         private IShootInputProvider _shootInputProvider;
         private IMouseMoveInputProvider _mouseMoveInputProvider;
@@ -46,7 +46,7 @@ namespace ArenaShooter.Weapons
             }
 
             var createdWeapon = Instantiate(weapon, position, weapon.transform.rotation, parent);
-            createdWeapon.GetComponent<WeaponCoordinator>().Construct(_shootInputProvider, _mouseMoveInputProvider, _reloadInputProvider, _projectileFactory);
+            createdWeapon.GetComponent<WeaponInstaller>().Construct(_shootInputProvider, _mouseMoveInputProvider, _reloadInputProvider, _projectileFactory);
             return createdWeapon;
         }
     }

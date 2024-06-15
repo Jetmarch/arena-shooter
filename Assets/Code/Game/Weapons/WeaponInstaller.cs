@@ -5,7 +5,7 @@ using Zenject;
 
 namespace ArenaShooter.Weapons
 {
-    public class WeaponCoordinator : MonoBehaviour
+    public class WeaponInstaller : MonoBehaviour
     {
         [SerializeField]
         private BaseWeaponShootMechanic _shootMechanic;
@@ -21,6 +21,7 @@ namespace ArenaShooter.Weapons
 
         [SerializeField]
         private WeaponRotateMechanic _weaponRotateMechanic;
+        [SerializeField]
 
         public void Construct(IShootInputProvider shootInputProvider, IMouseMoveInputProvider mouseMoveInputProvider, IReloadInputProvider reloadInputProvider, ProjectileFactory projectileFactory)
         {
@@ -29,6 +30,10 @@ namespace ArenaShooter.Weapons
             _ammoInClipDecreaseMechanic.Construct(shootInputProvider);
             _weaponReloadMechanic.Construct(reloadInputProvider);
             _weaponRotateMechanic.Construct(mouseMoveInputProvider);
+
+            //TODO: IsNotReloading, IsEnoughAmmoToShoot
+            _shootMechanic.Condition.Append(_weaponReloadMechanic.IsNotReloading);
+            _shootMechanic.Condition.Append(_ammoInClipDecreaseMechanic.IsEnoughAmmoToShoot);
         }
 
 #if UNITY_EDITOR

@@ -19,6 +19,11 @@ namespace ArenaShooter.Components
         public float MaxHealth { get { return _maxHealth; } }
         public float MinHealth { get { return _minHealth; } }
 
+        private void Awake()
+        {
+            _currentHealth = _maxHealth;
+        }
+
         public void SetCurrentHealth(float health)
         {
             _currentHealth = health;

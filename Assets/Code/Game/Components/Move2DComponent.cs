@@ -30,10 +30,10 @@ namespace ArenaShooter.Components
         //TODO: Вызов может происходить раньше, чем Awake у GameLoopManager, поэтому не все объекты могут попасть в пул отслеживаемых
         //Соответственно, передвижение работать не будет
         //Решение - создавать игрока из фабрики после инициализации всех элементов системы
-        private void OnEnable()
-        {
-            IGameLoopListener.Register(this);
-        }
+        //private void OnEnable()
+        //{
+        //    IGameLoopListener.Register(this);
+        //}
 
         private void OnDisable()
         {

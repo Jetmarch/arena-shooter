@@ -12,18 +12,20 @@ namespace ArenaShooter.Weapons
         [SerializeField]
         private int _amountOfAmmoOnOneShot = 1;
 
-        private WeaponConditionContainer _weaponConditionContainer;
+        [SerializeField]
+        private int _currentAmmoInClip;
+
         private IShootInputProvider _inputController;
+
+        public bool IsEnoughAmmoToShoot()
+        {
+            return _amountOfAmmoOnOneShot > _currentAmmoInClip;
+        }
 
         public void Construct(IShootInputProvider inputController)
         {
             _inputController = inputController;
             _inputController.OnShoot += OnShoot;
-        }
-
-        private void Start()
-        {
-            _weaponConditionContainer = GetComponent<WeaponConditionContainer>();
         }
 
         private void OnEnable()
@@ -40,9 +42,9 @@ namespace ArenaShooter.Weapons
 
         private void OnShoot()
         {
-            if (_weaponConditionContainer.CurrentAmmoInClip < _amountOfAmmoOnOneShot) return;
+            if (!IsEnoughAmmoToShoot()) return;
 
-            _weaponConditionContainer.CurrentAmmoInClip -= _amountOfAmmoOnOneShot;
+            _currentAmmoInClip -= _amountOfAmmoOnOneShot;
         }
     }
 }

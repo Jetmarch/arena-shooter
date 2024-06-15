@@ -9,17 +9,12 @@ namespace ArenaShooter.Weapons
 {
     public class ShootSingleProjectileObserver : BaseWeaponShootMechanic
     {
-        protected override void Start()
-        {
-            base.Start();
-        }
-
         public override void OnShoot()
         {
             if (!CanShoot()) return;
-            //TODO: Использовать _projectileFactory
-            var projectile = Instantiate(_weaponContainer.ProjectilePrefab, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation);
-            projectile.GetComponent<ProjectileInstaller>().Construct();
+
+            //TODO: Передавать пул снарядов в качестве родительского объекта
+            _projectileFactory.CreateProjectile(_projectileType, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation);
         }
     }
 }

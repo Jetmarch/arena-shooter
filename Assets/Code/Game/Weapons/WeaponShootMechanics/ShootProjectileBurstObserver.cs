@@ -22,9 +22,9 @@ namespace ArenaShooter.Weapons
             for (int i = 0; i < _countOfProjectilesInShot; i++)
             {
                 var spreadRotation = Quaternion.Euler(_projectileSpawnPoint.eulerAngles.x, _projectileSpawnPoint.eulerAngles.y, _projectileSpawnPoint.eulerAngles.z + Random.Range(_minSpreadAngle, _maxSpreadAngle));
-                //TODO: Использовать _projectileFactory
-                var projectile = Instantiate(_weaponContainer.ProjectilePrefab, _projectileSpawnPoint.position, spreadRotation);
-                projectile.GetComponent<ProjectileInstaller>().Construct();
+
+                //TODO: Передавать пул снарядов в качестве родительского объекта
+                _projectileFactory.CreateProjectile(_projectileType, _projectileSpawnPoint.position, spreadRotation);
             }
         }
     }

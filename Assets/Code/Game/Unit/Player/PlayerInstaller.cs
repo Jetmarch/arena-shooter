@@ -8,6 +8,12 @@ using Zenject;
 
 namespace ArenaShooter.Units.Player
 {
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Move2DComponent))]
+    [RequireComponent(typeof(UnitMoveMechanic))]
+    [RequireComponent(typeof(UnitDashMechanic))]
+    [RequireComponent(typeof(WeaponChangeMechanic))]
+    [RequireComponent(typeof(WeaponsStorage))]
     public class PlayerInstaller : MonoBehaviour
     {
         [SerializeField]

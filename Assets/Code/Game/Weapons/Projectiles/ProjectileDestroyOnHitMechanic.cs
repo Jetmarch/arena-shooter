@@ -14,6 +14,18 @@ namespace ArenaShooter.Weapons.Projectiles
             _damageController.HitGameObject += OnHit;
         }
 
+        private void OnEnable()
+        {
+            if (_damageController == null) return;
+
+            _damageController.HitGameObject -= OnHit;
+        }
+
+        private void OnDisable()
+        {
+            _damageController.HitGameObject += OnHit;
+        }
+
         private void OnHit(GameObject obj)
         {
             Destroy(gameObject);

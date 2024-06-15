@@ -7,8 +7,7 @@ using Zenject;
 namespace ArenaShooter.Units
 {
     /// <summary>
-    /// Позволяет передвигать юнита с помощью BaseInputController
-    /// TODO: Переделать под GRASP Controller
+    /// Позволяет передвигать юнита
     /// </summary>
 
     [RequireComponent(typeof(Move2DComponent))]
@@ -32,13 +31,13 @@ namespace ArenaShooter.Units
 
         private void OnEnable()
         {
-            if (_inputController == null) return;
+            //if (_inputController == null) return;
             _inputController.OnMove += OnMove;
         }
 
         private void OnDisable()
         {
-            if (_inputController == null) return;
+            //if (_inputController == null) return;
             _inputController.OnMove -= OnMove;
         }
 

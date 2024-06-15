@@ -492,6 +492,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bd8e29d8dd5234a890645b148c2a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectiles:
+  - Type: 0
+    ProjectilePrefab: {fileID: 8061884974603674031, guid: c9bb74df81296f748940be2e21216618, type: 3}
+  _projectilePool: {fileID: 1552781602}
 --- !u!1 &371073398
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,10 +776,12 @@ GameObject:
   - component: {fileID: 955185167}
   - component: {fileID: 955185168}
   - component: {fileID: 955185169}
+  - component: {fileID: 955185177}
   - component: {fileID: 955185173}
   - component: {fileID: 955185172}
-  - component: {fileID: 955185171}
   - component: {fileID: 955185170}
+  - component: {fileID: 955185176}
+  - component: {fileID: 955185175}
   - component: {fileID: 955185174}
   m_Layer: 0
   m_Name: Dummy
@@ -837,23 +843,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78407095452b46640a7a40cbc2250fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &955185171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 955185166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e6c759670601e48aa79a6d80451858, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseSpeed: 100
-  _additionalSpeed: 0
-  _dashSpeed: 500
-  _dashTime: 0.25
-  _isDashing: 0
 --- !u!114 &955185172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,7 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15471d864d0a74a4ca1485f9bfabbf1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 0
+  _moveSpeed: 250
 --- !u!50 &955185173
 Rigidbody2D:
   serializedVersion: 4
@@ -906,9 +895,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa562be85746984a94e6dd0f5d0415e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 955185173}
+  _healthComponent: {fileID: 955185176}
   _moveComponent: {fileID: 955185172}
   _moveController: {fileID: 955185170}
   _inputController: {fileID: 955185169}
+  _dieMechanic: {fileID: 955185175}
+--- !u!114 &955185175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955185166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ec5c37a41884242a5f777e53fc66f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &955185176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955185166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1bd44c4323608241b97caac95e5b8ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 3
+  _minHealth: 0
+  _currentHealth: 0
+--- !u!58 &955185177
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955185166}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &959241437
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,24 +9,20 @@ namespace ArenaShooter.Weapons
     {
         [SerializeField]
         protected Transform _projectileSpawnPoint;
-        protected WeaponConditionContainer _weaponContainer;
+        [SerializeField]
+        protected ProjectileType _projectileType;
         protected IShootInputProvider _inputController;
         protected ProjectileFactory _projectileFactory;
 
         private CompositeCondition _condition;
         public CompositeCondition Condition { get { return _condition; } }
 
-        public void Construct(IShootInputProvider inputController, ProjectileFactory projectileFactory)
+        public virtual void Construct(IShootInputProvider inputController, ProjectileFactory projectileFactory)
         {
             _inputController = inputController;
             _projectileFactory = projectileFactory;
 
-            //_inputController.OnShoot += OnShoot;
-        }
-
-        protected virtual void Start()
-        {
-            _weaponContainer = GetComponent<WeaponConditionContainer>();
+            _condition = new CompositeCondition();
             _inputController.OnShoot += OnShoot;
         }
 
@@ -44,9 +40,7 @@ namespace ArenaShooter.Weapons
 
         protected bool CanShoot()
         {
-            //TODO: Заменить на CompositeCondition
-            if (_weaponContainer.IsReloading) return false;
-            if (_weaponContainer.CurrentAmmoInClip <= 0f) return false;
+            if (!_condition.IsTrue()) return false;
             return true;
         }
 

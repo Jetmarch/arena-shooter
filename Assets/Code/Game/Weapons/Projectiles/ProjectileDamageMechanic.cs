@@ -1,5 +1,4 @@
 using ArenaShooter.Components;
-using ArenaShooter.Units;
 using System;
 using UnityEngine;
 
@@ -27,21 +26,20 @@ namespace ArenaShooter.Weapons.Projectiles
 
         private void OnEnable()
         {
-            if (_triggerComponent != null)
-            {
-                _triggerComponent.TriggerOn += OnHit;
-            }
+            if (_triggerComponent == null) return;
+            _triggerComponent.TriggerOn += OnHit;
         }
 
         private void OnDisable()
         {
+            if (_triggerComponent == null) return;
             _triggerComponent.TriggerOn -= OnHit;
         }
 
         private void OnHit(Collider2D obj)
         {
             HitGameObject?.Invoke(obj.gameObject);
-            
+
             var health = obj.gameObject.GetComponent<HealthComponent>();
             if (health != null)
             {

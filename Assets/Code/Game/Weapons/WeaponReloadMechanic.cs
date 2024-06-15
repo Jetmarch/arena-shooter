@@ -11,6 +11,12 @@ namespace ArenaShooter.Weapons
         private WeaponConditionContainer _weaponContainer;
         private IReloadInputProvider _inputController;
 
+        private bool _isReloading;
+
+        public bool IsNotReloading()
+        {
+            return !_isReloading;
+        }
 
         public void Construct(IReloadInputProvider inputController)
         {
@@ -26,14 +32,12 @@ namespace ArenaShooter.Weapons
         private void OnEnable()
         {
             if (_inputController == null) return;
-
             _inputController.OnReload += OnReload;
         }
 
         private void OnDisable()
         {
             if (_inputController == null) return;
-
             _inputController.OnReload -= OnReload;
         }
 

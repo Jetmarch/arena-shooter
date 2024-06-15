@@ -27,8 +27,8 @@ namespace ArenaShooter.Weapons
         {
             _inputController = inputController;
             _weaponStorage = weaponStorage;
-            //_inputController.OnChangeWeaponUp += OnChangeWeaponUp;
-            //_inputController.OnChangeWeaponDown += OnChangeWeaponDown;
+            _inputController.OnChangeWeaponUp += OnChangeWeaponUp;
+            _inputController.OnChangeWeaponDown += OnChangeWeaponDown;
         }
 
         private void OnEnable()

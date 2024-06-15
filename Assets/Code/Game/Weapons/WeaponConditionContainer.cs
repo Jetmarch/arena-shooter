@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArenaShooter.Weapons
 {
+    [Obsolete]
     public sealed class WeaponConditionContainer : MonoBehaviour
     {
         [SerializeField]
