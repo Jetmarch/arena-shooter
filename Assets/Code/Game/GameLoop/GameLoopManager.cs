@@ -14,6 +14,22 @@ namespace ArenaShooter
         [SerializeField]
         private List<IGameFixedUpdateListener> _fixedUpdateListeners = new();
 
+        private void Awake()
+        {
+            IGameLoopListener.OnRegister += OnRegister;
+            IGameLoopListener.OnUnregister += OnUnregister;
+        }
+
+        private void OnUnregister(IGameLoopListener obj)
+        {
+            RemoveListener(obj);
+        }
+
+        private void OnRegister(IGameLoopListener obj)
+        {
+            AddListener(obj);
+        }
+
         public void AddListener(IGameLoopListener listener)
         {
             _listeners.Add(listener);
@@ -116,7 +132,7 @@ namespace ArenaShooter
 
         private void FixedUpdate()
         {
-            var delta = Time.deltaTime;
+            var delta = Time.fixedDeltaTime;
 
             for (int i = 0; i < _fixedUpdateListeners.Count; i++)
             {

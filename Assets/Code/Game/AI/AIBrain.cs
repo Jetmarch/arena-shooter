@@ -8,7 +8,7 @@ using Zenject;
 
 namespace ArenaShooter.AI
 {
-    public class AIBrain : MonoBehaviour
+    public class AIBrain : MonoBehaviour, IGameUpdateListener
     {
         [SerializeField]
         private AIType _type;
@@ -17,6 +17,7 @@ namespace ArenaShooter.AI
 
         private Transform _target;
         private AIInputController _inputController;
+
         [Inject]
         private void Construct(Transform player, AIStateMachineFactory stateMachineFactory)
         {
@@ -30,7 +31,17 @@ namespace ArenaShooter.AI
             _stateMachine = _factory.CreateStateMachine(_type, _inputController, transform, _target);
         }
 
-        void Update()
+        private void OnEnable()
+        {
+            IGameLoopListener.Register(this);
+        }
+
+        private void OnDisable()
+        {
+            IGameLoopListener.Unregister(this);
+        }
+
+        public void OnUpdate(float delta)
         {
             _stateMachine.Update();
         }

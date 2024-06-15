@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ArenaShooter.Weapons.Projectiles
 {
     [RequireComponent(typeof(Move2DComponent))]
-    public sealed class ProjectileMoveMechanic : MonoBehaviour
+    public sealed class ProjectileMoveMechanic : MonoBehaviour, IGameFixedUpdateListener
     {
         [SerializeField]
         private ProjectileConditionContainer _conditionContainer;
@@ -17,7 +17,17 @@ namespace ArenaShooter.Weapons.Projectiles
             _conditionContainer = GetComponent<ProjectileConditionContainer>();
         }
 
-        private void FixedUpdate()
+        private void OnEnable()
+        {
+            IGameLoopListener.Register(this);
+        }
+
+        private void OnDisable()
+        {
+            IGameLoopListener.Unregister(this);
+        }
+
+        public void OnFixedUpdate(float delta)
         {
             _moveComponent.Move(transform.right, _conditionContainer.MoveSpeed);
         }

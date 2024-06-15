@@ -8,7 +8,7 @@ using Zenject;
 namespace ArenaShooter.CameraControllers
 {
     [RequireComponent(typeof(FollowTargetComponent))]
-    public class CameraMoveController : MonoBehaviour
+    public class CameraMoveController : MonoBehaviour, IGameFixedUpdateListener
     {
         [SerializeField]
         private Transform _player;
@@ -37,11 +37,13 @@ namespace ArenaShooter.CameraControllers
         private void OnEnable()
         {
             _inputController.OnMouseMove += OnMouseMove;
+            IGameLoopListener.Register(this);
         }
 
         private void OnDisable()
         {
             _inputController.OnMouseMove -= OnMouseMove;
+            IGameLoopListener.Unregister(this);
         }
 
         private void OnMouseMove(Vector3 mousePos)
@@ -49,7 +51,7 @@ namespace ArenaShooter.CameraControllers
             _mousePos = mousePos;
         }
 
-        private void FixedUpdate()
+        public void OnFixedUpdate(float delta)
         {
             Follow(_mousePos);
         }

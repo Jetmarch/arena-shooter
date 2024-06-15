@@ -12,7 +12,7 @@ namespace ArenaShooter.Units
     /// </summary>
     [RequireComponent(typeof(Move2DComponent))]
     [RequireComponent(typeof(UnitConditionContainer))]
-    public sealed class UnitDashMechanic : MonoBehaviour
+    public sealed class UnitDashMechanic : MonoBehaviour, IGameFixedUpdateListener
     {
         private UnitConditionContainer _conditionContainer;
         private Move2DComponent _moveComponent;
@@ -36,20 +36,12 @@ namespace ArenaShooter.Units
         private void OnEnable()
         {
             _inputController.OnDash += OnDash;
+            IGameLoopListener.Register(this);
         }
         private void OnDisable()
         {
-            if (_inputController == null) return;
-
             _inputController.OnDash -= OnDash;
-        }
-
-        private void FixedUpdate()
-        {
-            //TODO: Передавать условие черзе CompositeCondition
-            if (!_conditionContainer.IsDashing) return;
-
-            _moveComponent.Move(_dashVector, _conditionContainer.DashSpeed);
+            IGameLoopListener.Unregister(this);
         }
 
         public void OnDash()
@@ -70,6 +62,14 @@ namespace ArenaShooter.Units
             _conditionContainer.AdditionalSpeed -= _conditionContainer.DashSpeed;
             _conditionContainer.IsDashing = false;
             _dashVector = Vector2.zero;
+        }
+
+        public void OnFixedUpdate(float delta)
+        {
+            //TODO: Передавать условие черзе CompositeCondition
+            if (!_conditionContainer.IsDashing) return;
+
+            _moveComponent.Move(_dashVector, _conditionContainer.DashSpeed);
         }
     }
 }

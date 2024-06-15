@@ -719,7 +719,10 @@ Transform:
   m_LocalPosition: {x: 0.024592355, y: 0.07418361, z: -0.047452427}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 959241438}
+  - {fileID: 778959128}
+  - {fileID: 1423445894}
   m_Father: {fileID: 1648175392}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &778959127
@@ -748,11 +751,11 @@ Transform:
   m_GameObject: {fileID: 778959127}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.024592355, y: 0.07418361, z: -0.047452427}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1648175392}
+  m_Father: {fileID: 754276589}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &778959129
 MonoBehaviour:
@@ -943,11 +946,11 @@ Transform:
   m_GameObject: {fileID: 959241437}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.024592355, y: 0.07418361, z: -0.047452427}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1648175392}
+  m_Father: {fileID: 754276589}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &959241439
 MonoBehaviour:
@@ -1498,11 +1501,11 @@ Transform:
   m_GameObject: {fileID: 1423445893}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.024592355, y: 0.07418361, z: -0.047452427}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1648175392}
+  m_Father: {fileID: 754276589}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1423445895
 MonoBehaviour:
@@ -1612,9 +1615,6 @@ Transform:
   - {fileID: 337367194}
   - {fileID: 371073399}
   - {fileID: 754276589}
-  - {fileID: 959241438}
-  - {fileID: 778959128}
-  - {fileID: 1423445894}
   - {fileID: 2144366544}
   - {fileID: 451608502}
   m_Father: {fileID: 0}

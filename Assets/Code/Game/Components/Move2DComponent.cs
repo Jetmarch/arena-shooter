@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ArenaShooter.Components
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public sealed class Move2DComponent : MonoBehaviour
+    public sealed class Move2DComponent : MonoBehaviour, IGameFixedUpdateListener
     {
         private float _moveSpeed;
 
@@ -20,13 +20,23 @@ namespace ArenaShooter.Components
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
+        private void OnEnable()
+        {
+            IGameLoopListener.Register(this);
+        }
+
+        private void OnDisable()
+        {
+            IGameLoopListener.Unregister(this);
+        }
+
         public void Move(Vector2 moveVector, float speed)
         {
             _velocity = moveVector;
             _moveSpeed = speed;
         }
 
-        private void FixedUpdate()
+        public void OnFixedUpdate(float delta)
         {
             _rigidbody.velocity = _velocity * Time.fixedDeltaTime * _moveSpeed;
         }

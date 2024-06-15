@@ -29,17 +29,10 @@ namespace ArenaShooter.Inputs
         public event Action OnChangeWeaponDown;
         public event Action OnDash;
 
-        //private void Update()
-        //{
-        //    MouseMove();
-        //    Move();
-        //    ChangeWeaponDown();
-        //    ChangeWeaponUp();
-        //    Dash();
-        //    Reload();
-        //    Shoot();
-        //}
-
+        private void Start()
+        {
+            IGameLoopListener.Register(this);
+        }
 
         public void OnUpdate(float delta)
         {
