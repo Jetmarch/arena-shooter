@@ -1,4 +1,5 @@
 using ArenaShooter.Inputs;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,27 +7,30 @@ using Zenject;
 
 namespace ArenaShooter.Weapons
 {
+    //TODO: Выделить обойму, как отдельную сущность
     public sealed class WeaponReloadMechanic : MonoBehaviour
     {
-        private WeaponConditionContainer _weaponContainer;
+        [SerializeField]
+        private float _reloadSpeed;
+
         private IReloadInputProvider _inputController;
+        private AmmoClipStorage _ammoClipStorage;
 
         private bool _isReloading;
+
+        public event Action OnStartReload;
+        public event Action OnEndReload;
 
         public bool IsNotReloading()
         {
             return !_isReloading;
         }
 
-        public void Construct(IReloadInputProvider inputController)
+        public void Construct(IReloadInputProvider inputController, AmmoClipStorage ammoClipStorage)
         {
+            _ammoClipStorage = ammoClipStorage;
             _inputController = inputController;
             _inputController.OnReload += OnReload;
-        }
-
-        private void Start()
-        {
-            _weaponContainer = GetComponent<WeaponConditionContainer>();
         }
 
         private void OnEnable()
@@ -43,18 +47,22 @@ namespace ArenaShooter.Weapons
 
         public void OnReload()
         {
-            if (_weaponContainer.IsReloading) return;
+            if (_isReloading) return;
 
             StartCoroutine(Reloading());
         }
 
         private IEnumerator Reloading()
         {
-            _weaponContainer.IsReloading = true;
-            yield return new WaitForSeconds(_weaponContainer.ReloadSpeed);
-            //TODO: Уменьшение боезапаса
-            _weaponContainer.CurrentAmmoInClip = _weaponContainer.MaxAmmoInClip;
-            _weaponContainer.IsReloading = false;
+            _isReloading = true;
+            OnStartReload?.Invoke();
+
+            yield return new WaitForSeconds(_reloadSpeed);
+
+            _ammoClipStorage.SetCurrentAmmo(_ammoClipStorage.MaxAmmo);
+
+            OnEndReload?.Invoke();
+            _isReloading = false;
         }
     }
 }

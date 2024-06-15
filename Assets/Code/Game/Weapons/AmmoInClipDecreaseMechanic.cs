@@ -6,24 +6,22 @@ using Zenject;
 
 namespace ArenaShooter.Weapons
 {
-
     public class AmmoInClipDecreaseMechanic : MonoBehaviour
     {
         [SerializeField]
         private int _amountOfAmmoOnOneShot = 1;
 
-        [SerializeField]
-        private int _currentAmmoInClip;
-
         private IShootInputProvider _inputController;
+        private AmmoClipStorage _ammoClipStorage;
 
         public bool IsEnoughAmmoToShoot()
         {
-            return _amountOfAmmoOnOneShot > _currentAmmoInClip;
+            return _ammoClipStorage.CurrentAmmo > _amountOfAmmoOnOneShot;
         }
 
-        public void Construct(IShootInputProvider inputController)
+        public void Construct(IShootInputProvider inputController, AmmoClipStorage ammoClipStorage)
         {
+            _ammoClipStorage = ammoClipStorage;
             _inputController = inputController;
             _inputController.OnShoot += OnShoot;
         }
@@ -43,8 +41,8 @@ namespace ArenaShooter.Weapons
         private void OnShoot()
         {
             if (!IsEnoughAmmoToShoot()) return;
-
-            _currentAmmoInClip -= _amountOfAmmoOnOneShot;
+            int currentAmmo = _ammoClipStorage.CurrentAmmo - _amountOfAmmoOnOneShot;
+            _ammoClipStorage.SetCurrentAmmo(currentAmmo);
         }
     }
 }

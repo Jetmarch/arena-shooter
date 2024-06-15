@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7264404260985484298}
-  - component: {fileID: 4044972201489623911}
   - component: {fileID: 7963146312427705933}
   - component: {fileID: 1610326859159231703}
   - component: {fileID: 8562621223834955325}
   - component: {fileID: 3990724147446308217}
   - component: {fileID: 129208723245824243}
   - component: {fileID: 7760761116206240617}
+  - component: {fileID: 7351649344067694024}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -39,26 +39,6 @@ Transform:
   - {fileID: 6267000285659733865}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4044972201489623911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691436118815922653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0e95d06d4d4044e92f0840de8c30ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxAmmoInBackpack: -1
-  currentAmmoInBackpack: -1
-  maxAmmoInClip: 6
-  currentAmmoInClip: 6
-  reloadSpeed: 0.7
-  rateOfFire: 0.5
-  _projectilePrefab: {fileID: 8061884974603674031, guid: c9bb74df81296f748940be2e21216618, type: 3}
-  _isReloading: 0
 --- !u!114 &7963146312427705933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSpawnPoint: {fileID: 7793381685314662207}
+  _projectileType: 0
 --- !u!114 &1610326859159231703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de2ca35414125a42b8f14d1c06670aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _reloadSpeed: 0
 --- !u!114 &8562621223834955325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _amountOfAmmoOnOneShot: 1
+  _currentAmmoInClip: 0
 --- !u!114 &129208723245824243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +121,22 @@ MonoBehaviour:
   _ammoInClipDecreaseMechanic: {fileID: 3990724147446308217}
   _weaponReloadMechanic: {fileID: 1610326859159231703}
   _weaponRotateMechanic: {fileID: 8562621223834955325}
+  _weaponChangeMechanic: {fileID: 0}
+--- !u!114 &7351649344067694024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691436118815922653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db6bc88304686b439e61780e042a387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxAmmo: 6
+  _minAmmo: 0
+  _currentAmmo: 0
 --- !u!1 &7062365355083917099
 GameObject:
   m_ObjectHideFlags: 0

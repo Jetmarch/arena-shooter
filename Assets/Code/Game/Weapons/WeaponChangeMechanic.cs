@@ -1,4 +1,5 @@
 using ArenaShooter.Inputs;
+using ArenaShooter.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace ArenaShooter.Weapons
         private WeaponsStorage _weaponStorage;
         private IChangeWeaponInputProvider _inputController;
 
+        private CompositeCondition _condition;
+
+        public CompositeCondition Condition { get { return _condition; } }
+
         public event Action WeaponChanged;
         public GameObject CurrentWeapon => _weaponStorage.Weapons.ElementAt(_selectedWeaponIndex);
 
@@ -27,8 +32,9 @@ namespace ArenaShooter.Weapons
         {
             _inputController = inputController;
             _weaponStorage = weaponStorage;
-            _inputController.OnChangeWeaponUp += OnChangeWeaponUp;
-            _inputController.OnChangeWeaponDown += OnChangeWeaponDown;
+            _condition = new CompositeCondition();
+            //_inputController.OnChangeWeaponUp += OnChangeWeaponUp;
+            //_inputController.OnChangeWeaponDown += OnChangeWeaponDown;
         }
 
         private void OnEnable()
@@ -71,8 +77,7 @@ namespace ArenaShooter.Weapons
 
         private bool CanChangeWeapon()
         {
-            //TODO: Прокидывать CompositeCondition извне
-            if (CurrentWeapon.GetComponent<WeaponConditionContainer>().IsReloading)
+            if (!_condition.IsTrue())
                 return false;
             return true;
         }

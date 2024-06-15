@@ -5,8 +5,16 @@ using Zenject;
 
 namespace ArenaShooter.Weapons
 {
+    [RequireComponent(typeof(AmmoClipStorage))]
+    [RequireComponent(typeof(BaseWeaponShootMechanic))]
+    [RequireComponent(typeof(WeaponFlipSpriteMechanic))]
+    [RequireComponent(typeof(AmmoInClipDecreaseMechanic))]
+    [RequireComponent(typeof(WeaponReloadMechanic))]
+    [RequireComponent(typeof(WeaponRotateMechanic))]
     public class WeaponInstaller : MonoBehaviour
     {
+        [SerializeField]
+        private AmmoClipStorage _ammoClipStorage;
         [SerializeField]
         private BaseWeaponShootMechanic _shootMechanic;
 
@@ -21,24 +29,24 @@ namespace ArenaShooter.Weapons
 
         [SerializeField]
         private WeaponRotateMechanic _weaponRotateMechanic;
-        [SerializeField]
 
         public void Construct(IShootInputProvider shootInputProvider, IMouseMoveInputProvider mouseMoveInputProvider, IReloadInputProvider reloadInputProvider, ProjectileFactory projectileFactory)
         {
             _shootMechanic.Construct(shootInputProvider, projectileFactory);
             _flipSpriteMechanic.Construct(mouseMoveInputProvider);
-            _ammoInClipDecreaseMechanic.Construct(shootInputProvider);
-            _weaponReloadMechanic.Construct(reloadInputProvider);
+            _ammoInClipDecreaseMechanic.Construct(shootInputProvider, _ammoClipStorage);
+            _weaponReloadMechanic.Construct(reloadInputProvider, _ammoClipStorage);
             _weaponRotateMechanic.Construct(mouseMoveInputProvider);
 
-            //TODO: IsNotReloading, IsEnoughAmmoToShoot
             _shootMechanic.Condition.Append(_weaponReloadMechanic.IsNotReloading);
             _shootMechanic.Condition.Append(_ammoInClipDecreaseMechanic.IsEnoughAmmoToShoot);
+
         }
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
+            _ammoClipStorage = GetComponent<AmmoClipStorage>();
             _shootMechanic = GetComponent<BaseWeaponShootMechanic>();
             _flipSpriteMechanic = GetComponent<WeaponFlipSpriteMechanic>();
             _ammoInClipDecreaseMechanic = GetComponent<AmmoInClipDecreaseMechanic>();
