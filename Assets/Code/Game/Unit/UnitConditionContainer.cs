@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace ArenaShooter.Units
     /// <summary>
     /// Контейнер с данными о состоянии юнита
     /// </summary>
+    [Obsolete]
     public sealed class UnitConditionContainer : MonoBehaviour
     {
         //TODO: разделить на сущности

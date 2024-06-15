@@ -1,4 +1,5 @@
 using ArenaShooter.Inputs;
+using ArenaShooter.Weapons.Projectiles;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,8 @@ namespace ArenaShooter.Weapons
         {
             if (!CanShoot()) return;
             //TODO: Использовать _projectileFactory
-            Instantiate(_weaponContainer.ProjectilePrefab, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation);
+            var projectile = Instantiate(_weaponContainer.ProjectilePrefab, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation);
+            projectile.GetComponent<ProjectileInstaller>().Construct();
         }
     }
 }

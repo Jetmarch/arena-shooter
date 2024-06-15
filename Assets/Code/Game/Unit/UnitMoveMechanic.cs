@@ -1,5 +1,6 @@
 using ArenaShooter.Components;
 using ArenaShooter.Inputs;
+using ArenaShooter.Utils;
 using UnityEngine;
 using Zenject;
 
@@ -11,24 +12,22 @@ namespace ArenaShooter.Units
     /// </summary>
 
     [RequireComponent(typeof(Move2DComponent))]
-    [RequireComponent(typeof(UnitConditionContainer))]
     public sealed class UnitMoveMechanic : MonoBehaviour
     {
-        private UnitConditionContainer _conditionContainer;
         private IMoveInputProvider _inputController;
         private Move2DComponent _moveComponent;
 
-        public void Constuct(IMoveInputProvider inputController)
+        private CompositeCondition _condition;
+
+        public CompositeCondition Condition { get { return _condition; } }
+
+        public void Constuct(IMoveInputProvider inputController, Move2DComponent moveComponent)
         {
             _inputController = inputController;
             _inputController.OnMove += OnMove;
-        }
 
-        private void Start()
-        {
-            //TODO: Конструировать с помощью Zenject
-            _conditionContainer = GetComponent<UnitConditionContainer>();
-            _moveComponent = GetComponent<Move2DComponent>();
+            _moveComponent = moveComponent;
+            _condition = new CompositeCondition();
         }
 
         private void OnEnable()
@@ -45,9 +44,9 @@ namespace ArenaShooter.Units
 
         public void OnMove(Vector2 moveVector)
         {
-            if (_conditionContainer.IsDashing) return;
+            if (!_condition.IsTrue()) return;
 
-            _moveComponent.Move(moveVector, _conditionContainer.BaseSpeed + _conditionContainer.AdditionalSpeed);
+            _moveComponent.Move(moveVector);
         }
     }
 }

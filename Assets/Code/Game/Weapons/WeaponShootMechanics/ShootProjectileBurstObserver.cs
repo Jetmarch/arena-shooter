@@ -1,3 +1,4 @@
+using ArenaShooter.Weapons.Projectiles;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +23,8 @@ namespace ArenaShooter.Weapons
             {
                 var spreadRotation = Quaternion.Euler(_projectileSpawnPoint.eulerAngles.x, _projectileSpawnPoint.eulerAngles.y, _projectileSpawnPoint.eulerAngles.z + Random.Range(_minSpreadAngle, _maxSpreadAngle));
                 //TODO: Использовать _projectileFactory
-                Instantiate(_weaponContainer.ProjectilePrefab, _projectileSpawnPoint.position, spreadRotation);
+                var projectile = Instantiate(_weaponContainer.ProjectilePrefab, _projectileSpawnPoint.position, spreadRotation);
+                projectile.GetComponent<ProjectileInstaller>().Construct();
             }
         }
     }

@@ -255,7 +255,6 @@ GameObject:
   - component: {fileID: 337367193}
   - component: {fileID: 337367203}
   - component: {fileID: 337367201}
-  - component: {fileID: 337367200}
   - component: {fileID: 337367205}
   - component: {fileID: 337367196}
   - component: {fileID: 337367198}
@@ -329,7 +328,7 @@ Transform:
   m_GameObject: {fileID: 337367190}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5854075, y: 2.9041836, z: -0.047452427}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -348,6 +347,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32646f057982d0d498896f1276ff2754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dashSpeed: 500
+  _dashTime: 0.25
+  _isDashing: 0
   _dashVector: {x: 0, y: 0}
 --- !u!114 &337367198
 MonoBehaviour:
@@ -362,23 +364,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectedWeaponIndex: 0
---- !u!114 &337367200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337367190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e6c759670601e48aa79a6d80451858, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseSpeed: 250
-  _additionalSpeed: 0
-  _dashSpeed: 500
-  _dashTime: 0.25
-  _isDashing: 0
 --- !u!114 &337367201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,6 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15471d864d0a74a4ca1485f9bfabbf1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveSpeed: 250
 --- !u!50 &337367203
 Rigidbody2D:
   serializedVersion: 4
@@ -427,10 +413,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 337367190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d292a82093ddf6347a525fe5744b9b58, type: 3}
+  m_Script: {fileID: 11500000, guid: 79f1df40aacd3f74481bd10702766115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _conditionContainer: {fileID: 337367200}
+  _rigidbody: {fileID: 337367203}
+  _moveComponent: {fileID: 337367201}
   _moveController: {fileID: 337367205}
   _dashController: {fileID: 337367196}
   _weaponChangeMechanic: {fileID: 337367198}
@@ -879,6 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15471d864d0a74a4ca1485f9bfabbf1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveSpeed: 0
 --- !u!50 &955185173
 Rigidbody2D:
   serializedVersion: 4
@@ -918,6 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa562be85746984a94e6dd0f5d0415e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveComponent: {fileID: 955185172}
   _moveController: {fileID: 955185170}
   _inputController: {fileID: 955185169}
 --- !u!1 &959241437
@@ -1565,7 +1554,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1648175392}
-  - component: {fileID: 1648175390}
   - component: {fileID: 1648175391}
   m_Layer: 0
   m_Name: '[GAME_LOOP]'
@@ -1574,18 +1562,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1648175390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1648175389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82ec57e9df6209d4da4c64d84fd7afc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1648175391
 MonoBehaviour:
   m_ObjectHideFlags: 0

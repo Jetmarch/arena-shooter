@@ -11,26 +11,27 @@ namespace ArenaShooter.Units
     /// Позволяет делать рывок
     /// </summary>
     [RequireComponent(typeof(Move2DComponent))]
-    [RequireComponent(typeof(UnitConditionContainer))]
     public sealed class UnitDashMechanic : MonoBehaviour, IGameFixedUpdateListener
     {
-        private UnitConditionContainer _conditionContainer;
+        [SerializeField]
+        private float _dashSpeed = 500f;
+
+        [SerializeField]
+        private float _dashTime = 0.25f;
+
+        [SerializeField]
+        private bool _isDashing = false;
+
         private Move2DComponent _moveComponent;
         private IDashInputProvider _inputController;
 
         [SerializeField]
         private Vector2 _dashVector;
 
-        [Inject]
-        private void Construct(IDashInputProvider inputController)
+        public void Construct(IDashInputProvider inputController, Move2DComponent moveComponent)
         {
             _inputController = inputController;
-        }
-
-        private void Start()
-        {
-            _conditionContainer = GetComponent<UnitConditionContainer>();
-            _moveComponent = GetComponent<Move2DComponent>();
+            _moveComponent = moveComponent;
         }
 
         private void OnEnable()
@@ -44,9 +45,14 @@ namespace ArenaShooter.Units
             IGameLoopListener.Unregister(this);
         }
 
+        public bool IsNotDashing()
+        {
+            return !_isDashing;
+        }
+
         public void OnDash()
         {
-            if (_conditionContainer.IsDashing) return;
+            if (_isDashing) return;
 
             StartCoroutine(Dashing());
             _dashVector = _moveComponent.Velocity;
@@ -54,22 +60,21 @@ namespace ArenaShooter.Units
 
         private IEnumerator Dashing()
         {
-            _conditionContainer.IsDashing = true;
-            _conditionContainer.AdditionalSpeed += _conditionContainer.DashSpeed;
+            _isDashing = true;
+            _moveComponent.MoveSpeed += _dashSpeed;
 
-            yield return new WaitForSeconds(_conditionContainer.DashTime);
+            yield return new WaitForSeconds(_dashTime);
 
-            _conditionContainer.AdditionalSpeed -= _conditionContainer.DashSpeed;
-            _conditionContainer.IsDashing = false;
+            _moveComponent.MoveSpeed -= _dashSpeed;
+            _isDashing = false;
             _dashVector = Vector2.zero;
         }
 
         public void OnFixedUpdate(float delta)
         {
-            //TODO: Передавать условие черзе CompositeCondition
-            if (!_conditionContainer.IsDashing) return;
+            if (!_isDashing) return;
 
-            _moveComponent.Move(_dashVector, _conditionContainer.DashSpeed);
+            _moveComponent.Move(_dashVector);
         }
     }
 }

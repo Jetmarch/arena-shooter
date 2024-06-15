@@ -45,7 +45,7 @@ namespace ArenaShooter.Installers
             _weaponFactory = FindObjectOfType<WeaponFactory>();
             _projectileFactory = FindObjectOfType<ProjectileFactory>();
 
-            _player = FindObjectOfType<PlayerCoordinator>().transform;
+            _player = FindObjectOfType<PlayerInstaller>().transform;
         }
 #endif
     }

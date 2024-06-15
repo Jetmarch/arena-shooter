@@ -34,6 +34,11 @@ namespace ArenaShooter.Inputs
             IGameLoopListener.Register(this);
         }
 
+        private void OnDisable()
+        {
+            IGameLoopListener.Unregister(this);
+        }
+
         public void OnUpdate(float delta)
         {
             MouseMove();

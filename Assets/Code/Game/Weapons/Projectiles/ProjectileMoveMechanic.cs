@@ -6,15 +6,11 @@ namespace ArenaShooter.Weapons.Projectiles
     [RequireComponent(typeof(Move2DComponent))]
     public sealed class ProjectileMoveMechanic : MonoBehaviour, IGameFixedUpdateListener
     {
-        [SerializeField]
-        private ProjectileConditionContainer _conditionContainer;
-
         private Move2DComponent _moveComponent;
 
-        private void Start()
+        public void Construct(Move2DComponent moveComponent)
         {
-            _moveComponent = GetComponent<Move2DComponent>();
-            _conditionContainer = GetComponent<ProjectileConditionContainer>();
+            _moveComponent = moveComponent;
         }
 
         private void OnEnable()
@@ -29,7 +25,7 @@ namespace ArenaShooter.Weapons.Projectiles
 
         public void OnFixedUpdate(float delta)
         {
-            _moveComponent.Move(transform.right, _conditionContainer.MoveSpeed);
+            _moveComponent.Move(transform.right);
         }
     }
 }

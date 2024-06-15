@@ -9,17 +9,18 @@ namespace ArenaShooter.Weapons.Projectiles
     public class ProjectileDamageMechanic : MonoBehaviour
     {
         [SerializeField]
-        private ProjectileConditionContainer _conditionContainer;
+        private float _minDamage;
+        [SerializeField]
+        private float _maxDamage;
 
         [SerializeField]
         private Trigger2DComponent _triggerComponent;
 
         public event Action<GameObject> HitGameObject;
 
-        private void Start()
+        public void Construct(Trigger2DComponent triggerComponent)
         {
-            _conditionContainer = GetComponent<ProjectileConditionContainer>();
-            _triggerComponent = GetComponent<Trigger2DComponent>();
+            _triggerComponent = triggerComponent;
 
             _triggerComponent.TriggerOn += OnHit;
         }
@@ -40,11 +41,16 @@ namespace ArenaShooter.Weapons.Projectiles
         private void OnHit(Collider2D obj)
         {
             HitGameObject?.Invoke(obj.gameObject);
-
-            var unitConditionContainer = obj.gameObject.GetComponent<UnitConditionContainer>();
-            if (unitConditionContainer != null)
+            
+            var health = obj.gameObject.GetComponent<HealthComponent>();
+            if (health != null)
             {
-                Debug.Log($"Hit unit {unitConditionContainer.gameObject.name}");
+                //Отдельная механика?
+                var damage = UnityEngine.Random.Range(_minDamage, _maxDamage);
+                //Высчитывать урон, возможно, стоит внутри HealthComponent
+                var currentHealthAfterDamage = health.CurrentHealth - damage;
+                health.SetCurrentHealth(currentHealthAfterDamage);
+                Debug.Log($"Hit unit {health.gameObject.name} on {damage} damage!");
             }
         }
     }

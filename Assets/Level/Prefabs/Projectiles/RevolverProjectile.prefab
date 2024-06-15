@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 4334372058563688730}
   - component: {fileID: 3095307735527320254}
   - component: {fileID: 5934177093177697277}
-  - component: {fileID: 6462003619107798954}
   - component: {fileID: 2594590499336249952}
   - component: {fileID: 3704094585770241830}
   - component: {fileID: 6510732210156589349}
   - component: {fileID: -3168753188071757533}
   - component: {fileID: 17986641294685647}
+  - component: {fileID: 7820146740230575042}
   m_Layer: 6
   m_Name: RevolverProjectile
   m_TagString: Untagged
@@ -167,20 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15471d864d0a74a4ca1485f9bfabbf1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6462003619107798954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8061884974603674031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dcacc9f70932cd4b96aeeb169e29228, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 1
-  _moveSpeed: 350
+  _moveSpeed: 250
 --- !u!114 &2594590499336249952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bbc3961490b594eab4484f7752e1f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _conditionContainer: {fileID: 0}
 --- !u!114 &3704094585770241830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae3f292664723047921e243d7d24e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _conditionContainer: {fileID: 0}
+  _minDamage: 1
+  _maxDamage: 1
   _triggerComponent: {fileID: 0}
 --- !u!114 &-3168753188071757533
 MonoBehaviour:
@@ -245,3 +232,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayInSec: 5
+--- !u!114 &7820146740230575042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8061884974603674031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af10b2dea6bda534f861162f4011e289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 4334372058563688730}
+  _moveComponent: {fileID: 5934177093177697277}
+  _trigger2DComponent: {fileID: 3704094585770241830}
+  _moveMechanic: {fileID: 2594590499336249952}
+  _damageMechanic: {fileID: 6510732210156589349}
+  _destroyOnHitMechanic: {fileID: -3168753188071757533}

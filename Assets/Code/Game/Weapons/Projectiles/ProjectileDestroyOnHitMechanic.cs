@@ -8,9 +8,9 @@ namespace ArenaShooter.Weapons.Projectiles
     {
         private ProjectileDamageMechanic _damageController;
 
-        private void Start()
+        public void Construct(ProjectileDamageMechanic damageController)
         {
-            _damageController = GetComponent<ProjectileDamageMechanic>();
+            _damageController = damageController;
             _damageController.HitGameObject += OnHit;
         }
 
