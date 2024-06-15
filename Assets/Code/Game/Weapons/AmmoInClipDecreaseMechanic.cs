@@ -16,7 +16,7 @@ namespace ArenaShooter.Weapons
 
         public bool IsEnoughAmmoToShoot()
         {
-            return _ammoClipStorage.CurrentAmmo > _amountOfAmmoOnOneShot;
+            return _ammoClipStorage.CurrentAmmo >= _amountOfAmmoOnOneShot;
         }
 
         public void Construct(IShootInputProvider inputController, AmmoClipStorage ammoClipStorage)
