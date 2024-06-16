@@ -1,5 +1,7 @@
 using ArenaShooter.AI;
+using ArenaShooter.CameraControllers;
 using ArenaShooter.Inputs;
+using ArenaShooter.Units.Factories;
 using ArenaShooter.Units.Player;
 using ArenaShooter.Weapons;
 using ArenaShooter.Weapons.Projectiles;
@@ -17,18 +19,25 @@ namespace ArenaShooter.Installers
         private KeyboardAndMouseInputController _currentInputController;
 
         [SerializeField]
-        private Transform _player;
-
-        [SerializeField]
         private ProjectileFactory _projectileFactory;
 
         [SerializeField]
-        private WeaponFactory _weaponFactory;
+        private PlayerWeaponFactory _weaponFactory;
+
+        [SerializeField]
+        private PlayerUnitFactory _playerUnitFactory;
+
+        [SerializeField]
+        private EnemyShooterUnitFactory _enemyShooterUnitFactory;
+
+        [SerializeField]
+        private CameraMoveController _cameraMoveController;
 
         public override void InstallBindings()
         {
+
             Container.BindInstance(_currentInputController).AsSingle();
-            Container.BindInstance(_player).AsSingle();
+            //Container.BindInstance(_player).AsSingle();
             Container.BindInstance(_stateMachineFactory).AsSingle();
             Container.BindInstance(_projectileFactory).AsSingle();
             Container.BindInstance(_weaponFactory).AsSingle();
@@ -38,14 +47,26 @@ namespace ArenaShooter.Installers
                 typeof(IChangeWeaponInputProvider), typeof(IDashInputProvider)).FromInstance(_currentInputController);
         }
 
+        //Для тестирования
+        public override void Start()
+        {
+            var player = _playerUnitFactory.CreateUnit(Vector3.zero, null);
+            _cameraMoveController.SetTarget(player.transform);
+
+            _enemyShooterUnitFactory.CreateUnit(new Vector3(5f, 5f, 0f), null);
+        }
+
 #if UNITY_EDITOR
         private void OnValidate()
         {
             _stateMachineFactory = FindObjectOfType<AIStateMachineFactory>();
-            _weaponFactory = FindObjectOfType<WeaponFactory>();
+            _weaponFactory = FindObjectOfType<PlayerWeaponFactory>();
             _projectileFactory = FindObjectOfType<ProjectileFactory>();
 
-            _player = FindObjectOfType<PlayerInstaller>().transform;
+            //_player = FindObjectOfType<PlayerInstaller>().transform;
+            _playerUnitFactory = FindObjectOfType<PlayerUnitFactory>();
+            _enemyShooterUnitFactory = FindObjectOfType<EnemyShooterUnitFactory>();
+            _cameraMoveController = FindObjectOfType<CameraMoveController>();
         }
 #endif
     }

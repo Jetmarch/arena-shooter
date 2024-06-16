@@ -13,10 +13,9 @@ namespace ArenaShooter.AI
         private bool _isAttacking;
         private MonoBehaviour _coroutineStarter;
 
-        public AttackState(Transform owner, Transform target, AIStateMachineContainer container, AIInputController inputController, MonoBehaviour coroutineStarter)
+        public AttackState(Transform owner, AIStateMachineContainer container, AIInputController inputController, MonoBehaviour coroutineStarter)
         {
             _owner = owner;
-            _target = target;
             _container = container;
             _inputController = inputController;
             _coroutineStarter = coroutineStarter;
@@ -32,7 +31,6 @@ namespace ArenaShooter.AI
 
         private IEnumerator Attack()
         {
-            //Debug.Log("Attack!");
             _isAttacking = true;
             _inputController.Move(Vector2.zero);
 

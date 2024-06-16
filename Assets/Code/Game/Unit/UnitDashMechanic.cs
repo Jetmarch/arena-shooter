@@ -36,11 +36,13 @@ namespace ArenaShooter.Units
 
         private void OnEnable()
         {
+            if (_inputController == null) return;
             _inputController.OnDash += OnDash;
             IGameLoopListener.Register(this);
         }
         private void OnDisable()
         {
+            if (_inputController == null) return;
             _inputController.OnDash -= OnDash;
             IGameLoopListener.Unregister(this);
         }

@@ -1,3 +1,4 @@
+using ArenaShooter.AI;
 using ArenaShooter.Components;
 using ArenaShooter.Inputs;
 using ArenaShooter.Weapons;
@@ -28,15 +29,15 @@ namespace ArenaShooter.Units.Enemies
         private AIInputController _inputController;
         [SerializeField]
         private UnitDieMechanic _dieMechanic;
+        [SerializeField]
+        private AIBrain _brain;
 
-
-        //TODO: Конструировать через фабрику
-        [Inject]
-        private void Construct(Transform target)
+        public void Construct(AIStateMachineFactory aiStateMachineFactory)
         {
             _moveComponent.Construct(_rigidbody);
             _moveController.Constuct(_inputController, _moveComponent);
             _dieMechanic.Construct(_healthComponent);
+            _brain.Construct(_inputController, aiStateMachineFactory);
         }
 
 #if UNITY_EDITOR
@@ -48,6 +49,7 @@ namespace ArenaShooter.Units.Enemies
             _moveController = GetComponent<UnitMoveMechanic>();
             _inputController = GetComponent<AIInputController>();
             _dieMechanic = GetComponent<UnitDieMechanic>();
+            _brain = GetComponent<AIBrain>();
         }
 #endif
     }

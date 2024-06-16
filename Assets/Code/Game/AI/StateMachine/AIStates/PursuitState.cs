@@ -10,10 +10,9 @@ namespace ArenaShooter.AI
         private AIStateMachineContainer _container;
         private AIInputController _inputController;
 
-        public PursuitState(Transform owner, Transform target, AIStateMachineContainer container, AIInputController inputController)
+        public PursuitState(Transform owner,  AIStateMachineContainer container, AIInputController inputController)
         {
             _owner = owner;
-            _target = target;
             _container = container;
             _inputController = inputController;
         }

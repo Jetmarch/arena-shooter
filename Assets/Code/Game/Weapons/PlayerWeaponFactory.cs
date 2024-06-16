@@ -9,9 +9,9 @@ namespace ArenaShooter.Weapons
 {
     /// <summary>
     /// Собирает оружие для игрока
-    /// TODO: Продумать возможность использования этой фабрики как для игрока, так и для ботов
+    /// TODO: Собирать оружие для любого юнита
     /// </summary>
-    public class WeaponFactory : MonoBehaviour
+    public class PlayerWeaponFactory : MonoBehaviour
     {
         [Serializable]
         public struct WeaponFactoryData

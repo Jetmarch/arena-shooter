@@ -31,13 +31,13 @@ namespace ArenaShooter.Units
 
         private void OnEnable()
         {
-            //if (_inputController == null) return;
+            if (_inputController == null) return;
             _inputController.OnMove += OnMove;
         }
 
         private void OnDisable()
         {
-            //if (_inputController == null) return;
+            if (_inputController == null) return;
             _inputController.OnMove -= OnMove;
         }
 

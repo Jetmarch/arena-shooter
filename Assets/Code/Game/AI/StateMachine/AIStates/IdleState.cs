@@ -8,10 +8,9 @@ namespace ArenaShooter.AI
         private Transform _target;
         private AIStateMachineContainer _container;
 
-        public IdleState(Transform owner, Transform target, AIStateMachineContainer container)
+        public IdleState(Transform owner, AIStateMachineContainer container)
         {
             _owner = owner;
-            _target = target;
             _container = container;
         }
 
@@ -22,6 +21,7 @@ namespace ArenaShooter.AI
 
         public bool IsTargetInDistanceOfAggro()
         {
+            if (_target == null) return false;
             var distance = Vector2.Distance(_owner.position, _target.position);
             return distance < _container.DistanceOfAggro;
         }

@@ -32,11 +32,11 @@ namespace ArenaShooter.Units.Player
         [SerializeField]
         private Transform _weaponListParent;
 
-        private WeaponFactory _weaponFactory;
+        private PlayerWeaponFactory _weaponFactory;
 
         //TODO: Возможно конструировать игрока из фабрики
-        [Inject]
-        private void Construct(IMoveInputProvider moveInputProvider, IDashInputProvider dashInputProvider, IShootInputProvider shootInputProvider, IChangeWeaponInputProvider changeWeaponInputProvider, WeaponFactory weaponFactory)
+        
+        public void Construct(IMoveInputProvider moveInputProvider, IDashInputProvider dashInputProvider, IChangeWeaponInputProvider changeWeaponInputProvider, PlayerWeaponFactory weaponFactory)
         {
             _moveComponent.Construct(_rigidbody);
             _moveController.Constuct(moveInputProvider, _moveComponent);

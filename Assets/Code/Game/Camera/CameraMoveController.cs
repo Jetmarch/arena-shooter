@@ -11,7 +11,7 @@ namespace ArenaShooter.CameraControllers
     public class CameraMoveController : MonoBehaviour, IGameFixedUpdateListener
     {
         [SerializeField]
-        private Transform _player;
+        private Transform _target;
 
         [SerializeField]
         private float _maxViewDistance = 5f;
@@ -58,15 +58,19 @@ namespace ArenaShooter.CameraControllers
 
         private void Follow(Vector3 position)
         {
-            //TODO: Добавить контроллер
             var mousePos = _camera.ScreenToWorldPoint(position);
             mousePos.z = 0;
             //Камера фиксируется на точке между игроком и указателем мыши
-            var newTargetPosition = (_player.position + mousePos) * 0.5f;
+            var newTargetPosition = (_target.position + mousePos) * 0.5f;
             //Ограничиваем максимальную точку удаления камеры от персонажа игрока. Это сделано для того, чтобы игрок всегда видел персонажа
-            newTargetPosition = Vector3.ClampMagnitude(newTargetPosition - _player.position, _maxViewDistance) + _player.position;
+            newTargetPosition = Vector3.ClampMagnitude(newTargetPosition - _target.position, _maxViewDistance) + _target.position;
 
             _followTargetComponent.Follow(newTargetPosition);
+        }
+
+        public void SetTarget(Transform target)
+        {
+            _target = target;
         }
     }
 }

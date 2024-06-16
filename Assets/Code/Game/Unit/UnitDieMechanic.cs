@@ -15,15 +15,18 @@ namespace ArenaShooter.Units
         public void Construct(HealthComponent healthComponent)
         {
             _healthComponent = healthComponent;
+            _healthComponent.CurrentHealthChanged += OnCurrentHealthChanged;
         }
 
         private void OnEnable()
         {
+            if (_healthComponent == null) return;
             _healthComponent.CurrentHealthChanged += OnCurrentHealthChanged;
         }
 
         private void OnDisable()
         {
+            if (_healthComponent == null) return;
             _healthComponent.CurrentHealthChanged -= OnCurrentHealthChanged;
         }
 

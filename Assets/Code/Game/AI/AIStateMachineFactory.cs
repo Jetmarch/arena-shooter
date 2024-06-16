@@ -13,14 +13,14 @@ namespace ArenaShooter.AI
         [SerializeField]
         private List<AIStateMachineContainer> _containers;
 
-        public StateMachine CreateStateMachine(AIType type, AIInputController inputController, Transform owner, Transform target)
+        public StateMachine CreateStateMachine(AIType type, AIInputController inputController, Transform owner)
         {
             var aiContainer = _containers.Find(x => x.Type == type);
             var stateMachine = new StateMachine();
 
-            var idleState = new IdleState(owner, target, aiContainer);
-            var pursuitState = new PursuitState(owner, target, aiContainer, inputController);
-            var attackState = new AttackState(owner, target, aiContainer, inputController, this);
+            var idleState = new IdleState(owner, aiContainer);
+            var pursuitState = new PursuitState(owner, aiContainer, inputController);
+            var attackState = new AttackState(owner, aiContainer, inputController, this);
 
             var idleToPursuit = new StateTransition(pursuitState);
             idleToPursuit.Condition.Append(idleState.IsTargetInDistanceOfAggro);
