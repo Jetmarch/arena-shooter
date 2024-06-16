@@ -1,5 +1,6 @@
 using ArenaShooter.AI;
 using ArenaShooter.Units.Enemies;
+using ArenaShooter.Weapons.Projectiles;
 using System;
 using UnityEngine;
 using Zenject;
@@ -10,11 +11,13 @@ namespace ArenaShooter.Units.Factories
     {
 
         private AIStateMachineFactory _aIStateMachineFactory;
+        private ProjectileFactory _projectileFactory;
 
         [Inject]
-        private void Construct(AIStateMachineFactory aiStateMachineFactory)
+        private void Construct(AIStateMachineFactory aiStateMachineFactory, ProjectileFactory projectileFactory)
         {
             _aIStateMachineFactory = aiStateMachineFactory;
+            _projectileFactory = projectileFactory;
         }
 
         public override GameObject CreateUnit(Vector3 position, Transform parent)
@@ -26,7 +29,7 @@ namespace ArenaShooter.Units.Factories
                 throw new Exception($"Enemy prefab {_unitPrefab.name} doesn't have EnemyShooterInstaller!");
             }
 
-            installer.Construct(_aIStateMachineFactory);
+            installer.Construct(_aIStateMachineFactory, _projectileFactory);
             return enemy;
         }
 

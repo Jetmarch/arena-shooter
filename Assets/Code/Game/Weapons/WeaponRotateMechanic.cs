@@ -1,21 +1,20 @@
 using ArenaShooter.Inputs;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.Weapons
 {
     /// <summary>
     /// Поворачивает оружие персонажа в сторону указателя мыши
+    /// TODO: Нужна обертка, которая будет переводить позицию мышки в позицию мировых координат
+    /// И вызывать этот компонент. Это требуется для корректного использования компонента как игроком
+    /// Так и ботами
     /// </summary>
     public sealed class WeaponRotateMechanic : MonoBehaviour
     {
         private Camera _camera;
-       
+
         private IMouseMoveInputProvider _inputController;
-        
+
         public void Construct(IMouseMoveInputProvider inputController)
         {
             _inputController = inputController;
@@ -41,7 +40,7 @@ namespace ArenaShooter.Weapons
 
         private void OnMouseMove(Vector3 mousePos)
         {
-            
+
             RotateWeapon(mousePos);
         }
 

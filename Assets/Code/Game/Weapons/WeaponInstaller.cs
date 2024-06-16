@@ -40,7 +40,6 @@ namespace ArenaShooter.Weapons
 
             _shootMechanic.Condition.Append(_weaponReloadMechanic.IsNotReloading);
             _shootMechanic.Condition.Append(_ammoInClipDecreaseMechanic.IsEnoughAmmoToShoot);
-
         }
 
 #if UNITY_EDITOR

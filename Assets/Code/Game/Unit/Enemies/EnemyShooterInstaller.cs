@@ -2,10 +2,8 @@ using ArenaShooter.AI;
 using ArenaShooter.Components;
 using ArenaShooter.Inputs;
 using ArenaShooter.Weapons;
-using System.Collections;
-using System.Collections.Generic;
+using ArenaShooter.Weapons.Projectiles;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.Units.Enemies
 {
@@ -32,12 +30,21 @@ namespace ArenaShooter.Units.Enemies
         [SerializeField]
         private AIBrain _brain;
 
-        public void Construct(AIStateMachineFactory aiStateMachineFactory)
+        [SerializeField]
+        private Trigger2DComponent _triggerComponent;
+        [SerializeField]
+        private PlayerScannerComponent _playerScanner;
+        [SerializeField]
+        private WeaponInstaller _weaponInstaller;
+
+        public void Construct(AIStateMachineFactory aiStateMachineFactory, ProjectileFactory projectileFactory)
         {
             _moveComponent.Construct(_rigidbody);
             _moveController.Constuct(_inputController, _moveComponent);
             _dieMechanic.Construct(_healthComponent);
-            _brain.Construct(_inputController, aiStateMachineFactory);
+            _brain.Construct(_inputController, aiStateMachineFactory, _playerScanner);
+            _weaponInstaller.Construct(_inputController, _inputController, _inputController, projectileFactory);
+            _playerScanner.Construct(_triggerComponent);
         }
 
 #if UNITY_EDITOR
@@ -50,6 +57,9 @@ namespace ArenaShooter.Units.Enemies
             _inputController = GetComponent<AIInputController>();
             _dieMechanic = GetComponent<UnitDieMechanic>();
             _brain = GetComponent<AIBrain>();
+            _triggerComponent = GetComponentInChildren<Trigger2DComponent>();
+            _playerScanner = GetComponentInChildren<PlayerScannerComponent>();
+            _weaponInstaller = GetComponentInChildren<WeaponInstaller>();
         }
 #endif
     }
