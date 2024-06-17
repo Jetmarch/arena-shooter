@@ -29,6 +29,7 @@ namespace ArenaShooter.Weapons
         [SerializeField]
         private WeaponRotateMechanic _weaponRotateMechanic;
 
+        //TODO: Продумать автоматическую подвязку оружия к носителю
         public void Construct(IShootInputProvider shootInputProvider, IScreenMouseMoveInputProvider mouseMoveInputProvider,
             IWorldMouseMoveInputProvider worldMouseMoveProvider, IReloadInputProvider reloadInputProvider,
             ProjectileFactory projectileFactory)

@@ -163,8 +163,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 268550243
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 5171125220873100548, guid: 0edae087b5e546f49be2028c44709213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -377,7 +377,9 @@ MonoBehaviour:
   _inputController: {fileID: 2131625580298541168}
   _dieMechanic: {fileID: 398105782652984048}
   _brain: {fileID: 1180892338169770857}
+  _triggerComponent: {fileID: 4386612874203133428}
   _playerScanner: {fileID: 5122045073503592288}
+  _weaponInstaller: {fileID: 4682890147691111012}
 --- !u!1001 &3120771181212152077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -435,6 +437,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e5ee7e0c7f32b941903077fd8e1927d, type: 3}
+--- !u!114 &4682890147691111012 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7760761116206240617, guid: 8e5ee7e0c7f32b941903077fd8e1927d, type: 3}
+  m_PrefabInstance: {fileID: 3120771181212152077}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d7daa052d131342942e2095034d66c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5737425349490410759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7264404260985484298, guid: 8e5ee7e0c7f32b941903077fd8e1927d, type: 3}

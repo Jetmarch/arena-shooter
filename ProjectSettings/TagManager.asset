@@ -44,9 +44,18 @@ TagManager:
   - name: Background
     uniqueID: 514986687
     locked: 0
+  - name: Floor
+    uniqueID: 3654060173
+    locked: 0
+  - name: Walls
+    uniqueID: 354488965
+    locked: 0
   - name: Characters
     uniqueID: 268550243
     locked: 0
   - name: Weapons
     uniqueID: 3730556313
+    locked: 0
+  - name: Projectiles
+    uniqueID: 3347580401
     locked: 0
