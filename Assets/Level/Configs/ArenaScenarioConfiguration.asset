@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774539a8607fedf44a96ef4a439f2348, type: 3}
+  m_Name: ArenaScenarioConfiguration
+  m_EditorClassIdentifier: 
+  _scenarioActs:
+  - Type: 1
+    EnemyData:
+    - UnitType: 2
+      CountOfEnemies: 5
+    - UnitType: 3
+      CountOfEnemies: 25
+    - UnitType: 0
+      CountOfEnemies: 0
+    TimeToCapture: 0
+    BossPrefab: {fileID: 0}
+  - Type: 2
+    EnemyData: []
+    TimeToCapture: 5
+    BossPrefab: {fileID: 0}
+  - Type: 3
+    EnemyData: []
+    TimeToCapture: 0
+    BossPrefab: {fileID: 8330127567208185171, guid: 5d6507ebae6c86245801c93db86446e3, type: 3}

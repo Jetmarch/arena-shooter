@@ -26,12 +26,6 @@ namespace ArenaShooter.Installers
         private PlayerWeaponFactory _weaponFactory;
 
         [SerializeField]
-        private PlayerUnitFactory _playerUnitFactory;
-
-        [SerializeField]
-        private EnemyShooterUnitFactory _enemyShooterUnitFactory;
-
-        [SerializeField]
         private CameraMoveController _cameraMoveController;
 
         [SerializeField]
@@ -59,22 +53,19 @@ namespace ArenaShooter.Installers
 
         private void BindUnitFactories()
         {
-            var unitFactories = new List<BaseUnitFactory>()
+            var unitFactories = new List<BaseUnitFactory>();
+
+            foreach(var unitFactory in FindObjectsOfType<BaseUnitFactory>())
             {
-                _playerUnitFactory,
-                _enemyShooterUnitFactory
-            };
+                unitFactories.Add(unitFactory);
+            }
+
             Container.BindInstance(unitFactories).AsSingle();
         }
 
         //Для тестирования
         public override void Start()
         {
-            //var player = _playerUnitFactory.CreateUnit(Vector3.zero, null);
-            //_cameraMoveController.SetTarget(player.transform);
-
-            //_enemyShooterUnitFactory.CreateUnit(new Vector3(5f, 5f, 0f), null);
-            //_enemyShooterUnitFactory.CreateUnit(new Vector3(-5f, -5f, 0f), null);
 
             var player = _unitManager.CreateUnit(UnitType.Player, Vector3.zero, null);
             _cameraMoveController.SetTarget(player.transform);
@@ -89,9 +80,6 @@ namespace ArenaShooter.Installers
             _weaponFactory = FindObjectOfType<PlayerWeaponFactory>();
             _projectileFactory = FindObjectOfType<ProjectileFactory>();
 
-            //_player = FindObjectOfType<PlayerInstaller>().transform;
-            _playerUnitFactory = FindObjectOfType<PlayerUnitFactory>();
-            _enemyShooterUnitFactory = FindObjectOfType<EnemyShooterUnitFactory>();
             _cameraMoveController = FindObjectOfType<CameraMoveController>();
             _unitManager = FindObjectOfType<UnitManager>();
         }

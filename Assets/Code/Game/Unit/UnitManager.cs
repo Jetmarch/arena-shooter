@@ -11,8 +11,9 @@ namespace ArenaShooter.Units
     /// </summary>
     public class UnitManager : MonoBehaviour
     {
+        [SerializeField]
         private List<GameObject> _units = new();
-
+        [SerializeField]
         private List<BaseUnitFactory> _unitFactories = new();
 
         [Inject]
