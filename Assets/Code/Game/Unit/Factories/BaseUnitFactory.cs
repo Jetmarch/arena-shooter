@@ -9,6 +9,7 @@ namespace ArenaShooter.Units.Factories
         [SerializeField]
         protected GameObject _unitPrefab;
 
+        public UnitType Type { get { return _unitType; } }
         public abstract GameObject CreateUnit(Vector3 position, Transform parent);
     }
 

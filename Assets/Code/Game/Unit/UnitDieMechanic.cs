@@ -9,7 +9,7 @@ namespace ArenaShooter.Units
         private HealthComponent _healthComponent;
 
 
-        public event Action OnDie;
+        public event Action<GameObject> OnDie;
         public bool IsDead { get { return _healthComponent.CurrentHealth > _healthComponent.MinHealth; } }
 
         public void Construct(HealthComponent healthComponent)
@@ -35,16 +35,16 @@ namespace ArenaShooter.Units
             if (health <= _healthComponent.MinHealth)
             {
                 Debug.Log($"{gameObject.name} is dead");
-                OnDie?.Invoke();
+                OnDie?.Invoke(gameObject);
 
                 //TODO: Временная штука
                 Destroy(gameObject);
             }
         }
 
-        public bool IsNotDead()
+        public void Die()
         {
-            return !IsDead;
+            OnDie?.Invoke(gameObject);
         }
     }
 }
