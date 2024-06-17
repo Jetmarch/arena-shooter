@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArenaShooter.Units
@@ -29,7 +27,7 @@ namespace ArenaShooter.Units
 
 
         public float BaseSpeed { get { return _baseSpeed; } }
-        public float AdditionalSpeed {  get { return _additionalSpeed; } set { _additionalSpeed = value; } }
+        public float AdditionalSpeed { get { return _additionalSpeed; } set { _additionalSpeed = value; } }
         public float DashSpeed { get { return _dashSpeed; } }
         public float DashTime { get { return _dashTime; } }
         public bool IsDashing { get { return _isDashing; } set { _isDashing = value; } }

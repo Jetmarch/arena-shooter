@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArenaShooter.Components
@@ -26,7 +24,7 @@ namespace ArenaShooter.Components
         {
             IGameLoopListener.Register(this);
         }
-        
+
         //TODO: Вызов может происходить раньше, чем Awake у GameLoopManager, поэтому не все объекты могут попасть в пул отслеживаемых
         //Соответственно, передвижение работать не будет
         //Решение - создавать игрока из фабрики после инициализации всех элементов системы

@@ -7,7 +7,6 @@ namespace ArenaShooter.AI
 {
     public class AIBrain : MonoBehaviour, IGameUpdateListener
     {
-
         private AIInputController _inputController;
 
 

@@ -1,8 +1,5 @@
 using ArenaShooter.Inputs;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.Weapons
 {
@@ -48,7 +45,7 @@ namespace ArenaShooter.Weapons
             if (_spriteRenderer == null) return;
             //Проверяка на какой половине экрана находится указатель мыши
             //Левая сторона
-            if(mousePos.x < Screen.width * 0.5f)
+            if (mousePos.x < Screen.width * 0.5f)
             {
                 _spriteRenderer.flipY = true;
             }

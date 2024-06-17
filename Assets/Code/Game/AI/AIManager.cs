@@ -11,8 +11,8 @@ namespace ArenaShooter.AI
     {
         [SerializeField]
         private LinkedList<AIInputController> _botInputControllers;
-        
-        public IReadOnlyCollection<AIInputController> Bots { get {  return _botInputControllers; } }
+
+        public IReadOnlyCollection<AIInputController> Bots { get { return _botInputControllers; } }
 
         public GameObject CreateBot()
         {

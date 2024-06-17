@@ -1,12 +1,8 @@
 using ArenaShooter.Inputs;
 using ArenaShooter.Utils;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.Weapons
 {
@@ -17,7 +13,7 @@ namespace ArenaShooter.Weapons
     {
         [SerializeField]
         private int _selectedWeaponIndex;
-        
+
         private WeaponsStorage _weaponStorage;
         private IChangeWeaponInputProvider _inputController;
 
@@ -67,7 +63,7 @@ namespace ArenaShooter.Weapons
         {
             if (!CanChangeWeapon()) return;
             _selectedWeaponIndex--;
-            if(_selectedWeaponIndex < 0)
+            if (_selectedWeaponIndex < 0)
             {
                 _selectedWeaponIndex = _weaponStorage.Weapons.Count - 1;
             }
@@ -84,12 +80,12 @@ namespace ArenaShooter.Weapons
 
         private void ActivateSelectedWeapon()
         {
-            foreach(var weapon in _weaponStorage.Weapons)
+            foreach (var weapon in _weaponStorage.Weapons)
             {
                 weapon.gameObject.SetActive(false);
             }
             CurrentWeapon.SetActive(true);
         }
-        
+
     }
 }

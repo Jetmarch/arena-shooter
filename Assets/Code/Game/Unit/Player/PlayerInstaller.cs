@@ -1,10 +1,7 @@
 using ArenaShooter.Components;
 using ArenaShooter.Inputs;
 using ArenaShooter.Weapons;
-using ArenaShooter.Weapons.Projectiles;
-using Unity.VisualScripting;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.Units.Player
 {
@@ -35,12 +32,12 @@ namespace ArenaShooter.Units.Player
         private PlayerWeaponFactory _weaponFactory;
 
         //TODO: Возможно конструировать игрока из фабрики
-        
+
         public void Construct(IMoveInputProvider moveInputProvider, IDashInputProvider dashInputProvider, IChangeWeaponInputProvider changeWeaponInputProvider, PlayerWeaponFactory weaponFactory)
         {
             _moveComponent.Construct(_rigidbody);
             _moveController.Constuct(moveInputProvider, _moveComponent);
-            
+
             _weaponChangeMechanic.Construct(changeWeaponInputProvider, _weaponStorage);
             _dashController.Construct(dashInputProvider, _moveComponent);
 

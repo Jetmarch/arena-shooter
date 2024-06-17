@@ -25,7 +25,7 @@ namespace ArenaShooter.AI
         private float _timeBetweenAttacks = 0.7f;
 
         public AIType Type { get { return _type; } }
-        public float DistanceOfAggro { get {  return _distanceOfAggro; } }
+        public float DistanceOfAggro { get { return _distanceOfAggro; } }
         public float DistanceOfAttack { get => _distanceOfAttack; }
         public float StopDistance { get => _stopDistance; }
         public int AttackCount { get => _attackCount; }

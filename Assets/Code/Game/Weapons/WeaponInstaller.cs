@@ -1,7 +1,6 @@
 using ArenaShooter.Inputs;
 using ArenaShooter.Weapons.Projectiles;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.Weapons
 {
@@ -30,8 +29,8 @@ namespace ArenaShooter.Weapons
         [SerializeField]
         private WeaponRotateMechanic _weaponRotateMechanic;
 
-        public void Construct(IShootInputProvider shootInputProvider, IScreenMouseMoveInputProvider mouseMoveInputProvider, 
-            IWorldMouseMoveInputProvider worldMouseMoveProvider, IReloadInputProvider reloadInputProvider, 
+        public void Construct(IShootInputProvider shootInputProvider, IScreenMouseMoveInputProvider mouseMoveInputProvider,
+            IWorldMouseMoveInputProvider worldMouseMoveProvider, IReloadInputProvider reloadInputProvider,
             ProjectileFactory projectileFactory)
         {
             _shootMechanic.Construct(shootInputProvider, projectileFactory);

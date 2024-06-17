@@ -1,6 +1,3 @@
-using ArenaShooter.Weapons.Projectiles;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArenaShooter.Weapons

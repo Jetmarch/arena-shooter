@@ -27,7 +27,7 @@ namespace ArenaShooter.Units.Factories
         {
             var player = Instantiate(_unitPrefab, position, _unitPrefab.transform.rotation, parent);
             var installer = player.GetComponent<PlayerInstaller>();
-            if(installer == null)
+            if (installer == null)
             {
                 throw new Exception("Player prefab doesn't have PlayerInstaller component!");
             }

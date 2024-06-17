@@ -7,7 +7,7 @@ namespace ArenaShooter.Components
     {
         [SerializeField]
         private float _maxHealth;
-        [SerializeField] 
+        [SerializeField]
         private float _minHealth;
         [SerializeField]
         private float _currentHealth;
@@ -15,7 +15,7 @@ namespace ArenaShooter.Components
         public event Action<float> CurrentHealthChanged;
         public event Action<float> MaxHealthChanged;
 
-        public float CurrentHealth {  get { return _currentHealth; } }
+        public float CurrentHealth { get { return _currentHealth; } }
         public float MaxHealth { get { return _maxHealth; } }
         public float MinHealth { get { return _minHealth; } }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArenaShooter.Inputs
 {
-    public sealed class KeyboardAndMouseInputController : MonoBehaviour, 
+    public sealed class KeyboardAndMouseInputController : MonoBehaviour,
         IMoveInputProvider, IScreenMouseMoveInputProvider, IWorldMouseMoveInputProvider,
         IShootInputProvider, IReloadInputProvider, IChangeWeaponInputProvider, IDashInputProvider,
         IGameUpdateListener

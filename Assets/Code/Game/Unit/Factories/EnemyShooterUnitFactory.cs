@@ -1,4 +1,3 @@
-using ArenaShooter.AI;
 using ArenaShooter.Units.Enemies;
 using ArenaShooter.Weapons.Projectiles;
 using System;
@@ -21,7 +20,7 @@ namespace ArenaShooter.Units.Factories
         {
             var enemy = Instantiate(_unitPrefab, position, _unitPrefab.transform.rotation, parent);
             var installer = enemy.GetComponent<EnemyShooterInstaller>();
-            if(installer == null)
+            if (installer == null)
             {
                 throw new Exception($"Enemy prefab {_unitPrefab.name} doesn't have EnemyShooterInstaller!");
             }

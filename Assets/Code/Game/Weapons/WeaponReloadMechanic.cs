@@ -1,9 +1,7 @@
 using ArenaShooter.Inputs;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.Weapons
 {

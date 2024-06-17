@@ -52,15 +52,15 @@ namespace ArenaShooter
         {
             _listeners.Remove(listener);
 
-            if(listener is IGameUpdateListener updateListener)
+            if (listener is IGameUpdateListener updateListener)
             {
                 _updateListeners.Remove(updateListener);
             }
-            if(listener is IGameLateUpdateListener lateUpdateListener)
+            if (listener is IGameLateUpdateListener lateUpdateListener)
             {
                 _lateUpdateListeners.Remove(lateUpdateListener);
             }
-            if(listener is IGameFixedUpdateListener fixedUpdateListener)
+            if (listener is IGameFixedUpdateListener fixedUpdateListener)
             {
                 _fixedUpdateListeners.Remove(fixedUpdateListener);
             }

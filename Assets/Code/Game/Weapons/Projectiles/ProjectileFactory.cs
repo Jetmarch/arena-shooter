@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +24,7 @@ namespace ArenaShooter.Weapons.Projectiles
         public GameObject CreateProjectile(ProjectileType type, Vector3 position, Quaternion rotation)
         {
             var projectile = _projectiles.Find(x => x.Type == type).ProjectilePrefab;
-            if(projectile == null)
+            if (projectile == null)
             {
                 throw new Exception($"ProjectileFactory: Type {type} does not contain prefab object!");
             }

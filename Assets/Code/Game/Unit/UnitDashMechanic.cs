@@ -2,7 +2,6 @@ using ArenaShooter.Components;
 using ArenaShooter.Inputs;
 using System.Collections;
 using UnityEngine;
-using Zenject;
 
 
 namespace ArenaShooter.Units
