@@ -9,14 +9,11 @@ namespace ArenaShooter.Units.Factories
 {
     public class EnemyShooterUnitFactory : BaseUnitFactory
     {
-
-        private AIStateMachineFactory _aIStateMachineFactory;
         private ProjectileFactory _projectileFactory;
 
         [Inject]
-        private void Construct(AIStateMachineFactory aiStateMachineFactory, ProjectileFactory projectileFactory)
+        private void Construct(ProjectileFactory projectileFactory)
         {
-            _aIStateMachineFactory = aiStateMachineFactory;
             _projectileFactory = projectileFactory;
         }
 
@@ -29,7 +26,7 @@ namespace ArenaShooter.Units.Factories
                 throw new Exception($"Enemy prefab {_unitPrefab.name} doesn't have EnemyShooterInstaller!");
             }
 
-            installer.Construct(_aIStateMachineFactory, _projectileFactory);
+            installer.Construct(_projectileFactory);
             return enemy;
         }
 

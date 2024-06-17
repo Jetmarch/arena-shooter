@@ -24,16 +24,18 @@ namespace ArenaShooter.Weapons
         private List<WeaponFactoryData> _weapons;
 
         private IShootInputProvider _shootInputProvider;
-        private IMouseMoveInputProvider _mouseMoveInputProvider;
+        private IScreenMouseMoveInputProvider _screenMouseMoveInputProvider;
+        private IWorldMouseMoveInputProvider _worldMouseMoveInputProvider;
         private IReloadInputProvider _reloadInputProvider;
         private ProjectileFactory _projectileFactory;
 
         [Inject]
-        private void Construct(IShootInputProvider shootInputProvider, IMouseMoveInputProvider mouseMoveInputProvider, IReloadInputProvider reloadInputProvider, ProjectileFactory projectileFactory)
+        private void Construct(IShootInputProvider shootInputProvider, IScreenMouseMoveInputProvider mouseMoveInputProvider, IWorldMouseMoveInputProvider worldMouseMoveInputProvider, IReloadInputProvider reloadInputProvider, ProjectileFactory projectileFactory)
         {
             _shootInputProvider = shootInputProvider;
             _projectileFactory = projectileFactory;
-            _mouseMoveInputProvider = mouseMoveInputProvider;
+            _screenMouseMoveInputProvider = mouseMoveInputProvider;
+            _worldMouseMoveInputProvider = worldMouseMoveInputProvider;
             _reloadInputProvider = reloadInputProvider;
         }
 
@@ -46,7 +48,7 @@ namespace ArenaShooter.Weapons
             }
 
             var createdWeapon = Instantiate(weapon, position, weapon.transform.rotation, parent);
-            createdWeapon.GetComponent<WeaponInstaller>().Construct(_shootInputProvider, _mouseMoveInputProvider, _reloadInputProvider, _projectileFactory);
+            createdWeapon.GetComponent<WeaponInstaller>().Construct(_shootInputProvider, _screenMouseMoveInputProvider, _worldMouseMoveInputProvider, _reloadInputProvider, _projectileFactory);
             return createdWeapon;
         }
     }

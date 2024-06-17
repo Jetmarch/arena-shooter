@@ -30,13 +30,15 @@ namespace ArenaShooter.Weapons
         [SerializeField]
         private WeaponRotateMechanic _weaponRotateMechanic;
 
-        public void Construct(IShootInputProvider shootInputProvider, IMouseMoveInputProvider mouseMoveInputProvider, IReloadInputProvider reloadInputProvider, ProjectileFactory projectileFactory)
+        public void Construct(IShootInputProvider shootInputProvider, IScreenMouseMoveInputProvider mouseMoveInputProvider, 
+            IWorldMouseMoveInputProvider worldMouseMoveProvider, IReloadInputProvider reloadInputProvider, 
+            ProjectileFactory projectileFactory)
         {
             _shootMechanic.Construct(shootInputProvider, projectileFactory);
             _flipSpriteMechanic.Construct(mouseMoveInputProvider);
             _ammoInClipDecreaseMechanic.Construct(shootInputProvider, _ammoClipStorage);
             _weaponReloadMechanic.Construct(reloadInputProvider, _ammoClipStorage);
-            _weaponRotateMechanic.Construct(mouseMoveInputProvider);
+            _weaponRotateMechanic.Construct(worldMouseMoveProvider);
 
             _shootMechanic.Condition.Append(_weaponReloadMechanic.IsNotReloading);
             _shootMechanic.Condition.Append(_ammoInClipDecreaseMechanic.IsEnoughAmmoToShoot);

@@ -32,8 +32,13 @@ namespace ArenaShooter.Inputs
         event Action<Vector2> OnMove;
     }
 
-    public interface IMouseMoveInputProvider
+    public interface IScreenMouseMoveInputProvider
     {
-        event Action<Vector3> OnMouseMove;
+        event Action<Vector3> OnScreenMouseMove;
+    }
+
+    public interface IWorldMouseMoveInputProvider
+    {
+        event Action<Vector3> OnWorldMouseMove;
     }
 }

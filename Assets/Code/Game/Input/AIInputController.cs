@@ -6,12 +6,21 @@ namespace ArenaShooter.Inputs
 
     public class AIInputController : MonoBehaviour,
         IShootInputProvider, IMoveInputProvider,
-        IMouseMoveInputProvider, IReloadInputProvider
+        IWorldMouseMoveInputProvider, IScreenMouseMoveInputProvider,
+        IReloadInputProvider
     {
         public event Action OnShoot;
         public event Action<Vector2> OnMove;
-        public event Action<Vector3> OnMouseMove;
         public event Action OnReload;
+        public event Action<Vector3> OnWorldMouseMove;
+        public event Action<Vector3> OnScreenMouseMove;
+
+        private Camera _camera;
+
+        private void Start()
+        {
+            _camera = Camera.main;
+        }
 
         public void Move(Vector2 value)
         {
@@ -23,9 +32,14 @@ namespace ArenaShooter.Inputs
             OnShoot?.Invoke();
         }
 
-        public void MouseMove(Vector3 mousePos)
+        public void WorldMouseMove(Vector3 mousePos)
         {
-            OnMouseMove?.Invoke(mousePos);
+            OnWorldMouseMove?.Invoke(mousePos);
+        }
+
+        public void ScreenMouseMove(Vector3 mousePos)
+        {
+            OnScreenMouseMove?.Invoke(_camera.WorldToScreenPoint(mousePos));
         }
 
         public void Reload()

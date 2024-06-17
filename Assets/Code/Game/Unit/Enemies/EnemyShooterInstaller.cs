@@ -37,13 +37,13 @@ namespace ArenaShooter.Units.Enemies
         [SerializeField]
         private WeaponInstaller _weaponInstaller;
 
-        public void Construct(AIStateMachineFactory aiStateMachineFactory, ProjectileFactory projectileFactory)
+        public void Construct(ProjectileFactory projectileFactory)
         {
             _moveComponent.Construct(_rigidbody);
             _moveController.Constuct(_inputController, _moveComponent);
             _dieMechanic.Construct(_healthComponent);
-            _brain.Construct(_inputController, aiStateMachineFactory, _playerScanner);
-            _weaponInstaller.Construct(_inputController, _inputController, _inputController, projectileFactory);
+            _brain.Construct(_inputController, _playerScanner);
+            _weaponInstaller.Construct(_inputController, _inputController, _inputController, _inputController, projectileFactory);
             _playerScanner.Construct(_triggerComponent);
         }
 

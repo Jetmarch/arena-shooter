@@ -18,12 +18,12 @@ namespace ArenaShooter.CameraControllers
 
         private FollowTargetComponent _followTargetComponent;
         private Camera _camera;
-        private IMouseMoveInputProvider _inputController;
+        private IScreenMouseMoveInputProvider _inputController;
 
         private Vector3 _mousePos;
 
         [Inject]
-        public void Constuct(IMouseMoveInputProvider inputController)
+        public void Constuct(IScreenMouseMoveInputProvider inputController)
         {
             _inputController = inputController;
         }
@@ -36,13 +36,13 @@ namespace ArenaShooter.CameraControllers
 
         private void OnEnable()
         {
-            _inputController.OnMouseMove += OnMouseMove;
+            _inputController.OnScreenMouseMove += OnMouseMove;
             IGameLoopListener.Register(this);
         }
 
         private void OnDisable()
         {
-            _inputController.OnMouseMove -= OnMouseMove;
+            _inputController.OnScreenMouseMove -= OnMouseMove;
             IGameLoopListener.Unregister(this);
         }
 

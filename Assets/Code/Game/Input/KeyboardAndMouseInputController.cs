@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace ArenaShooter.Inputs
 {
-    public sealed class KeyboardAndMouseInputController : MonoBehaviour, IMoveInputProvider, IMouseMoveInputProvider,
+    public sealed class KeyboardAndMouseInputController : MonoBehaviour, 
+        IMoveInputProvider, IScreenMouseMoveInputProvider, IWorldMouseMoveInputProvider,
         IShootInputProvider, IReloadInputProvider, IChangeWeaponInputProvider, IDashInputProvider,
         IGameUpdateListener
     {
@@ -22,15 +23,19 @@ namespace ArenaShooter.Inputs
         private KeyCode _reloadKey = KeyCode.R;
 
         public event Action<Vector2> OnMove;
-        public event Action<Vector3> OnMouseMove;
+        public event Action<Vector3> OnScreenMouseMove;
         public event Action OnShoot;
         public event Action OnReload;
         public event Action OnChangeWeaponUp;
         public event Action OnChangeWeaponDown;
         public event Action OnDash;
+        public event Action<Vector3> OnWorldMouseMove;
+
+        private Camera _camera;
 
         private void Start()
         {
+            _camera = Camera.main;
             IGameLoopListener.Register(this);
         }
 
@@ -41,7 +46,8 @@ namespace ArenaShooter.Inputs
 
         public void OnUpdate(float delta)
         {
-            MouseMove();
+            ScreenMouseMove();
+            WorldMouseMove();
             Move();
             ChangeWeaponDown();
             ChangeWeaponUp();
@@ -50,9 +56,14 @@ namespace ArenaShooter.Inputs
             Shoot();
         }
 
-        private void MouseMove()
+        private void ScreenMouseMove()
         {
-            OnMouseMove?.Invoke(Input.mousePosition);
+            OnScreenMouseMove?.Invoke(Input.mousePosition);
+        }
+
+        private void WorldMouseMove()
+        {
+            OnWorldMouseMove?.Invoke(_camera.ScreenToWorldPoint(Input.mousePosition));
         }
 
         private void Move()

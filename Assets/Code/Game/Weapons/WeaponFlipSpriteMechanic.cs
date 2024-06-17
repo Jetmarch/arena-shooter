@@ -11,14 +11,14 @@ namespace ArenaShooter.Weapons
     /// </summary>
     public class WeaponFlipSpriteMechanic : MonoBehaviour
     {
-        private IMouseMoveInputProvider _inputController;
+        private IScreenMouseMoveInputProvider _inputController;
 
         private SpriteRenderer _spriteRenderer;
 
-        public void Construct(IMouseMoveInputProvider inputController)
+        public void Construct(IScreenMouseMoveInputProvider inputController)
         {
             _inputController = inputController;
-            _inputController.OnMouseMove += OnMouseMove;
+            _inputController.OnScreenMouseMove += OnMouseMove;
         }
 
         private void Start()
@@ -29,13 +29,13 @@ namespace ArenaShooter.Weapons
         private void OnEnable()
         {
             if (_inputController == null) return;
-            _inputController.OnMouseMove += OnMouseMove;
+            _inputController.OnScreenMouseMove += OnMouseMove;
         }
 
         private void OnDisable()
         {
             if (_inputController == null) return;
-            _inputController.OnMouseMove -= OnMouseMove;
+            _inputController.OnScreenMouseMove -= OnMouseMove;
         }
 
         private void OnMouseMove(Vector3 mousePos)

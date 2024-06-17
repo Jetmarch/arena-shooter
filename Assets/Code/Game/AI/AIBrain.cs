@@ -1,20 +1,12 @@
 using ArenaShooter.Components;
 using ArenaShooter.Inputs;
-using ArenaShooter.Units;
-using ArenaShooter.Units.Player;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.AI
 {
     public class AIBrain : MonoBehaviour, IGameUpdateListener
     {
-        //[SerializeField]
-        //private AIType _type;
-        //private StateMachine _stateMachine;
-        private AIStateMachineFactory _factory;
 
         private AIInputController _inputController;
 
@@ -25,20 +17,14 @@ namespace ArenaShooter.AI
 
         private PlayerScannerComponent _playerScanner;
         private Transform _target;
-        //TODO: Собрать отдельный объект, сканирующий в радиусе определенные цели
-        public void Construct(AIInputController inputController, AIStateMachineFactory stateMachineFactory, PlayerScannerComponent playerScanner)
+
+        public void Construct(AIInputController inputController, PlayerScannerComponent playerScanner)
         {
             _inputController = inputController;
-            _factory = stateMachineFactory;
             _playerScanner = playerScanner;
 
             _playerScanner.OnPlayerDetected += OnPlayerDetected;
             _playerScanner.OnPlayerLost += OnPlayerLost;
-        }
-
-        private void Start()
-        {
-            //_stateMachine = _factory.CreateStateMachine(_type, _inputController, transform);
         }
 
         private void OnEnable()
@@ -74,9 +60,10 @@ namespace ArenaShooter.AI
 
         public void OnUpdate(float delta)
         {
-            //_stateMachine.Update();
-
             if (_target == null) return;
+            _inputController.WorldMouseMove(_target.position);
+            _inputController.ScreenMouseMove(_target.position);
+
             if (_isAttacking) return;
 
             var distanceToTarget = Vector2.Distance(transform.position, _target.position);
@@ -87,7 +74,7 @@ namespace ArenaShooter.AI
 
                 _inputController.Move(desiredVelocity);
             }
-            else if(distanceToTarget <= 2f)
+            else if (distanceToTarget <= 2f)
             {
                 StartCoroutine(Attack());
             }
@@ -108,8 +95,13 @@ namespace ArenaShooter.AI
                 Debug.Log("Attacking");
                 yield return new WaitForSeconds(_timeBetweenAttacks);
             }
-
+            _inputController.Reload();
             _isAttacking = false;
+        }
+
+        public void SetTarget(Transform target)
+        {
+            _target = target;
         }
     }
 }

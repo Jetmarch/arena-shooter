@@ -21,6 +21,8 @@ namespace ArenaShooter.Weapons
         public event Action OnStartReload;
         public event Action OnEndReload;
 
+        public bool IsReloading { get { return _isReloading; } }
+
         public bool IsNotReloading()
         {
             return !_isReloading;

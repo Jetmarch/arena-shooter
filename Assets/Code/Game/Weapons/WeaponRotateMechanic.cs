@@ -13,12 +13,12 @@ namespace ArenaShooter.Weapons
     {
         private Camera _camera;
 
-        private IMouseMoveInputProvider _inputController;
+        private IWorldMouseMoveInputProvider _inputController;
 
-        public void Construct(IMouseMoveInputProvider inputController)
+        public void Construct(IWorldMouseMoveInputProvider inputController)
         {
             _inputController = inputController;
-            _inputController.OnMouseMove += OnMouseMove;
+            _inputController.OnWorldMouseMove += OnMouseMove;
         }
 
         private void Start()
@@ -29,13 +29,13 @@ namespace ArenaShooter.Weapons
         private void OnEnable()
         {
             if (_inputController == null) return;
-            _inputController.OnMouseMove += OnMouseMove;
+            _inputController.OnWorldMouseMove += OnMouseMove;
         }
 
         private void OnDisable()
         {
             if (_inputController == null) return;
-            _inputController.OnMouseMove -= OnMouseMove;
+            _inputController.OnWorldMouseMove -= OnMouseMove;
         }
 
         private void OnMouseMove(Vector3 mousePos)
@@ -48,9 +48,9 @@ namespace ArenaShooter.Weapons
         {
             if (_camera == null) return;
 
-            Vector3 mouseWorldPoint = _camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0f));
+            //Vector3 mouseWorldPoint = _camera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0f));
 
-            float angleRad = Mathf.Atan2(mouseWorldPoint.y - transform.position.y, mouseWorldPoint.x - transform.position.x);
+            float angleRad = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x);
             float angle = (180 / Mathf.PI) * angleRad;
 
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);

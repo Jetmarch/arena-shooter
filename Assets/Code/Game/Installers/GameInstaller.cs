@@ -42,7 +42,7 @@ namespace ArenaShooter.Installers
             Container.BindInstance(_projectileFactory).AsSingle();
             Container.BindInstance(_weaponFactory).AsSingle();
 
-            Container.Bind(typeof(IMoveInputProvider), typeof(IMouseMoveInputProvider),
+            Container.Bind(typeof(IMoveInputProvider), typeof(IScreenMouseMoveInputProvider), typeof(IWorldMouseMoveInputProvider),
                 typeof(IShootInputProvider), typeof(IReloadInputProvider),
                 typeof(IChangeWeaponInputProvider), typeof(IDashInputProvider)).FromInstance(_currentInputController);
         }
@@ -54,6 +54,7 @@ namespace ArenaShooter.Installers
             _cameraMoveController.SetTarget(player.transform);
 
             _enemyShooterUnitFactory.CreateUnit(new Vector3(5f, 5f, 0f), null);
+            _enemyShooterUnitFactory.CreateUnit(new Vector3(-5f, -5f, 0f), null);
         }
 
 #if UNITY_EDITOR
