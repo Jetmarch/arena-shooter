@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ArenaShooter
 {
+    [DefaultExecutionOrder(-10000)]
     public class GameLoopManager : MonoBehaviour
     {
         [SerializeField]
@@ -66,44 +67,45 @@ namespace ArenaShooter
             }
         }
 
+        [ContextMenu("Start game")]
         public void StartGame()
         {
-            foreach (var listener in _listeners)
+            for (int i = 0; i < _listeners.Count; i++)
             {
-                if (listener is IGameStartListener startGameListener)
+                if (_listeners[i] is IGameStartListener startGameListener)
                 {
                     startGameListener.OnStartGame();
                 }
             }
         }
-
+        [ContextMenu("Pause game")]
         public void PauseGame()
         {
-            foreach (var listener in _listeners)
+            for (int i = 0; i < _listeners.Count; i++)
             {
-                if (listener is IGamePauseListener pauseGameListener)
+                if (_listeners[i] is IGamePauseListener pauseGameListener)
                 {
                     pauseGameListener.OnPauseGame();
                 }
             }
         }
-
+        [ContextMenu("Resume game")]
         public void ResumeGame()
         {
-            foreach (var listener in _listeners)
+            for (int i = 0; i < _listeners.Count; i++)
             {
-                if (listener is IGameResumeListener resumeGameListener)
+                if (_listeners[i] is IGameResumeListener resumeGameListener)
                 {
                     resumeGameListener.OnResumeGame();
                 }
             }
         }
-
+        [ContextMenu("Finish game")]
         public void FinishGame()
         {
-            foreach (var listener in _listeners)
+            for (int i = 0; i < _listeners.Count; i++)
             {
-                if (listener is IGameFinishListener finishGameListener)
+                if (_listeners[i] is IGameFinishListener finishGameListener)
                 {
                     finishGameListener.OnFinishGame();
                 }

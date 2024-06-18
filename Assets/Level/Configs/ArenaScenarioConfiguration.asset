@@ -17,10 +17,6 @@ MonoBehaviour:
     EnemyData:
     - UnitType: 2
       CountOfEnemies: 5
-    - UnitType: 3
-      CountOfEnemies: 25
-    - UnitType: 0
-      CountOfEnemies: 0
     TimeToCapture: 0
     BossPrefab: {fileID: 0}
   - Type: 2

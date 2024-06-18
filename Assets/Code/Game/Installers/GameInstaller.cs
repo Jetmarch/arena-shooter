@@ -1,6 +1,7 @@
 using ArenaShooter.AI;
 using ArenaShooter.CameraControllers;
 using ArenaShooter.Inputs;
+using ArenaShooter.Scenarios;
 using ArenaShooter.Units;
 using ArenaShooter.Units.Factories;
 using ArenaShooter.Weapons;
@@ -11,6 +12,9 @@ using Zenject;
 
 namespace ArenaShooter.Installers
 {
+    /// <summary>
+    /// TODO: Разбить инсталлеры на подсистемы
+    /// </summary>
     public sealed class GameInstaller : MonoInstaller
     {
         [SerializeField]
@@ -31,6 +35,9 @@ namespace ArenaShooter.Installers
         [SerializeField]
         private UnitManager _unitManager;
 
+        [SerializeField]
+        private ArenaScenarioConfiguration _arenaScenarioConfig;
+
         public override void InstallBindings()
         {
 
@@ -39,9 +46,14 @@ namespace ArenaShooter.Installers
             Container.BindInstance(_projectileFactory).AsSingle();
             Container.BindInstance(_weaponFactory).AsSingle();
 
+            Container.BindInstance(_unitManager).AsSingle();
+
             BindInputController();
 
             BindUnitFactories();
+            BindScenarioActExecutors();
+
+            Container.BindInstance(_arenaScenarioConfig.GetScenarioActs()).AsSingle();
         }
 
         private void BindInputController()
@@ -61,6 +73,18 @@ namespace ArenaShooter.Installers
             }
 
             Container.BindInstance(unitFactories).AsSingle();
+        }
+
+        private void BindScenarioActExecutors()
+        {
+            var scenarioActExecutors = new List<BaseScenarioActExecutor>();
+
+            foreach(var actExecutor in FindObjectsOfType<BaseScenarioActExecutor>())
+            {
+                scenarioActExecutors.Add(actExecutor);
+            }
+
+            Container.BindInstance(scenarioActExecutors).AsSingle();
         }
 
         //Для тестирования
