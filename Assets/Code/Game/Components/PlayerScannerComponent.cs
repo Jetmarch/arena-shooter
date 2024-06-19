@@ -62,5 +62,13 @@ namespace ArenaShooter.Components
             _trigger.TriggerOn -= OnScannerTriggerEnter;
             _trigger.TriggerOff -= OnScannerTriggerExit;
         }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = new Color(0.4f, 0.5f, 0.3f, 0.3f);
+            Gizmos.DrawSphere(transform.position, _scannerRadius);
+        }
+#endif
     }
 }

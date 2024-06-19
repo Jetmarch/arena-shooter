@@ -38,7 +38,7 @@ namespace ArenaShooter.Scenarios
             var hordeData = data as HordeScenarioActData;
             if(hordeData == null)
             {
-                throw new System.Exception($"Mismatch ScenarioType and ScenarioActData type!");
+                throw new System.Exception($"Type mismatch between ScenarioType and ScenarioActData type!");
             }
 
             OnScenarioActStart();
