@@ -93,8 +93,8 @@ namespace ArenaShooter.Installers
 
             var player = _unitManager.CreateUnit(UnitType.Player, Vector3.zero, null);
             _cameraMoveController.SetTarget(player.transform);
-            _unitManager.CreateUnit(UnitType.EnemyShooter, new Vector3(5f, 5f, 0f), null);
-            _unitManager.CreateUnit(UnitType.EnemyShooter, new Vector3(-5f, -5f, 0f), null);
+            //_unitManager.CreateUnit(UnitType.EnemyShooter, new Vector3(5f, 5f, 0f), null);
+            //_unitManager.CreateUnit(UnitType.EnemyShooter, new Vector3(-5f, -5f, 0f), null);
         }
 
 #if UNITY_EDITOR

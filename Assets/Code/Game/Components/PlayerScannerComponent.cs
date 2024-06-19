@@ -1,23 +1,34 @@
+using ArenaShooter.Components.Triggers;
 using ArenaShooter.Units.Player;
 using System;
 using UnityEngine;
 
 namespace ArenaShooter.Components
 {
-    [RequireComponent(typeof(Trigger2DComponent))]
+    [RequireComponent(typeof(CircleTrigger2DComponent))]
     public class PlayerScannerComponent : MonoBehaviour
     {
-        private Trigger2DComponent _trigger;
+        [SerializeField]
+        private float _scannerRadius = 10f;
+
+
+        private CircleTrigger2DComponent _trigger;
 
         public event Action<GameObject> OnPlayerDetected;
         public event Action<GameObject> OnPlayerLost;
 
-        public void Construct(Trigger2DComponent trigger)
+        public void Construct(CircleTrigger2DComponent trigger)
         {
             _trigger = trigger;
 
             _trigger.TriggerOn += OnScannerTriggerEnter;
             _trigger.TriggerOff += OnScannerTriggerExit;
+            SetScannerRadius(_scannerRadius);
+        }
+
+        public void SetScannerRadius(float radius)
+        {
+            _trigger.SetTriggerRadius(radius);
         }
 
         private void OnScannerTriggerEnter(Collider2D obj)

@@ -82,7 +82,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 268550243
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 5171125220873100548, guid: 0edae087b5e546f49be2028c44709213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -229,6 +229,8 @@ MonoBehaviour:
   _dashController: {fileID: 2931462436165528020}
   _weaponChangeMechanic: {fileID: 5911664064081198475}
   _weaponStorage: {fileID: 8805141141273371615}
+  _healthComponent: {fileID: 8331677765335964353}
+  _dieMechanic: {fileID: 2032282931720597689}
   _weaponListParent: {fileID: 5374596255816858695}
 --- !u!114 &8805141141273371615
 MonoBehaviour:
@@ -255,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bd44c4323608241b97caac95e5b8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 0
+  _maxHealth: 3
   _minHealth: 0
   _currentHealth: 0
 --- !u!114 &2032282931720597689

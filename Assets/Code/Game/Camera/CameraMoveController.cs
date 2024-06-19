@@ -51,6 +51,8 @@ namespace ArenaShooter.CameraControllers
 
         public void OnFixedUpdate(float delta)
         {
+            if (_target == null) return;
+
             Follow(_mousePos);
         }
 

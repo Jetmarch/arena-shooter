@@ -25,6 +25,10 @@ namespace ArenaShooter.Units.Player
         private WeaponChangeMechanic _weaponChangeMechanic;
         [SerializeField]
         private WeaponsStorage _weaponStorage;
+        [SerializeField]
+        private HealthComponent _healthComponent;
+        [SerializeField]
+        private UnitDieMechanic _dieMechanic;
 
         [SerializeField]
         private Transform _weaponListParent;
@@ -40,6 +44,8 @@ namespace ArenaShooter.Units.Player
 
             _weaponChangeMechanic.Construct(changeWeaponInputProvider, _weaponStorage);
             _dashController.Construct(dashInputProvider, _moveComponent);
+
+            _dieMechanic.Construct(_healthComponent);
 
             _moveController.Condition.Append(_dashController.IsNotDashing);
 
@@ -62,6 +68,8 @@ namespace ArenaShooter.Units.Player
             _dashController = GetComponent<UnitDashMechanic>();
             _weaponChangeMechanic = GetComponent<WeaponChangeMechanic>();
             _weaponStorage = GetComponent<WeaponsStorage>();
+            _healthComponent = GetComponent<HealthComponent>();
+            _dieMechanic = GetComponent<UnitDieMechanic>();
         }
 #endif
     }

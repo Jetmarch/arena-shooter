@@ -1,4 +1,5 @@
 using ArenaShooter.Components;
+using ArenaShooter.Components.Triggers;
 using System;
 using UnityEngine;
 

@@ -1,5 +1,6 @@
 using ArenaShooter.AI;
 using ArenaShooter.Components;
+using ArenaShooter.Components.Triggers;
 using ArenaShooter.Inputs;
 using ArenaShooter.Weapons;
 using ArenaShooter.Weapons.Projectiles;
@@ -31,7 +32,7 @@ namespace ArenaShooter.Units.Enemies
         private AIBrain _brain;
 
         [SerializeField]
-        private Trigger2DComponent _triggerComponent;
+        private CircleTrigger2DComponent _triggerComponent;
         [SerializeField]
         private PlayerScannerComponent _playerScanner;
         [SerializeField]
@@ -44,6 +45,8 @@ namespace ArenaShooter.Units.Enemies
             _dieMechanic.Construct(_healthComponent);
             _brain.Construct(_inputController, _playerScanner);
             _weaponInstaller.Construct(_inputController, _inputController, _inputController, _inputController, projectileFactory);
+
+            _triggerComponent.Construct();
             _playerScanner.Construct(_triggerComponent);
         }
 
@@ -57,7 +60,7 @@ namespace ArenaShooter.Units.Enemies
             _inputController = GetComponent<AIInputController>();
             _dieMechanic = GetComponent<UnitDieMechanic>();
             _brain = GetComponent<AIBrain>();
-            _triggerComponent = GetComponentInChildren<Trigger2DComponent>();
+            _triggerComponent = GetComponentInChildren<CircleTrigger2DComponent>();
             _playerScanner = GetComponentInChildren<PlayerScannerComponent>();
             _weaponInstaller = GetComponentInChildren<WeaponInstaller>();
         }

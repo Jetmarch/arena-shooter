@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7282833281569166921}
   - component: {fileID: 6879947148498378676}
-  - component: {fileID: 4386612874203133428}
   - component: {fileID: 5122045073503592288}
+  - component: {fileID: 6200272794922339192}
   m_Layer: 7
   m_Name: UnitScanner
   m_TagString: Untagged
@@ -69,18 +69,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4
---- !u!114 &4386612874203133428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451410744036835937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1278009d4cb2c8e4299820b77531c089, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5122045073503592288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,6 +79,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fad6be59939407040b02b39a24da43c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scannerRadius: 25
+--- !u!114 &6200272794922339192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451410744036835937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34357f338cf6d1f4f98c6e457daa7813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1617107443581263426
@@ -232,6 +233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b5b849f2cd039468b16c8cc1d5804f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxDistancePursue: 25
+  _minDistancePursue: 5
+  _attackDistance: 5
 --- !u!114 &2131625580298541168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +381,7 @@ MonoBehaviour:
   _inputController: {fileID: 2131625580298541168}
   _dieMechanic: {fileID: 398105782652984048}
   _brain: {fileID: 1180892338169770857}
-  _triggerComponent: {fileID: 4386612874203133428}
+  _triggerComponent: {fileID: 6200272794922339192}
   _playerScanner: {fileID: 5122045073503592288}
   _weaponInstaller: {fileID: 4682890147691111012}
 --- !u!1001 &3120771181212152077

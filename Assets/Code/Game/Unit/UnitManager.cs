@@ -1,5 +1,5 @@
-using ArenaShooter.Components;
 using ArenaShooter.Units.Factories;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -16,6 +16,9 @@ namespace ArenaShooter.Units
         [SerializeField]
         private List<BaseUnitFactory> _unitFactories = new();
 
+        public event Action<GameObject> UnitCreated;
+        public event Action<GameObject> UnitDie;
+
         [Inject]
         private void Construct(List<BaseUnitFactory> unitFactories)
         {
@@ -25,15 +28,16 @@ namespace ArenaShooter.Units
         public GameObject CreateUnit(UnitType type, Vector3 position, Transform parent)
         {
             var factory = _unitFactories.Find(x => x.Type == type);
-            if(factory == null)
+            if (factory == null)
             {
-                throw new System.Exception($"Factory for type {type} doesn't found!");
+                throw new Exception($"Factory for type {type} doesn't found!");
             }
             var unit = factory.CreateUnit(position, parent);
             _units.Add(unit);
+            UnitCreated?.Invoke(unit);
             var dieMechanic = unit.GetComponent<UnitDieMechanic>();
 
-            if(dieMechanic == null)
+            if (dieMechanic == null)
             {
                 Debug.LogWarning($"Unit {unit.name} doesn't have UnitDieMechanic!");
                 return unit;
@@ -47,7 +51,7 @@ namespace ArenaShooter.Units
         public void DestroyUnit(GameObject unit)
         {
             var dieMechanic = unit.GetComponent<UnitDieMechanic>();
-            if(dieMechanic == null)
+            if (dieMechanic == null)
             {
                 Debug.LogWarning($"Try to destroy unit {unit.name} without UnitDieMechanic! Called Object.Destroy()");
 
@@ -61,6 +65,7 @@ namespace ArenaShooter.Units
         private void OnUnitDie(GameObject unit)
         {
             _units.Remove(unit);
+            UnitDie?.Invoke(unit);
         }
     }
 }

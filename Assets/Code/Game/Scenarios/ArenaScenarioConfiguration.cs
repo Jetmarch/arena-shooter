@@ -80,7 +80,7 @@ namespace ArenaShooter.Scenarios
     }
 
     [Serializable]
-    public struct HordeEnemyData
+    public class HordeEnemyData
     {
         public UnitType UnitType;
         public int CountOfEnemies;

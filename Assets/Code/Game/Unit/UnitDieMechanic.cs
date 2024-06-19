@@ -42,6 +42,7 @@ namespace ArenaShooter.Units
             }
         }
 
+        [ContextMenu("Die")]
         public void Die()
         {
             OnDie?.Invoke(gameObject);

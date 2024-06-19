@@ -7,12 +7,18 @@ namespace ArenaShooter.AI
 {
     public class AIBrain : MonoBehaviour, IGameUpdateListener
     {
-        private AIInputController _inputController;
+        [SerializeField]
+        private float _pursueDistance = 10f;
+        [SerializeField]
+        private float _attackDistance = 7f;
 
+
+        private AIInputController _inputController;
 
         private bool _isAttacking;
         private int _attackCount = 3;
         private float _timeBetweenAttacks = 1f;
+
 
         private PlayerScannerComponent _playerScanner;
         private Transform _target;
@@ -67,13 +73,13 @@ namespace ArenaShooter.AI
 
             var distanceToTarget = Vector2.Distance(transform.position, _target.position);
 
-            if (distanceToTarget < 4f && distanceToTarget > 2f)
+            if (distanceToTarget < _pursueDistance && distanceToTarget > _attackDistance)
             {
                 var desiredVelocity = (_target.position - transform.position).normalized;
 
                 _inputController.Move(desiredVelocity);
             }
-            else if (distanceToTarget <= 2f)
+            else if (distanceToTarget <= _attackDistance)
             {
                 StartCoroutine(Attack());
             }
