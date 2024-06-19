@@ -46,6 +46,9 @@ namespace ArenaShooter.Units
         public void Die()
         {
             OnDie?.Invoke(gameObject);
+
+            //TODO: Временная штука
+            Destroy(gameObject);
         }
     }
 }

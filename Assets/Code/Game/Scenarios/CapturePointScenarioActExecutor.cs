@@ -1,6 +1,7 @@
 using ArenaShooter.Components;
 using ArenaShooter.Units;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -13,12 +14,18 @@ namespace ArenaShooter.Scenarios
         private List<CapturePointComponent> _capturePoints;
 
         [SerializeField]
+        private List<SpawnPointComponent> _spawnPoints;
+
+        [SerializeField]
         private int _currentPoint = 0;
 
         [SerializeField]
         private int _maxUnits = 20;
         [SerializeField]
+        private float _timeBetweenSpawnUnits = 0.5f;
+        [SerializeField]
         private List<GameObject> _spawnedUnits;
+        private Coroutine _spawnEnemiesCoroutine;
 
         private UnitManager _unitManager;
 
@@ -43,15 +50,59 @@ namespace ArenaShooter.Scenarios
             OnScenarioActStart();
             CurrentPoint.ActivatePoint();
             CurrentPoint.PointCaptured += OnPointCaptured;
+            _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemies());
+            _unitManager.UnitDie += OnSpawnedEnemyDie;
+        }
+
+        private void OnSpawnedEnemyDie(GameObject obj)
+        {
+            if(_spawnedUnits.Contains(obj))
+            {
+                _spawnedUnits.Remove(obj);
+            }
+        }
+
+        private IEnumerator SpawnEnemies()
+        {
+            while(true)
+            {
+                if(_spawnedUnits.Count < _maxUnits)
+                {
+                    //Just for test
+                    var newEnemy = _unitManager.CreateUnit(Units.Factories.UnitType.EnemyShooter, _spawnPoints[0].GetRandomPointInside(), null);
+                    _spawnedUnits.Add(newEnemy);
+                }
+                yield return new WaitForSeconds(_timeBetweenSpawnUnits);
+            }
         }
 
         private void OnPointCaptured()
         {
             CurrentPoint.PointCaptured -= OnPointCaptured;
+            _unitManager.UnitDie -= OnSpawnedEnemyDie;
             SetNextPoint();
             OnScenarioActFinish();
-
+            StopCoroutine(_spawnEnemiesCoroutine);
+            KillAllSpawnedEnemies();
             Debug.Log("Point captured!");
+        }
+
+        private void KillAllSpawnedEnemies()
+        {
+            for(int i = 0; i < _spawnedUnits.Count; i++)
+            {
+                var dieMechanic = _spawnedUnits[i].GetComponent<UnitDieMechanic>();
+                if(dieMechanic == null)
+                {
+                    Debug.LogWarning($"Unit {_spawnedUnits[i].name} don't have UnitDieMechanic!");
+                    continue;
+                }
+
+                dieMechanic.Die();
+                Debug.Log("DieMechanic");
+            }
+
+            _spawnedUnits.Clear();
         }
 
         private void SetNextPoint()

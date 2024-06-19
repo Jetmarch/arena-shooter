@@ -97,7 +97,6 @@ namespace ArenaShooter.AI
             for (int i = 0; i < _attackCount; i++)
             {
                 _inputController.Shoot();
-                Debug.Log("Attacking");
                 yield return new WaitForSeconds(_timeBetweenAttacks);
             }
             _inputController.Reload();

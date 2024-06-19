@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 515319934}
   - component: {fileID: 515319933}
   - component: {fileID: 515319937}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CapturePoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _captureCurrentProgress: 0
   _captureMaxProgress: 100
-  _captureSpeed: 2
+  _captureSpeed: 100
   _isPlayerOnPoint: 0
   _isCaptureAvailable: 0
 --- !u!114 &515319934
@@ -1605,7 +1605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1084414428}
   - component: {fileID: 1084414429}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2197,6 +2197,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capturePoints:
   - {fileID: 515319933}
+  _spawnPoints:
+  - {fileID: 1546403235}
+  _currentPoint: 0
+  _maxUnits: 20
+  _timeBetweenSpawnUnits: 0.5
+  _spawnedUnits: []
 --- !u!1 &1770316479
 GameObject:
   m_ObjectHideFlags: 0
