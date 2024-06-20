@@ -8,7 +8,6 @@ namespace ArenaShooter.Weapons
         [SerializeField]
         private int _amountOfAmmoOnOneShot = 1;
 
-        private IShootInputProvider _inputController;
         private AmmoClipStorage _ammoClipStorage;
 
         public bool IsEnoughAmmoToShoot()
@@ -16,26 +15,12 @@ namespace ArenaShooter.Weapons
             return _ammoClipStorage.CurrentAmmo >= _amountOfAmmoOnOneShot;
         }
 
-        public void Construct(IShootInputProvider inputController, AmmoClipStorage ammoClipStorage)
+        public void Construct(AmmoClipStorage ammoClipStorage)
         {
             _ammoClipStorage = ammoClipStorage;
-            _inputController = inputController;
-            _inputController.OnShoot += OnShoot;
         }
 
-        private void OnEnable()
-        {
-            if (_inputController == null) return;
-            _inputController.OnShoot += OnShoot;
-        }
-
-        private void OnDisable()
-        {
-            if (_inputController == null) return;
-            _inputController.OnShoot -= OnShoot;
-        }
-
-        private void OnShoot()
+        public void OnShootComplete()
         {
             if (!IsEnoughAmmoToShoot()) return;
             int currentAmmo = _ammoClipStorage.CurrentAmmo - _amountOfAmmoOnOneShot;

@@ -1,6 +1,7 @@
 using ArenaShooter.Inputs;
 using ArenaShooter.Utils;
 using ArenaShooter.Weapons.Projectiles;
+using System;
 using UnityEngine;
 
 namespace ArenaShooter.Weapons
@@ -16,6 +17,8 @@ namespace ArenaShooter.Weapons
 
         private CompositeCondition _condition;
         public CompositeCondition Condition { get { return _condition; } }
+
+        public event Action ShootComplete;
 
         public virtual void Construct(IShootInputProvider inputController, ProjectileFactory projectileFactory)
         {
@@ -42,6 +45,11 @@ namespace ArenaShooter.Weapons
         {
             if (!_condition.IsTrue()) return false;
             return true;
+        }
+
+        protected void OnShootComplete()
+        {
+            ShootComplete?.Invoke();
         }
 
         public abstract void OnShoot();

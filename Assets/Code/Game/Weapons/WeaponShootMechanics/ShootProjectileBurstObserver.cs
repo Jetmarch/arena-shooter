@@ -23,6 +23,7 @@ namespace ArenaShooter.Weapons
                 //TODO: Передавать пул снарядов в качестве родительского объекта
                 _projectileFactory.CreateProjectile(_projectileType, _projectileSpawnPoint.position, spreadRotation);
             }
+            OnShootComplete();
         }
     }
 }

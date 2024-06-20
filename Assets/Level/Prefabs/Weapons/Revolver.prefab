@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 129208723245824243}
   - component: {fileID: 7760761116206240617}
   - component: {fileID: 7351649344067694024}
+  - component: {fileID: 7849193754461850481}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -91,7 +92,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _amountOfAmmoOnOneShot: 1
-  _currentAmmoInClip: 0
 --- !u!114 &129208723245824243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,12 +116,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d7daa052d131342942e2095034d66c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ammoClipStorage: {fileID: 7351649344067694024}
   _shootMechanic: {fileID: 7963146312427705933}
   _flipSpriteMechanic: {fileID: 129208723245824243}
   _ammoInClipDecreaseMechanic: {fileID: 3990724147446308217}
   _weaponReloadMechanic: {fileID: 1610326859159231703}
   _weaponRotateMechanic: {fileID: 8562621223834955325}
-  _weaponChangeMechanic: {fileID: 0}
+  _delayBetweenShotsMechanic: {fileID: 7849193754461850481}
 --- !u!114 &7351649344067694024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +138,19 @@ MonoBehaviour:
   _maxAmmo: 6
   _minAmmo: 0
   _currentAmmo: 0
+--- !u!114 &7849193754461850481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691436118815922653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5df243d1df6a4f48b5bfbd2771616bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delayBetweenShots: 0.3
 --- !u!1 &7062365355083917099
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +254,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -564410983
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -7570478654575453412, guid: 0edae087b5e546f49be2028c44709213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

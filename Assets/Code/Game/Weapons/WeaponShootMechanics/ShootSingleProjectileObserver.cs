@@ -7,6 +7,9 @@ namespace ArenaShooter.Weapons
             if (!CanShoot()) return;
 
             _projectileFactory.CreateProjectile(_projectileType, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation);
+
+            //TODO: Подумать над шаблонным методом
+            OnShootComplete();
         }
     }
 }

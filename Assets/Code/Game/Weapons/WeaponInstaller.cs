@@ -10,6 +10,7 @@ namespace ArenaShooter.Weapons
     [RequireComponent(typeof(AmmoInClipDecreaseMechanic))]
     [RequireComponent(typeof(WeaponReloadMechanic))]
     [RequireComponent(typeof(WeaponRotateMechanic))]
+    [RequireComponent(typeof(WeaponDelayBetweenShotsMechanic))]
     public class WeaponInstaller : MonoBehaviour
     {
         [SerializeField]
@@ -28,20 +29,28 @@ namespace ArenaShooter.Weapons
 
         [SerializeField]
         private WeaponRotateMechanic _weaponRotateMechanic;
+        [SerializeField]
+        private WeaponDelayBetweenShotsMechanic _delayBetweenShotsMechanic;
 
         //TODO: Продумать автоматическую подвязку оружия к носителю
         public void Construct(IShootInputProvider shootInputProvider, IScreenMouseMoveInputProvider mouseMoveInputProvider,
             IWorldMouseMoveInputProvider worldMouseMoveProvider, IReloadInputProvider reloadInputProvider,
             ProjectileFactory projectileFactory)
         {
-            _shootMechanic.Construct(shootInputProvider, projectileFactory);
             _flipSpriteMechanic.Construct(mouseMoveInputProvider);
-            _ammoInClipDecreaseMechanic.Construct(shootInputProvider, _ammoClipStorage);
+            
             _weaponReloadMechanic.Construct(reloadInputProvider, _ammoClipStorage);
             _weaponRotateMechanic.Construct(worldMouseMoveProvider);
 
+            _delayBetweenShotsMechanic.Construct(shootInputProvider);
+
+            _shootMechanic.Construct(shootInputProvider, projectileFactory);
             _shootMechanic.Condition.Append(_weaponReloadMechanic.IsNotReloading);
             _shootMechanic.Condition.Append(_ammoInClipDecreaseMechanic.IsEnoughAmmoToShoot);
+            _shootMechanic.Condition.Append(_delayBetweenShotsMechanic.CanShoot);
+
+            _ammoInClipDecreaseMechanic.Construct(_ammoClipStorage);
+            _shootMechanic.ShootComplete += _ammoInClipDecreaseMechanic.OnShootComplete;
         }
 
 #if UNITY_EDITOR
@@ -53,6 +62,7 @@ namespace ArenaShooter.Weapons
             _ammoInClipDecreaseMechanic = GetComponent<AmmoInClipDecreaseMechanic>();
             _weaponReloadMechanic = GetComponent<WeaponReloadMechanic>();
             _weaponRotateMechanic = GetComponent<WeaponRotateMechanic>();
+            _delayBetweenShotsMechanic = GetComponent<WeaponDelayBetweenShotsMechanic>();
         }
 #endif
     }
