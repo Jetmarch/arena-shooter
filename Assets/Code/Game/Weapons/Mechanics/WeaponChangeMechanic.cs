@@ -15,7 +15,6 @@ namespace ArenaShooter.Weapons
         private int _selectedWeaponIndex;
 
         private WeaponsStorage _weaponStorage;
-        private IChangeWeaponInputProvider _inputController;
 
         private CompositeCondition _condition;
 
@@ -24,30 +23,13 @@ namespace ArenaShooter.Weapons
         public event Action WeaponChanged;
         public GameObject CurrentWeapon => _weaponStorage.Weapons.ElementAt(_selectedWeaponIndex);
 
-        public void Construct(IChangeWeaponInputProvider inputController, WeaponsStorage weaponStorage)
+        public void Construct(WeaponsStorage weaponStorage)
         {
-            _inputController = inputController;
             _weaponStorage = weaponStorage;
             _condition = new CompositeCondition();
-            _inputController.OnChangeWeaponUp += OnChangeWeaponUp;
-            _inputController.OnChangeWeaponDown += OnChangeWeaponDown;
         }
 
-        private void OnEnable()
-        {
-            if (_inputController == null) return;
-            _inputController.OnChangeWeaponUp += OnChangeWeaponUp;
-            _inputController.OnChangeWeaponDown += OnChangeWeaponDown;
-        }
-
-        private void OnDisable()
-        {
-            if (_inputController == null) return;
-            _inputController.OnChangeWeaponUp -= OnChangeWeaponUp;
-            _inputController.OnChangeWeaponDown -= OnChangeWeaponDown;
-        }
-
-        private void OnChangeWeaponUp()
+        public void OnChangeWeaponUp()
         {
             if (!CanChangeWeapon()) return;
             _selectedWeaponIndex++;
@@ -59,7 +41,7 @@ namespace ArenaShooter.Weapons
             WeaponChanged?.Invoke();
         }
 
-        private void OnChangeWeaponDown()
+        public void OnChangeWeaponDown()
         {
             if (!CanChangeWeapon()) return;
             _selectedWeaponIndex--;

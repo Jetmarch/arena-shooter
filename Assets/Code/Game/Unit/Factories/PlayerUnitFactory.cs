@@ -12,14 +12,20 @@ namespace ArenaShooter.Units.Factories
         private IMoveInputProvider _moveInputProvider;
         private IDashInputProvider _dashInputProvider;
         private IChangeWeaponInputProvider _changeWeaponInputProvider;
+        private IScreenMouseMoveInputProvider _screenMouseMoveInputProvider;
         private PlayerWeaponFactory _playerWeaponFactory;
 
         [Inject]
-        private void Construct(IMoveInputProvider moveInputProvider, IDashInputProvider dashInputProvider, IChangeWeaponInputProvider changeWeaponInputProvider, PlayerWeaponFactory playerWeaponFactory)
+        private void Construct(IMoveInputProvider moveInputProvider,
+            IDashInputProvider dashInputProvider, 
+            IChangeWeaponInputProvider changeWeaponInputProvider, 
+            IScreenMouseMoveInputProvider screenMouseMoveInputProvider, 
+            PlayerWeaponFactory playerWeaponFactory)
         {
             _moveInputProvider = moveInputProvider;
             _dashInputProvider = dashInputProvider;
             _changeWeaponInputProvider = changeWeaponInputProvider;
+            _screenMouseMoveInputProvider = screenMouseMoveInputProvider;
             _playerWeaponFactory = playerWeaponFactory;
         }
 
@@ -32,7 +38,7 @@ namespace ArenaShooter.Units.Factories
                 throw new Exception("Player prefab doesn't have PlayerInstaller component!");
             }
 
-            installer.Construct(_moveInputProvider, _dashInputProvider, _changeWeaponInputProvider, _playerWeaponFactory);
+            installer.Construct(_moveInputProvider, _dashInputProvider, _changeWeaponInputProvider, _screenMouseMoveInputProvider, _playerWeaponFactory);
             return player;
         }
     }

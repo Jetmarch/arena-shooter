@@ -11,6 +11,8 @@ namespace ArenaShooter.Units.Player
     [RequireComponent(typeof(UnitDashMechanic))]
     [RequireComponent(typeof(WeaponChangeMechanic))]
     [RequireComponent(typeof(WeaponsStorage))]
+    [RequireComponent(typeof(UnitDieMechanic))]
+    [RequireComponent(typeof(HealthComponent))]
     public class PlayerInstaller : MonoBehaviour
     {
         [SerializeField]
@@ -35,27 +37,71 @@ namespace ArenaShooter.Units.Player
 
         private PlayerWeaponFactory _weaponFactory;
 
-        public void Construct(IMoveInputProvider moveInputProvider, IDashInputProvider dashInputProvider, IChangeWeaponInputProvider changeWeaponInputProvider, PlayerWeaponFactory weaponFactory)
+        private IMoveInputProvider _moveInputProvider;
+        private IDashInputProvider _dashInputProvider;
+        private IChangeWeaponInputProvider _changeWeaponInputProvider;
+        //TODO: для анимации поворота персонажа
+        private IScreenMouseMoveInputProvider _screenMouseMoveInputProvider;
+
+        public void Construct(IMoveInputProvider moveInputProvider,
+                            IDashInputProvider dashInputProvider,
+                            IChangeWeaponInputProvider changeWeaponInputProvider,
+                            IScreenMouseMoveInputProvider screenMouseMoveInputProvider,
+                            PlayerWeaponFactory weaponFactory)
         {
+            _changeWeaponInputProvider = changeWeaponInputProvider;
+            _moveInputProvider = moveInputProvider;
+            _dashInputProvider = dashInputProvider;
+            _screenMouseMoveInputProvider = screenMouseMoveInputProvider;
+            _weaponFactory = weaponFactory;
+
             _moveComponent.Construct(_rigidbody);
-            _moveController.Constuct(moveInputProvider, _moveComponent);
-
-            _weaponChangeMechanic.Construct(changeWeaponInputProvider, _weaponStorage);
-            _dashController.Construct(dashInputProvider, _moveComponent);
-
+            _moveController.Constuct(_moveComponent);
+            _weaponChangeMechanic.Construct(_weaponStorage);
+            _dashController.Construct(_moveComponent);
             _dieMechanic.Construct(_healthComponent);
 
             _moveController.Condition.Append(_dashController.IsNotDashing);
 
-            _weaponFactory = weaponFactory;
+            _moveInputProvider.OnMove += _moveController.OnMove;
+            _dashInputProvider.OnDash += _dashController.OnDash;
+            _changeWeaponInputProvider.OnChangeWeaponDown += _weaponChangeMechanic.OnChangeWeaponDown;
+            _changeWeaponInputProvider.OnChangeWeaponUp += _weaponChangeMechanic.OnChangeWeaponUp;
         }
 
         private void Start()
         {
+            //For test
             _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.Revolver, _weaponListParent.position, _weaponListParent));
             _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.Shotgun, _weaponListParent.position, _weaponListParent));
             _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.MachineGun, _weaponListParent.position, _weaponListParent));
             _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.RocketLauncher, _weaponListParent.position, _weaponListParent));
+        }
+
+        private void OnEnable()
+        {
+            if (_changeWeaponInputProvider == null) return;
+            if (_moveInputProvider == null) return;
+            if (_dashInputProvider == null) return;
+            if (_screenMouseMoveInputProvider == null) return;
+
+            _moveInputProvider.OnMove += _moveController.OnMove;
+            _dashInputProvider.OnDash += _dashController.OnDash;
+            _changeWeaponInputProvider.OnChangeWeaponDown += _weaponChangeMechanic.OnChangeWeaponDown;
+            _changeWeaponInputProvider.OnChangeWeaponUp += _weaponChangeMechanic.OnChangeWeaponUp;
+        }
+
+        private void OnDisable()
+        {
+            if (_changeWeaponInputProvider == null) return;
+            if (_moveInputProvider == null) return;
+            if (_dashInputProvider == null) return;
+            if (_screenMouseMoveInputProvider == null) return;
+
+            _moveInputProvider.OnMove -= _moveController.OnMove;
+            _dashInputProvider.OnDash -= _dashController.OnDash;
+            _changeWeaponInputProvider.OnChangeWeaponDown -= _weaponChangeMechanic.OnChangeWeaponDown;
+            _changeWeaponInputProvider.OnChangeWeaponUp -= _weaponChangeMechanic.OnChangeWeaponUp;
         }
 
 

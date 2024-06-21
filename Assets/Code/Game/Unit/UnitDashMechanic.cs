@@ -22,28 +22,21 @@ namespace ArenaShooter.Units
         private bool _isDashing = false;
 
         private Move2DComponent _moveComponent;
-        private IDashInputProvider _inputController;
 
         [SerializeField]
         private Vector2 _dashVector;
 
-        public void Construct(IDashInputProvider inputController, Move2DComponent moveComponent)
+        public void Construct(Move2DComponent moveComponent)
         {
-            _inputController = inputController;
             _moveComponent = moveComponent;
-            _inputController.OnDash += OnDash;
         }
 
         private void OnEnable()
         {
-            if (_inputController == null) return;
-            _inputController.OnDash += OnDash;
             IGameLoopListener.Register(this);
         }
         private void OnDisable()
         {
-            if (_inputController == null) return;
-            _inputController.OnDash -= OnDash;
             IGameLoopListener.Unregister(this);
         }
 

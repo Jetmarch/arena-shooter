@@ -41,13 +41,26 @@ namespace ArenaShooter.Units.Enemies
         public void Construct(ProjectileFactory projectileFactory)
         {
             _moveComponent.Construct(_rigidbody);
-            _moveController.Constuct(_inputController, _moveComponent);
+            _moveController.Constuct(_moveComponent);
             _dieMechanic.Construct(_healthComponent);
             _brain.Construct(_inputController, _playerScanner);
             _weaponInstaller.Construct(_inputController, _inputController, _inputController, _inputController, projectileFactory);
 
             _triggerComponent.Construct();
             _playerScanner.Construct(_triggerComponent);
+
+            _inputController.OnMove += _moveController.OnMove;
+            
+        }
+
+        private void OnEnable()
+        {
+            _inputController.OnMove += _moveController.OnMove;
+        }
+
+        private void OnDisable()
+        {
+            _inputController.OnMove += _moveController.OnMove;
         }
 
 #if UNITY_EDITOR
