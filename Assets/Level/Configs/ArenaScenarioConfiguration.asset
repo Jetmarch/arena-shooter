@@ -19,3 +19,7 @@ MonoBehaviour:
       CountOfEnemies: 1
     TimeToCapture: 0
     BossPrefab: {fileID: 0}
+  - Type: 2
+    EnemyData: []
+    TimeToCapture: 0
+    BossPrefab: {fileID: 0}

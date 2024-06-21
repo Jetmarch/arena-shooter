@@ -15,7 +15,7 @@ namespace ArenaShooter.Weapons.Projectiles
         [SerializeField]
         private ProjectileMoveMechanic _moveMechanic;
         [SerializeField]
-        private ProjectileDamageMechanic _damageMechanic;
+        private BaseProjectileDamageMechanic _damageMechanic;
         [SerializeField]
         private ProjectileDestroyOnHitMechanic _destroyOnHitMechanic;
 
@@ -23,8 +23,21 @@ namespace ArenaShooter.Weapons.Projectiles
         {
             _moveComponent.Construct(_rigidbody);
             _moveMechanic.Construct(_moveComponent);
-            _damageMechanic.Construct(_trigger2DComponent);
-            _destroyOnHitMechanic.Construct(_damageMechanic);
+
+            _trigger2DComponent.TriggerOn += _damageMechanic.OnHit;
+            _damageMechanic.HitGameObject += _destroyOnHitMechanic.OnHit;
+        }
+
+        private void OnEnable()
+        {
+            _trigger2DComponent.TriggerOn += _damageMechanic.OnHit;
+            _damageMechanic.HitGameObject += _destroyOnHitMechanic.OnHit;
+        }
+
+        private void OnDisable()
+        {
+            _trigger2DComponent.TriggerOn -= _damageMechanic.OnHit;
+            _damageMechanic.HitGameObject -= _destroyOnHitMechanic.OnHit;
         }
 
 #if UNITY_EDITOR
@@ -34,7 +47,7 @@ namespace ArenaShooter.Weapons.Projectiles
             _moveComponent = GetComponent<Move2DComponent>();
             _trigger2DComponent = GetComponent<Trigger2DComponent>();
             _moveMechanic = GetComponent<ProjectileMoveMechanic>();
-            _damageMechanic = GetComponent<ProjectileDamageMechanic>();
+            _damageMechanic = GetComponent<BaseProjectileDamageMechanic>();
             _destroyOnHitMechanic = GetComponent<ProjectileDestroyOnHitMechanic>();
         }
 #endif

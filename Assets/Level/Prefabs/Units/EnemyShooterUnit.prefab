@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 2298392808799656891}
   - component: {fileID: 398105782652984048}
   - component: {fileID: 3249852926387603231}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyShooterUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,9 +233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b5b849f2cd039468b16c8cc1d5804f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxDistancePursue: 25
-  _minDistancePursue: 5
+  _pursueDistance: 10
   _attackDistance: 5
+  _timeBetweenAttacks: 1
 --- !u!114 &2131625580298541168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d7daa052d131342942e2095034d66c, type: 3}
+  m_Script: {fileID: 11500000, guid: a96e32e3292740749845a1c1058ff471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &5737425349490410759 stripped

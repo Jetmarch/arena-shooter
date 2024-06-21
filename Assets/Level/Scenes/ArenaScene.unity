@@ -170,6 +170,8 @@ MonoBehaviour:
   _projectiles:
   - Type: 0
     ProjectilePrefab: {fileID: 8061884974603674031, guid: c9bb74df81296f748940be2e21216618, type: 3}
+  - Type: 3
+    ProjectilePrefab: {fileID: 7480251586211078169, guid: 5b2fc5132d44ea842960db6daf2f4a4a, type: 3}
   _projectilePool: {fileID: 1552781602}
 --- !u!1 &371073398
 GameObject:
@@ -2266,6 +2268,8 @@ MonoBehaviour:
     WeaponPrefab: {fileID: 7165602316576653474, guid: 0bfe999124580e34aa3f4acc6c24b323, type: 3}
   - Type: 2
     WeaponPrefab: {fileID: 1314276578408402902, guid: 8e904497ca277d7458a90e4111f229bd, type: 3}
+  - Type: 3
+    WeaponPrefab: {fileID: 7108030297034638982, guid: 2be2902f7f2123840a51d780071bf3e7, type: 3}
 --- !u!1 &1861432299
 GameObject:
   m_ObjectHideFlags: 0

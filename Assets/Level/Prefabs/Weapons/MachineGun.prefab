@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSpawnPoint: {fileID: 42597411172584267}
-  _projectileType: 0
+  _projectileType: 3
 --- !u!114 &7552912547472586213
 MonoBehaviour:
   m_ObjectHideFlags: 0

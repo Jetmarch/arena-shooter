@@ -144,7 +144,7 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: Dev-sprites_0
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -164,7 +164,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_1
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -184,7 +184,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_2
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -204,7 +204,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_3
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -224,7 +224,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_4
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -244,7 +244,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_5
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -264,7 +264,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_6
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -284,7 +284,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_7
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -304,7 +304,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_8
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -324,7 +324,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_9
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -344,7 +344,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_10
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -364,7 +364,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_11
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -384,7 +384,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_12
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -404,7 +404,7 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Dev-sprites_13
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -794,6 +794,46 @@ ScriptedImporter:
       width: 32
       height: 32
     spriteID: de35b1463beea4944b44cfe72091c8ce
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Dev-sprites_33
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 228
+      y: 132
+      width: 32
+      height: 32
+    spriteID: 62863209e8376654fbffd2e4cc1c6872
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Dev-sprites_34
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 260
+      y: 132
+      width: 32
+      height: 32
+    spriteID: d89a5b3e0b4db104f8b1ddc3a7bbcd13
     spriteBone: []
     spriteOutline: []
     vertices: []
