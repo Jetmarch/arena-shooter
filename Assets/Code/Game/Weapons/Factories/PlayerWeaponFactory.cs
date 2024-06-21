@@ -48,7 +48,7 @@ namespace ArenaShooter.Weapons
             }
 
             var createdWeapon = Instantiate(weapon, position, weapon.transform.rotation, parent);
-            createdWeapon.GetComponent<WeaponInstaller>().Construct(_shootInputProvider, _screenMouseMoveInputProvider, _worldMouseMoveInputProvider, _reloadInputProvider, _projectileFactory);
+            createdWeapon.GetComponent<BaseWeaponInstaller>().Construct(_shootInputProvider, _screenMouseMoveInputProvider, _worldMouseMoveInputProvider, _reloadInputProvider, _projectileFactory);
             return createdWeapon;
         }
     }

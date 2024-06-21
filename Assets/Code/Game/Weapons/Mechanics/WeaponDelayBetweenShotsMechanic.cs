@@ -1,6 +1,5 @@
 using ArenaShooter.Inputs;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArenaShooter.Weapons
@@ -16,38 +15,27 @@ namespace ArenaShooter.Weapons
         private bool _canShoot;
 
         
-        private IShootInputProvider _inputProvider;
-        public void Construct(IShootInputProvider inputProvider)
+        public void Construct()
         {
-            _inputProvider = inputProvider;
             _canShoot = true;
-            _inputProvider.OnShoot += OnShoot;
         }
 
-        private void OnShoot()
+        public void OnShoot()
         {
+            Debug.Log("Start delay");
             if (!_canShoot) return;
-
+            Debug.Log("Delaying");
             StartCoroutine(DelayBetweetShots());
         }
 
-        private void OnEnable()
-        {
-            if (_inputProvider == null) return;
-            _inputProvider.OnShoot += OnShoot;
-        }
-
-        private void OnDisable()
-        {
-            if (_inputProvider == null) return;
-            _inputProvider.OnShoot -= OnShoot;
-        }
 
         private IEnumerator DelayBetweetShots()
         {
             _canShoot = false;
+            Debug.Log("CanShoot: false");
             yield return new WaitForSeconds(_delayBetweenShots);
             _canShoot = true;
+            Debug.Log("CanShoot: true");
         }
 
         public bool CanShoot()

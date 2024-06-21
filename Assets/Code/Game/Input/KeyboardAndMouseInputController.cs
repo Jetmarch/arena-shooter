@@ -25,11 +25,13 @@ namespace ArenaShooter.Inputs
         public event Action<Vector2> OnMove;
         public event Action<Vector3> OnScreenMouseMove;
         public event Action OnShoot;
+        public event Action OnShootHold;
         public event Action OnReload;
         public event Action OnChangeWeaponUp;
         public event Action OnChangeWeaponDown;
         public event Action OnDash;
         public event Action<Vector3> OnWorldMouseMove;
+        
 
         private Camera _camera;
 
@@ -54,6 +56,7 @@ namespace ArenaShooter.Inputs
             Dash();
             Reload();
             Shoot();
+            ShootHold();
         }
 
         private void ScreenMouseMove()
@@ -125,6 +128,14 @@ namespace ArenaShooter.Inputs
             if (Input.GetMouseButtonDown(0))
             {
                 OnShoot?.Invoke();
+            }
+        }
+
+        private void ShootHold()
+        {
+            if(Input.GetMouseButton(0))
+            {
+                OnShootHold?.Invoke();
             }
         }
 

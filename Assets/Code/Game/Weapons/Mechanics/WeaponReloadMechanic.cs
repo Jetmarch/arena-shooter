@@ -11,7 +11,6 @@ namespace ArenaShooter.Weapons
         [SerializeField]
         private float _reloadSpeed;
 
-        private IReloadInputProvider _inputController;
         private AmmoClipStorage _ammoClipStorage;
 
         private bool _isReloading;
@@ -26,23 +25,9 @@ namespace ArenaShooter.Weapons
             return !_isReloading;
         }
 
-        public void Construct(IReloadInputProvider inputController, AmmoClipStorage ammoClipStorage)
+        public void Construct(AmmoClipStorage ammoClipStorage)
         {
             _ammoClipStorage = ammoClipStorage;
-            _inputController = inputController;
-            _inputController.OnReload += OnReload;
-        }
-
-        private void OnEnable()
-        {
-            if (_inputController == null) return;
-            _inputController.OnReload += OnReload;
-        }
-
-        private void OnDisable()
-        {
-            if (_inputController == null) return;
-            _inputController.OnReload -= OnReload;
         }
 
         public void OnReload()

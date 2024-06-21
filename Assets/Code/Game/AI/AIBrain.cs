@@ -11,13 +11,15 @@ namespace ArenaShooter.AI
         private float _pursueDistance = 10f;
         [SerializeField]
         private float _attackDistance = 7f;
+        [SerializeField]
+        private float _timeBetweenAttacks = 1f;
 
 
         private AIInputController _inputController;
 
         private bool _isAttacking;
         private int _attackCount = 3;
-        private float _timeBetweenAttacks = 1f;
+        
 
 
         private PlayerScannerComponent _playerScanner;

@@ -35,8 +35,6 @@ namespace ArenaShooter.Units.Player
 
         private PlayerWeaponFactory _weaponFactory;
 
-        //TODO: Возможно конструировать игрока из фабрики
-
         public void Construct(IMoveInputProvider moveInputProvider, IDashInputProvider dashInputProvider, IChangeWeaponInputProvider changeWeaponInputProvider, PlayerWeaponFactory weaponFactory)
         {
             _moveComponent.Construct(_rigidbody);
@@ -56,6 +54,7 @@ namespace ArenaShooter.Units.Player
         {
             _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.Revolver, _weaponListParent.position, _weaponListParent));
             _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.Shotgun, _weaponListParent.position, _weaponListParent));
+            _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.MachineGun, _weaponListParent.position, _weaponListParent));
         }
 
 

@@ -10,6 +10,7 @@ namespace ArenaShooter.Inputs
         IReloadInputProvider
     {
         public event Action OnShoot;
+        public event Action OnShootHold;
         public event Action<Vector2> OnMove;
         public event Action OnReload;
         public event Action<Vector3> OnWorldMouseMove;

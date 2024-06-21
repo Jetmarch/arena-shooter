@@ -31,6 +31,7 @@ namespace ArenaShooter.Units
         {
             _inputController = inputController;
             _moveComponent = moveComponent;
+            _inputController.OnDash += OnDash;
         }
 
         private void OnEnable()

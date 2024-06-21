@@ -36,7 +36,7 @@ namespace ArenaShooter.Units.Enemies
         [SerializeField]
         private PlayerScannerComponent _playerScanner;
         [SerializeField]
-        private WeaponInstaller _weaponInstaller;
+        private BaseWeaponInstaller _weaponInstaller;
 
         public void Construct(ProjectileFactory projectileFactory)
         {
@@ -62,7 +62,7 @@ namespace ArenaShooter.Units.Enemies
             _brain = GetComponent<AIBrain>();
             _triggerComponent = GetComponentInChildren<CircleTrigger2DComponent>();
             _playerScanner = GetComponentInChildren<PlayerScannerComponent>();
-            _weaponInstaller = GetComponentInChildren<WeaponInstaller>();
+            _weaponInstaller = GetComponentInChildren<BaseWeaponInstaller>();
         }
 #endif
     }

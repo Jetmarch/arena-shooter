@@ -12,7 +12,6 @@ namespace ArenaShooter.Weapons
         protected Transform _projectileSpawnPoint;
         [SerializeField]
         protected ProjectileType _projectileType;
-        protected IShootInputProvider _inputController;
         protected ProjectileFactory _projectileFactory;
 
         private CompositeCondition _condition;
@@ -20,25 +19,11 @@ namespace ArenaShooter.Weapons
 
         public event Action ShootComplete;
 
-        public virtual void Construct(IShootInputProvider inputController, ProjectileFactory projectileFactory)
+        public virtual void Construct(ProjectileFactory projectileFactory)
         {
-            _inputController = inputController;
             _projectileFactory = projectileFactory;
 
             _condition = new CompositeCondition();
-            _inputController.OnShoot += OnShoot;
-        }
-
-        protected virtual void OnEnable()
-        {
-            if (_inputController == null) return;
-            _inputController.OnShoot += OnShoot;
-        }
-
-        protected virtual void OnDisable()
-        {
-            if (_inputController == null) return;
-            _inputController.OnShoot -= OnShoot;
         }
 
         protected bool CanShoot()
@@ -52,6 +37,15 @@ namespace ArenaShooter.Weapons
             ShootComplete?.Invoke();
         }
 
-        public abstract void OnShoot();
+        public virtual void OnShoot()
+        {
+            if (!CanShoot()) return;
+
+            ShootMechanic();
+
+            OnShootComplete();
+        }
+
+        public abstract void ShootMechanic();
     }
 }

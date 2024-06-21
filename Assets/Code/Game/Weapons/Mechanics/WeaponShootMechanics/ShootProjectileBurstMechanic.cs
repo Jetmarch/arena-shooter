@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArenaShooter.Weapons
 {
-    public class ShootProjectileBurstObserver : BaseWeaponShootMechanic
+    public class ShootProjectileBurstMechanic : BaseWeaponShootMechanic
     {
         [SerializeField]
         private int _countOfProjectilesInShot = 4;
@@ -12,10 +12,8 @@ namespace ArenaShooter.Weapons
         [SerializeField]
         private float _maxSpreadAngle = 5f;
 
-        public override void OnShoot()
+        public override void ShootMechanic()
         {
-            if (!CanShoot()) return;
-
             for (int i = 0; i < _countOfProjectilesInShot; i++)
             {
                 var spreadRotation = Quaternion.Euler(_projectileSpawnPoint.eulerAngles.x, _projectileSpawnPoint.eulerAngles.y, _projectileSpawnPoint.eulerAngles.z + Random.Range(_minSpreadAngle, _maxSpreadAngle));
@@ -23,7 +21,6 @@ namespace ArenaShooter.Weapons
                 //TODO: Передавать пул снарядов в качестве родительского объекта
                 _projectileFactory.CreateProjectile(_projectileType, _projectileSpawnPoint.position, spreadRotation);
             }
-            OnShootComplete();
         }
     }
 }

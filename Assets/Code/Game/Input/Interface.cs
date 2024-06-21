@@ -6,6 +6,7 @@ namespace ArenaShooter.Inputs
     public interface IShootInputProvider
     {
         event Action OnShoot;
+        event Action OnShootHold;
     }
 
     public interface IDashInputProvider
