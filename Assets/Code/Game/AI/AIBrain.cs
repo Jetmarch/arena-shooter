@@ -55,14 +55,11 @@ namespace ArenaShooter.AI
         private void OnPlayerLost(GameObject player)
         {
             _target = null;
-            Debug.Log("Target lost");
         }
 
         private void OnPlayerDetected(GameObject player)
         {
             _target = player.transform;
-
-            Debug.Log("Target detected");
         }
 
         public void OnUpdate(float delta)
