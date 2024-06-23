@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace ArenaShooter.Components
 {
@@ -14,6 +15,7 @@ namespace ArenaShooter.Components
         public Vector2 Velocity { get { return _velocity; } }
         public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
 
+        
         public void Construct(Rigidbody2D rigidbody)
         {
             _rigidbody = rigidbody;

@@ -15,11 +15,12 @@ GameObject:
   - component: {fileID: 4971147980997272825}
   - component: {fileID: 2792981501944130849}
   - component: {fileID: 7190734586244986478}
-  - component: {fileID: 2999907020567108255}
   - component: {fileID: 3121271154290488465}
   - component: {fileID: 7566509063090905654}
+  - component: {fileID: 3228878292722358667}
   - component: {fileID: 3261018734616197981}
   - component: {fileID: 8080332045017608664}
+  - component: {fileID: 6643504970536710159}
   m_Layer: 6
   m_Name: MegaProjectile
   m_TagString: Untagged
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: -947386895
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7909209140496307484, guid: 0edae087b5e546f49be2028c44709213, type: 3}
+  m_Sprite: {fileID: -8651338047936424927, guid: 0edae087b5e546f49be2028c44709213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -193,23 +194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1278009d4cb2c8e4299820b77531c089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2999907020567108255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7480251586211078169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 906e394f821cc214fae0fefd01c7fd49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damageRadius: 2
-  _damage: 2
-  _affectOnLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &3121271154290488465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +219,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayInSec: 5
+--- !u!114 &3228878292722358667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480251586211078169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae3f292664723047921e243d7d24e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minDamage: 1
+  _maxDamage: 1
 --- !u!114 &3261018734616197981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,8 +262,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 450640581617432208}
   _moveComponent: {fileID: 4971147980997272825}
-  _trigger2DComponent: {fileID: 7190734586244986478}
-  _moveMechanic: {fileID: 2792981501944130849}
-  _damageMechanic: {fileID: 2999907020567108255}
-  _destroyOnHitMechanic: {fileID: 3121271154290488465}
-  _spreadProjectilesMechanic: {fileID: 3261018734616197981}
+--- !u!114 &6643504970536710159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480251586211078169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 8080332045017608664}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}

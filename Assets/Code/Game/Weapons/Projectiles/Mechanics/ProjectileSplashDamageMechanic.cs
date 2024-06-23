@@ -1,9 +1,10 @@
 using ArenaShooter.Components;
+using System;
 using UnityEngine;
 
 namespace ArenaShooter.Weapons.Projectiles
 {
-    public class ProjectileSplashDamageMechanic : BaseProjectileDamageMechanic
+    public class ProjectileSplashDamageMechanic : MonoBehaviour, IProjectileDamageMechanic
     {
         [SerializeField]
         private float _damageRadius = 2f;
@@ -14,12 +15,16 @@ namespace ArenaShooter.Weapons.Projectiles
         [SerializeField]
         private LayerMask _affectOnLayer;
 
-        protected override void OnHitMechanic(Collider2D obj)
+        public event Action<GameObject> HitGameObject;
+
+        public void OnHit(Collider2D obj)
         {
-            var results = Physics2D.CircleCastAll(transform.position, _damageRadius, Vector2.up, float.MaxValue, _affectOnLayer);
+            HitGameObject?.Invoke(obj.gameObject);
+
+            var results = Physics2D.CircleCastAll(obj.transform.position, _damageRadius, Vector2.up, float.MaxValue, _affectOnLayer);
             if (results.Length <= 0) return;
 
-            for(int i = 0; i < results.Length; i++)
+            for (int i = 0; i < results.Length; i++)
             {
                 var health = results[i].transform.gameObject.GetComponent<HealthComponent>();
                 if (health == null) continue;

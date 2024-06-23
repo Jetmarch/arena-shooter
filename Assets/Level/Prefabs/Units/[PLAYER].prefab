@@ -16,11 +16,11 @@ GameObject:
   - component: {fileID: 144538745293117240}
   - component: {fileID: 2931462436165528020}
   - component: {fileID: 5911664064081198475}
-  - component: {fileID: 5106855117183840813}
   - component: {fileID: 8805141141273371615}
   - component: {fileID: 8331677765335964353}
   - component: {fileID: 2032282931720597689}
   - component: {fileID: 8561655482471235675}
+  - component: {fileID: 5106855117183840813}
   m_Layer: 8
   m_Name: '[PLAYER]'
   m_TagString: Untagged
@@ -212,27 +212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectedWeaponIndex: 0
---- !u!114 &5106855117183840813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2700993513150781719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79f1df40aacd3f74481bd10702766115, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 190503011097071287}
-  _moveComponent: {fileID: 2937231851949541267}
-  _moveController: {fileID: 144538745293117240}
-  _dashController: {fileID: 2931462436165528020}
-  _weaponChangeMechanic: {fileID: 5911664064081198475}
-  _weaponStorage: {fileID: 8805141141273371615}
-  _healthComponent: {fileID: 8331677765335964353}
-  _dieMechanic: {fileID: 2032282931720597689}
-  _weaponListParent: {fileID: 5374596255816858695}
 --- !u!114 &8805141141273371615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +266,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flashColor: {r: 0.7830189, g: 0.121885024, b: 0.121885024, a: 0}
   _flashDuration: 0.15
+--- !u!114 &5106855117183840813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700993513150781719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f1df40aacd3f74481bd10702766115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 190503011097071287}
+  _moveComponent: {fileID: 2937231851949541267}
+  _moveController: {fileID: 144538745293117240}
+  _dashController: {fileID: 2931462436165528020}
+  _weaponChangeMechanic: {fileID: 5911664064081198475}
+  _weaponStorage: {fileID: 8805141141273371615}
+  _healthComponent: {fileID: 8331677765335964353}
+  _dieMechanic: {fileID: 2032282931720597689}
+  _weaponListParent: {fileID: 5374596255816858695}
 --- !u!1 &6713693062904079447
 GameObject:
   m_ObjectHideFlags: 0

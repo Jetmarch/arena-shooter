@@ -1,5 +1,6 @@
 using ArenaShooter.Components;
 using UnityEngine;
+using Zenject;
 
 namespace ArenaShooter.Weapons.Projectiles
 {
@@ -8,6 +9,7 @@ namespace ArenaShooter.Weapons.Projectiles
     {
         private Move2DComponent _moveComponent;
 
+        [Inject]
         public void Construct(Move2DComponent moveComponent)
         {
             _moveComponent = moveComponent;

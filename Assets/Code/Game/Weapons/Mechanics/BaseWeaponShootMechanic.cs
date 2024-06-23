@@ -2,6 +2,7 @@ using ArenaShooter.Utils;
 using ArenaShooter.Weapons.Projectiles;
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace ArenaShooter.Weapons
 {
@@ -18,6 +19,7 @@ namespace ArenaShooter.Weapons
 
         public event Action ShootComplete;
 
+        [Inject]
         public virtual void Construct(ProjectileFactory projectileFactory)
         {
             _projectileFactory = projectileFactory;

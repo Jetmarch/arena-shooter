@@ -97,14 +97,12 @@ namespace ArenaShooter.AI
             else if(_isMovePhase)
             {
                 OnMove?.Invoke(_desiredPosition);
-                Debug.Log("Move to target");
                 _moveComponent.Move(_desiredPosition);
                 _movePhaseTime += delta;
                 if (Vector2.Distance(transform.position, _desiredPosition) < 0.1f || _movePhaseTime >= _maxMovePhaseTime)
                 {
                     _isMovePhase = false;
                     OnAttack?.Invoke();
-                    Debug.Log("Simple attack");
                     _moveComponent.Move(Vector2.zero);
                 }
             }

@@ -18,7 +18,8 @@ GameObject:
   - component: {fileID: 2999907020567108255}
   - component: {fileID: 3121271154290488465}
   - component: {fileID: 7566509063090905654}
-  - component: {fileID: 8317662731347830831}
+  - component: {fileID: 8700362254632089969}
+  - component: {fileID: 1778996042251285073}
   m_Layer: 6
   m_Name: RocketProjectile
   m_TagString: Untagged
@@ -234,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayInSec: 5
---- !u!114 &8317662731347830831
+--- !u!114 &8700362254632089969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,12 +244,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7480251586211078169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af10b2dea6bda534f861162f4011e289, type: 3}
+  m_Script: {fileID: 11500000, guid: 5611d586e441019479bbd8582d852297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 450640581617432208}
   _moveComponent: {fileID: 4971147980997272825}
-  _trigger2DComponent: {fileID: 7190734586244986478}
-  _moveMechanic: {fileID: 2792981501944130849}
-  _damageMechanic: {fileID: 2999907020567108255}
-  _destroyOnHitMechanic: {fileID: 3121271154290488465}
+--- !u!114 &1778996042251285073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480251586211078169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 8700362254632089969}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
