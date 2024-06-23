@@ -15,30 +15,36 @@ namespace ArenaShooter.Units.Factories
         private IScreenMouseMoveInputProvider _screenMouseMoveInputProvider;
         private PlayerWeaponFactory _playerWeaponFactory;
 
+        private DiContainer _container;
+
         [Inject]
         private void Construct(IMoveInputProvider moveInputProvider,
-            IDashInputProvider dashInputProvider, 
-            IChangeWeaponInputProvider changeWeaponInputProvider, 
-            IScreenMouseMoveInputProvider screenMouseMoveInputProvider, 
-            PlayerWeaponFactory playerWeaponFactory)
+            IDashInputProvider dashInputProvider,
+            IChangeWeaponInputProvider changeWeaponInputProvider,
+            IScreenMouseMoveInputProvider screenMouseMoveInputProvider,
+            PlayerWeaponFactory playerWeaponFactory,
+            DiContainer container)
         {
             _moveInputProvider = moveInputProvider;
             _dashInputProvider = dashInputProvider;
             _changeWeaponInputProvider = changeWeaponInputProvider;
             _screenMouseMoveInputProvider = screenMouseMoveInputProvider;
             _playerWeaponFactory = playerWeaponFactory;
+            _container = container;
         }
 
         public override GameObject CreateUnit(Vector3 position, Transform parent)
         {
-            var player = Instantiate(_unitPrefab, position, _unitPrefab.transform.rotation, parent);
-            var installer = player.GetComponent<PlayerInstaller>();
-            if (installer == null)
-            {
-                throw new Exception("Player prefab doesn't have PlayerInstaller component!");
-            }
+            //var player = Instantiate(_unitPrefab, position, _unitPrefab.transform.rotation, parent);
+            //var installer = player.GetComponent<PlayerInstaller>();
+            //if (installer == null)
+            //{
+            //    throw new Exception("Player prefab doesn't have PlayerInstaller component!");
+            //}
 
-            installer.Construct(_moveInputProvider, _dashInputProvider, _changeWeaponInputProvider, _screenMouseMoveInputProvider, _playerWeaponFactory);
+            //installer.Construct(_moveInputProvider, _dashInputProvider, _changeWeaponInputProvider, _screenMouseMoveInputProvider, _playerWeaponFactory);
+
+            var player = _container.InstantiatePrefab(_unitPrefab, position, _unitPrefab.transform.rotation, parent);
             return player;
         }
     }

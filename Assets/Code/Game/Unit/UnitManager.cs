@@ -1,3 +1,4 @@
+using ArenaShooter.Components;
 using ArenaShooter.Units.Factories;
 using System;
 using System.Collections.Generic;
@@ -50,16 +51,16 @@ namespace ArenaShooter.Units
 
         public void DestroyUnit(GameObject unit)
         {
-            var dieMechanic = unit.GetComponent<UnitDieMechanic>();
-            if (dieMechanic == null)
+            var healthComponent = unit.GetComponent<HealthComponent>();
+            if (healthComponent == null)
             {
-                Debug.LogWarning($"Try to destroy unit {unit.name} without UnitDieMechanic! Called Object.Destroy()");
+                Debug.LogWarning($"Try to destroy unit {unit.name} without HealthComponent! Called Object.Destroy()");
 
                 Destroy(unit);
                 return;
             }
 
-            dieMechanic.Die();
+            healthComponent.SetCurrentHealth(healthComponent.MinHealth);
         }
 
         private void OnUnitDie(GameObject unit)

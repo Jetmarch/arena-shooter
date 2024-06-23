@@ -192,10 +192,10 @@ GameObject:
   - component: {fileID: 7586272471361483108}
   - component: {fileID: 5008791150552865499}
   - component: {fileID: 6167243414391058610}
-  - component: {fileID: 7862256495730906074}
   - component: {fileID: 2298392808799656891}
-  - component: {fileID: 398105782652984048}
   - component: {fileID: 3249852926387603231}
+  - component: {fileID: 3608960932858372417}
+  - component: {fileID: 1793111857508383525}
   m_Layer: 8
   m_Name: EnemyShooterUnit
   m_TagString: Untagged
@@ -323,18 +323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 250
---- !u!114 &7862256495730906074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8330127567208185171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78407095452b46640a7a40cbc2250fdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2298392808799656891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,18 +338,6 @@ MonoBehaviour:
   _maxHealth: 3
   _minHealth: 0
   _currentHealth: 0
---- !u!114 &398105782652984048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8330127567208185171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27ec5c37a41884242a5f777e53fc66f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3249852926387603231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,13 +353,41 @@ MonoBehaviour:
   _rigidbody: {fileID: 5008791150552865499}
   _healthComponent: {fileID: 2298392808799656891}
   _moveComponent: {fileID: 6167243414391058610}
-  _moveController: {fileID: 7862256495730906074}
   _inputController: {fileID: 2131625580298541168}
-  _dieMechanic: {fileID: 398105782652984048}
   _brain: {fileID: 1180892338169770857}
   _triggerComponent: {fileID: 6200272794922339192}
   _playerScanner: {fileID: 5122045073503592288}
   _weaponInstaller: {fileID: 4682890147691111012}
+--- !u!114 &3608960932858372417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330127567208185171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ec5c37a41884242a5f777e53fc66f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1793111857508383525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330127567208185171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 3249852926387603231}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
 --- !u!1001 &3120771181212152077
 PrefabInstance:
   m_ObjectHideFlags: 0

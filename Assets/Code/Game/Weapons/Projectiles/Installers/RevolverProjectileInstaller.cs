@@ -14,7 +14,6 @@ namespace ArenaShooter.Weapons.Projectiles
 
         public override void InstallBindings()
         {
-            Debug.Log("Install bindings");
             _moveComponent.Construct(_rigidbody);
             //_moveMechanic.Construct(_moveComponent);
 

@@ -1,9 +1,10 @@
 ﻿using ArenaShooter.Components.Triggers;
+using System.Diagnostics;
 using Zenject;
 
 namespace ArenaShooter.Weapons.Projectiles
 {
-    public class ProjectileDamageController : IInitializable
+    public class ProjectileDamageController : IInitializable, ILateDisposable
     {
         private Trigger2DComponent _triggerComponent;
         private IProjectileDamageMechanic _damageMechanic;
@@ -17,6 +18,11 @@ namespace ArenaShooter.Weapons.Projectiles
         public void Initialize()
         {
             _triggerComponent.TriggerOn += _damageMechanic.OnHit;
+        }
+
+        public void LateDispose()
+        {
+            _triggerComponent.TriggerOn -= _damageMechanic.OnHit;
         }
     }
 }

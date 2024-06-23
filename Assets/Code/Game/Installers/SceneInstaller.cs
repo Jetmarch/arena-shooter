@@ -15,20 +15,8 @@ namespace ArenaShooter.Installers
     /// <summary>
     /// TODO: Разбить инсталлеры на подсистемы
     /// </summary>
-    public sealed class GameInstaller : MonoInstaller
+    public sealed class SceneInstaller : MonoInstaller
     {
-        [SerializeField]
-        private AIStateMachineFactory _stateMachineFactory;
-
-        [SerializeField]
-        private KeyboardAndMouseInputController _currentInputController;
-
-        [SerializeField]
-        private ProjectileFactory _projectileFactory;
-
-        [SerializeField]
-        private PlayerWeaponFactory _weaponFactory;
-
         [SerializeField]
         private CameraMoveController _cameraMoveController;
 
@@ -40,27 +28,17 @@ namespace ArenaShooter.Installers
 
         public override void InstallBindings()
         {
+            Container.Bind<ProjectileFactory>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<PlayerWeaponFactory>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<CameraMoveController>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<UnitManager>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesAndSelfTo<KeyboardAndMouseInputController>().FromComponentInHierarchy().AsSingle();
 
-            Container.BindInstance(_currentInputController).AsSingle();
-            Container.BindInstance(_stateMachineFactory).AsSingle();
-            Container.BindInstance(_projectileFactory).AsSingle();
-            Container.BindInstance(_weaponFactory).AsSingle();
-
-            Container.BindInstance(_unitManager).AsSingle();
-
-            BindInputController();
 
             BindUnitFactories();
             BindScenarioActExecutors();
 
             Container.BindInstance(_arenaScenarioConfig.GetScenarioActs()).AsSingle();
-        }
-
-        private void BindInputController()
-        {
-            Container.Bind(typeof(IMoveInputProvider), typeof(IScreenMouseMoveInputProvider), typeof(IWorldMouseMoveInputProvider),
-                typeof(IShootInputProvider), typeof(IReloadInputProvider),
-                typeof(IChangeWeaponInputProvider), typeof(IDashInputProvider)).FromInstance(_currentInputController);
         }
 
         private void BindUnitFactories()
@@ -87,23 +65,17 @@ namespace ArenaShooter.Installers
             Container.BindInstance(scenarioActExecutors).AsSingle();
         }
 
-        //Для тестирования
+        //TODO: Убрать это
         public override void Start()
         {
 
             var player = _unitManager.CreateUnit(UnitType.Player, Vector3.zero, null);
             _cameraMoveController.SetTarget(player.transform);
-            //_unitManager.CreateUnit(UnitType.EnemyShooter, new Vector3(5f, 5f, 0f), null);
-            //_unitManager.CreateUnit(UnitType.EnemyShooter, new Vector3(-5f, -5f, 0f), null);
         }
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            _stateMachineFactory = FindObjectOfType<AIStateMachineFactory>();
-            _weaponFactory = FindObjectOfType<PlayerWeaponFactory>();
-            _projectileFactory = FindObjectOfType<ProjectileFactory>();
-
             _cameraMoveController = FindObjectOfType<CameraMoveController>();
             _unitManager = FindObjectOfType<UnitManager>();
         }

@@ -91,15 +91,14 @@ namespace ArenaShooter.Scenarios
         {
             for(int i = 0; i < _spawnedUnits.Count; i++)
             {
-                var dieMechanic = _spawnedUnits[i].GetComponent<UnitDieMechanic>();
-                if(dieMechanic == null)
+                var health = _spawnedUnits[i].GetComponent<HealthComponent>();
+                if(health == null)
                 {
-                    Debug.LogWarning($"Unit {_spawnedUnits[i].name} don't have UnitDieMechanic!");
+                    Debug.LogWarning($"Unit {_spawnedUnits[i].name} don't have HealthComponent!");
                     continue;
                 }
 
-                dieMechanic.Die();
-                Debug.Log("DieMechanic");
+                health.SetCurrentHealth(health.MinHealth);
             }
 
             _spawnedUnits.Clear();

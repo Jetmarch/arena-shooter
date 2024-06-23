@@ -22,9 +22,7 @@ namespace ArenaShooter.Weapons
 
         public void OnShoot()
         {
-            Debug.Log("Start delay");
             if (!_canShoot) return;
-            Debug.Log("Delaying");
             StartCoroutine(DelayBetweetShots());
         }
 
@@ -32,10 +30,8 @@ namespace ArenaShooter.Weapons
         private IEnumerator DelayBetweetShots()
         {
             _canShoot = false;
-            Debug.Log("CanShoot: false");
             yield return new WaitForSeconds(_delayBetweenShots);
             _canShoot = true;
-            Debug.Log("CanShoot: true");
         }
 
         public bool CanShoot()
