@@ -1,7 +1,7 @@
 ﻿using ArenaShooter.Components;
 using Zenject;
 
-namespace ArenaShooter.Units.Player
+namespace ArenaShooter.Units
 {
     public class UnitDieController : IInitializable, ILateDisposable
     {

@@ -28,44 +28,44 @@ namespace ArenaShooter.AI
         public event Action OnAttack;
         public event Action<Vector2> OnMove;
 
-        //TODO: Move it to BossInstaller
-        private PlayerScannerComponent _scanner;
-        private CircleTrigger2DComponent _circleTrigger;
+        ////TODO: Move it to BossInstaller
+        //private PlayerScannerComponent _scanner;
+        //private CircleTrigger2DComponent _circleTrigger;
 
-        private Move2DComponent _moveComponent;
-        private Rigidbody2D _rigidbody;
+        //private Move2DComponent _moveComponent;
+        //private Rigidbody2D _rigidbody;
 
-        private WeaponsStorage _weaponStorage;
-        private WeaponChangeMechanic _weaponChangeMechanic;
-        private BossAttackPattern _attackPattern;
+        //private WeaponsStorage _weaponStorage;
+        //private WeaponChangeMechanic _weaponChangeMechanic;
+        //private BossAttackPattern _attackPattern;
 
-        [Inject]
-        private ProjectileFactory _projectileFactory;
+        //[Inject]
+        //private ProjectileFactory _projectileFactory;
 
-        private void Start()
-        {
-            _circleTrigger = GetComponent<CircleTrigger2DComponent>();
-            _scanner = GetComponent<PlayerScannerComponent>();
-            _scanner.OnPlayerDetected += OnPlayerDetected;
-            _scanner.OnPlayerLost += OnPlayerLost;
-            _circleTrigger.Construct();
-            _scanner.Construct(_circleTrigger);
+        //private void Start()
+        //{
+        //    _circleTrigger = GetComponent<CircleTrigger2DComponent>();
+        //    _scanner = GetComponent<PlayerScannerComponent>();
+        //    _scanner.OnPlayerDetected += OnPlayerDetected;
+        //    _scanner.OnPlayerLost += OnPlayerLost;
+        //    _circleTrigger.Construct();
+        //    _scanner.Construct(_circleTrigger);
 
-            _rigidbody = GetComponent<Rigidbody2D>();
-            _moveComponent = GetComponent<Move2DComponent>();
-            _moveComponent.Construct(_rigidbody);
-            _weaponStorage = GetComponent<WeaponsStorage>();
-            _weaponChangeMechanic = GetComponent<WeaponChangeMechanic>();
-            _weaponChangeMechanic.Construct(_weaponStorage);
-            _attackPattern = GetComponent<BossAttackPattern>();
-            _attackPattern.Construct(_weaponChangeMechanic);
-            OnAttack += _attackPattern.OnAttack;
+        //    _rigidbody = GetComponent<Rigidbody2D>();
+        //    _moveComponent = GetComponent<Move2DComponent>();
+        //    _moveComponent.Construct(_rigidbody);
+        //    _weaponStorage = GetComponent<WeaponsStorage>();
+        //    _weaponChangeMechanic = GetComponent<WeaponChangeMechanic>();
+        //    _weaponChangeMechanic.Construct(_weaponStorage);
+        //    _attackPattern = GetComponent<BossAttackPattern>();
+        //    _attackPattern.Construct(_weaponChangeMechanic);
+        //    OnAttack += _attackPattern.OnAttack;
 
-            foreach(var weapon in  _weaponStorage.Weapons)
-            {
-                weapon.GetComponent<BaseWeaponShootMechanic>().Construct(_projectileFactory);
-            }
-        }
+        //    foreach(var weapon in  _weaponStorage.Weapons)
+        //    {
+        //        weapon.GetComponent<BaseWeaponShootMechanic>().Construct(_projectileFactory);
+        //    }
+        //}
 
         private void OnEnable()
         {
@@ -81,7 +81,7 @@ namespace ArenaShooter.AI
         {
             if (_target == null || _isAttackPhase)
             {
-                _moveComponent.Move(Vector2.zero);
+                OnMove?.Invoke(Vector2.zero);
                 return;
             }
             
@@ -97,13 +97,12 @@ namespace ArenaShooter.AI
             else if(_isMovePhase)
             {
                 OnMove?.Invoke(_desiredPosition);
-                _moveComponent.Move(_desiredPosition);
                 _movePhaseTime += delta;
                 if (Vector2.Distance(transform.position, _desiredPosition) < 0.1f || _movePhaseTime >= _maxMovePhaseTime)
                 {
                     _isMovePhase = false;
                     OnAttack?.Invoke();
-                    _moveComponent.Move(Vector2.zero);
+                    OnMove?.Invoke(Vector2.zero);
                 }
             }
             
