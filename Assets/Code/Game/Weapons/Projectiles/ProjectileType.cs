@@ -5,6 +5,7 @@ namespace ArenaShooter.Weapons.Projectiles
         Revolver,
         Shotgun,
         Machinegun,
-        Rocket
+        Rocket,
+        MegaProjectile
     }
 }

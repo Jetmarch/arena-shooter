@@ -1,4 +1,3 @@
-using ArenaShooter.Inputs;
 using ArenaShooter.Utils;
 using ArenaShooter.Weapons.Projectiles;
 using System;
@@ -46,6 +45,6 @@ namespace ArenaShooter.Weapons
             OnShootComplete();
         }
 
-        public abstract void ShootMechanic();
+        protected abstract void ShootMechanic();
     }
 }

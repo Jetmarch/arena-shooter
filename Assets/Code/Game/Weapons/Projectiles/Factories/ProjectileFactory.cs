@@ -20,7 +20,6 @@ namespace ArenaShooter.Weapons.Projectiles
         [SerializeField]
         private Transform _projectilePool;
 
-
         public GameObject CreateProjectile(ProjectileType type, Vector3 position, Quaternion rotation)
         {
             var projectile = _projectiles.Find(x => x.Type == type).ProjectilePrefab;

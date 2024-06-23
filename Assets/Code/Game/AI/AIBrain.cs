@@ -14,13 +14,10 @@ namespace ArenaShooter.AI
         [SerializeField]
         private float _timeBetweenAttacks = 1f;
 
-
         private AIInputController _inputController;
 
         private bool _isAttacking;
         private int _attackCount = 3;
-        
-
 
         private PlayerScannerComponent _playerScanner;
         private Transform _target;

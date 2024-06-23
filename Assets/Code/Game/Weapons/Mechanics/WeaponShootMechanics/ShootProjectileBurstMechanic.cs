@@ -12,7 +12,7 @@ namespace ArenaShooter.Weapons
         [SerializeField]
         private float _maxSpreadAngle = 5f;
 
-        public override void ShootMechanic()
+        protected override void ShootMechanic()
         {
             for (int i = 0; i < _countOfProjectilesInShot; i++)
             {
