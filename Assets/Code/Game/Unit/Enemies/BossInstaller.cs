@@ -1,9 +1,7 @@
 using ArenaShooter.AI;
 using ArenaShooter.Components;
 using ArenaShooter.Components.Triggers;
-using ArenaShooter.Units.Player;
 using ArenaShooter.Weapons;
-using ArenaShooter.Weapons.Projectiles;
 using UnityEngine;
 using Zenject;
 
@@ -48,13 +46,6 @@ namespace ArenaShooter.Units.Enemies
         [SerializeField]
         private UnitDieMechanic _unitDieMechanic;
 
-        private ProjectileFactory _projectileFactory;
-
-        [Inject]
-        private void Construct(ProjectileFactory projectileFactory)
-        {
-            _projectileFactory = projectileFactory;
-        }
 
         public override void InstallBindings()
         {
@@ -75,11 +66,6 @@ namespace ArenaShooter.Units.Enemies
             Container.BindInterfacesAndSelfTo<BossAttackPatternController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BossMoveController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<UnitDieController>().AsSingle().NonLazy();
-
-            foreach (var weapon in _weaponStorage.Weapons)
-            {
-                weapon.GetComponent<BaseWeaponShootMechanic>().Construct(_projectileFactory);
-            }
         }
 
 #if UNITY_EDITOR
