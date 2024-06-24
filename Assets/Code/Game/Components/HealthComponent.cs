@@ -1,3 +1,4 @@
+using ArenaShooter.Utils;
 using System;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ namespace ArenaShooter.Components
         [SerializeField]
         private float _currentHealth;
 
+        private CompositeCondition _condition;
+
         public event Action<float> CurrentHealthChanged;
         public event Action<float> MaxHealthChanged;
 
@@ -19,13 +22,18 @@ namespace ArenaShooter.Components
         public float MaxHealth { get { return _maxHealth; } }
         public float MinHealth { get { return _minHealth; } }
 
-        private void Awake()
+        public CompositeCondition Condition {  get { return _condition; } }
+
+        public void Construct()
         {
             _currentHealth = _maxHealth;
+            _condition = new CompositeCondition();
         }
 
         public void SetCurrentHealth(float health)
         {
+            if (!_condition.IsTrue()) return;
+
             _currentHealth = health;
             CurrentHealthChanged?.Invoke(_currentHealth);
         }

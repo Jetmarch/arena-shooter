@@ -4,25 +4,24 @@ using UnityEngine;
 namespace ArenaShooter.Components
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public class SpriteFlashComponent : MonoBehaviour
+    public class SpriteFlashMechanic : MonoBehaviour
     {
         [SerializeField]
-        private Color _flashColor;
+        private Material _flashMaterial;
 
         [SerializeField]
         private float _flashDuration;
 
-        private float _flashMaxAmount = 1f;
-        private float _flashAmount;
 
         private SpriteRenderer _spriteRenderer;
+        private Material _originalMaterial;
 
-        private void Start()
+        public void Construct(SpriteRenderer spriteRenderer)
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer = spriteRenderer;
+            _originalMaterial = _spriteRenderer.material;
         }
 
-        [ContextMenu("Flash sprite")]
         public void Flash()
         {
             StartCoroutine(FlashCoroutine());
@@ -30,11 +29,11 @@ namespace ArenaShooter.Components
 
         private IEnumerator FlashCoroutine()
         {
-            _spriteRenderer.color = _flashColor;
+            _spriteRenderer.material = _flashMaterial;
 
             yield return new WaitForSeconds(_flashDuration);
 
-            _spriteRenderer.color = Color.white;
+            _spriteRenderer.material = _originalMaterial;
         }
     }
 }
