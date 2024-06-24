@@ -20,6 +20,7 @@ namespace ArenaShooter.Weapons.Projectiles
     public interface IProjectileDamageMechanic
     {
         event Action<GameObject> HitGameObject;
+        GameObject Owner { get; set; }
         void OnHit(Collider2D obj);
     }
 }

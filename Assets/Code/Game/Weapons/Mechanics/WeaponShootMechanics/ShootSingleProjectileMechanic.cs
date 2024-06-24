@@ -4,7 +4,7 @@ namespace ArenaShooter.Weapons
     {
         protected override void ShootMechanic()
         {
-            _projectileFactory.CreateProjectile(_projectileType, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation);
+            _projectileFactory.CreateProjectile(_projectileType, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation, gameObject);
         }
     }
 }

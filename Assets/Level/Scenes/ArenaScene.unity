@@ -288,6 +288,17 @@ Transform:
   - {fileID: 1169606971}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &509325435 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6407340803355505573, guid: 2d69cbe5c4e582a42a942d3300e7502d, type: 3}
+  m_PrefabInstance: {fileID: 9004269155412310854}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40583dab61baac0459b00d4348751eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &515319931
 GameObject:
   m_ObjectHideFlags: 0
@@ -5034,13 +5045,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2317476422647911010, guid: 2d69cbe5c4e582a42a942d3300e7502d, type: 3}
+      propertyPath: _spriteFlashMechanic
+      value: 
+      objectReference: {fileID: 509325435}
     - target: {fileID: 8443968282817916724, guid: 2d69cbe5c4e582a42a942d3300e7502d, type: 3}
       propertyPath: m_Name
       value: Boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 8443968282817916724, guid: 2d69cbe5c4e582a42a942d3300e7502d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

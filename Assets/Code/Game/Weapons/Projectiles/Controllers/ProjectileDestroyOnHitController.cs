@@ -2,7 +2,7 @@
 
 namespace ArenaShooter.Weapons.Projectiles
 {
-    public class ProjectileDestroyOnHitController : IInitializable
+    public class ProjectileDestroyOnHitController : IInitializable, ILateDisposable
     {
         private ProjectileDestroyOnHitMechanic _destroyOnHitMechanic;
         private IProjectileDamageMechanic _damageMechanic;
@@ -16,6 +16,11 @@ namespace ArenaShooter.Weapons.Projectiles
         public void Initialize()
         {
             _damageMechanic.HitGameObject += _destroyOnHitMechanic.OnHit;
+        }
+
+        public void LateDispose()
+        {
+            _damageMechanic.HitGameObject -= _destroyOnHitMechanic.OnHit;
         }
     }
 }

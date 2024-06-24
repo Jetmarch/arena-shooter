@@ -46,14 +46,23 @@ namespace ArenaShooter.Units.Enemies
         [SerializeField]
         private UnitDieMechanic _unitDieMechanic;
 
+        [SerializeField]
+        private SpriteFlashMechanic _spriteFlashMechanic;
+        [SerializeField]
+        private SpriteRenderer _spriteRenderer;
+        [SerializeField]
+        private UnitTemporaryInvulnerableMechanic _unitTemporaryInvulnerableMechanic;
+
 
         public override void InstallBindings()
         {
+            _healthComponent.Construct();
             _moveComponent.Construct(_rigidbody);
             _weaponChangeMechanic.Construct(_weaponStorage);
             _bossAttackPattern.Construct(_weaponChangeMechanic);
             _circleTrigger.Construct();
             _playerScanner.Construct(_circleTrigger);
+            _spriteFlashMechanic.Construct(_spriteRenderer);
 
             Container.Bind<BossBrain>().FromInstance(_bossBrain).AsSingle();
             Container.Bind<Move2DComponent>().FromInstance(_moveComponent).AsSingle();
@@ -61,11 +70,17 @@ namespace ArenaShooter.Units.Enemies
             Container.Bind<BossAttackPattern>().FromInstance(_bossAttackPattern).AsSingle();
             Container.Bind<HealthComponent>().FromInstance(_healthComponent).AsSingle();
             Container.Bind<UnitDieMechanic>().FromInstance(_unitDieMechanic).AsSingle();
+            Container.Bind<SpriteFlashMechanic>().FromInstance(_spriteFlashMechanic).AsSingle();
+            Container.Bind<UnitTemporaryInvulnerableMechanic>().FromInstance(_unitTemporaryInvulnerableMechanic).AsSingle();
 
             Container.BindInterfacesAndSelfTo<BossPlayerScannerController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BossAttackPatternController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BossMoveController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<UnitDieController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<SpriteFlashOnHitController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<TemporaryInvulnerabilityOnHitController>().AsSingle().NonLazy();
+
+            _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
         }
 
 #if UNITY_EDITOR
@@ -81,6 +96,9 @@ namespace ArenaShooter.Units.Enemies
             _bossBrain = GetComponent<BossBrain>();
             _healthComponent = GetComponent<HealthComponent>();
             _unitDieMechanic = GetComponent<UnitDieMechanic>();
+            _spriteFlashMechanic = GetComponentInChildren<SpriteFlashMechanic>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            _unitTemporaryInvulnerableMechanic = GetComponent<UnitTemporaryInvulnerableMechanic>();
         }
 #endif
     }

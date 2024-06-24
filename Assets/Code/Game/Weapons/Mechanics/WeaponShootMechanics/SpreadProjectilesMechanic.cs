@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArenaShooter.Weapons
@@ -11,10 +9,10 @@ namespace ArenaShooter.Weapons
         protected override void ShootMechanic()
         {
             var angleStep = 360 / _countOfProjectiles;
-            for(int i = 0; i < _countOfProjectiles; i++)
+            for (int i = 0; i < _countOfProjectiles; i++)
             {
                 var projectileRotation = Quaternion.Euler(0f, 0f, i * angleStep);
-                _projectileFactory.CreateProjectile(_projectileType, transform.position, projectileRotation);
+                _projectileFactory.CreateProjectile(_projectileType, transform.position, projectileRotation, gameObject);
             }
         }
     }

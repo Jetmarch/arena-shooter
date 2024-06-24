@@ -7,7 +7,6 @@ namespace ArenaShooter.Weapons.Projectiles
 {
     public class ProjectileFactory : MonoBehaviour
     {
-
         [Serializable]
         public struct ProjectileFactoryData
         {
@@ -29,7 +28,7 @@ namespace ArenaShooter.Weapons.Projectiles
             _container = container;
         }
 
-        public GameObject CreateProjectile(ProjectileType type, Vector3 position, Quaternion rotation)
+        public GameObject CreateProjectile(ProjectileType type, Vector3 position, Quaternion rotation, GameObject owner)
         {
             var projectile = _projectiles.Find(x => x.Type == type).ProjectilePrefab;
             if (projectile == null)
@@ -38,6 +37,14 @@ namespace ArenaShooter.Weapons.Projectiles
             }
             //TODO: Перенести в пул
             var createdProjectile = _container.InstantiatePrefab(projectile, position, rotation, _projectilePool);
+            
+            var damageMechanic = createdProjectile.GetComponent<IProjectileDamageMechanic>();
+            if (damageMechanic == null)
+            {
+                throw new Exception($"ProjectileFactory: Projectile with {type} does not contain IProjectileDamageMechanic!");
+            }
+            
+            damageMechanic.Owner = owner;
 
             return createdProjectile;
         }

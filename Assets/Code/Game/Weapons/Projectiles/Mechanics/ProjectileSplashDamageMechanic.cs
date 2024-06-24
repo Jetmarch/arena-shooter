@@ -14,6 +14,8 @@ namespace ArenaShooter.Weapons.Projectiles
 
         [SerializeField]
         private LayerMask _affectOnLayer;
+        private GameObject _owner;
+        public GameObject Owner { get => _owner; set => _owner = value; }
 
         public event Action<GameObject> HitGameObject;
 
@@ -21,12 +23,14 @@ namespace ArenaShooter.Weapons.Projectiles
         {
             HitGameObject?.Invoke(obj.gameObject);
 
-            var results = Physics2D.CircleCastAll(obj.transform.position, _damageRadius, Vector2.up, float.MaxValue, _affectOnLayer);
-            if (results.Length <= 0) return;
+            var affectedTargets = Physics2D.CircleCastAll(obj.transform.position, _damageRadius, Vector2.up, float.MaxValue, _affectOnLayer);
+            if (affectedTargets.Length <= 0) return;
 
-            for (int i = 0; i < results.Length; i++)
+            for (int i = 0; i < affectedTargets.Length; i++)
             {
-                var health = results[i].transform.gameObject.GetComponent<HealthComponent>();
+                if (affectedTargets[i].transform.gameObject == _owner) continue;
+
+                var health = affectedTargets[i].transform.gameObject.GetComponent<HealthComponent>();
                 if (health == null) continue;
 
                 health.SetCurrentHealth(health.CurrentHealth - _damage);

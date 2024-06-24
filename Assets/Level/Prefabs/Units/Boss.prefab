@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7948696599864089055}
   - component: {fileID: 4295851755595329578}
+  - component: {fileID: 6407340803355505573}
   m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
@@ -84,6 +85,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6407340803355505573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384503550032434107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40583dab61baac0459b00d4348751eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashMaterial: {fileID: 2100000, guid: 849907df48fe1734bbb5ce43dc39d3b8, type: 2}
+  _flashDuration: 0.15
 --- !u!1 &873730203135261477
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +246,7 @@ GameObject:
   - component: {fileID: 7969502834595957082}
   - component: {fileID: 2317476422647911010}
   - component: {fileID: 548426626463034348}
+  - component: {fileID: 2674254329816033225}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Untagged
@@ -433,6 +449,9 @@ MonoBehaviour:
   _bossAttackPattern: {fileID: 7243164224892767271}
   _healthComponent: {fileID: 5097605910248146253}
   _unitDieMechanic: {fileID: 7969502834595957082}
+  _spriteFlashMechanic: {fileID: 6407340803355505573}
+  _spriteRenderer: {fileID: 4295851755595329578}
+  _unitTemporaryInvulnerableMechanic: {fileID: 2674254329816033225}
 --- !u!114 &548426626463034348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +470,20 @@ MonoBehaviour:
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
+--- !u!114 &2674254329816033225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8443968282817916724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e810bb0833987d142baf0e5a6fff3273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isInvulnerable: 0
+  _invulnerableTime: 0.15
 --- !u!1001 &1819301013063558670
 PrefabInstance:
   m_ObjectHideFlags: 0

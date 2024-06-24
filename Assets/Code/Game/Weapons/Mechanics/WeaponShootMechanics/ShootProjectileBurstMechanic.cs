@@ -19,7 +19,7 @@ namespace ArenaShooter.Weapons
                 var spreadRotation = Quaternion.Euler(_projectileSpawnPoint.eulerAngles.x, _projectileSpawnPoint.eulerAngles.y, _projectileSpawnPoint.eulerAngles.z + Random.Range(_minSpreadAngle, _maxSpreadAngle));
 
                 //TODO: Передавать пул снарядов в качестве родительского объекта
-                _projectileFactory.CreateProjectile(_projectileType, _projectileSpawnPoint.position, spreadRotation);
+                _projectileFactory.CreateProjectile(_projectileType, _projectileSpawnPoint.position, spreadRotation, gameObject);
             }
         }
     }
