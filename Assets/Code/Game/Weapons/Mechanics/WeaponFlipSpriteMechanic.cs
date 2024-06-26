@@ -1,4 +1,3 @@
-using ArenaShooter.Inputs;
 using UnityEngine;
 
 namespace ArenaShooter.Weapons

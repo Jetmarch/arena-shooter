@@ -1,4 +1,3 @@
-using ArenaShooter.Inputs;
 using System.Collections;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ namespace ArenaShooter.Weapons
         private float _delayBetweenShots = 0.1f;
         [SerializeField]
         private bool _canShoot;
-        
+
         public void Construct()
         {
             _canShoot = true;

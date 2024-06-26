@@ -31,7 +31,7 @@ namespace ArenaShooter.Inputs
         public event Action OnChangeWeaponDown;
         public event Action OnDash;
         public event Action<Vector3> OnWorldMouseMove;
-        
+
 
         private Camera _camera;
 
@@ -133,7 +133,7 @@ namespace ArenaShooter.Inputs
 
         private void ShootHold()
         {
-            if(Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0))
             {
                 OnShootHold?.Invoke();
             }

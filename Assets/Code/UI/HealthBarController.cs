@@ -1,5 +1,4 @@
 using ArenaShooter.Units.Player;
-using UnityEngine;
 using Zenject;
 
 namespace ArenaShooter.UI
@@ -9,9 +8,9 @@ namespace ArenaShooter.UI
         private PlayerFacade _player;
         private HealthBar _healthBar;
 
-        public HealthBarController(PlayerFacade playerCreator, HealthBar healthBar)
+        public HealthBarController(IPlayerProvider playerProvider, HealthBar healthBar)
         {
-            _player = playerCreator;
+            _player = playerProvider.Player;
             _healthBar = healthBar;
         }
 

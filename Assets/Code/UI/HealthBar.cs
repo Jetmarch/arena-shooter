@@ -16,14 +16,14 @@ namespace ArenaShooter.UI
 
         [SerializeField]
         private int _maxHearts = 10;
-        
+
         public void UpdateHealth(float health)
         {
             ClearHearts();
 
             int countOfHearts = Mathf.Clamp((int)health, 0, _maxHearts);
 
-            for (int i = 0; i < countOfHearts; i++) 
+            for (int i = 0; i < countOfHearts; i++)
             {
                 CreateHeart(_fullHeartPrefab);
             }
@@ -31,8 +31,8 @@ namespace ArenaShooter.UI
             if (countOfHearts == _maxHearts) return;
 
             var fractional = health - Math.Truncate(health);
-            
-            if(fractional >= 0.01f)
+
+            if (fractional >= 0.01f)
             {
                 CreateHeart(_halfHeartPrefab);
             }
@@ -40,7 +40,7 @@ namespace ArenaShooter.UI
 
         private void ClearHearts()
         {
-            foreach(Transform heart in _heartsContainer.transform)
+            foreach (Transform heart in _heartsContainer.transform)
             {
                 Destroy(heart.gameObject);
             }

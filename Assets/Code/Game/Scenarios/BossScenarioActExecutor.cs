@@ -23,7 +23,7 @@ namespace ArenaShooter.Scenarios
         public override void Execute(BaseScenarioActData data)
         {
             var bossData = data as BossScenarioActData;
-            if(bossData == null ) 
+            if (bossData == null)
             {
                 throw new System.Exception($"Type mismatch between ScenarioType and ScenarioActData type!");
             }
@@ -33,7 +33,7 @@ namespace ArenaShooter.Scenarios
 
             var bossUnit = _unitManager.CreateUnit(Units.Factories.UnitType.Boss, _bossSpawnPoint.GetRandomPointInside(), null);
             var dieMechanic = bossUnit.GetComponent<UnitDieMechanic>();
-            if(dieMechanic == null )
+            if (dieMechanic == null)
             {
                 throw new System.Exception("Boss doesn't have UnitDieMechanic. Fix it");
             }

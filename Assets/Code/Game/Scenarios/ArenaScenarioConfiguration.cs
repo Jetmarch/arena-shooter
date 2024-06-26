@@ -17,7 +17,7 @@ namespace ArenaShooter.Scenarios
         {
             //TODO: Преобразование между EditorScenarioActData в конкретный тип сценария
             var scenarioActs = new List<BaseScenarioActData>();
-            foreach(var act in _scenarioActs)
+            foreach (var act in _scenarioActs)
             {
                 switch (act.Type)
                 {
@@ -89,7 +89,7 @@ namespace ArenaShooter.Scenarios
     [Serializable]
     public class HordeScenarioActData : BaseScenarioActData
     {
-        
+
         [SerializeField]
         private List<HordeEnemyData> _enemyData = new();
         public List<HordeEnemyData> EnemyData { get { return _enemyData; } }

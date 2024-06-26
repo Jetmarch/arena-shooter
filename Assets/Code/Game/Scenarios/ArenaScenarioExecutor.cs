@@ -43,7 +43,7 @@ namespace ArenaShooter.Scenarios
             _scenarioActData = scenarioActs;
             _scenarioActExecutors = scenarioActExecutors;
 
-            foreach(var actExecutor in scenarioActExecutors)
+            foreach (var actExecutor in scenarioActExecutors)
             {
                 actExecutor.ScenarioActStart += OnScenarioActStart;
                 actExecutor.ScenarioActFinish += OnScenarioActFinish;

@@ -1,7 +1,6 @@
 using ArenaShooter.Units.Player;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Zenject;
 
@@ -41,10 +40,10 @@ namespace ArenaShooter.Units.Factories
             }
 
             var unit = _container.InstantiatePrefab(unitPrefab, position, unitPrefab.transform.rotation, parent);
-            if(type == UnitType.Player)
+            if (type == UnitType.Player)
             {
                 _player = unit.GetComponent<PlayerFacade>();
-                if(_player == null)
+                if (_player == null)
                 {
                     throw new Exception("UnitFactory: player object does not contain PlayerFacade component!");
                 }

@@ -1,4 +1,3 @@
-using ArenaShooter.AI;
 using ArenaShooter.CameraControllers;
 using ArenaShooter.Inputs;
 using ArenaShooter.Scenarios;
@@ -18,7 +17,7 @@ namespace ArenaShooter.Installers
     public sealed class SceneInstaller : MonoInstaller
     {
         [SerializeField]
-        private CameraMoveMechanic _cameraMoveController;
+        private CameraMoveMechanic _cameraMoveMechanic;
 
         [SerializeField]
         private UnitManager _unitManager;
@@ -47,7 +46,7 @@ namespace ArenaShooter.Installers
         {
             var scenarioActExecutors = new List<BaseScenarioActExecutor>();
 
-            foreach(var actExecutor in FindObjectsOfType<BaseScenarioActExecutor>())
+            foreach (var actExecutor in FindObjectsOfType<BaseScenarioActExecutor>())
             {
                 scenarioActExecutors.Add(actExecutor);
             }
@@ -60,13 +59,13 @@ namespace ArenaShooter.Installers
         {
 
             var player = _unitManager.CreateUnit(UnitType.Player, Vector3.zero, null);
-            _cameraMoveController.SetTarget(player.transform);
+            _cameraMoveMechanic.SetTarget(player.transform);
         }
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            _cameraMoveController = FindObjectOfType<CameraMoveMechanic>();
+            _cameraMoveMechanic = FindObjectOfType<CameraMoveMechanic>();
             _unitManager = FindObjectOfType<UnitManager>();
         }
 #endif

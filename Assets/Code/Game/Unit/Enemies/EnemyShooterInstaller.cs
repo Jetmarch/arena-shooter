@@ -65,7 +65,7 @@ namespace ArenaShooter.Units.Enemies
             Container.BindInterfacesAndSelfTo<AIInputController>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<SpriteFlashMechanic>().FromInstance(_spriteFlashMechanic).AsSingle();
             Container.Bind<SpriteRenderer>().FromInstance(_spriteRenderer).AsSingle();
-            
+
 
             Container.BindInterfacesAndSelfTo<UnitMoveController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<UnitDieController>().AsSingle().NonLazy();

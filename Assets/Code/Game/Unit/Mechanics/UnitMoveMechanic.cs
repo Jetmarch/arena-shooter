@@ -1,9 +1,7 @@
 using ArenaShooter.Components;
-using ArenaShooter.Inputs;
 using ArenaShooter.Utils;
 using System;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.Units
 {

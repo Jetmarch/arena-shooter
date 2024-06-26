@@ -25,7 +25,7 @@ namespace ArenaShooter.Weapons.Projectiles
             Container.BindInterfacesAndSelfTo<ProjectileDamageController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitController>().AsSingle().NonLazy();
         }
-        
+
         //TODO: Временное решение
 #if UNITY_EDITOR
         private void OnValidate()

@@ -269,6 +269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 451608502}
+  - component: {fileID: 451608503}
   m_Layer: 0
   m_Name: '[UI]'
   m_TagString: Untagged
@@ -293,6 +294,18 @@ Transform:
   - {fileID: 1169606971}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &451608503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451608501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19704111cb71276479b0953065f1d497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &515319931
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f422a7c43575a245bc3b8a443a8d655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraMoveController: {fileID: 1976634874}
+  _cameraMoveMechanic: {fileID: 1976634874}
   _unitManager: {fileID: 2052127813}
   _arenaScenarioConfig: {fileID: 11400000, guid: abec496b5fad2a144951565666104f72, type: 2}
 --- !u!1 &959241437
@@ -4575,6 +4588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
   _maxViewDistance: 4
+  _followTargetComponent: {fileID: 1976634873}
 --- !u!1 &1992368234
 GameObject:
   m_ObjectHideFlags: 0

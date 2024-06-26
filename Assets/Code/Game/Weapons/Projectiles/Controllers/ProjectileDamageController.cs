@@ -1,5 +1,4 @@
 ﻿using ArenaShooter.Components.Triggers;
-using System.Diagnostics;
 using Zenject;
 
 namespace ArenaShooter.Weapons.Projectiles

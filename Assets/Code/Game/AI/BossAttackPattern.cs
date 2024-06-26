@@ -16,7 +16,7 @@ namespace ArenaShooter.AI
         {
             var weapon = _weaponChangeMechanic.CurrentWeapon;
             var shootMechanic = weapon.GetComponent<BaseWeaponShootMechanic>();
-            if(shootMechanic == null)
+            if (shootMechanic == null)
             {
                 Debug.LogError($"Weapon {weapon.name} has no BaseWeaponShootMechanic!");
             }

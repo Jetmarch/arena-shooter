@@ -1,5 +1,4 @@
 using ArenaShooter.Components;
-using ArenaShooter.Inputs;
 using ArenaShooter.Units.Enemies;
 using ArenaShooter.Weapons;
 using UnityEngine;

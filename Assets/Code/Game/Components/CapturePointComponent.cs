@@ -81,7 +81,7 @@ namespace ArenaShooter.Components
             _captureCurrentProgress += delta * _captureSpeed;
             CaptureProgress?.Invoke(_captureCurrentProgress);
 
-            if(_captureCurrentProgress >= _captureMaxProgress)
+            if (_captureCurrentProgress >= _captureMaxProgress)
             {
                 PointCaptured?.Invoke();
                 Debug.Log("Point captured!");

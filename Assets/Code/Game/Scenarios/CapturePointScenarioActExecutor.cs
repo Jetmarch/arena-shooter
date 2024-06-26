@@ -56,7 +56,7 @@ namespace ArenaShooter.Scenarios
 
         private void OnSpawnedEnemyDie(GameObject obj)
         {
-            if(_spawnedUnits.Contains(obj))
+            if (_spawnedUnits.Contains(obj))
             {
                 _spawnedUnits.Remove(obj);
             }
@@ -64,9 +64,9 @@ namespace ArenaShooter.Scenarios
 
         private IEnumerator SpawnEnemies()
         {
-            while(true)
+            while (true)
             {
-                if(_spawnedUnits.Count < _maxUnits)
+                if (_spawnedUnits.Count < _maxUnits)
                 {
                     //Just for test
                     var newEnemy = _unitManager.CreateUnit(Units.Factories.UnitType.EnemyShooter, _spawnPoints[0].GetRandomPointInside(), null);
@@ -89,10 +89,10 @@ namespace ArenaShooter.Scenarios
 
         private void KillAllSpawnedEnemies()
         {
-            for(int i = 0; i < _spawnedUnits.Count; i++)
+            for (int i = 0; i < _spawnedUnits.Count; i++)
             {
                 var health = _spawnedUnits[i].GetComponent<HealthComponent>();
-                if(health == null)
+                if (health == null)
                 {
                     Debug.LogWarning($"Unit {_spawnedUnits[i].name} don't have HealthComponent!");
                     continue;

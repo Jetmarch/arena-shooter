@@ -1,12 +1,5 @@
-using ArenaShooter.Components;
-using ArenaShooter.Components.Triggers;
-using ArenaShooter.Inputs;
-using ArenaShooter.Weapons;
-using ArenaShooter.Weapons.Projectiles;
-using ModestTree;
 using System;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.AI
 {
@@ -84,7 +77,7 @@ namespace ArenaShooter.AI
                 OnMove?.Invoke(Vector2.zero);
                 return;
             }
-            
+
             if (!_isMovePhase)
             {
                 var rndInCirclePosition = UnityEngine.Random.insideUnitCircle * _radiusOfInteraction;
@@ -94,7 +87,7 @@ namespace ArenaShooter.AI
                 _isMovePhase = true;
                 _movePhaseTime = 0f;
             }
-            else if(_isMovePhase)
+            else if (_isMovePhase)
             {
                 OnMove?.Invoke(_desiredPosition);
                 _movePhaseTime += delta;
@@ -105,7 +98,7 @@ namespace ArenaShooter.AI
                     OnMove?.Invoke(Vector2.zero);
                 }
             }
-            
+
         }
 
         public void OnPlayerDetected(GameObject target)

@@ -12,7 +12,7 @@ namespace ArenaShooter.Units.Player
         [SerializeField]
         private HealthComponent _healthComponent;
 
-        public WeaponsStorage WeaponsStoraget { get { return _weaponsStorage; }  }
+        public WeaponsStorage WeaponsStoraget { get { return _weaponsStorage; } }
         public HealthComponent HealthComponent { get { return _healthComponent; } }
 
 #if UNITY_EDITOR

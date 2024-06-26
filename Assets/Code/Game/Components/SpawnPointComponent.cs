@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -12,7 +10,7 @@ namespace ArenaShooter.Components
 
         public Vector3 GetRandomPointInside()
         {
-            var randomPoint =  Random.insideUnitCircle * _spawnRadius;
+            var randomPoint = Random.insideUnitCircle * _spawnRadius;
             return new Vector3(transform.position.x + randomPoint.x, transform.position.y + randomPoint.y, 0f);
         }
 

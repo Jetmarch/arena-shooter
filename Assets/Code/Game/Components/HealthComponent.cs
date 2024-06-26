@@ -22,7 +22,7 @@ namespace ArenaShooter.Components
         public float MaxHealth { get { return _maxHealth; } }
         public float MinHealth { get { return _minHealth; } }
 
-        public CompositeCondition Condition {  get { return _condition; } }
+        public CompositeCondition Condition { get { return _condition; } }
 
         public void Construct()
         {

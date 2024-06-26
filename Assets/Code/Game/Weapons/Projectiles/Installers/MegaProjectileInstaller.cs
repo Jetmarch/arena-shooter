@@ -1,5 +1,5 @@
-using ArenaShooter.Components.Triggers;
 using ArenaShooter.Components;
+using ArenaShooter.Components.Triggers;
 using UnityEngine;
 using Zenject;
 

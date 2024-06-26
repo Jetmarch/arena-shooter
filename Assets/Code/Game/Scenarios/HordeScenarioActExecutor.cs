@@ -30,13 +30,13 @@ namespace ArenaShooter.Scenarios
             _unitManager = unitManager;
             _scenarioType = ScenarioType.Horde;
             _currentSpawnPoint = 0;
-            
+
         }
 
         public override void Execute(BaseScenarioActData data)
         {
             var hordeData = data as HordeScenarioActData;
-            if(hordeData == null)
+            if (hordeData == null)
             {
                 throw new System.Exception($"Type mismatch between ScenarioType and ScenarioActData type!");
             }
@@ -64,7 +64,7 @@ namespace ArenaShooter.Scenarios
         private void SetNextSpawnPoint()
         {
             _currentSpawnPoint++;
-            if(_currentSpawnPoint >= _spawnPoints.Length)
+            if (_currentSpawnPoint >= _spawnPoints.Length)
             {
                 _currentSpawnPoint = 0;
             }
@@ -78,12 +78,12 @@ namespace ArenaShooter.Scenarios
 
         private void OnHordeUnitDie(GameObject obj)
         {
-            if(_hordeUnits.Contains(obj))
+            if (_hordeUnits.Contains(obj))
             {
                 _hordeUnits.Remove(obj);
             }
 
-            if(_hordeUnits.Count <= 0)
+            if (_hordeUnits.Count <= 0)
             {
                 OnScenarioActFinish();
             }

@@ -1,8 +1,6 @@
 using ArenaShooter.Components;
-using ArenaShooter.Inputs;
 using System.Collections;
 using UnityEngine;
-using Zenject;
 
 
 namespace ArenaShooter.Units
@@ -27,7 +25,7 @@ namespace ArenaShooter.Units
         [SerializeField]
         private Vector2 _dashVector;
 
-        
+
         public void Construct(Move2DComponent moveComponent)
         {
             _moveComponent = moveComponent;

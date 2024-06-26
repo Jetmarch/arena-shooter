@@ -37,13 +37,13 @@ namespace ArenaShooter.Weapons.Projectiles
             }
             //TODO: Перенести в пул
             var createdProjectile = _container.InstantiatePrefab(projectile, position, rotation, _projectilePool);
-            
+
             var damageMechanic = createdProjectile.GetComponent<IProjectileDamageMechanic>();
             if (damageMechanic == null)
             {
                 throw new Exception($"ProjectileFactory: Projectile with {type} does not contain IProjectileDamageMechanic!");
             }
-            
+
             damageMechanic.Owner = owner;
 
             return createdProjectile;
