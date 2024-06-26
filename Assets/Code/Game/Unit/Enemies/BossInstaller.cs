@@ -56,6 +56,7 @@ namespace ArenaShooter.Units.Enemies
 
         public override void InstallBindings()
         {
+            //TODO: Избавиться от лишних вызовов, собирая компоненты внутри интерфейса
             _healthComponent.Construct();
             _moveComponent.Construct(_rigidbody);
             _weaponChangeMechanic.Construct(_weaponStorage);

@@ -13,7 +13,6 @@ namespace ArenaShooter.Weapons
         private float _delayBetweenShots = 0.1f;
         [SerializeField]
         private bool _canShoot;
-
         
         public void Construct()
         {
@@ -25,7 +24,6 @@ namespace ArenaShooter.Weapons
             if (!_canShoot) return;
             StartCoroutine(DelayBetweetShots());
         }
-
 
         private IEnumerator DelayBetweetShots()
         {

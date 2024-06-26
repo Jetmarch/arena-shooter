@@ -1,12 +1,11 @@
 using ArenaShooter.Components;
-using ArenaShooter.Inputs;
 using UnityEngine;
 using Zenject;
 
 namespace ArenaShooter.CameraControllers
 {
     [RequireComponent(typeof(FollowTargetComponent))]
-    public class CameraMoveController : MonoBehaviour, IGameFixedUpdateListener
+    public class CameraMoveMechanic : MonoBehaviour, IGameFixedUpdateListener
     {
         [SerializeField]
         private Transform _target;
@@ -14,37 +13,30 @@ namespace ArenaShooter.CameraControllers
         [SerializeField]
         private float _maxViewDistance = 5f;
 
+        [SerializeField]
         private FollowTargetComponent _followTargetComponent;
+
         private Camera _camera;
-        private IScreenMouseMoveInputProvider _inputController;
 
         private Vector3 _mousePos;
 
         [Inject]
-        public void Constuct(IScreenMouseMoveInputProvider inputController)
+        public void Constuct(Camera camera)
         {
-            _inputController = inputController;
-        }
-
-        private void Start()
-        {
-            _camera = Camera.main;
-            _followTargetComponent = GetComponent<FollowTargetComponent>();
+            _camera = camera;
         }
 
         private void OnEnable()
         {
-            _inputController.OnScreenMouseMove += OnMouseMove;
             IGameLoopListener.Register(this);
         }
 
         private void OnDisable()
         {
-            _inputController.OnScreenMouseMove -= OnMouseMove;
             IGameLoopListener.Unregister(this);
         }
 
-        private void OnMouseMove(Vector3 mousePos)
+        public void MoveTo(Vector3 mousePos)
         {
             _mousePos = mousePos;
         }
@@ -72,5 +64,12 @@ namespace ArenaShooter.CameraControllers
         {
             _target = target;
         }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            _followTargetComponent = GetComponent<FollowTargetComponent>();
+        }
+#endif
     }
 }

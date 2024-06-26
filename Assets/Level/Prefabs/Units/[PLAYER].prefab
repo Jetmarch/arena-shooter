@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 5689391225771231078}
   - component: {fileID: 8277121781348029334}
   - component: {fileID: 737122222303575946}
+  - component: {fileID: 1904623793679358506}
   m_Layer: 8
   m_Name: '[PLAYER]'
   m_TagString: Untagged
@@ -242,6 +243,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isInvulnerable: 0
   _invulnerableTime: 0.3
+--- !u!114 &1904623793679358506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700993513150781719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f32e52390c48494f9546bd74495da1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponsStorage: {fileID: 8805141141273371615}
+  _healthComponent: {fileID: 8331677765335964353}
 --- !u!1 &6011266586980825903
 GameObject:
   m_ObjectHideFlags: 0

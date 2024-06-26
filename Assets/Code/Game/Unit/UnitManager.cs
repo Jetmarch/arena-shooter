@@ -13,27 +13,22 @@ namespace ArenaShooter.Units
     public class UnitManager : MonoBehaviour
     {
         [SerializeField]
-        private List<GameObject> _units = new();
+        private List<GameObject> _units;
         [SerializeField]
-        private List<BaseUnitFactory> _unitFactories = new();
+        private UnitFactory _unitFactory;
 
         public event Action<GameObject> UnitCreated;
         public event Action<GameObject> UnitDie;
 
         [Inject]
-        private void Construct(List<BaseUnitFactory> unitFactories)
+        private void Construct(UnitFactory unitFactories)
         {
-            _unitFactories = unitFactories;
+            _unitFactory = unitFactories;
         }
 
         public GameObject CreateUnit(UnitType type, Vector3 position, Transform parent)
         {
-            var factory = _unitFactories.Find(x => x.Type == type);
-            if (factory == null)
-            {
-                throw new Exception($"Factory for type {type} doesn't found!");
-            }
-            var unit = factory.CreateUnit(position, parent);
+            var unit = _unitFactory.CreateUnit(type, position, parent);
             _units.Add(unit);
             UnitCreated?.Invoke(unit);
             var dieMechanic = unit.GetComponent<UnitDieMechanic>();

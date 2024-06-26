@@ -18,7 +18,7 @@ namespace ArenaShooter.Installers
     public sealed class SceneInstaller : MonoInstaller
     {
         [SerializeField]
-        private CameraMoveController _cameraMoveController;
+        private CameraMoveMechanic _cameraMoveController;
 
         [SerializeField]
         private UnitManager _unitManager;
@@ -28,29 +28,19 @@ namespace ArenaShooter.Installers
 
         public override void InstallBindings()
         {
+            Container.Bind<Camera>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ProjectileFactory>().FromComponentInHierarchy().AsSingle();
             Container.Bind<PlayerWeaponFactory>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<CameraMoveController>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<CameraMoveMechanic>().FromComponentInHierarchy().AsSingle();
             Container.Bind<UnitManager>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<KeyboardAndMouseInputController>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesAndSelfTo<UnitFactory>().FromComponentInHierarchy().AsSingle();
 
-
-            BindUnitFactories();
             BindScenarioActExecutors();
 
             Container.BindInstance(_arenaScenarioConfig.GetScenarioActs()).AsSingle();
-        }
 
-        private void BindUnitFactories()
-        {
-            var unitFactories = new List<BaseUnitFactory>();
-
-            foreach(var unitFactory in FindObjectsOfType<BaseUnitFactory>())
-            {
-                unitFactories.Add(unitFactory);
-            }
-
-            Container.BindInstance(unitFactories).AsSingle();
+            Container.BindInterfacesAndSelfTo<CameraMouseMoveController>().AsSingle().NonLazy();
         }
 
         private void BindScenarioActExecutors()
@@ -76,7 +66,7 @@ namespace ArenaShooter.Installers
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            _cameraMoveController = FindObjectOfType<CameraMoveController>();
+            _cameraMoveController = FindObjectOfType<CameraMoveMechanic>();
             _unitManager = FindObjectOfType<UnitManager>();
         }
 #endif
