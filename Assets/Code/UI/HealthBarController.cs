@@ -6,9 +6,9 @@ namespace ArenaShooter.UI
     public class HealthBarController : IInitializable, ILateDisposable
     {
         private PlayerFacade _player;
-        private HealthBar _healthBar;
+        private HealthBarView _healthBar;
 
-        public HealthBarController(IPlayerProvider playerProvider, HealthBar healthBar)
+        public HealthBarController(IPlayerProvider playerProvider, HealthBarView healthBar)
         {
             _player = playerProvider.Player;
             _healthBar = healthBar;

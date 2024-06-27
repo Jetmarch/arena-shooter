@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArenaShooter.UI
 {
-    public class HealthBar : MonoBehaviour
+    public class HealthBarView : MonoBehaviour
     {
         [SerializeField]
         private GameObject _fullHeartPrefab;
