@@ -3,6 +3,7 @@ using ArenaShooter.Inputs;
 using ArenaShooter.Scenarios;
 using ArenaShooter.Units;
 using ArenaShooter.Units.Factories;
+using ArenaShooter.Units.Player;
 using ArenaShooter.Weapons;
 using ArenaShooter.Weapons.Projectiles;
 using System.Collections.Generic;
@@ -40,6 +41,8 @@ namespace ArenaShooter.Installers
             Container.BindInstance(_arenaScenarioConfig.GetScenarioActs()).AsSingle();
 
             Container.BindInterfacesAndSelfTo<CameraMouseMoveController>().AsSingle().NonLazy();
+            Container.Bind<ScorePointsStorage>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<AddScorePointsOnEnemyDeathController>().AsSingle().NonLazy();
         }
 
         private void BindScenarioActExecutors()
