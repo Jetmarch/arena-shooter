@@ -13,14 +13,12 @@ namespace ArenaShooter.Weapons.Projectiles
         private Move2DComponent _moveComponent;
         public override void InstallBindings()
         {
-            Debug.Log("Install bindings");
             _moveComponent.Construct(_rigidbody);
 
             Container.Bind<Trigger2DComponent>().FromComponentOn(gameObject).AsSingle();
             Container.BindInterfacesAndSelfTo<ProjectileSplashDamageMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<ProjectileDestroyOnHitMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<Move2DComponent>().FromComponentOn(gameObject).AsSingle();
-
 
             Container.BindInterfacesAndSelfTo<ProjectileDamageController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitController>().AsSingle().NonLazy();
