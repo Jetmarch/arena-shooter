@@ -1,8 +1,5 @@
 using ArenaShooter.Units.Player;
 using ArenaShooter.Weapons;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
 
 namespace ArenaShooter.UI

@@ -17,7 +17,7 @@ namespace ArenaShooter.Units.Player
 
         public WeaponsStorage WeaponsStorage { get { return _weaponsStorage; } }
         public HealthComponent HealthComponent { get { return _healthComponent; } }
-        public WeaponChangeMechanic WeaponChangeMechanic { get {  return _weaponChangeMechanic; } }
+        public WeaponChangeMechanic WeaponChangeMechanic { get { return _weaponChangeMechanic; } }
 
 #if UNITY_EDITOR
         private void OnValidate()

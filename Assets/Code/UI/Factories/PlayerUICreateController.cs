@@ -1,6 +1,4 @@
 using ArenaShooter.Units.Player;
-using System;
-using UnityEngine;
 using Zenject;
 
 namespace ArenaShooter.UI
@@ -33,17 +31,5 @@ namespace ArenaShooter.UI
         {
             _container.InstantiatePrefab(_prefabContainer.UIPrefab, _prefabContainer.UIParent);
         }
-    }
-
-    [Serializable]
-    public class UIPrefabContainer
-    {
-        [SerializeField]
-        private GameObject _uiPrefab;
-        [SerializeField]
-        private Transform _uiParent;
-
-        public GameObject UIPrefab { get { return _uiPrefab; } }
-        public Transform UIParent { get { return _uiParent; } }
     }
 }

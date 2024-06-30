@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArenaShooter.UI
@@ -19,7 +17,7 @@ namespace ArenaShooter.UI
         {
             ClearAmmo();
             int amount = Mathf.Clamp(amountOfAmmo, 0, _maxAmmo);
-            for(int i = 0; i < amount; i++)
+            for (int i = 0; i < amount; i++)
             {
                 CreateAmmo();
             }
@@ -27,7 +25,7 @@ namespace ArenaShooter.UI
 
         private void ClearAmmo()
         {
-            foreach(Transform ammo in _ammoContainer.transform)
+            foreach (Transform ammo in _ammoContainer.transform)
             {
                 Destroy(ammo.gameObject);
             }

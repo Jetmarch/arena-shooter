@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ArenaShooter.Units.Player
@@ -9,7 +7,7 @@ namespace ArenaShooter.Units.Player
     {
         private int _scorePoints;
 
-        public int ScorePoints {  get { return _scorePoints; } }
+        public int ScorePoints { get { return _scorePoints; } }
 
         public event Action OnScorePointsChanged;
 
