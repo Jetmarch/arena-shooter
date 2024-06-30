@@ -15,15 +15,7 @@ MonoBehaviour:
   _scenarioActs:
   - Type: 1
     EnemyData:
-    - UnitType: 2
+    - UnitType: 4
       CountOfEnemies: 5
-    TimeToCapture: 0
-    BossPrefab: {fileID: 0}
-  - Type: 2
-    EnemyData: []
-    TimeToCapture: 0
-    BossPrefab: {fileID: 0}
-  - Type: 3
-    EnemyData: []
     TimeToCapture: 0
     BossPrefab: {fileID: 0}

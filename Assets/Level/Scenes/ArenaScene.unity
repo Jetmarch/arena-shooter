@@ -219,6 +219,8 @@ MonoBehaviour:
     ProjectilePrefab: {fileID: 7480251586211078169, guid: 5b2fc5132d44ea842960db6daf2f4a4a, type: 3}
   - Type: 4
     ProjectilePrefab: {fileID: 7480251586211078169, guid: 4baa505cd61708349a5d81aa85cf19d6, type: 3}
+  - Type: 5
+    ProjectilePrefab: {fileID: 7562640711934236345, guid: 19dbddfa70afe4e47bba88b98a2ad2b3, type: 3}
   _projectilePool: {fileID: 1552781602}
 --- !u!1 &371073398
 GameObject:
@@ -725,6 +727,8 @@ MonoBehaviour:
     UnitPrefab: {fileID: 8330127567208185171, guid: 5d6507ebae6c86245801c93db86446e3, type: 3}
   - UnitType: 5
     UnitPrefab: {fileID: 8443968282817916724, guid: 2d69cbe5c4e582a42a942d3300e7502d, type: 3}
+  - UnitType: 4
+    UnitPrefab: {fileID: 2844808653825295335, guid: 6dfb47095a889dd42b83ae0fdc64c61d, type: 3}
 --- !u!1 &705790524
 GameObject:
   m_ObjectHideFlags: 0

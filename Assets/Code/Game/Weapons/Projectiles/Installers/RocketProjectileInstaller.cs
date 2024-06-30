@@ -8,7 +8,7 @@ namespace ArenaShooter.Weapons.Projectiles
     public class RocketProjectileInstaller : MonoInstaller
     {
         [SerializeField]
-        private Rigidbody2D _rigidbody; //TODO: Помещать в контейнер конкретного GameObject
+        private Rigidbody2D _rigidbody;
         [SerializeField]
         private Move2DComponent _moveComponent;
         public override void InstallBindings()
