@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7351649344067694024}
   - component: {fileID: 7849193754461850481}
   - component: {fileID: 7760761116206240617}
+  - component: {fileID: -2681969314212602647}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -154,6 +155,19 @@ MonoBehaviour:
   _weaponRotateMechanic: {fileID: 8562621223834955325}
   _delayBetweenShotsMechanic: {fileID: 7849193754461850481}
   _isAutomatic: 0
+--- !u!114 &-2681969314212602647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691436118815922653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d81611ea534514cba73a0955ed4aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ammoClipStorage: {fileID: 7351649344067694024}
 --- !u!1 &7062365355083917099
 GameObject:
   m_ObjectHideFlags: 0

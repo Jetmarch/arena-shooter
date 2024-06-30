@@ -20,7 +20,7 @@ namespace ArenaShooter.Weapons
         public CompositeCondition Condition { get { return _condition; } }
 
         public event Action WeaponChanged;
-        public GameObject CurrentWeapon => _weaponStorage.Weapons.ElementAt(_selectedWeaponIndex);
+        public WeaponFacade CurrentWeapon => _weaponStorage.Weapons.ElementAt(_selectedWeaponIndex);
 
         public void Construct(WeaponsStorage weaponStorage)
         {
@@ -65,7 +65,7 @@ namespace ArenaShooter.Weapons
             {
                 weapon.gameObject.SetActive(false);
             }
-            CurrentWeapon.SetActive(true);
+            CurrentWeapon.gameObject.SetActive(true);
         }
 
     }

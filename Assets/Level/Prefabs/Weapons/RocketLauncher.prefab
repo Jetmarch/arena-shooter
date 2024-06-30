@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 2473309055817131466}
   - component: {fileID: 725411724057132651}
   - component: {fileID: 1520244389014969259}
+  - component: {fileID: -7260438451661836453}
   m_Layer: 0
   m_Name: RocketLauncher
   m_TagString: Untagged
@@ -270,3 +271,16 @@ MonoBehaviour:
   _weaponRotateMechanic: {fileID: 7258023627157921636}
   _delayBetweenShotsMechanic: {fileID: 725411724057132651}
   _isAutomatic: 1
+--- !u!114 &-7260438451661836453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7108030297034638982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d81611ea534514cba73a0955ed4aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ammoClipStorage: {fileID: 2473309055817131466}

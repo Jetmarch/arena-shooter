@@ -11,18 +11,18 @@ namespace ArenaShooter.Weapons
     public class WeaponsStorage : MonoBehaviour
     {
         [SerializeField]
-        private List<GameObject> _weapons;
+        private List<WeaponFacade> _weapons;
 
-        public IReadOnlyCollection<GameObject> Weapons { get { return _weapons; } }
-        public event Action<GameObject> OnWeaponsChanged;
+        public IReadOnlyCollection<WeaponFacade> Weapons { get { return _weapons; } }
+        public event Action<WeaponFacade> OnWeaponsChanged;
 
-        public void AddWeapon(GameObject weapon)
+        public void AddWeapon(WeaponFacade weapon)
         {
             _weapons.Add(weapon);
             OnWeaponsChanged?.Invoke(weapon);
         }
 
-        public void RemoveWeapon(GameObject weapon)
+        public void RemoveWeapon(WeaponFacade weapon)
         {
             _weapons.Remove(weapon);
             OnWeaponsChanged?.Invoke(weapon);

@@ -39,7 +39,7 @@ namespace ArenaShooter.Weapons
             _reloadInputProvider = reloadInputProvider;
         }
 
-        public GameObject CreateWeapon(WeaponType type, Vector3 position, Transform parent)
+        public WeaponFacade CreateWeapon(WeaponType type, Vector3 position, Transform parent)
         {
             var weapon = _weapons.Find(x => x.Type == type).WeaponPrefab;
             if (weapon == null)
@@ -49,7 +49,7 @@ namespace ArenaShooter.Weapons
 
             var createdWeapon = Instantiate(weapon, position, weapon.transform.rotation, parent);
             createdWeapon.GetComponent<BaseWeaponInstaller>().Construct(_shootInputProvider, _screenMouseMoveInputProvider, _worldMouseMoveInputProvider, _reloadInputProvider, _projectileFactory);
-            return createdWeapon;
+            return createdWeapon.GetComponent<WeaponFacade>();
         }
     }
 }
