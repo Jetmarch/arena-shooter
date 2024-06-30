@@ -1,3 +1,4 @@
+using ArenaShooter.Components;
 using ArenaShooter.Units.Player;
 using Zenject;
 
@@ -5,23 +6,24 @@ namespace ArenaShooter.UI
 {
     public class HealthBarController : IInitializable, ILateDisposable
     {
-        private PlayerFacade _player;
+        private HealthComponent _healthComponent;
         private HealthBarView _healthBar;
 
         public HealthBarController(IPlayerProvider playerProvider, HealthBarView healthBar)
         {
-            _player = playerProvider.Player;
+            _healthComponent = playerProvider.Player.HealthComponent;
             _healthBar = healthBar;
         }
 
         public void Initialize()
         {
-            _player.HealthComponent.CurrentHealthChanged += _healthBar.UpdateHealth;
+            _healthComponent.CurrentHealthChanged += _healthBar.UpdateHealth;
+            _healthBar.UpdateHealth(_healthComponent.CurrentHealth);
         }
 
         public void LateDispose()
         {
-            _player.HealthComponent.CurrentHealthChanged -= _healthBar.UpdateHealth;
+            _healthComponent.CurrentHealthChanged -= _healthBar.UpdateHealth;
         }
     }
 }

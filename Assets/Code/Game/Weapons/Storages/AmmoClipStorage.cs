@@ -12,8 +12,8 @@ namespace ArenaShooter.Weapons
         [SerializeField]
         private int _currentAmmo;
 
-        public event Action<float> CurrentAmmoChanged;
-        public event Action<float> MaxAmmoChanged;
+        public event Action<int> CurrentAmmoChanged;
+        public event Action<int> MaxAmmoChanged;
 
         public int CurrentAmmo { get { return _currentAmmo; } }
         public int MaxAmmo { get { return _maxAmmo; } }

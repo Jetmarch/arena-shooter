@@ -937,7 +937,6 @@ GameObject:
   - component: {fileID: 1450130797}
   - component: {fileID: 1450130798}
   - component: {fileID: 1450130799}
-  - component: {fileID: 1450130800}
   m_Layer: 5
   m_Name: MenuView
   m_TagString: Untagged
@@ -1005,23 +1004,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbca7f8d0cf5f64eb296068416a8b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1450130800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1450130796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers: []
-  _installerPrefabs: []
-  _autoRun: 1
-  _kernel: {fileID: 0}
+  _startGameBtn: {fileID: 1280732601}
+  _armoryBtn: {fileID: 410497694}
+  _exitGameBtn: {fileID: 28732518}
 --- !u!1 &1831957041
 GameObject:
   m_ObjectHideFlags: 0

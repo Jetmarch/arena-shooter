@@ -19,16 +19,16 @@ namespace ArenaShooter.UI
 
         public void Initialize()
         {
-            _menuView.OnStartGame += StartGame;
-            _menuView.OnExitGame += ExitGame;
-            _menuView.OnArmory += OpenArmory;
+            _menuView.StartGameBtn.onClick.AddListener(StartGame);
+            _menuView.ExitGameBtn.onClick.AddListener(ExitGame);
+            _menuView.ArmoryBtn.onClick.AddListener(OpenArmory);
         }
 
         public void LateDispose()
         {
-            _menuView.OnStartGame -= StartGame;
-            _menuView.OnExitGame -= ExitGame;
-            _menuView.OnArmory -= OpenArmory;
+            _menuView.StartGameBtn.onClick.RemoveListener(StartGame);
+            _menuView.ExitGameBtn.onClick.RemoveListener(ExitGame);
+            _menuView.ArmoryBtn.onClick.RemoveListener(OpenArmory);
         }
 
         private void StartGame()

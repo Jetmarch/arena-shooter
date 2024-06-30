@@ -1,6 +1,7 @@
 using ArenaShooter.CameraControllers;
 using ArenaShooter.Inputs;
 using ArenaShooter.Scenarios;
+using ArenaShooter.UI;
 using ArenaShooter.Units;
 using ArenaShooter.Units.Factories;
 using ArenaShooter.Units.Player;
@@ -26,6 +27,9 @@ namespace ArenaShooter.Installers
         [SerializeField]
         private ArenaScenarioConfiguration _arenaScenarioConfig;
 
+        [SerializeField]
+        private UIPrefabContainer _playerUIPrefabContainer;
+
         public override void InstallBindings()
         {
             Container.Bind<Camera>().FromComponentInHierarchy().AsSingle();
@@ -43,6 +47,8 @@ namespace ArenaShooter.Installers
             Container.BindInterfacesAndSelfTo<CameraMouseMoveController>().AsSingle().NonLazy();
             Container.Bind<ScorePointsStorage>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AddScorePointsOnEnemyDeathController>().AsSingle().NonLazy();
+
+            BindUI();
         }
 
         private void BindScenarioActExecutors()
@@ -57,10 +63,15 @@ namespace ArenaShooter.Installers
             Container.BindInstance(scenarioActExecutors).AsSingle();
         }
 
+        private void BindUI()
+        {
+            Container.Bind<UIPrefabContainer>().FromInstance(_playerUIPrefabContainer).AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerUICreateController>().AsSingle().NonLazy();
+        }
+
         //TODO: Убрать это
         public override void Start()
         {
-
             var player = _unitManager.CreateUnit(UnitType.Player, Vector3.zero, null);
             _cameraMoveMechanic.SetTarget(player.transform);
         }

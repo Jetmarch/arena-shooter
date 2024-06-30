@@ -14,18 +14,18 @@ namespace ArenaShooter.Weapons
         private List<GameObject> _weapons;
 
         public IReadOnlyCollection<GameObject> Weapons { get { return _weapons; } }
-        public event Action OnWeaponsChanged;
+        public event Action<GameObject> OnWeaponsChanged;
 
         public void AddWeapon(GameObject weapon)
         {
             _weapons.Add(weapon);
-            OnWeaponsChanged?.Invoke();
+            OnWeaponsChanged?.Invoke(weapon);
         }
 
         public void RemoveWeapon(GameObject weapon)
         {
             _weapons.Remove(weapon);
-            OnWeaponsChanged?.Invoke();
+            OnWeaponsChanged?.Invoke(weapon);
         }
     }
 }
