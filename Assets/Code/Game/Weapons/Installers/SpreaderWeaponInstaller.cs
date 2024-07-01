@@ -1,15 +1,16 @@
 using ArenaShooter.Weapons.Projectiles;
 using UnityEngine;
+using Zenject;
 
 namespace ArenaShooter.Weapons
 {
-    public class BossWeaponInstaller : MonoBehaviour
+    public class SpreaderWeaponInstaller : MonoInstaller
     {
         private BaseWeaponShootMechanic _shootMechanic;
 
-        public void Construct(ProjectileFactory _projectileFactory)
+        public override void InstallBindings()
         {
-            _shootMechanic.Construct(_projectileFactory);
+            
         }
 
 #if UNITY_EDITOR

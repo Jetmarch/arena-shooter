@@ -5,15 +5,22 @@ namespace ArenaShooter.Weapons
     /// <summary>
     /// Поворачивает оружие персонажа в сторону указателя мыши
     /// </summary>
-    public sealed class WeaponRotateMechanic : MonoBehaviour
+    public sealed class WeaponRotateMechanic
     {
-        public void RotateWeapon(Vector3 mousePos)
-        {
-            float angleRad = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x);
-            float angle = (180 / Mathf.PI) * angleRad;
+        private WeaponChangeMechanic _weaponChangeMechanic;
 
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        public WeaponRotateMechanic(WeaponChangeMechanic weaponChangeMechanic)
+        {
+            _weaponChangeMechanic = weaponChangeMechanic;
         }
 
+        public void RotateWeapon(Vector3 mousePos)
+        {
+            var currentWeapon = _weaponChangeMechanic.CurrentWeapon;
+            float angleRad = Mathf.Atan2(mousePos.y - currentWeapon.transform.position.y, mousePos.x - currentWeapon.transform.position.x);
+            float angle = (180 / Mathf.PI) * angleRad;
+
+            currentWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 }

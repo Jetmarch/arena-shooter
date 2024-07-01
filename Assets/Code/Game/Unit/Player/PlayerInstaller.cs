@@ -61,13 +61,17 @@ namespace ArenaShooter.Units.Player
             Container.Bind<SpriteRenderer>().FromInstance(_spriteRenderer).AsSingle();
             Container.Bind<SpriteFlashMechanic>().FromInstance(_flashMechanic).AsSingle();
 
+            Container.BindInterfacesAndSelfTo<WeaponRotateMechanic>().AsSingle().NonLazy();
+
+
             Container.BindInterfacesAndSelfTo<UnitMoveController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<UnitWeaponChangeController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<UnitDashController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<UnitDieController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<SpriteFlashOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<TemporaryInvulnerabilityOnHitController>().AsSingle().NonLazy();
-
+            Container.BindInterfacesAndSelfTo<WeaponRotateController>().AsSingle().NonLazy();
+            
             _moveComponent.Condition.Append(_dashMechanic.IsNotDashing);
             _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
 
@@ -108,4 +112,5 @@ namespace ArenaShooter.Units.Player
         }
 #endif
     }
+
 }

@@ -42,6 +42,10 @@ namespace ArenaShooter.Units.Enemies
         private HealthComponent _healthComponent;
         [SerializeField]
         private UnitTemporaryInvulnerableMechanic _unitTemporaryInvulnerableMechanic;
+        [SerializeField]
+        private WeaponsStorage _weaponStorage;
+        [SerializeField]
+        private WeaponChangeMechanic _weaponChangeMechanic;
 
 
         [Inject]
@@ -57,6 +61,8 @@ namespace ArenaShooter.Units.Enemies
             _playerScanner.Construct(_triggerComponent);
             _spriteFlashMechanic.Construct(_spriteRenderer);
 
+            _weaponChangeMechanic.Construct(_weaponStorage);
+
             Container.Bind<UnitDieMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<HealthComponent>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<Move2DComponent>().FromComponentOn(gameObject).AsSingle();
@@ -66,11 +72,15 @@ namespace ArenaShooter.Units.Enemies
             Container.Bind<SpriteFlashMechanic>().FromInstance(_spriteFlashMechanic).AsSingle();
             Container.Bind<SpriteRenderer>().FromInstance(_spriteRenderer).AsSingle();
 
+            Container.Bind<WeaponChangeMechanic>().FromInstance(_weaponChangeMechanic).AsSingle();
+
+            Container.BindInterfacesAndSelfTo<WeaponRotateMechanic>().AsSingle().NonLazy();
 
             Container.BindInterfacesAndSelfTo<UnitMoveController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<UnitDieController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<SpriteFlashOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<TemporaryInvulnerabilityOnHitController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<WeaponRotateController>().AsSingle().NonLazy();
 
             _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
         }
@@ -89,6 +99,8 @@ namespace ArenaShooter.Units.Enemies
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _unitTemporaryInvulnerableMechanic = GetComponent<UnitTemporaryInvulnerableMechanic>();
             _healthComponent = GetComponentInChildren<HealthComponent>();
+            _weaponStorage = GetComponent<WeaponsStorage>();
+            _weaponChangeMechanic = GetComponent<WeaponChangeMechanic>();
         }
 #endif
     }

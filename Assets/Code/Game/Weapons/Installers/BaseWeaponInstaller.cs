@@ -9,7 +9,6 @@ namespace ArenaShooter.Weapons
     [RequireComponent(typeof(WeaponFlipSpriteMechanic))]
     [RequireComponent(typeof(AmmoInClipDecreaseMechanic))]
     [RequireComponent(typeof(WeaponReloadMechanic))]
-    [RequireComponent(typeof(WeaponRotateMechanic))]
     [RequireComponent(typeof(WeaponDelayBetweenShotsMechanic))]
     public class BaseWeaponInstaller : MonoBehaviour
     {
@@ -29,8 +28,6 @@ namespace ArenaShooter.Weapons
         [SerializeField]
         private WeaponReloadMechanic _weaponReloadMechanic;
 
-        [SerializeField]
-        private WeaponRotateMechanic _weaponRotateMechanic;
         [SerializeField]
         private WeaponDelayBetweenShotsMechanic _delayBetweenShotsMechanic;
 
@@ -61,7 +58,7 @@ namespace ArenaShooter.Weapons
             _weaponReloadMechanic.Construct(_ammoClipStorage);
             _reloadInputProvider.OnReload += _weaponReloadMechanic.OnReload;
 
-            _worldMouseMoveInputProvider.OnWorldMouseMove += _weaponRotateMechanic.RotateWeapon;
+            //_worldMouseMoveInputProvider.OnWorldMouseMove += _weaponRotateMechanic.RotateWeapon;
 
             _delayBetweenShotsMechanic.Construct();
             //TODO: Нужно событие перед выстрелом, событие выстрела и событие после выстрела
@@ -95,7 +92,7 @@ namespace ArenaShooter.Weapons
             if (_screenMouseMoveInputProvider == null) return;
 
             _reloadInputProvider.OnReload += _weaponReloadMechanic.OnReload;
-            _worldMouseMoveInputProvider.OnWorldMouseMove += _weaponRotateMechanic.RotateWeapon;
+            //_worldMouseMoveInputProvider.OnWorldMouseMove += _weaponRotateMechanic.RotateWeapon;
 
             if (_isAutomatic)
             {
@@ -118,7 +115,7 @@ namespace ArenaShooter.Weapons
             if (_screenMouseMoveInputProvider == null) return;
 
             _reloadInputProvider.OnReload -= _weaponReloadMechanic.OnReload;
-            _worldMouseMoveInputProvider.OnWorldMouseMove -= _weaponRotateMechanic.RotateWeapon;
+            //_worldMouseMoveInputProvider.OnWorldMouseMove -= _weaponRotateMechanic.RotateWeapon;
 
             if (_isAutomatic)
             {
@@ -143,7 +140,6 @@ namespace ArenaShooter.Weapons
             _flipSpriteMechanic = GetComponent<WeaponFlipSpriteMechanic>();
             _ammoInClipDecreaseMechanic = GetComponent<AmmoInClipDecreaseMechanic>();
             _weaponReloadMechanic = GetComponent<WeaponReloadMechanic>();
-            _weaponRotateMechanic = GetComponent<WeaponRotateMechanic>();
             _delayBetweenShotsMechanic = GetComponent<WeaponDelayBetweenShotsMechanic>();
         }
 #endif

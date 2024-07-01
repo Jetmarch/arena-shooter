@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectileSpawnPoint: {fileID: 5306892319898316527}
   _projectileType: 0
-  _countOfProjectiles: 6
+  _countOfProjectiles: 12
 --- !u!114 &4258465486331929805
 MonoBehaviour:
   m_ObjectHideFlags: 0

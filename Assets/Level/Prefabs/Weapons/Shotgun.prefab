@@ -95,7 +95,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5456043046058722814}
   - component: {fileID: 5976815053789852209}
-  - component: {fileID: 6448429917284143664}
   - component: {fileID: 7370565892695866985}
   - component: {fileID: 5890339115033308338}
   - component: {fileID: 5757478354019707018}
@@ -139,18 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reloadSpeed: 0
---- !u!114 &6448429917284143664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7165602316576653474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c67c1b27aad476d4cb8c81e4b0bc2928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7370565892695866985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +227,6 @@ MonoBehaviour:
   _flipSpriteMechanic: {fileID: 5757478354019707018}
   _ammoInClipDecreaseMechanic: {fileID: 5890339115033308338}
   _weaponReloadMechanic: {fileID: 5976815053789852209}
-  _weaponRotateMechanic: {fileID: 6448429917284143664}
   _delayBetweenShotsMechanic: {fileID: 8647621421291789095}
   _isAutomatic: 0
 --- !u!114 &3067636080292402200
@@ -256,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammoClipStorage: {fileID: 8670415720261372308}
+  _weaponShootMechanic: {fileID: 7370565892695866985}
 --- !u!1 &7475949273744975718
 GameObject:
   m_ObjectHideFlags: 0
