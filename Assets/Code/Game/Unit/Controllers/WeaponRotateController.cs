@@ -2,7 +2,7 @@
 using ArenaShooter.Weapons;
 using Zenject;
 
-namespace ArenaShooter.Units.Player
+namespace ArenaShooter.Units
 {
     public class WeaponRotateController : IInitializable, ILateDisposable
     {

@@ -2,6 +2,7 @@ using ArenaShooter.AI;
 using ArenaShooter.Components;
 using ArenaShooter.Components.Triggers;
 using ArenaShooter.Inputs;
+using ArenaShooter.Units.Player;
 using ArenaShooter.Weapons;
 using UnityEngine;
 using Zenject;
@@ -30,6 +31,9 @@ namespace ArenaShooter.Units.Enemies
 
         [SerializeField]
         private BossBrain _bossBrain;
+
+        [SerializeField]
+        private AIInputController _inputController;
 
         [SerializeField]
         private WeaponsStorage _weaponStorage;
@@ -63,8 +67,10 @@ namespace ArenaShooter.Units.Enemies
             _circleTrigger.Construct();
             _playerScanner.Construct(_circleTrigger);
             _spriteFlashMechanic.Construct(_spriteRenderer);
+            _bossBrain.Construct(_inputController);
 
             Container.Bind<BossBrain>().FromInstance(_bossBrain).AsSingle();
+            Container.BindInterfacesAndSelfTo<AIInputController>().FromInstance(_inputController);
             Container.Bind<Move2DComponent>().FromInstance(_moveComponent).AsSingle();
             Container.Bind<PlayerScannerComponent>().FromInstance(_playerScanner).AsSingle();
             
@@ -74,13 +80,17 @@ namespace ArenaShooter.Units.Enemies
             Container.Bind<SpriteFlashMechanic>().FromInstance(_spriteFlashMechanic).AsSingle();
             Container.Bind<UnitTemporaryInvulnerableMechanic>().FromInstance(_unitTemporaryInvulnerableMechanic).AsSingle();
 
+            
             Container.BindInterfacesAndSelfTo<BossAttackPattern>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BossPlayerScannerController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BossAttackPatternController>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<BossMoveController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<UnitMoveController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<UnitDieController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<SpriteFlashOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<TemporaryInvulnerabilityOnHitController>().AsSingle().NonLazy();
+
+            Container.BindInterfacesAndSelfTo<WeaponRotateMechanic>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<WeaponRotateController>().AsSingle().NonLazy();
 
             _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
 
@@ -110,6 +120,7 @@ namespace ArenaShooter.Units.Enemies
             _spriteFlashMechanic = GetComponentInChildren<SpriteFlashMechanic>();
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _unitTemporaryInvulnerableMechanic = GetComponent<UnitTemporaryInvulnerableMechanic>();
+            _inputController = GetComponent<AIInputController>();
         }
 #endif
     }

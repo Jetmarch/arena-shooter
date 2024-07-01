@@ -14,9 +14,9 @@ namespace ArenaShooter.AI
 
         public void OnAttack()
         {
-            _weaponChangeMechanic.OnChangeWeaponUp();
             var weapon = _weaponChangeMechanic.CurrentWeapon;
             weapon.WeaponShootMechanic.OnShoot();
+            _weaponChangeMechanic.OnChangeWeaponDown();
         }
     }
 }

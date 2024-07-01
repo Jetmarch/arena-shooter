@@ -235,6 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1773156066815073554}
+  - component: {fileID: 8041122741428777526}
   - component: {fileID: 6410359026344136951}
   - component: {fileID: 7136318516648064351}
   - component: {fileID: 7321364177824276481}
@@ -271,6 +272,18 @@ Transform:
   - {fileID: 3164379637249136282}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8041122741428777526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8443968282817916724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54f92b78052527499c51a71f0d4d07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6410359026344136951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,6 +445,7 @@ MonoBehaviour:
   _circleTrigger: {fileID: 1196426731898702153}
   _playerScanner: {fileID: 4983292107325125755}
   _bossBrain: {fileID: 6410359026344136951}
+  _inputController: {fileID: 8041122741428777526}
   _weaponStorage: {fileID: 3077284454442050775}
   _weaponChangeMechanic: {fileID: 8882774446961594371}
   _healthComponent: {fileID: 5097605910248146253}
@@ -482,6 +496,10 @@ PrefabInstance:
     - target: {fileID: 700751136738527520, guid: 0e2a412059e036146a6b8deaf9ac3149, type: 3}
       propertyPath: m_Name
       value: Spreader
+      objectReference: {fileID: 0}
+    - target: {fileID: 700751136738527520, guid: 0e2a412059e036146a6b8deaf9ac3149, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5306892319898316527, guid: 0e2a412059e036146a6b8deaf9ac3149, type: 3}
       propertyPath: m_LocalPosition.x

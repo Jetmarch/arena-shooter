@@ -58,8 +58,6 @@ namespace ArenaShooter.Weapons
             _weaponReloadMechanic.Construct(_ammoClipStorage);
             _reloadInputProvider.OnReload += _weaponReloadMechanic.OnReload;
 
-            //_worldMouseMoveInputProvider.OnWorldMouseMove += _weaponRotateMechanic.RotateWeapon;
-
             _delayBetweenShotsMechanic.Construct();
             //TODO: Нужно событие перед выстрелом, событие выстрела и событие после выстрела
 
@@ -92,7 +90,6 @@ namespace ArenaShooter.Weapons
             if (_screenMouseMoveInputProvider == null) return;
 
             _reloadInputProvider.OnReload += _weaponReloadMechanic.OnReload;
-            //_worldMouseMoveInputProvider.OnWorldMouseMove += _weaponRotateMechanic.RotateWeapon;
 
             if (_isAutomatic)
             {
@@ -115,7 +112,6 @@ namespace ArenaShooter.Weapons
             if (_screenMouseMoveInputProvider == null) return;
 
             _reloadInputProvider.OnReload -= _weaponReloadMechanic.OnReload;
-            //_worldMouseMoveInputProvider.OnWorldMouseMove -= _weaponRotateMechanic.RotateWeapon;
 
             if (_isAutomatic)
             {

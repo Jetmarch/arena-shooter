@@ -1,27 +1,28 @@
 ﻿using ArenaShooter.AI;
+using ArenaShooter.Inputs;
 using Zenject;
 
 namespace ArenaShooter.Units.Enemies
 {
     public class BossAttackPatternController : IInitializable, ILateDisposable
     {
-        private BossBrain _bossBrain;
+        private AIInputController _inputController;
         private BossAttackPattern _attackPattern;
 
-        public BossAttackPatternController(BossBrain bossBrain, BossAttackPattern attackPattern)
+        public BossAttackPatternController(AIInputController inputController, BossAttackPattern attackPattern)
         {
-            _bossBrain = bossBrain;
+            _inputController = inputController;
             _attackPattern = attackPattern;
         }
 
         public void Initialize()
         {
-            _bossBrain.OnAttack += _attackPattern.OnAttack;
+            _inputController.OnShoot += _attackPattern.OnAttack;
         }
 
         public void LateDispose()
         {
-            _bossBrain.OnAttack -= _attackPattern.OnAttack;
+            _inputController.OnShoot-= _attackPattern.OnAttack;
         }
     }
 }

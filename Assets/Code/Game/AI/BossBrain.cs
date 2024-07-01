@@ -1,4 +1,6 @@
+using ArenaShooter.Inputs;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ArenaShooter.AI
@@ -18,9 +20,12 @@ namespace ArenaShooter.AI
 
         private Transform _target;
 
-        public event Action OnAttack;
-        public event Action<Vector2> OnMove;
-        public event Action<Vector2> LookAt;
+        private AIInputController _controller;
+
+        public void Construct(AIInputController controller)
+        {
+            _controller = controller;
+        }
 
         private void OnEnable()
         {
@@ -36,11 +41,11 @@ namespace ArenaShooter.AI
         {
             if (_target == null || _isAttackPhase)
             {
-                OnMove?.Invoke(Vector2.zero);
+                _controller.Move(Vector2.zero);
                 return;
             }
-
-            LookAt?.Invoke(_target.position);
+            _controller.ScreenMouseMove(_target.position);
+            _controller.WorldMouseMove(_target.position);
 
             if (!_isMovePhase)
             {
@@ -53,13 +58,13 @@ namespace ArenaShooter.AI
             }
             else if (_isMovePhase)
             {
-                OnMove?.Invoke(_desiredPosition);
+                _controller.Move(_desiredPosition);
                 _movePhaseTime += delta;
                 if (Vector2.Distance(transform.position, _desiredPosition) < 0.1f || _movePhaseTime >= _maxMovePhaseTime)
                 {
                     _isMovePhase = false;
-                    OnAttack?.Invoke();
-                    OnMove?.Invoke(Vector2.zero);
+                    _controller.Shoot();
+                    _controller.Move(Vector2.zero);
                 }
             }
 
