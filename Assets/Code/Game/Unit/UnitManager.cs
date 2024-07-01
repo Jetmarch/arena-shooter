@@ -1,24 +1,31 @@
 using ArenaShooter.Components;
 using ArenaShooter.Units.Factories;
+using ArenaShooter.Units.Player;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace ArenaShooter.Units
 {
     /// <summary>
     /// ”правл€ет жизненным циклом юнитов
     /// </summary>
-    public class UnitManager : MonoBehaviour
+    public class UnitManager : MonoBehaviour, IPlayerProvider
     {
         [SerializeField]
         private List<GameObject> _units;
         [SerializeField]
         private UnitFactory _unitFactory;
 
+        private PlayerFacade _playerFacade;
+        public PlayerFacade Player { get { return _playerFacade; } }
+
         public event Action<GameObject> UnitCreated;
         public event Action<GameObject> UnitDie;
+        public event Action<PlayerFacade> OnPlayerCreated;
+        public event Action<PlayerFacade> OnPlayerDied;
 
         [Inject]
         private void Construct(UnitFactory unitFactories)
@@ -41,6 +48,16 @@ namespace ArenaShooter.Units
 
             dieMechanic.OnDie += OnUnitDie;
 
+            if(type == UnitType.Player)
+            {
+                _playerFacade = unit.GetComponent<PlayerFacade>();
+                if (_playerFacade == null)
+                {
+                    throw new Exception("UnitManager: player object does not contain PlayerFacade component!");
+                }
+                OnPlayerCreated?.Invoke(_playerFacade);
+            }
+
             return unit;
         }
 
@@ -60,8 +77,14 @@ namespace ArenaShooter.Units
 
         private void OnUnitDie(GameObject unit)
         {
-            _units.Remove(unit);
             UnitDie?.Invoke(unit);
+            _units.Remove(unit);
+
+            var playerFacade = unit.GetComponent<PlayerFacade>();
+            if (playerFacade != null)
+            {
+                OnPlayerDied?.Invoke(playerFacade);
+            }            
         }
     }
 }

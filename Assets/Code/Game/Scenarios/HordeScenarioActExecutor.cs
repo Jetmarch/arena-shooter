@@ -23,6 +23,7 @@ namespace ArenaShooter.Scenarios
 
         private UnitManager _unitManager;
         private HordeScenarioActData _data;
+        private bool _spawnInProcess;
 
         [Inject]
         private void Construct(UnitManager unitManager)
@@ -48,17 +49,19 @@ namespace ArenaShooter.Scenarios
 
         private IEnumerator SpawnHorde(HordeScenarioActData hordeData)
         {
+            _spawnInProcess = true;
             foreach (var enemy in hordeData.EnemyData)
             {
                 for (int i = 0; i < enemy.CountOfEnemies; i++)
                 {
+                    yield return new WaitForSeconds(_delayBetweenUnitSpawn);
                     var newUnit = _unitManager.CreateUnit(enemy.UnitType, _spawnPoints[_currentSpawnPoint].GetRandomPointInside(), null);
                     _hordeUnits.Add(newUnit);
-                    yield return new WaitForSeconds(_delayBetweenUnitSpawn);
                 }
             }
 
             SetNextSpawnPoint();
+            _spawnInProcess = false;
         }
 
         private void SetNextSpawnPoint()
@@ -83,7 +86,7 @@ namespace ArenaShooter.Scenarios
                 _hordeUnits.Remove(obj);
             }
 
-            if (_hordeUnits.Count <= 0)
+            if (_hordeUnits.Count <= 0 && !_spawnInProcess)
             {
                 OnScenarioActFinish();
             }

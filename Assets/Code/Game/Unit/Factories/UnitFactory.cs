@@ -1,4 +1,3 @@
-using ArenaShooter.Units.Player;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,17 +5,12 @@ using Zenject;
 
 namespace ArenaShooter.Units.Factories
 {
-    public class UnitFactory : MonoBehaviour, IPlayerProvider
+    public class UnitFactory : MonoBehaviour
     {
         [SerializeField]
         private List<UnitFactoryData> _units;
         private DiContainer _container;
 
-        private PlayerFacade _player;
-
-        public event Action<PlayerFacade> OnPlayerCreated;
-
-        public PlayerFacade Player => _player;
 
         [Inject]
         private void Construct(DiContainer container)
@@ -40,15 +34,7 @@ namespace ArenaShooter.Units.Factories
             }
 
             var unit = _container.InstantiatePrefab(unitPrefab, position, unitPrefab.transform.rotation, parent);
-            if (type == UnitType.Player)
-            {
-                _player = unit.GetComponent<PlayerFacade>();
-                if (_player == null)
-                {
-                    throw new Exception("UnitFactory: player object does not contain PlayerFacade component!");
-                }
-                OnPlayerCreated?.Invoke(_player);
-            }
+
             return unit;
         }
     }

@@ -36,9 +36,9 @@ namespace ArenaShooter.Installers
             Container.Bind<ProjectileFactory>().FromComponentInHierarchy().AsSingle();
             Container.Bind<PlayerWeaponFactory>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CameraMoveMechanic>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<UnitManager>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesAndSelfTo<UnitManager>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<KeyboardAndMouseInputController>().FromComponentInHierarchy().AsSingle();
-            Container.BindInterfacesAndSelfTo<UnitFactory>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<UnitFactory>().FromComponentInHierarchy().AsSingle();
 
             BindScenarioActExecutors();
 
@@ -47,6 +47,7 @@ namespace ArenaShooter.Installers
             Container.BindInterfacesAndSelfTo<CameraMouseMoveController>().AsSingle().NonLazy();
             Container.Bind<ScorePointsStorage>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AddScorePointsOnEnemyDeathController>().AsSingle().NonLazy();
+            Container.Bind<ArenaScenarioExecutor>().FromComponentInHierarchy().AsSingle();
 
             BindUI();
         }
@@ -67,6 +68,11 @@ namespace ArenaShooter.Installers
         {
             Container.Bind<UIPrefabContainer>().FromInstance(_playerUIPrefabContainer).AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerUICreateController>().AsSingle().NonLazy();
+
+
+            Container.Bind<AnnouncementScreenView>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesAndSelfTo<DefeatScreenController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<VictoryScreenController>().AsSingle().NonLazy();
         }
 
         //TODO: Убрать это

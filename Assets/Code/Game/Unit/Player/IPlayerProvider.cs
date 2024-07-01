@@ -6,5 +6,6 @@ namespace ArenaShooter.Units.Player
     {
         PlayerFacade Player { get; }
         event Action<PlayerFacade> OnPlayerCreated;
+        event Action<PlayerFacade> OnPlayerDied;
     }
 }
