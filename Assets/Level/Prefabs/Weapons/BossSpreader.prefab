@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5306892319898316527}
   - component: {fileID: 7203832024168760438}
+  - component: {fileID: 4258465486331929805}
+  - component: {fileID: -5002037893925153675}
   m_Layer: 0
   m_Name: BossSpreader
   m_TagString: Untagged
@@ -48,6 +50,35 @@ MonoBehaviour:
   _projectileSpawnPoint: {fileID: 5306892319898316527}
   _projectileType: 0
   _countOfProjectiles: 6
+--- !u!114 &4258465486331929805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700751136738527520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db6bc88304686b439e61780e042a387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxAmmo: 1
+  _minAmmo: 0
+  _currentAmmo: 0
+--- !u!114 &-5002037893925153675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700751136738527520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d81611ea534514cba73a0955ed4aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ammoClipStorage: {fileID: 4258465486331929805}
+  _weaponShootMechanic: {fileID: 7203832024168760438}
 --- !u!1 &1884980093198377966
 GameObject:
   m_ObjectHideFlags: 0

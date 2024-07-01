@@ -70,6 +70,15 @@ namespace ArenaShooter.Units.Player
 
             _moveComponent.Condition.Append(_dashMechanic.IsNotDashing);
             _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
+
+        }
+
+        private void SetWeaponsOwner()
+        {
+            foreach (var weapon in _weaponStorage.Weapons)
+            {
+                weapon.WeaponShootMechanic.SetOwner(gameObject);
+            }
         }
 
         public override void Start()
@@ -81,6 +90,7 @@ namespace ArenaShooter.Units.Player
             _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.MachineGun, _weaponListParent.position, _weaponListParent));
             _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.RocketLauncher, _weaponListParent.position, _weaponListParent));
             _weaponChangeMechanic.OnChangeWeaponUp();
+            SetWeaponsOwner();
         }
 
 #if UNITY_EDITOR

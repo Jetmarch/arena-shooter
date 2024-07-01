@@ -1,6 +1,7 @@
 using ArenaShooter.AI;
 using ArenaShooter.Components;
 using ArenaShooter.Components.Triggers;
+using ArenaShooter.Inputs;
 using ArenaShooter.Weapons;
 using UnityEngine;
 using Zenject;
@@ -11,7 +12,6 @@ namespace ArenaShooter.Units.Enemies
     [RequireComponent(typeof(BossBrain))]
     [RequireComponent(typeof(WeaponsStorage))]
     [RequireComponent(typeof(WeaponChangeMechanic))]
-    [RequireComponent(typeof(BossAttackPattern))]
     [RequireComponent(typeof(UnitDieMechanic))]
     [RequireComponent(typeof(HealthComponent))]
     public class BossInstaller : MonoInstaller
@@ -60,7 +60,6 @@ namespace ArenaShooter.Units.Enemies
             _healthComponent.Construct();
             _moveComponent.Construct(_rigidbody);
             _weaponChangeMechanic.Construct(_weaponStorage);
-            _bossAttackPattern.Construct(_weaponChangeMechanic);
             _circleTrigger.Construct();
             _playerScanner.Construct(_circleTrigger);
             _spriteFlashMechanic.Construct(_spriteRenderer);
@@ -68,12 +67,14 @@ namespace ArenaShooter.Units.Enemies
             Container.Bind<BossBrain>().FromInstance(_bossBrain).AsSingle();
             Container.Bind<Move2DComponent>().FromInstance(_moveComponent).AsSingle();
             Container.Bind<PlayerScannerComponent>().FromInstance(_playerScanner).AsSingle();
-            Container.Bind<BossAttackPattern>().FromInstance(_bossAttackPattern).AsSingle();
+            
             Container.Bind<HealthComponent>().FromInstance(_healthComponent).AsSingle();
             Container.Bind<UnitDieMechanic>().FromInstance(_unitDieMechanic).AsSingle();
+            Container.Bind<WeaponChangeMechanic>().FromInstance(_weaponChangeMechanic).AsSingle();
             Container.Bind<SpriteFlashMechanic>().FromInstance(_spriteFlashMechanic).AsSingle();
             Container.Bind<UnitTemporaryInvulnerableMechanic>().FromInstance(_unitTemporaryInvulnerableMechanic).AsSingle();
 
+            Container.BindInterfacesAndSelfTo<BossAttackPattern>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BossPlayerScannerController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BossAttackPatternController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BossMoveController>().AsSingle().NonLazy();
@@ -82,6 +83,16 @@ namespace ArenaShooter.Units.Enemies
             Container.BindInterfacesAndSelfTo<TemporaryInvulnerabilityOnHitController>().AsSingle().NonLazy();
 
             _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
+
+            SetWeaponsOwner();
+        }
+
+        private void SetWeaponsOwner()
+        {
+            foreach(var weapon in _weaponStorage.Weapons)
+            {
+                weapon.WeaponShootMechanic.SetOwner(gameObject);
+            }
         }
 
 #if UNITY_EDITOR
@@ -93,7 +104,6 @@ namespace ArenaShooter.Units.Enemies
             _playerScanner = GetComponentInChildren<PlayerScannerComponent>();
             _weaponStorage = GetComponent<WeaponsStorage>();
             _weaponChangeMechanic = GetComponent<WeaponChangeMechanic>();
-            _bossAttackPattern = GetComponent<BossAttackPattern>();
             _bossBrain = GetComponent<BossBrain>();
             _healthComponent = GetComponent<HealthComponent>();
             _unitDieMechanic = GetComponent<UnitDieMechanic>();

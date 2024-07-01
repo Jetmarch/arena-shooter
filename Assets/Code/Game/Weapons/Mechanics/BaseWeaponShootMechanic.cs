@@ -14,6 +14,8 @@ namespace ArenaShooter.Weapons
         protected ProjectileType _projectileType;
         protected ProjectileFactory _projectileFactory;
 
+        protected GameObject _owner;
+
         private CompositeCondition _condition;
         public CompositeCondition Condition { get { return _condition; } }
 
@@ -45,6 +47,11 @@ namespace ArenaShooter.Weapons
             ShootMechanic();
 
             OnShootComplete();
+        }
+
+        public void SetOwner(GameObject onwer)
+        {
+            _owner = onwer;
         }
 
         protected abstract void ShootMechanic();

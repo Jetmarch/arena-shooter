@@ -46,6 +46,12 @@ namespace ArenaShooter.Weapons.Projectiles
 
             damageMechanic.Owner = owner;
 
+            var spreadProjectiles = createdProjectile.GetComponent<SpreadProjectilesMechanic>();
+            if(spreadProjectiles != null)
+            {
+                spreadProjectiles.SetOwner(owner);
+            }
+
             return createdProjectile;
         }
     }

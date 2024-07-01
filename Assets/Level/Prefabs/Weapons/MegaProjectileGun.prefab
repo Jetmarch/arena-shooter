@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 419754024306396158}
   - component: {fileID: 1720561586184491230}
+  - component: {fileID: 2465280135694446562}
+  - component: {fileID: 1044494430972739882}
   m_Layer: 0
   m_Name: MegaProjectileGun
   m_TagString: Untagged
@@ -47,6 +49,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectileSpawnPoint: {fileID: 419754024306396158}
   _projectileType: 0
+--- !u!114 &2465280135694446562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3429429043503600203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db6bc88304686b439e61780e042a387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxAmmo: 1
+  _minAmmo: 0
+  _currentAmmo: 0
+--- !u!114 &1044494430972739882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3429429043503600203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d81611ea534514cba73a0955ed4aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ammoClipStorage: {fileID: 2465280135694446562}
+  _weaponShootMechanic: {fileID: 1720561586184491230}
 --- !u!1 &4463645831744896839
 GameObject:
   m_ObjectHideFlags: 0

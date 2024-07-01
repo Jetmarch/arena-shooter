@@ -20,45 +20,7 @@ namespace ArenaShooter.AI
 
         public event Action OnAttack;
         public event Action<Vector2> OnMove;
-
-        ////TODO: Move it to BossInstaller
-        //private PlayerScannerComponent _scanner;
-        //private CircleTrigger2DComponent _circleTrigger;
-
-        //private Move2DComponent _moveComponent;
-        //private Rigidbody2D _rigidbody;
-
-        //private WeaponsStorage _weaponStorage;
-        //private WeaponChangeMechanic _weaponChangeMechanic;
-        //private BossAttackPattern _attackPattern;
-
-        //[Inject]
-        //private ProjectileFactory _projectileFactory;
-
-        //private void Start()
-        //{
-        //    _circleTrigger = GetComponent<CircleTrigger2DComponent>();
-        //    _scanner = GetComponent<PlayerScannerComponent>();
-        //    _scanner.OnPlayerDetected += OnPlayerDetected;
-        //    _scanner.OnPlayerLost += OnPlayerLost;
-        //    _circleTrigger.Construct();
-        //    _scanner.Construct(_circleTrigger);
-
-        //    _rigidbody = GetComponent<Rigidbody2D>();
-        //    _moveComponent = GetComponent<Move2DComponent>();
-        //    _moveComponent.Construct(_rigidbody);
-        //    _weaponStorage = GetComponent<WeaponsStorage>();
-        //    _weaponChangeMechanic = GetComponent<WeaponChangeMechanic>();
-        //    _weaponChangeMechanic.Construct(_weaponStorage);
-        //    _attackPattern = GetComponent<BossAttackPattern>();
-        //    _attackPattern.Construct(_weaponChangeMechanic);
-        //    OnAttack += _attackPattern.OnAttack;
-
-        //    foreach(var weapon in  _weaponStorage.Weapons)
-        //    {
-        //        weapon.GetComponent<BaseWeaponShootMechanic>().Construct(_projectileFactory);
-        //    }
-        //}
+        public event Action<Vector2> LookAt;
 
         private void OnEnable()
         {
@@ -77,6 +39,8 @@ namespace ArenaShooter.AI
                 OnMove?.Invoke(Vector2.zero);
                 return;
             }
+
+            LookAt?.Invoke(_target.position);
 
             if (!_isMovePhase)
             {

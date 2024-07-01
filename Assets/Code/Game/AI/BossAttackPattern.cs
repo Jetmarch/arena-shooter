@@ -3,26 +3,20 @@ using UnityEngine;
 
 namespace ArenaShooter.AI
 {
-    public class BossAttackPattern : MonoBehaviour
+    public class BossAttackPattern
     {
         private WeaponChangeMechanic _weaponChangeMechanic;
 
-        public void Construct(WeaponChangeMechanic weaponChangeMechanic)
+        public BossAttackPattern(WeaponChangeMechanic weaponChangeMechanic)
         {
             _weaponChangeMechanic = weaponChangeMechanic;
         }
 
         public void OnAttack()
         {
-            var weapon = _weaponChangeMechanic.CurrentWeapon;
-            var shootMechanic = weapon.GetComponent<BaseWeaponShootMechanic>();
-            if (shootMechanic == null)
-            {
-                Debug.LogError($"Weapon {weapon.name} has no BaseWeaponShootMechanic!");
-            }
-
-            shootMechanic.OnShoot();
             _weaponChangeMechanic.OnChangeWeaponUp();
+            var weapon = _weaponChangeMechanic.CurrentWeapon;
+            weapon.WeaponShootMechanic.OnShoot();
         }
     }
 }
