@@ -1,3 +1,4 @@
+using ArenaShooter.Audio;
 using ArenaShooter.Inputs;
 using ArenaShooter.Weapons.Projectiles;
 using UnityEngine;
@@ -32,6 +33,9 @@ namespace ArenaShooter.Weapons
 
         [SerializeField]
         private int _amountOfAmmoOnOneShot = 1;
+
+        [SerializeField]
+        private AudioSource _audioSource;
 
         [SerializeField]
         //Сделал для удобства одно условие здесь,
@@ -72,6 +76,9 @@ namespace ArenaShooter.Weapons
         private void BindComponents()
         {
             Container.Bind<SpriteRenderer>().FromInstance(_spriteRenderer).AsSingle();
+            Container.Bind<AudioSource>().FromInstance(_audioSource).AsSingle();
+            Container.Bind<AudioComponent>().AsSingle().NonLazy();
+            Container.Bind<string>().FromInstance(_shootSoundName).AsSingle();
             
         }
 
@@ -80,7 +87,7 @@ namespace ArenaShooter.Weapons
             Container.Bind<WeaponReloadMechanic>().FromInstance(_weaponReloadMechanic).AsSingle();
             Container.Bind<WeaponDelayBetweenShotsMechanic>().FromInstance(_delayBetweenShotsMechanic).AsSingle();
             Container.Bind<BaseWeaponShootMechanic>().FromInstance(_shootMechanic).AsSingle();
-            Container.BindInterfacesAndSelfTo<WeaponFlipSpriteMechanic>().AsSingle().NonLazy();
+            Container.Bind<WeaponFlipSpriteMechanic>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AmmoInClipDecreaseMechanic>().AsSingle().WithArguments(_amountOfAmmoOnOneShot, _ammoClipStorage).NonLazy();
         }
 
@@ -99,6 +106,8 @@ namespace ArenaShooter.Weapons
             {
                 Container.BindInterfacesAndSelfTo<WeaponShootController>().AsSingle().NonLazy();
             }
+
+            Container.BindInterfacesAndSelfTo<ShootSoundController>().AsSingle().NonLazy();
         }
 
         private void AppendConditions()
@@ -122,8 +131,9 @@ namespace ArenaShooter.Weapons
 #if UNITY_EDITOR
         private void OnValidate()
         {
+            _audioSource = GetComponentInChildren<AudioSource>();
             _weaponFacade = GetComponent<WeaponFacade>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _ammoClipStorage = GetComponent<AmmoClipStorage>();
             _shootMechanic = GetComponent<BaseWeaponShootMechanic>();
             _weaponReloadMechanic = GetComponent<WeaponReloadMechanic>();
