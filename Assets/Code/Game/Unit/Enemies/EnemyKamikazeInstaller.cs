@@ -65,7 +65,7 @@ namespace ArenaShooter.Units.Enemies
 
             _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
 
-            _inputController.OnShoot += _weaponShootMechanic.OnShoot;
+            _inputController.OnShoot += _weaponShootMechanic.Shoot;
         }
 
 #if UNITY_EDITOR

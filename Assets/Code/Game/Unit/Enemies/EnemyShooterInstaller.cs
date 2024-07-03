@@ -47,16 +47,16 @@ namespace ArenaShooter.Units.Enemies
         [SerializeField]
         private WeaponChangeMechanic _weaponChangeMechanic;
 
-
-        [Inject]
-        private ProjectileFactory _projectileFactory;
+        [SerializeField]
+        private GameObject _weaponPrefab;
+        [SerializeField]
+        private Transform _weaponParent;
 
         public override void InstallBindings()
         {
             _healthComponent.Construct();
             _moveComponent.Construct(_rigidbody);
             _brain.Construct(_inputController, _playerScanner);
-            _weaponInstaller.Construct(_inputController, _inputController, _inputController, _inputController, _projectileFactory);
             _triggerComponent.Construct();
             _playerScanner.Construct(_triggerComponent);
             _spriteFlashMechanic.Construct(_spriteRenderer);
@@ -83,6 +83,11 @@ namespace ArenaShooter.Units.Enemies
             Container.BindInterfacesAndSelfTo<WeaponRotateController>().AsSingle().NonLazy();
 
             _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
+        }
+
+        private void Start()
+        {
+            _weaponStorage.AddWeapon(Container.InstantiatePrefab(_weaponPrefab, _weaponParent).GetComponent<WeaponFacade>());
         }
 
 #if UNITY_EDITOR

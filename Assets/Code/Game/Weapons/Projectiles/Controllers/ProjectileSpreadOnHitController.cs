@@ -21,7 +21,7 @@ namespace ArenaShooter.Weapons.Projectiles
 
         private void OnShoot(GameObject obj)
         {
-            _spreadProjectileMechanic.OnShoot();
+            _spreadProjectileMechanic.Shoot();
         }
     }
 }

@@ -1204,6 +1204,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9451582b14a9d9e48bebe5ffa57b2c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioClips:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues:
+    - hit
+    _keys:
+    - hit
+    _values:
+    - {fileID: 8300000, guid: c07ddaa2bbef9b949af793522e3e0b1d, type: 3}
 --- !u!1 &1083458331
 GameObject:
   m_ObjectHideFlags: 0

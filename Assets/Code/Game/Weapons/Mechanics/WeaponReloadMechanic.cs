@@ -1,3 +1,4 @@
+using ArenaShooter.Utils;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -16,9 +17,10 @@ namespace ArenaShooter.Weapons
 
         public event Action OnStartReload;
         public event Action OnEndReload;
+        private CompositeCondition _condition = new CompositeCondition();
 
         public bool IsReloading { get { return _isReloading; } }
-
+        public CompositeCondition Condition { get { return _condition; } }
         public bool IsNotReloading()
         {
             return !_isReloading;
@@ -31,6 +33,7 @@ namespace ArenaShooter.Weapons
 
         public void OnReload()
         {
+            if (!_condition.IsTrue()) return;
             if (_isReloading) return;
 
             StartCoroutine(Reloading());

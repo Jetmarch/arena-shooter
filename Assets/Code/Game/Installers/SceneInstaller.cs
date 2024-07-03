@@ -1,3 +1,4 @@
+using ArenaShooter.Audio;
 using ArenaShooter.CameraControllers;
 using ArenaShooter.Inputs;
 using ArenaShooter.Scenarios;
@@ -39,6 +40,7 @@ namespace ArenaShooter.Installers
             Container.BindInterfacesAndSelfTo<UnitManager>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<KeyboardAndMouseInputController>().FromComponentInHierarchy().AsSingle();
             Container.Bind<UnitFactory>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<AudioManager>().FromComponentInHierarchy().AsSingle();
 
             BindScenarioActExecutors();
 

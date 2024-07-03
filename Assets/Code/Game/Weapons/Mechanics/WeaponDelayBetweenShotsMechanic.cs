@@ -18,7 +18,7 @@ namespace ArenaShooter.Weapons
             _canShoot = true;
         }
 
-        public void OnShoot()
+        public void DelayShot()
         {
             if (!_canShoot) return;
             StartCoroutine(DelayBetweetShots());

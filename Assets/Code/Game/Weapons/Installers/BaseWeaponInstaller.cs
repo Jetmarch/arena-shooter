@@ -1,29 +1,20 @@
 using ArenaShooter.Inputs;
 using ArenaShooter.Weapons.Projectiles;
 using UnityEngine;
+using Zenject;
 
 namespace ArenaShooter.Weapons
 {
     [RequireComponent(typeof(AmmoClipStorage))]
     [RequireComponent(typeof(BaseWeaponShootMechanic))]
-    [RequireComponent(typeof(WeaponFlipSpriteMechanic))]
-    [RequireComponent(typeof(AmmoInClipDecreaseMechanic))]
     [RequireComponent(typeof(WeaponReloadMechanic))]
     [RequireComponent(typeof(WeaponDelayBetweenShotsMechanic))]
-    public class BaseWeaponInstaller : MonoBehaviour
+    public class BaseWeaponInstaller : MonoInstaller
     {
-        [SerializeField]
-        private SpriteRenderer _weaponSprite;
         [SerializeField]
         private AmmoClipStorage _ammoClipStorage;
         [SerializeField]
         private BaseWeaponShootMechanic _shootMechanic;
-
-        [SerializeField]
-        private WeaponFlipSpriteMechanic _flipSpriteMechanic;
-
-        [SerializeField]
-        private AmmoInClipDecreaseMechanic _ammoInClipDecreaseMechanic;
 
         [SerializeField]
         private WeaponReloadMechanic _weaponReloadMechanic;
@@ -32,112 +23,144 @@ namespace ArenaShooter.Weapons
         private WeaponDelayBetweenShotsMechanic _delayBetweenShotsMechanic;
 
         [SerializeField]
+        private SpriteRenderer _spriteRenderer;
+        [SerializeField]
+        private WeaponFacade _weaponFacade;
+
+        [SerializeField]
+        private string _shootSoundName;
+
+        [SerializeField]
+        private int _amountOfAmmoOnOneShot = 1;
+
+        [SerializeField]
         //Сделал для удобства одно условие здесь,
         //так как это единственная разница между автоматами и остальным оружием
         //на текущий момент
         private bool _isAutomatic;
 
-        private IShootInputProvider _shootInputProvider;
-        private IScreenMouseMoveInputProvider _screenMouseMoveInputProvider;
-        private IWorldMouseMoveInputProvider _worldMouseMoveInputProvider;
-        private IReloadInputProvider _reloadInputProvider;
+        //private IShootInputProvider _shootInputProvider;
+        //private IScreenMouseMoveInputProvider _screenMouseMoveInputProvider;
+        //private IWorldMouseMoveInputProvider _worldMouseMoveInputProvider;
+        //private IReloadInputProvider _reloadInputProvider;
+
+        public override void InstallBindings()
+        {
+            ConstructComponents();
+            BindMechanics();
+            BindComponents();
+            BindControllers();
+            AppendConditions();
+        }
 
         //TODO: Продумать автоматическую подвязку оружия к носителю
-        public void Construct(IShootInputProvider shootInputProvider, IScreenMouseMoveInputProvider mouseMoveInputProvider,
-            IWorldMouseMoveInputProvider worldMouseMoveProvider, IReloadInputProvider reloadInputProvider,
-            ProjectileFactory projectileFactory)
+        //public void Construct(IShootInputProvider shootInputProvider, IScreenMouseMoveInputProvider mouseMoveInputProvider,
+        //    IWorldMouseMoveInputProvider worldMouseMoveProvider, IReloadInputProvider reloadInputProvider)
+        //{
+        //    _shootInputProvider = shootInputProvider;
+        //    _screenMouseMoveInputProvider = mouseMoveInputProvider;
+        //    _worldMouseMoveInputProvider = worldMouseMoveProvider;
+        //    _reloadInputProvider = reloadInputProvider;
+        //}
+
+        private void ConstructComponents()
         {
-            _shootInputProvider = shootInputProvider;
-            _screenMouseMoveInputProvider = mouseMoveInputProvider;
-            _worldMouseMoveInputProvider = worldMouseMoveProvider;
-            _reloadInputProvider = reloadInputProvider;
-
-            _flipSpriteMechanic.Construct(_weaponSprite);
-            _screenMouseMoveInputProvider.OnScreenMouseMove += _flipSpriteMechanic.FlipWeaponSprite;
-
             _weaponReloadMechanic.Construct(_ammoClipStorage);
-            _reloadInputProvider.OnReload += _weaponReloadMechanic.OnReload;
-
             _delayBetweenShotsMechanic.Construct();
-            //TODO: Нужно событие перед выстрелом, событие выстрела и событие после выстрела
-
-
-            _shootMechanic.Construct(projectileFactory);
-            _shootMechanic.Condition.Append(_weaponReloadMechanic.IsNotReloading);
-            _shootMechanic.Condition.Append(_ammoInClipDecreaseMechanic.IsEnoughAmmoToShoot);
-            _shootMechanic.Condition.Append(_delayBetweenShotsMechanic.CanShoot);
-
-            if (_isAutomatic)
-            {
-                _shootInputProvider.OnShootHold += _shootMechanic.OnShoot;
-            }
-            else
-            {
-                _shootInputProvider.OnShoot += _shootMechanic.OnShoot;
-            }
-
-            _ammoInClipDecreaseMechanic.Construct(_ammoClipStorage);
-            _shootMechanic.ShootComplete += _ammoInClipDecreaseMechanic.OnShootComplete;
-            _shootMechanic.ShootComplete += _delayBetweenShotsMechanic.OnShoot;
         }
 
-        //TODO: Перетащить в weapon controller
-        private void OnEnable()
+        private void BindComponents()
         {
-            if (_shootInputProvider == null) return;
-            if (_reloadInputProvider == null) return;
-            if (_worldMouseMoveInputProvider == null) return;
-            if (_screenMouseMoveInputProvider == null) return;
-
-            _reloadInputProvider.OnReload += _weaponReloadMechanic.OnReload;
-
-            if (_isAutomatic)
-            {
-                _shootInputProvider.OnShootHold += _shootMechanic.OnShoot;
-            }
-            else
-            {
-                _shootInputProvider.OnShoot += _shootMechanic.OnShoot;
-            }
-
-            _shootMechanic.ShootComplete += _ammoInClipDecreaseMechanic.OnShootComplete;
-            _shootMechanic.ShootComplete += _delayBetweenShotsMechanic.OnShoot;
+            Container.Bind<SpriteRenderer>().FromInstance(_spriteRenderer).AsSingle();
+            
         }
 
-        private void OnDisable()
+        private void BindMechanics()
         {
-            if (_shootInputProvider == null) return;
-            if (_reloadInputProvider == null) return;
-            if (_worldMouseMoveInputProvider == null) return;
-            if (_screenMouseMoveInputProvider == null) return;
+            Container.Bind<WeaponReloadMechanic>().FromInstance(_weaponReloadMechanic).AsSingle();
+            Container.Bind<WeaponDelayBetweenShotsMechanic>().FromInstance(_delayBetweenShotsMechanic).AsSingle();
+            Container.Bind<BaseWeaponShootMechanic>().FromInstance(_shootMechanic).AsSingle();
+            Container.BindInterfacesAndSelfTo<WeaponFlipSpriteMechanic>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<AmmoInClipDecreaseMechanic>().AsSingle().WithArguments(_amountOfAmmoOnOneShot, _ammoClipStorage).NonLazy();
+        }
 
-            _reloadInputProvider.OnReload -= _weaponReloadMechanic.OnReload;
+        private void BindControllers()
+        {
+            Container.BindInterfacesAndSelfTo<WeaponSpriteFlipController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<WeaponReloadController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<AmmoInClipDecreaseController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<DelayBetweenShotsController>().AsSingle().NonLazy();
 
             if (_isAutomatic)
             {
-                _shootInputProvider.OnShootHold -= _shootMechanic.OnShoot;
+                Container.BindInterfacesAndSelfTo<WeaponShootHoldController>().AsSingle().NonLazy();
             }
             else
             {
-                _shootInputProvider.OnShoot -= _shootMechanic.OnShoot;
+                Container.BindInterfacesAndSelfTo<WeaponShootController>().AsSingle().NonLazy();
             }
-
-            _shootMechanic.ShootComplete -= _ammoInClipDecreaseMechanic.OnShootComplete;
-            _shootMechanic.ShootComplete -= _delayBetweenShotsMechanic.OnShoot;
         }
 
+        private void AppendConditions()
+        {
+            //TODO: Придумать как применять conditions
+            //Возможно стоит сделать обертку
+            //_shootMechanic.Condition.Append(_weaponReloadMechanic.IsNotReloading);
+            ////_shootMechanic.Condition.Append(_ammoInClipDecreaseMechanic.IsEnoughAmmoToShoot);
+            //_shootMechanic.Condition.Append(_delayBetweenShotsMechanic.CanShoot);
+            //_shootMechanic.Condition.Append(IsGameObjectActive);
+            //_weaponReloadMechanic.Condition.Append(IsGameObjectActive);
+            Container.Bind<WeaponFacade>().FromInstance(_weaponFacade).AsSingle();
+            Container.BindInterfacesAndSelfTo<WeaponConditionInstaller>().AsSingle().NonLazy();
+        }
+
+        private bool IsGameObjectActive()
+        {
+            return gameObject.activeSelf;
+        }
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            _weaponSprite = GetComponentInChildren<SpriteRenderer>();
+            _weaponFacade = GetComponent<WeaponFacade>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
             _ammoClipStorage = GetComponent<AmmoClipStorage>();
             _shootMechanic = GetComponent<BaseWeaponShootMechanic>();
-            _flipSpriteMechanic = GetComponent<WeaponFlipSpriteMechanic>();
-            _ammoInClipDecreaseMechanic = GetComponent<AmmoInClipDecreaseMechanic>();
             _weaponReloadMechanic = GetComponent<WeaponReloadMechanic>();
             _delayBetweenShotsMechanic = GetComponent<WeaponDelayBetweenShotsMechanic>();
         }
 #endif
+    }
+
+    public class WeaponConditionInstaller : IInitializable
+    {
+        private BaseWeaponShootMechanic _shootMechanic;
+        private WeaponReloadMechanic _weaponReloadMechanic;
+        private AmmoInClipDecreaseMechanic _ammoInClipDecreaseMechanic;
+        private WeaponDelayBetweenShotsMechanic _delayBetweenShotsMechanic;
+        private WeaponFacade _weaponFacade;
+
+        public WeaponConditionInstaller(BaseWeaponShootMechanic shootMechanic, WeaponReloadMechanic weaponReloadMechanic, AmmoInClipDecreaseMechanic ammoInClipDecreaseMechanic, WeaponDelayBetweenShotsMechanic delayBetweenShotsMechanic, WeaponFacade weaponFacade)
+        {
+            _shootMechanic = shootMechanic;
+            _weaponReloadMechanic = weaponReloadMechanic;
+            _ammoInClipDecreaseMechanic = ammoInClipDecreaseMechanic;
+            _delayBetweenShotsMechanic = delayBetweenShotsMechanic;
+            _weaponFacade = weaponFacade;
+        }
+
+        public void Initialize()
+        {
+            _shootMechanic.Condition.Append(_weaponReloadMechanic.IsNotReloading);
+            _shootMechanic.Condition.Append(_ammoInClipDecreaseMechanic.IsEnoughAmmoToShoot);
+            _shootMechanic.Condition.Append(_delayBetweenShotsMechanic.CanShoot);
+            _shootMechanic.Condition.Append(IsGameObjectActive);
+            _weaponReloadMechanic.Condition.Append(IsGameObjectActive);
+        }
+
+        private bool IsGameObjectActive()
+        {
+            return _weaponFacade.gameObject.activeSelf;
+        }
     }
 }

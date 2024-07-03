@@ -1,15 +1,16 @@
 using UnityEngine;
+using Zenject;
 
 namespace ArenaShooter.Weapons
 {
     /// <summary>
     /// Отражает спрайт оружия по оси Y
     /// </summary>
-    public class WeaponFlipSpriteMechanic : MonoBehaviour
+    public class WeaponFlipSpriteMechanic
     {
         private SpriteRenderer _spriteRenderer;
 
-        public void Construct(SpriteRenderer spriteRenderer)
+        public WeaponFlipSpriteMechanic(SpriteRenderer spriteRenderer)
         {
             _spriteRenderer = spriteRenderer;
         }

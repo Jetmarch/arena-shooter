@@ -96,12 +96,11 @@ GameObject:
   - component: {fileID: 5456043046058722814}
   - component: {fileID: 5976815053789852209}
   - component: {fileID: 7370565892695866985}
-  - component: {fileID: 5890339115033308338}
-  - component: {fileID: 5757478354019707018}
   - component: {fileID: 8670415720261372308}
   - component: {fileID: 8647621421291789095}
-  - component: {fileID: 7558430649790565092}
   - component: {fileID: 3067636080292402200}
+  - component: {fileID: 7558430649790565092}
+  - component: {fileID: 7651694652362149486}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -155,31 +154,6 @@ MonoBehaviour:
   _countOfProjectilesInShot: 4
   _minSpreadAngle: -10
   _maxSpreadAngle: 10
---- !u!114 &5890339115033308338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7165602316576653474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b76401d6edb83d94ba3633a9749f1be5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _amountOfAmmoOnOneShot: 1
---- !u!114 &5757478354019707018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7165602316576653474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6edf678e93ff8134ca95f2681114f72d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8670415720261372308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,26 +183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _delayBetweenShots: 0.5
   _canShoot: 0
---- !u!114 &7558430649790565092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7165602316576653474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a96e32e3292740749845a1c1058ff471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSprite: {fileID: 1898828930790085030}
-  _ammoClipStorage: {fileID: 8670415720261372308}
-  _shootMechanic: {fileID: 7370565892695866985}
-  _flipSpriteMechanic: {fileID: 5757478354019707018}
-  _ammoInClipDecreaseMechanic: {fileID: 5890339115033308338}
-  _weaponReloadMechanic: {fileID: 5976815053789852209}
-  _delayBetweenShotsMechanic: {fileID: 8647621421291789095}
-  _isAutomatic: 0
 --- !u!114 &3067636080292402200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +197,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ammoClipStorage: {fileID: 8670415720261372308}
   _weaponShootMechanic: {fileID: 7370565892695866985}
+--- !u!114 &7558430649790565092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165602316576653474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96e32e3292740749845a1c1058ff471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ammoClipStorage: {fileID: 8670415720261372308}
+  _shootMechanic: {fileID: 7370565892695866985}
+  _weaponReloadMechanic: {fileID: 5976815053789852209}
+  _delayBetweenShotsMechanic: {fileID: 8647621421291789095}
+  _shootSoundName: shotgun_shot
+  _amountOfAmmoOnOneShot: 1
+  _isAutomatic: 0
+--- !u!114 &7651694652362149486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165602316576653474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 7558430649790565092}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
 --- !u!1 &7475949273744975718
 GameObject:
   m_ObjectHideFlags: 0

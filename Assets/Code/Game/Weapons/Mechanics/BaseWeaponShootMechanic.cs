@@ -16,7 +16,7 @@ namespace ArenaShooter.Weapons
 
         protected GameObject _owner;
 
-        private CompositeCondition _condition;
+        private CompositeCondition _condition = new CompositeCondition();
         public CompositeCondition Condition { get { return _condition; } }
 
         public event Action ShootComplete;
@@ -25,8 +25,6 @@ namespace ArenaShooter.Weapons
         public virtual void Construct(ProjectileFactory projectileFactory)
         {
             _projectileFactory = projectileFactory;
-
-            _condition = new CompositeCondition();
         }
 
         protected bool CanShoot()
@@ -40,7 +38,7 @@ namespace ArenaShooter.Weapons
             ShootComplete?.Invoke();
         }
 
-        public virtual void OnShoot()
+        public virtual void Shoot()
         {
             if (!CanShoot()) return;
 

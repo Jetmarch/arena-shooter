@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 7264404260985484298}
   - component: {fileID: 7963146312427705933}
   - component: {fileID: 1610326859159231703}
-  - component: {fileID: 3990724147446308217}
-  - component: {fileID: 129208723245824243}
   - component: {fileID: 7351649344067694024}
   - component: {fileID: 7849193754461850481}
   - component: {fileID: 7760761116206240617}
   - component: {fileID: -2681969314212602647}
+  - component: {fileID: 6573767039965174361}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -33,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 1691436118815922653}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4124, y: 0.087, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -67,31 +66,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reloadSpeed: 0
---- !u!114 &3990724147446308217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691436118815922653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b76401d6edb83d94ba3633a9749f1be5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _amountOfAmmoOnOneShot: 1
---- !u!114 &129208723245824243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691436118815922653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6edf678e93ff8134ca95f2681114f72d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7351649344067694024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,13 +107,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a96e32e3292740749845a1c1058ff471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponSprite: {fileID: 769251535284104164}
   _ammoClipStorage: {fileID: 7351649344067694024}
   _shootMechanic: {fileID: 7963146312427705933}
-  _flipSpriteMechanic: {fileID: 129208723245824243}
-  _ammoInClipDecreaseMechanic: {fileID: 3990724147446308217}
   _weaponReloadMechanic: {fileID: 1610326859159231703}
   _delayBetweenShotsMechanic: {fileID: 7849193754461850481}
+  _spriteRenderer: {fileID: 0}
+  _weaponFacade: {fileID: -2681969314212602647}
+  _shootSoundName: revolver_shot
+  _amountOfAmmoOnOneShot: 1
   _isAutomatic: 0
 --- !u!114 &-2681969314212602647
 MonoBehaviour:
@@ -155,6 +130,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ammoClipStorage: {fileID: 7351649344067694024}
   _weaponShootMechanic: {fileID: 7963146312427705933}
+--- !u!114 &6573767039965174361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691436118815922653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 7760761116206240617}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
 --- !u!1 &7062365355083917099
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
+using ArenaShooter.Audio;
 using ArenaShooter.Components;
+using ArenaShooter.Unit;
 using ArenaShooter.Units.Enemies;
 using ArenaShooter.Weapons;
 using UnityEngine;
@@ -39,31 +41,57 @@ namespace ArenaShooter.Units.Player
         [SerializeField]
         private UnitTemporaryInvulnerableMechanic _unitTemporaryInvulnerableMechanic;
 
+        [SerializeField]
+        private AudioSource _audioSource;
+
         [Inject]
         private PlayerWeaponFactory _weaponFactory;
 
         public override void InstallBindings()
+        {
+            ConstructComponents();
+
+            BindComponents();
+
+            BindMechanics();
+
+            BindMechanicsControllers();
+
+            AppendConditions();
+        }
+
+        private void ConstructComponents()
         {
             _healthComponent.Construct();
             _moveComponent.Construct(_rigidbody2D);
             _weaponChangeMechanic.Construct(_weaponStorage);
             _dashMechanic.Construct(_moveComponent);
             _flashMechanic.Construct(_spriteRenderer);
+        }
 
+        private void BindComponents()
+        {
             Container.Bind<Move2DComponent>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<HealthComponent>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<UnitDieMechanic>().FromComponentOn(gameObject).AsSingle();
-            Container.Bind<UnitTemporaryInvulnerableMechanic>().FromComponentOn(gameObject).AsSingle();
-
             Container.Bind<WeaponsStorage>().FromInstance(_weaponStorage).AsSingle();
+            Container.Bind<SpriteRenderer>().FromInstance(_spriteRenderer).AsSingle();
+            Container.Bind<AudioSource>().FromInstance(_audioSource).AsSingle();
+
+            Container.Bind<AudioComponent>().AsSingle().NonLazy();
+        }
+
+        private void BindMechanics()
+        {
+            Container.Bind<UnitTemporaryInvulnerableMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<WeaponChangeMechanic>().FromInstance(_weaponChangeMechanic).AsSingle();
             Container.Bind<UnitDashMechanic>().FromInstance(_dashMechanic).AsSingle();
-            Container.Bind<SpriteRenderer>().FromInstance(_spriteRenderer).AsSingle();
             Container.Bind<SpriteFlashMechanic>().FromInstance(_flashMechanic).AsSingle();
-
             Container.BindInterfacesAndSelfTo<WeaponRotateMechanic>().AsSingle().NonLazy();
+        }
 
-
+        private void BindMechanicsControllers()
+        {
             Container.BindInterfacesAndSelfTo<UnitMoveController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<UnitWeaponChangeController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<UnitDashController>().AsSingle().NonLazy();
@@ -71,10 +99,13 @@ namespace ArenaShooter.Units.Player
             Container.BindInterfacesAndSelfTo<SpriteFlashOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<TemporaryInvulnerabilityOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<WeaponRotateController>().AsSingle().NonLazy();
-            
+            Container.BindInterfacesAndSelfTo<HitSoundController>().AsSingle().NonLazy();
+        }
+
+        private void AppendConditions()
+        {
             _moveComponent.Condition.Append(_dashMechanic.IsNotDashing);
             _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
-
         }
 
         private void SetWeaponsOwner()
@@ -109,6 +140,7 @@ namespace ArenaShooter.Units.Player
             _flashMechanic = GetComponentInChildren<SpriteFlashMechanic>();
             _unitTemporaryInvulnerableMechanic = GetComponent<UnitTemporaryInvulnerableMechanic>();
             _healthComponent = GetComponentInChildren<HealthComponent>();
+            _audioSource = GetComponentInChildren<AudioSource>();
         }
 #endif
     }
