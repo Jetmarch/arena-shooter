@@ -36,6 +36,9 @@ namespace ArenaShooter.Weapons
         private AudioSource _audioSource;
 
         [SerializeField]
+        private ParticleSystem _gunShellParticles;
+
+        [SerializeField]
         //Сделал для удобства одно условие здесь,
         //так как это единственная разница между автоматами и остальным оружием
         //на текущий момент
@@ -77,7 +80,7 @@ namespace ArenaShooter.Weapons
             Container.Bind<AudioSource>().FromInstance(_audioSource).AsSingle();
             Container.Bind<AudioComponent>().AsSingle().NonLazy();
             Container.Bind<string>().FromInstance(_shootSoundName).AsSingle();
-
+            Container.Bind<ParticleSystem>().FromInstance(_gunShellParticles).AsSingle();
         }
 
         private void BindMechanics()
@@ -106,6 +109,7 @@ namespace ArenaShooter.Weapons
             }
 
             Container.BindInterfacesAndSelfTo<ShootSoundController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<GunShellParticlesController>().AsSingle().NonLazy();
         }
 
         private void AppendConditions()
@@ -121,11 +125,6 @@ namespace ArenaShooter.Weapons
             Container.BindInterfacesAndSelfTo<WeaponConditionInstaller>().AsSingle().NonLazy();
         }
 
-        private bool IsGameObjectActive()
-        {
-            return gameObject.activeSelf;
-        }
-
 #if UNITY_EDITOR
         private void OnValidate()
         {
@@ -136,6 +135,7 @@ namespace ArenaShooter.Weapons
             _shootMechanic = GetComponent<BaseWeaponShootMechanic>();
             _weaponReloadMechanic = GetComponent<WeaponReloadMechanic>();
             _delayBetweenShotsMechanic = GetComponent<WeaponDelayBetweenShotsMechanic>();
+            _gunShellParticles = GetComponentInChildren<ParticleSystem>();
         }
 #endif
     }

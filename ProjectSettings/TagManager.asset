@@ -59,3 +59,6 @@ TagManager:
   - name: Projectiles
     uniqueID: 3347580401
     locked: 0
+  - name: Particles
+    uniqueID: 1975541379
+    locked: 0
