@@ -2,7 +2,7 @@
 using ArenaShooter.Mechanics;
 using Zenject;
 
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Mechanics
 {
     public class DamageController : IInitializable, ILateDisposable
     {

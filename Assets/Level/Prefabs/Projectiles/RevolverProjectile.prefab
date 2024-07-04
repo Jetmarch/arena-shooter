@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 450
+  _rigidbody: {fileID: 0}
 --- !u!114 &2594590499336249952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +208,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minDamage: 1
   _maxDamage: 1
+  _affectOn:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &-3168753188071757533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,10 +250,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 4334372058563688730}
   _moveComponent: {fileID: 5934177093177697277}
-  _trigger2DComponent: {fileID: 3704094585770241830}
-  _moveMechanic: {fileID: 2594590499336249952}
-  _damageMechanic: {fileID: 6510732210156589349}
-  _destroyOnHitMechanic: {fileID: -3168753188071757533}
 --- !u!114 &2946640202226766192
 MonoBehaviour:
   m_ObjectHideFlags: 0

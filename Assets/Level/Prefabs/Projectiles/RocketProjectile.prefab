@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 400
+  _rigidbody: {fileID: 0}
 --- !u!114 &2792981501944130849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,14 +203,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7480251586211078169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 906e394f821cc214fae0fefd01c7fd49, type: 3}
+  m_Script: {fileID: 11500000, guid: 77a1f63de02f04648a4eb25c52bb5dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _damageRadius: 2
   _damage: 2
   _affectOnLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
 --- !u!114 &3121271154290488465
 MonoBehaviour:
   m_ObjectHideFlags: 0

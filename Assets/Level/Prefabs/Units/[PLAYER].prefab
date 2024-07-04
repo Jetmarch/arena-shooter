@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 1904623793679358506}
   - component: {fileID: 5106855117183840813}
   - component: {fileID: 5689391225771231078}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: '[Player]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 250
+  _rigidbody: {fileID: 0}
 --- !u!114 &2931462436165528020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,6 +488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flashMaterial: {fileID: 2100000, guid: 849907df48fe1734bbb5ce43dc39d3b8, type: 2}
   _flashDuration: 0.15
+  _spriteRenderer: {fileID: 0}
 --- !u!1 &6713693062904079447
 GameObject:
   m_ObjectHideFlags: 0

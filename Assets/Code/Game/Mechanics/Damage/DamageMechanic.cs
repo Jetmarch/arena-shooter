@@ -10,6 +10,9 @@ namespace ArenaShooter.Mechanics
         private float _minDamage;
         [SerializeField]
         private float _maxDamage;
+        [SerializeField]
+        private LayerMask _affectOn;
+
 
         private GameObject _owner;
 
@@ -20,6 +23,8 @@ namespace ArenaShooter.Mechanics
         {
             if (obj == null) return;
             if (obj.gameObject == _owner) return;
+            //Принадлежит ли объект тому же физическому слою
+            if ((_affectOn.value & (1 << obj.layer)) == 0) return;
 
             HitGameObject?.Invoke(obj.gameObject);
 

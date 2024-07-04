@@ -30,8 +30,6 @@ namespace ArenaShooter.Units.Enemies
 
         [SerializeField]
         private Trigger2DComponent _damageTrigger;
-        [SerializeField]
-        private IDamageMechanic _damageMechanic;
 
         public override void InstallBindings()
         {
@@ -45,7 +43,7 @@ namespace ArenaShooter.Units.Enemies
             Container.Bind<Move2DComponent>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<UnitTemporaryInvulnerableMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<Trigger2DComponent>().FromInstance(_damageTrigger).AsSingle();
-            Container.Bind<IDamageMechanic>().FromInstance(_damageMechanic).AsSingle();
+            Container.BindInterfacesAndSelfTo<DamageMechanic>().FromComponentsInHierarchy().AsSingle();
 
             Container.BindInterfacesAndSelfTo<AIInputController>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<SpriteFlashMechanic>().FromInstance(_spriteFlashMechanic).AsSingle();
@@ -71,8 +69,6 @@ namespace ArenaShooter.Units.Enemies
 
             _playerScannerTrigger = GetComponentInChildren<CircleTrigger2DComponent>();
             _playerScanner = GetComponentInChildren<PlayerScannerComponent>();
-
-            _damageMechanic = GetComponentInChildren<IDamageMechanic>();
         }
 #endif
     }

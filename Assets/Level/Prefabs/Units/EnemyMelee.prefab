@@ -189,6 +189,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minDamage: 1
   _maxDamage: 1
+  _affectOn:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &2300335217892702707
 GameObject:
   m_ObjectHideFlags: 0

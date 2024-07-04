@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 400
+  _rigidbody: {fileID: 0}
 --- !u!114 &2792981501944130849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +234,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minDamage: 1
   _maxDamage: 1
+  _affectOn:
+    serializedVersion: 2
+    m_Bits: 768
 --- !u!114 &3261018734616197981
 MonoBehaviour:
   m_ObjectHideFlags: 0
