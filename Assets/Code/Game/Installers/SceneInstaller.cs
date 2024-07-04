@@ -7,7 +7,7 @@ using ArenaShooter.Units;
 using ArenaShooter.Units.Factories;
 using ArenaShooter.Units.Player;
 using ArenaShooter.Weapons;
-using ArenaShooter.Weapons.Projectiles;
+using ArenaShooter.Projectiles;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;

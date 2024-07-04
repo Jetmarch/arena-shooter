@@ -4,30 +4,28 @@ using ArenaShooter.Mechanics;
 using UnityEngine;
 using Zenject;
 
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Projectiles
 {
-    public class MegaProjectileInstaller : MonoInstaller
+    public class RocketProjectileInstaller : MonoInstaller
     {
         [SerializeField]
         private Rigidbody2D _rigidbody;
         [SerializeField]
         private Move2DComponent _moveComponent;
-
         public override void InstallBindings()
         {
             _moveComponent.Construct(_rigidbody);
 
             Container.Bind<Trigger2DComponent>().FromComponentOn(gameObject).AsSingle();
-            Container.Bind<SpreadProjectilesMechanic>().FromComponentOn(gameObject).AsSingle();
-            Container.BindInterfacesAndSelfTo<DamageMechanic>().FromComponentOn(gameObject).AsSingle();
+            Container.BindInterfacesAndSelfTo<SplashDamageMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<ProjectileDestroyOnHitMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<Move2DComponent>().FromComponentOn(gameObject).AsSingle();
 
             Container.BindInterfacesAndSelfTo<DamageController>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<ProjectileSpreadOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitController>().AsSingle().NonLazy();
         }
 
+        //TODO: Временное решение
 #if UNITY_EDITOR
         private void OnValidate()
         {

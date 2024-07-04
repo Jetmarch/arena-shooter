@@ -1,5 +1,5 @@
 using ArenaShooter.Utils;
-using ArenaShooter.Weapons.Projectiles;
+using ArenaShooter.Projectiles;
 using System;
 using UnityEngine;
 using Zenject;

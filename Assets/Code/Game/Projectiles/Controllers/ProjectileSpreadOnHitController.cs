@@ -1,8 +1,9 @@
 using ArenaShooter.Mechanics;
+using ArenaShooter.Weapons;
 using UnityEngine;
 using Zenject;
 
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Projectiles
 {
     public class ProjectileSpreadOnHitController : IInitializable
     {

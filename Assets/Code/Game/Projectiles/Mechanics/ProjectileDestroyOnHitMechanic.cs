@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Projectiles
 {
     public class ProjectileDestroyOnHitMechanic : MonoBehaviour
     {

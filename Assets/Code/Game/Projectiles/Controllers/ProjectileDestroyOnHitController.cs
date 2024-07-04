@@ -1,7 +1,7 @@
 ﻿using ArenaShooter.Mechanics;
 using Zenject;
 
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Projectiles
 {
     public class ProjectileDestroyOnHitController : IInitializable, ILateDisposable
     {

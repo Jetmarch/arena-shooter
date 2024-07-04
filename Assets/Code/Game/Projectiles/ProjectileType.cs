@@ -1,4 +1,4 @@
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Projectiles
 {
     public enum ProjectileType
     {

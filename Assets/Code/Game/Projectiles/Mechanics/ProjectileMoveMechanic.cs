@@ -2,7 +2,7 @@ using ArenaShooter.Components;
 using UnityEngine;
 using Zenject;
 
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Projectiles
 {
     [RequireComponent(typeof(Move2DComponent))]
     public sealed class ProjectileMoveMechanic : MonoBehaviour, IGameFixedUpdateListener

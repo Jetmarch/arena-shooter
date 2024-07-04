@@ -1,10 +1,11 @@
 using ArenaShooter.Mechanics;
+using ArenaShooter.Weapons;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Projectiles
 {
     public class ProjectileFactory : MonoBehaviour
     {

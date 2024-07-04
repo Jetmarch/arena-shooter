@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Projectiles
 {
     public class ProjectileImpactAfterDelayMechanic : MonoBehaviour
     {
