@@ -8,8 +8,8 @@ namespace ArenaShooter.Components.Triggers
     {
         protected Collider2D _collider;
 
-        public event Action<Collider2D> TriggerOn;
-        public event Action<Collider2D> TriggerOff;
+        public event Action<GameObject> TriggerOn;
+        public event Action<GameObject> TriggerOff;
 
         //TODO: Сделать метод Construct
         protected virtual void Start()
@@ -20,12 +20,12 @@ namespace ArenaShooter.Components.Triggers
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            TriggerOn?.Invoke(collision);
+            TriggerOn?.Invoke(collision.gameObject);
         }
 
         protected virtual void OnTriggerExit2D(Collider2D collision)
         {
-            TriggerOff?.Invoke(collision);
+            TriggerOff?.Invoke(collision.gameObject);
         }
     }
 }

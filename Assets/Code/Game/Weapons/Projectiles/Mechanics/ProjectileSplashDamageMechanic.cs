@@ -19,11 +19,9 @@ namespace ArenaShooter.Weapons.Projectiles
 
         public event Action<GameObject> HitGameObject;
 
-        public void OnHit(Collider2D obj)
+        public void OnHit(GameObject _)
         {
-            HitGameObject?.Invoke(obj.gameObject);
-
-            var affectedTargets = Physics2D.CircleCastAll(obj.transform.position, _damageRadius, Vector2.up, float.MaxValue, _affectOnLayer);
+            var affectedTargets = Physics2D.CircleCastAll(transform.position, _damageRadius, Vector2.up, float.MaxValue, _affectOnLayer);
             if (affectedTargets.Length <= 0) return;
 
             for (int i = 0; i < affectedTargets.Length; i++)
@@ -34,6 +32,7 @@ namespace ArenaShooter.Weapons.Projectiles
                 if (health == null) continue;
 
                 health.SetCurrentHealth(health.CurrentHealth - _damage);
+                HitGameObject?.Invoke(health.gameObject);
             }
         }
 

@@ -16,8 +16,9 @@ namespace ArenaShooter.Weapons.Projectiles
         public event Action<GameObject> HitGameObject;
         public GameObject Owner { get => _owner; set => _owner = value; }
 
-        public void OnHit(Collider2D obj)
+        public void OnHit(GameObject obj)
         {
+            if (obj == null) return;
             if (obj.gameObject == _owner) return;
 
             HitGameObject?.Invoke(obj.gameObject);

@@ -1,17 +1,18 @@
 using ArenaShooter.Components.Triggers;
-using ArenaShooter.Weapons.Projectiles;
-using UnityEngine;
 using Zenject;
 
-public class ExplosionProjectileInstaller : MonoInstaller
+namespace ArenaShooter.Weapons.Projectiles
 {
-    public override void InstallBindings()
+    public class ExplosionProjectileInstaller : MonoInstaller
     {
-        Container.Bind<Trigger2DComponent>().FromComponentOn(gameObject).AsSingle();
-        Container.BindInterfacesAndSelfTo<ProjectileSplashDamageMechanic>().FromComponentOn(gameObject).AsSingle();
-        Container.Bind<ProjectileDestroyOnHitMechanic>().FromComponentOn(gameObject).AsSingle();
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<ProjectileSplashDamageMechanic>().FromComponentOn(gameObject).AsSingle();
+            Container.Bind<ProjectileDestroyOnHitMechanic>().FromComponentOn(gameObject).AsSingle();
+            Container.Bind<ProjectileImpactAfterDelayMechanic>().FromComponentOn(gameObject).AsSingle();
 
-        Container.BindInterfacesAndSelfTo<ProjectileDamageController>().AsSingle().NonLazy();
-        Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ProjectileImpactAfterDelayController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitController>().AsSingle().NonLazy();
+        }
     }
 }

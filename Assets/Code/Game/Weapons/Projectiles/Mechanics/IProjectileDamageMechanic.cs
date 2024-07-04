@@ -21,6 +21,6 @@ namespace ArenaShooter.Weapons.Projectiles
     {
         event Action<GameObject> HitGameObject;
         GameObject Owner { get; set; }
-        void OnHit(Collider2D obj);
+        void OnHit(GameObject obj);
     }
 }

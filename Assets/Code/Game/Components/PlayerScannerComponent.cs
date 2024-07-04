@@ -31,7 +31,7 @@ namespace ArenaShooter.Components
             _trigger.SetTriggerRadius(radius);
         }
 
-        private void OnScannerTriggerEnter(Collider2D obj)
+        private void OnScannerTriggerEnter(GameObject obj)
         {
             var player = obj.GetComponent<PlayerInstaller>();
             if (player == null) return;
@@ -39,7 +39,7 @@ namespace ArenaShooter.Components
             OnPlayerDetected?.Invoke(player.gameObject);
         }
 
-        private void OnScannerTriggerExit(Collider2D obj)
+        private void OnScannerTriggerExit(GameObject obj)
         {
             var player = obj.GetComponent<PlayerInstaller>();
             if (player == null) return;
