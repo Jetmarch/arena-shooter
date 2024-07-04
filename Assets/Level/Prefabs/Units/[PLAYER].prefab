@@ -371,6 +371,7 @@ MonoBehaviour:
   _healthComponent: {fileID: 8331677765335964353}
   _unitTemporaryInvulnerableMechanic: {fileID: 737122222303575946}
   _audioSource: {fileID: 9118279903773236577}
+  _shakeCameraOnHitDuration: 0.3
 --- !u!114 &5689391225771231078
 MonoBehaviour:
   m_ObjectHideFlags: 0

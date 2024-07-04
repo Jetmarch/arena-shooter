@@ -1,4 +1,5 @@
 using ArenaShooter.Audio;
+using ArenaShooter.CameraScripts;
 using ArenaShooter.Components;
 using ArenaShooter.Unit;
 using ArenaShooter.Units.Enemies;
@@ -43,6 +44,9 @@ namespace ArenaShooter.Units.Player
 
         [SerializeField]
         private AudioSource _audioSource;
+
+        [SerializeField]
+        private float _shakeCameraOnHitDuration;
 
         [Inject]
         private PlayerWeaponFactory _weaponFactory;
@@ -100,6 +104,8 @@ namespace ArenaShooter.Units.Player
             Container.BindInterfacesAndSelfTo<TemporaryInvulnerabilityOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<WeaponRotateController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<HitSoundController>().AsSingle().NonLazy();
+
+            Container.BindInterfacesAndSelfTo<CameraShakeOnPlayerHitController>().AsSingle().WithArguments(_shakeCameraOnHitDuration).NonLazy();
         }
 
         private void AppendConditions()

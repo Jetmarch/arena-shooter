@@ -1,5 +1,5 @@
 using ArenaShooter.Audio;
-using ArenaShooter.CameraControllers;
+using ArenaShooter.CameraScripts;
 using ArenaShooter.Inputs;
 using ArenaShooter.Scenarios;
 using ArenaShooter.UI;
@@ -11,6 +11,7 @@ using ArenaShooter.Projectiles;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using DG.Tweening;
 
 namespace ArenaShooter.Installers
 {
@@ -20,7 +21,7 @@ namespace ArenaShooter.Installers
     public sealed class SceneInstaller : MonoInstaller
     {
         [SerializeField]
-        private CameraMoveMechanic _cameraMoveMechanic;
+        private CameraFollowMechanic _cameraMoveMechanic;
 
         [SerializeField]
         private UnitManager _unitManager;
@@ -33,10 +34,9 @@ namespace ArenaShooter.Installers
 
         public override void InstallBindings()
         {
-            Container.Bind<Camera>().FromComponentInHierarchy().AsSingle();
+            BindCamera();
             Container.Bind<ProjectileFactory>().FromComponentInHierarchy().AsSingle();
             Container.Bind<PlayerWeaponFactory>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<CameraMoveMechanic>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<UnitManager>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<KeyboardAndMouseInputController>().FromComponentInHierarchy().AsSingle();
             Container.Bind<UnitFactory>().FromComponentInHierarchy().AsSingle();
@@ -46,12 +46,21 @@ namespace ArenaShooter.Installers
 
             Container.BindInstance(_arenaScenarioConfig.GetScenarioActs()).AsSingle();
 
-            Container.BindInterfacesAndSelfTo<CameraMouseMoveController>().AsSingle().NonLazy();
             Container.Bind<ScorePointsStorage>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AddScorePointsOnEnemyDeathController>().AsSingle().NonLazy();
             Container.Bind<ArenaScenarioExecutor>().FromComponentInHierarchy().AsSingle();
 
             BindUI();
+        }
+
+        private void BindCamera()
+        {
+            Container.Bind<Camera>().FromComponentInHierarchy().AsSingle();
+
+            Container.Bind<CameraFollowMechanic>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesAndSelfTo<CameraMouseMoveController>().AsSingle().NonLazy();
+
+            Container.Bind<CameraShakeMechanic>().AsSingle().NonLazy();
         }
 
         private void BindScenarioActExecutors()
@@ -82,12 +91,14 @@ namespace ArenaShooter.Installers
         {
             var player = _unitManager.CreateUnit(UnitType.Player, Vector3.zero, null);
             _cameraMoveMechanic.SetTarget(player.transform);
+
+            DOTween.Init();
         }
 
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            _cameraMoveMechanic = FindObjectOfType<CameraMoveMechanic>();
+            _cameraMoveMechanic = FindObjectOfType<CameraFollowMechanic>();
             _unitManager = FindObjectOfType<UnitManager>();
         }
 #endif

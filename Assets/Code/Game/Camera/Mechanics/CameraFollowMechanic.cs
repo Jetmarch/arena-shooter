@@ -2,10 +2,10 @@ using ArenaShooter.Components;
 using UnityEngine;
 using Zenject;
 
-namespace ArenaShooter.CameraControllers
+namespace ArenaShooter.CameraScripts
 {
     [RequireComponent(typeof(FollowTargetComponent))]
-    public class CameraMoveMechanic : MonoBehaviour, IGameFixedUpdateListener
+    public class CameraFollowMechanic : MonoBehaviour, IGameFixedUpdateListener
     {
         [SerializeField]
         private Transform _target;

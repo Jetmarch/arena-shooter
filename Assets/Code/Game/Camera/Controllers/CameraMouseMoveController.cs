@@ -1,14 +1,14 @@
 ﻿using ArenaShooter.Inputs;
 using Zenject;
 
-namespace ArenaShooter.CameraControllers
+namespace ArenaShooter.CameraScripts
 {
     public class CameraMouseMoveController : IInitializable, ILateDisposable
     {
         private IScreenMouseMoveInputProvider _mouseMoveProvider;
-        private CameraMoveMechanic _cameraMoveComponent;
+        private CameraFollowMechanic _cameraMoveComponent;
 
-        public CameraMouseMoveController(IScreenMouseMoveInputProvider mouseMoveProvider, CameraMoveMechanic cameraMoveComponent)
+        public CameraMouseMoveController(IScreenMouseMoveInputProvider mouseMoveProvider, CameraFollowMechanic cameraMoveComponent)
         {
             _mouseMoveProvider = mouseMoveProvider;
             _cameraMoveComponent = cameraMoveComponent;
