@@ -7,13 +7,13 @@ namespace ArenaShooter.CameraScripts
     {
         private CameraShakeMechanic _shakeMechanic;
         private HealthComponent _healthComponent;
-        private float _shakeDuration;
+        private CameraShakeData _shakeData;
 
-        public CameraShakeOnPlayerHitController(CameraShakeMechanic shakeMechanic, HealthComponent healthComponent, float shakeDuration)
+        public CameraShakeOnPlayerHitController(CameraShakeMechanic shakeMechanic, HealthComponent healthComponent, CameraShakeData shakeData)
         {
             _shakeMechanic = shakeMechanic;
             _healthComponent = healthComponent;
-            _shakeDuration = shakeDuration;
+            _shakeData = shakeData;
         }
 
         public void Initialize()
@@ -28,7 +28,7 @@ namespace ArenaShooter.CameraScripts
 
         private void OnPlayerHealthChanged(float health)
         {
-            _shakeMechanic.ShakeCamera(_shakeDuration);
+            _shakeMechanic.ShakeCamera(_shakeData);
         }
     }
 }

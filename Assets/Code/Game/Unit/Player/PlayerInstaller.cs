@@ -46,7 +46,7 @@ namespace ArenaShooter.Units.Player
         private AudioSource _audioSource;
 
         [SerializeField]
-        private float _shakeCameraOnHitDuration;
+        private CameraShakeData _shakeCameraDataOnHit;
 
         [Inject]
         private PlayerWeaponFactory _weaponFactory;
@@ -105,7 +105,7 @@ namespace ArenaShooter.Units.Player
             Container.BindInterfacesAndSelfTo<WeaponRotateController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<HitSoundController>().AsSingle().NonLazy();
 
-            Container.BindInterfacesAndSelfTo<CameraShakeOnPlayerHitController>().AsSingle().WithArguments(_shakeCameraOnHitDuration).NonLazy();
+            Container.BindInterfacesAndSelfTo<CameraShakeOnPlayerHitController>().AsSingle().WithArguments(_shakeCameraDataOnHit).NonLazy();
         }
 
         private void AppendConditions()

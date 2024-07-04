@@ -21,6 +21,8 @@ namespace ArenaShooter.Installers
     public sealed class SceneInstaller : MonoInstaller
     {
         [SerializeField]
+        private CameraShakeData _shakeCameraDataOnEnemyDied;
+        [SerializeField]
         private CameraFollowMechanic _cameraMoveMechanic;
 
         [SerializeField]
@@ -61,6 +63,7 @@ namespace ArenaShooter.Installers
             Container.BindInterfacesAndSelfTo<CameraMouseMoveController>().AsSingle().NonLazy();
 
             Container.Bind<CameraShakeMechanic>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<CameraShakeOnEnemyDieController>().AsSingle().WithArguments(_shakeCameraDataOnEnemyDied).NonLazy();
         }
 
         private void BindScenarioActExecutors()

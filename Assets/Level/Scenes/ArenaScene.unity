@@ -1026,6 +1026,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f422a7c43575a245bc3b8a443a8d655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shakeCameraDataOnEnemyDied:
+    Duration: 0.1
+    Strength: 0.5
+    Vibrato: 20
+    Randomness: 90
   _cameraMoveMechanic: {fileID: 1976634874}
   _unitManager: {fileID: 2052127813}
   _arenaScenarioConfig: {fileID: 11400000, guid: abec496b5fad2a144951565666104f72, type: 2}

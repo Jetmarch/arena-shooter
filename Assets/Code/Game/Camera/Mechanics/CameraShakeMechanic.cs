@@ -1,6 +1,5 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace ArenaShooter.CameraScripts
@@ -14,9 +13,18 @@ namespace ArenaShooter.CameraScripts
             _camera = camera;
         }
 
-        public void ShakeCamera(float duration)
+        public void ShakeCamera(CameraShakeData data)
         {
-            _camera.transform.DOShakePosition(duration);
+            _camera.transform.DOShakePosition(data.Duration, data.Strength, data.Vibrato, data.Randomness);
         }
+    }
+
+    [Serializable]
+    public struct CameraShakeData
+    {
+        public float Duration;
+        public float Strength;
+        public int Vibrato;
+        public float Randomness;
     }
 }
