@@ -12,7 +12,7 @@ namespace ArenaShooter.Components
         [SerializeField]
         private float _flashDuration;
 
-
+        [SerializeField]
         private SpriteRenderer _spriteRenderer;
         private Material _originalMaterial;
 

@@ -112,10 +112,11 @@ MonoBehaviour:
   _shootMechanic: {fileID: 7963146312427705933}
   _weaponReloadMechanic: {fileID: 1610326859159231703}
   _delayBetweenShotsMechanic: {fileID: 7849193754461850481}
-  _spriteRenderer: {fileID: 0}
+  _spriteRenderer: {fileID: 769251535284104164}
   _weaponFacade: {fileID: -2681969314212602647}
   _shootSoundName: revolver_shot
   _amountOfAmmoOnOneShot: 1
+  _audioSource: {fileID: 8355645950621980123}
   _isAutomatic: 0
 --- !u!114 &-2681969314212602647
 MonoBehaviour:
@@ -192,7 +193,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

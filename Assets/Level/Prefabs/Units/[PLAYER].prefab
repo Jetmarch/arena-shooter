@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 5106855117183840813}
   - component: {fileID: 5689391225771231078}
   m_Layer: 8
-  m_Name: '[PLAYER]'
+  m_Name: '[Player]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -369,6 +369,7 @@ MonoBehaviour:
   _flashMechanic: {fileID: 4068095078940072062}
   _healthComponent: {fileID: 8331677765335964353}
   _unitTemporaryInvulnerableMechanic: {fileID: 737122222303575946}
+  _audioSource: {fileID: 9118279903773236577}
 --- !u!114 &5689391225771231078
 MonoBehaviour:
   m_ObjectHideFlags: 0

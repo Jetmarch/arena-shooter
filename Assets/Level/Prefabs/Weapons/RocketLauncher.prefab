@@ -128,7 +128,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -356,10 +356,11 @@ MonoBehaviour:
   _shootMechanic: {fileID: 60820411742922684}
   _weaponReloadMechanic: {fileID: 6358759703652030451}
   _delayBetweenShotsMechanic: {fileID: 725411724057132651}
-  _spriteRenderer: {fileID: 0}
+  _spriteRenderer: {fileID: 6767473881601848225}
   _weaponFacade: {fileID: -7260438451661836453}
   _shootSoundName: rocketlauncher_shot
   _amountOfAmmoOnOneShot: 1
+  _audioSource: {fileID: 9032515802511982233}
   _isAutomatic: 1
 --- !u!114 &-7260438451661836453
 MonoBehaviour:

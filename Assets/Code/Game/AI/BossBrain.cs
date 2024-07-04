@@ -67,7 +67,6 @@ namespace ArenaShooter.AI
                     _controller.Move(Vector2.zero);
                 }
             }
-
         }
 
         public void OnPlayerDetected(GameObject target)

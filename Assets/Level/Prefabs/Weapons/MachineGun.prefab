@@ -112,8 +112,11 @@ MonoBehaviour:
   _shootMechanic: {fileID: 3053750822945519636}
   _weaponReloadMechanic: {fileID: 7552912547472586213}
   _delayBetweenShotsMechanic: {fileID: 1168213287272203612}
+  _spriteRenderer: {fileID: 6708170270130192639}
+  _weaponFacade: {fileID: 5836770636505758686}
   _shootSoundName: machine_gun_shot
   _amountOfAmmoOnOneShot: 1
+  _audioSource: {fileID: 2193357024881124371}
   _isAutomatic: 1
 --- !u!114 &5836770636505758686
 MonoBehaviour:
@@ -275,7 +278,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

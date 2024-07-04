@@ -9,6 +9,7 @@ namespace ArenaShooter.Components
         [SerializeField]
         private float _moveSpeed = 250f;
 
+        [SerializeField]
         private Rigidbody2D _rigidbody;
 
         private CompositeCondition _condition = new();

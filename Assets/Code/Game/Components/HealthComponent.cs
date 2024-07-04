@@ -13,7 +13,7 @@ namespace ArenaShooter.Components
         [SerializeField]
         private float _currentHealth;
 
-        private CompositeCondition _condition;
+        private CompositeCondition _condition = new CompositeCondition();
 
         public event Action<float> CurrentHealthChanged;
         public event Action<float> MaxHealthChanged;

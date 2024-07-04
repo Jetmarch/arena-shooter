@@ -8,19 +8,23 @@ namespace ArenaShooter.AI
     public class AIBrain : MonoBehaviour, IGameUpdateListener
     {
         [SerializeField]
-        private float _pursueDistance = 10f;
+        protected float _pursueDistance = 10f;
         [SerializeField]
-        private float _attackDistance = 7f;
+        protected float _attackDistance = 7f;
         [SerializeField]
-        private float _timeBetweenAttacks = 1f;
+        protected float _timeBetweenAttacks = 1f;
+        [SerializeField]
+        protected int _attackCount = 3;
 
-        private AIInputController _inputController;
+        [SerializeField]
+        protected PlayerScannerComponent _playerScanner;
+        [SerializeField]
+        protected AIInputController _inputController;
 
-        private bool _isAttacking;
-        private int _attackCount = 3;
+        protected bool _isAttacking;
 
-        private PlayerScannerComponent _playerScanner;
-        private Transform _target;
+
+        protected Transform _target;
 
         public void Construct(AIInputController inputController, PlayerScannerComponent playerScanner)
         {
@@ -49,17 +53,22 @@ namespace ArenaShooter.AI
             _playerScanner.OnPlayerLost -= OnPlayerLost;
         }
 
-        private void OnPlayerLost(GameObject player)
+        protected void OnPlayerLost(GameObject player)
         {
             _target = null;
         }
 
-        private void OnPlayerDetected(GameObject player)
+        protected void OnPlayerDetected(GameObject player)
         {
             _target = player.transform;
         }
 
         public void OnUpdate(float delta)
+        {
+            UpdateAI();
+        }
+
+        protected virtual void UpdateAI()
         {
             if (_target == null) return;
             _inputController.WorldMouseMove(_target.position);
@@ -85,7 +94,7 @@ namespace ArenaShooter.AI
             }
         }
 
-        private IEnumerator Attack()
+        protected virtual IEnumerator Attack()
         {
             _isAttacking = true;
             _inputController.Move(Vector2.zero);

@@ -18,6 +18,12 @@ namespace ArenaShooter.Weapons
             _canShoot = true;
         }
 
+        //Быстрый фикс бага со сменой оружия во время таймера задержки между выстрелами
+        private void OnEnable()
+        {
+            _canShoot = true;
+        }
+
         public void DelayShot()
         {
             if (!_canShoot) return;
