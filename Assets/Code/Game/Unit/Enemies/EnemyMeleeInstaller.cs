@@ -2,7 +2,10 @@ using ArenaShooter.AI;
 using ArenaShooter.Components;
 using ArenaShooter.Components.Triggers;
 using ArenaShooter.Inputs;
+using ArenaShooter.Mechanics;
 using ArenaShooter.Units.Player;
+using ArenaShooter.Weapons.Projectiles;
+using UnityEditor;
 using UnityEngine;
 using Zenject;
 
@@ -23,12 +26,17 @@ namespace ArenaShooter.Units.Enemies
         [SerializeField]
         private PlayerScannerComponent _playerScanner;
         [SerializeField]
-        private CircleTrigger2DComponent _triggerComponent;
+        private CircleTrigger2DComponent _playerScannerTrigger;
+
+        [SerializeField]
+        private Trigger2DComponent _damageTrigger;
+        [SerializeField]
+        private IDamageMechanic _damageMechanic;
 
         public override void InstallBindings()
         {
-            _triggerComponent.Construct();
-            _playerScanner.Construct(_triggerComponent);
+            _playerScannerTrigger.Construct();
+            _playerScanner.Construct(_playerScannerTrigger);
             _spriteFlashMechanic.Construct(_spriteRenderer);
 
             Container.Bind<MeleeAIBrain>().FromComponentOn(gameObject).AsSingle();
@@ -36,6 +44,8 @@ namespace ArenaShooter.Units.Enemies
             Container.Bind<HealthComponent>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<Move2DComponent>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<UnitTemporaryInvulnerableMechanic>().FromComponentOn(gameObject).AsSingle();
+            Container.Bind<Trigger2DComponent>().FromInstance(_damageTrigger).AsSingle();
+            Container.Bind<IDamageMechanic>().FromInstance(_damageMechanic).AsSingle();
 
             Container.BindInterfacesAndSelfTo<AIInputController>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<SpriteFlashMechanic>().FromInstance(_spriteFlashMechanic).AsSingle();
@@ -46,6 +56,7 @@ namespace ArenaShooter.Units.Enemies
             Container.BindInterfacesAndSelfTo<SpriteFlashOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<TemporaryInvulnerabilityOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<EnemyMeleeChangeSpeedController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<DamageController>().AsSingle().NonLazy();
 
             _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
         }
@@ -58,8 +69,10 @@ namespace ArenaShooter.Units.Enemies
             _unitTemporaryInvulnerableMechanic = GetComponent<UnitTemporaryInvulnerableMechanic>();
             _healthComponent = GetComponentInChildren<HealthComponent>();
 
-            _triggerComponent = GetComponentInChildren<CircleTrigger2DComponent>();
+            _playerScannerTrigger = GetComponentInChildren<CircleTrigger2DComponent>();
             _playerScanner = GetComponentInChildren<PlayerScannerComponent>();
+
+            _damageMechanic = GetComponentInChildren<IDamageMechanic>();
         }
 #endif
     }

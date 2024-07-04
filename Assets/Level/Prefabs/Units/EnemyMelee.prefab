@@ -105,7 +105,8 @@ GameObject:
   - component: {fileID: 3419117314438918606}
   - component: {fileID: 9073209948313164511}
   - component: {fileID: 8491900049030375488}
-  m_Layer: 8
+  - component: {fileID: 3497804615986489480}
+  m_Layer: 7
   m_Name: DamageTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +162,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.7
 --- !u!114 &8491900049030375488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +175,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34357f338cf6d1f4f98c6e457daa7813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3497804615986489480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054317419327027796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae3f292664723047921e243d7d24e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minDamage: 1
+  _maxDamage: 1
 --- !u!1 &2300335217892702707
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +505,8 @@ MonoBehaviour:
   _healthComponent: {fileID: 7398312867765883377}
   _unitTemporaryInvulnerableMechanic: {fileID: 4966432201591497267}
   _playerScanner: {fileID: 6420158644504378629}
-  _triggerComponent: {fileID: 2023452736464449815}
+  _playerScannerTrigger: {fileID: 2023452736464449815}
+  _damageTrigger: {fileID: 8491900049030375488}
 --- !u!114 &1694509385940994895
 MonoBehaviour:
   m_ObjectHideFlags: 0
