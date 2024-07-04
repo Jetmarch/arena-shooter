@@ -1,5 +1,3 @@
-using ArenaShooter.Inputs;
-using ArenaShooter.Weapons.Projectiles;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

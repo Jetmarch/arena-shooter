@@ -2,9 +2,9 @@ using ArenaShooter.Components;
 using System;
 using UnityEngine;
 
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Mechanics
 {
-    public class ProjectileSplashDamageMechanic : MonoBehaviour, IProjectileDamageMechanic
+    public class SplashDamageMechanic : MonoBehaviour, IDamageMechanic
     {
         [SerializeField]
         private float _damageRadius = 2f;

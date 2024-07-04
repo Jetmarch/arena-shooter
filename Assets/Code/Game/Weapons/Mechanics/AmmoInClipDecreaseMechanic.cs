@@ -1,8 +1,6 @@
-using UnityEngine;
-
 namespace ArenaShooter.Weapons
 {
-    public class AmmoInClipDecreaseMechanic 
+    public class AmmoInClipDecreaseMechanic
     {
         private int _amountOfAmmoOnOneShot = 1;
 

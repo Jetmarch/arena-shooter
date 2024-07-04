@@ -22,7 +22,7 @@ namespace ArenaShooter.Units.Enemies
 
         public void LateDispose()
         {
-            _inputController.OnShoot-= _attackPattern.OnAttack;
+            _inputController.OnShoot -= _attackPattern.OnAttack;
         }
     }
 }

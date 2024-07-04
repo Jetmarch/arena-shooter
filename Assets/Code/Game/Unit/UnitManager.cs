@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace ArenaShooter.Units
 {
@@ -48,7 +47,7 @@ namespace ArenaShooter.Units
 
             dieMechanic.OnDie += OnUnitDie;
 
-            if(type == UnitType.Player)
+            if (type == UnitType.Player)
             {
                 _playerFacade = unit.GetComponent<PlayerFacade>();
                 if (_playerFacade == null)
@@ -84,7 +83,7 @@ namespace ArenaShooter.Units
             if (playerFacade != null)
             {
                 OnPlayerDied?.Invoke(playerFacade);
-            }            
+            }
         }
     }
 }

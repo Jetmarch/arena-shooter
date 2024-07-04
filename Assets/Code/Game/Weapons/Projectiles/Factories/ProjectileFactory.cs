@@ -1,3 +1,4 @@
+using ArenaShooter.Mechanics;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +39,7 @@ namespace ArenaShooter.Weapons.Projectiles
             //TODO: Перенести в пул
             var createdProjectile = _container.InstantiatePrefab(projectile, position, rotation, _projectilePool);
 
-            var damageMechanic = createdProjectile.GetComponent<IProjectileDamageMechanic>();
+            var damageMechanic = createdProjectile.GetComponent<IDamageMechanic>();
             if (damageMechanic == null)
             {
                 throw new Exception($"ProjectileFactory: Projectile with {type} does not contain IProjectileDamageMechanic!");
@@ -47,7 +48,7 @@ namespace ArenaShooter.Weapons.Projectiles
             damageMechanic.Owner = owner;
 
             var spreadProjectiles = createdProjectile.GetComponent<SpreadProjectilesMechanic>();
-            if(spreadProjectiles != null)
+            if (spreadProjectiles != null)
             {
                 spreadProjectiles.SetOwner(owner);
             }

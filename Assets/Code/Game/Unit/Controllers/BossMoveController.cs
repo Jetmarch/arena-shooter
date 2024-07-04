@@ -1,8 +1,4 @@
-﻿using ArenaShooter.AI;
-using ArenaShooter.Components;
-using Zenject;
-
-namespace ArenaShooter.Units.Enemies
+﻿namespace ArenaShooter.Units.Enemies
 {
     //public class BossMoveController : IInitializable, ILateDisposable
     //{

@@ -1,6 +1,4 @@
 using ArenaShooter.Audio;
-using ArenaShooter.Inputs;
-using ArenaShooter.Weapons.Projectiles;
 using UnityEngine;
 using Zenject;
 
@@ -79,7 +77,7 @@ namespace ArenaShooter.Weapons
             Container.Bind<AudioSource>().FromInstance(_audioSource).AsSingle();
             Container.Bind<AudioComponent>().AsSingle().NonLazy();
             Container.Bind<string>().FromInstance(_shootSoundName).AsSingle();
-            
+
         }
 
         private void BindMechanics()

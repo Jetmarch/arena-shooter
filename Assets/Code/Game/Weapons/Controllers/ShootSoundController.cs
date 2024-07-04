@@ -1,5 +1,4 @@
 using ArenaShooter.Audio;
-using UnityEngine;
 using Zenject;
 
 namespace ArenaShooter.Weapons

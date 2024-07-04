@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using ArenaShooter.Mechanics;
 using Zenject;
 
 namespace ArenaShooter.Weapons.Projectiles
@@ -8,9 +6,9 @@ namespace ArenaShooter.Weapons.Projectiles
     public class ProjectileImpactAfterDelayController : IInitializable, ILateDisposable
     {
         private ProjectileImpactAfterDelayMechanic _impactMechanic;
-        private IProjectileDamageMechanic _damageMechanic;
+        private IDamageMechanic _damageMechanic;
 
-        public ProjectileImpactAfterDelayController(ProjectileImpactAfterDelayMechanic impactMechanic, IProjectileDamageMechanic damageMechanic)
+        public ProjectileImpactAfterDelayController(ProjectileImpactAfterDelayMechanic impactMechanic, IDamageMechanic damageMechanic)
         {
             _impactMechanic = impactMechanic;
             _damageMechanic = damageMechanic;

@@ -1,13 +1,14 @@
-﻿using Zenject;
+﻿using ArenaShooter.Mechanics;
+using Zenject;
 
 namespace ArenaShooter.Weapons.Projectiles
 {
     public class ProjectileDestroyOnHitController : IInitializable, ILateDisposable
     {
         private ProjectileDestroyOnHitMechanic _destroyOnHitMechanic;
-        private IProjectileDamageMechanic _damageMechanic;
+        private IDamageMechanic _damageMechanic;
 
-        public ProjectileDestroyOnHitController(ProjectileDestroyOnHitMechanic destroyOnHitMechanic, IProjectileDamageMechanic damageMechanic)
+        public ProjectileDestroyOnHitController(ProjectileDestroyOnHitMechanic destroyOnHitMechanic, IDamageMechanic damageMechanic)
         {
             _destroyOnHitMechanic = destroyOnHitMechanic;
             _damageMechanic = damageMechanic;

@@ -2,8 +2,6 @@ using ArenaShooter.AI;
 using ArenaShooter.Components;
 using ArenaShooter.Components.Triggers;
 using ArenaShooter.Inputs;
-using ArenaShooter.Units;
-using ArenaShooter.Units.Enemies;
 using ArenaShooter.Units.Player;
 using UnityEngine;
 using Zenject;

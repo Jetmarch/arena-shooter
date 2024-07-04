@@ -2,9 +2,9 @@ using ArenaShooter.Components;
 using System;
 using UnityEngine;
 
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Mechanics
 {
-    public class ProjectileDamageMechanic : MonoBehaviour, IProjectileDamageMechanic
+    public class DamageMechanic : MonoBehaviour, IDamageMechanic
     {
         [SerializeField]
         private float _minDamage;

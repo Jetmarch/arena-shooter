@@ -1,5 +1,4 @@
 using ArenaShooter.Weapons;
-using UnityEngine;
 
 namespace ArenaShooter.AI
 {

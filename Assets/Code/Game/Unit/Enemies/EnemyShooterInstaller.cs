@@ -4,7 +4,6 @@ using ArenaShooter.Components.Triggers;
 using ArenaShooter.Inputs;
 using ArenaShooter.Units.Player;
 using ArenaShooter.Weapons;
-using ArenaShooter.Weapons.Projectiles;
 using UnityEngine;
 using Zenject;
 

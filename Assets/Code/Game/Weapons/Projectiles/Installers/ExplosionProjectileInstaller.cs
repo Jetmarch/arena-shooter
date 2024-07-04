@@ -1,4 +1,4 @@
-using ArenaShooter.Components.Triggers;
+using ArenaShooter.Mechanics;
 using Zenject;
 
 namespace ArenaShooter.Weapons.Projectiles
@@ -7,7 +7,7 @@ namespace ArenaShooter.Weapons.Projectiles
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<ProjectileSplashDamageMechanic>().FromComponentOn(gameObject).AsSingle();
+            Container.BindInterfacesAndSelfTo<SplashDamageMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<ProjectileDestroyOnHitMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<ProjectileImpactAfterDelayMechanic>().FromComponentOn(gameObject).AsSingle();
 

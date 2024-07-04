@@ -1,14 +1,15 @@
 ﻿using ArenaShooter.Components.Triggers;
+using ArenaShooter.Mechanics;
 using Zenject;
 
 namespace ArenaShooter.Weapons.Projectiles
 {
-    public class ProjectileDamageController : IInitializable, ILateDisposable
+    public class DamageController : IInitializable, ILateDisposable
     {
         private Trigger2DComponent _triggerComponent;
-        private IProjectileDamageMechanic _damageMechanic;
+        private IDamageMechanic _damageMechanic;
 
-        public ProjectileDamageController(Trigger2DComponent triggerComponent, IProjectileDamageMechanic damageMechanic)
+        public DamageController(Trigger2DComponent triggerComponent, IDamageMechanic damageMechanic)
         {
             _triggerComponent = triggerComponent;
             _damageMechanic = damageMechanic;

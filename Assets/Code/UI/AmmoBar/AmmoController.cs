@@ -24,13 +24,13 @@ namespace ArenaShooter.UI
         {
             _weaponChangeMechanic.WeaponChanged -= OnWeaponChanged;
 
-            if (_ammoClipStorage == null) return; 
+            if (_ammoClipStorage == null) return;
             _ammoClipStorage.CurrentAmmoChanged -= _ammoView.UpdateAmmo;
         }
 
         private void OnWeaponChanged()
         {
-            if(_ammoClipStorage != null)
+            if (_ammoClipStorage != null)
             {
                 _ammoClipStorage.CurrentAmmoChanged -= _ammoView.UpdateAmmo;
             }

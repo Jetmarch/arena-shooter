@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ArenaShooter.Weapons.Projectiles
+namespace ArenaShooter.Mechanics
 {
     //public abstract class BaseProjectileDamageMechanic : MonoBehaviour
     //{
@@ -17,7 +17,7 @@ namespace ArenaShooter.Weapons.Projectiles
     //    protected abstract void OnHitMechanic(Collider2D obj);
     //}
 
-    public interface IProjectileDamageMechanic
+    public interface IDamageMechanic
     {
         event Action<GameObject> HitGameObject;
         GameObject Owner { get; set; }

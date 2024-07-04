@@ -1,6 +1,4 @@
 using ArenaShooter.Inputs;
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace ArenaShooter.AI

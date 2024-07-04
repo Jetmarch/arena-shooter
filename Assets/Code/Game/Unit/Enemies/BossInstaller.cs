@@ -73,14 +73,14 @@ namespace ArenaShooter.Units.Enemies
             Container.BindInterfacesAndSelfTo<AIInputController>().FromInstance(_inputController);
             Container.Bind<Move2DComponent>().FromInstance(_moveComponent).AsSingle();
             Container.Bind<PlayerScannerComponent>().FromInstance(_playerScanner).AsSingle();
-            
+
             Container.Bind<HealthComponent>().FromInstance(_healthComponent).AsSingle();
             Container.Bind<UnitDieMechanic>().FromInstance(_unitDieMechanic).AsSingle();
             Container.Bind<WeaponChangeMechanic>().FromInstance(_weaponChangeMechanic).AsSingle();
             Container.Bind<SpriteFlashMechanic>().FromInstance(_spriteFlashMechanic).AsSingle();
             Container.Bind<UnitTemporaryInvulnerableMechanic>().FromInstance(_unitTemporaryInvulnerableMechanic).AsSingle();
 
-            
+
             Container.BindInterfacesAndSelfTo<BossAttackPattern>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BossPlayerScannerController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BossAttackPatternController>().AsSingle().NonLazy();
@@ -99,7 +99,7 @@ namespace ArenaShooter.Units.Enemies
 
         private void SetWeaponsOwner()
         {
-            foreach(var weapon in _weaponStorage.Weapons)
+            foreach (var weapon in _weaponStorage.Weapons)
             {
                 weapon.WeaponShootMechanic.SetOwner(gameObject);
             }

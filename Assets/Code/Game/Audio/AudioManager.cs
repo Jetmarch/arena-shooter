@@ -1,5 +1,5 @@
-using System;
 using RotaryHeart.Lib.SerializableDictionary;
+using System;
 using UnityEngine;
 
 namespace ArenaShooter.Audio
@@ -11,7 +11,7 @@ namespace ArenaShooter.Audio
 
         public AudioClip GetSound(string name)
         {
-            if(_audioClips.TryGetValue(name.ToLower(), out var audioClip))
+            if (_audioClips.TryGetValue(name.ToLower(), out var audioClip))
             {
                 return audioClip;
             }

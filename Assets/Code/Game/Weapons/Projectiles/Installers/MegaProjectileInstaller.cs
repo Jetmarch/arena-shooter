@@ -1,5 +1,6 @@
 using ArenaShooter.Components;
 using ArenaShooter.Components.Triggers;
+using ArenaShooter.Mechanics;
 using UnityEngine;
 using Zenject;
 
@@ -18,11 +19,11 @@ namespace ArenaShooter.Weapons.Projectiles
 
             Container.Bind<Trigger2DComponent>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<SpreadProjectilesMechanic>().FromComponentOn(gameObject).AsSingle();
-            Container.BindInterfacesAndSelfTo<ProjectileDamageMechanic>().FromComponentOn(gameObject).AsSingle();
+            Container.BindInterfacesAndSelfTo<DamageMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<ProjectileDestroyOnHitMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<Move2DComponent>().FromComponentOn(gameObject).AsSingle();
 
-            Container.BindInterfacesAndSelfTo<ProjectileDamageController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<DamageController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ProjectileSpreadOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitController>().AsSingle().NonLazy();
         }

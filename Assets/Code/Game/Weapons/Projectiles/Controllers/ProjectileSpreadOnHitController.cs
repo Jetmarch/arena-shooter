@@ -1,3 +1,4 @@
+using ArenaShooter.Mechanics;
 using UnityEngine;
 using Zenject;
 
@@ -5,10 +6,10 @@ namespace ArenaShooter.Weapons.Projectiles
 {
     public class ProjectileSpreadOnHitController : IInitializable
     {
-        private IProjectileDamageMechanic _damageMechanic;
+        private IDamageMechanic _damageMechanic;
         private SpreadProjectilesMechanic _spreadProjectileMechanic;
 
-        public ProjectileSpreadOnHitController(IProjectileDamageMechanic damageMechanic, SpreadProjectilesMechanic spreadProjectileMechanic)
+        public ProjectileSpreadOnHitController(IDamageMechanic damageMechanic, SpreadProjectilesMechanic spreadProjectileMechanic)
         {
             _damageMechanic = damageMechanic;
             _spreadProjectileMechanic = spreadProjectileMechanic;

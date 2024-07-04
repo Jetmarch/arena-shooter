@@ -1,5 +1,3 @@
-using ArenaShooter.Weapons.Projectiles;
-using UnityEngine;
 using Zenject;
 
 namespace ArenaShooter.Weapons
@@ -10,7 +8,7 @@ namespace ArenaShooter.Weapons
 
         public override void InstallBindings()
         {
-            
+
         }
 
 #if UNITY_EDITOR

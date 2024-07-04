@@ -1,7 +1,5 @@
-using ArenaShooter.Components;
 using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 namespace ArenaShooter.AI
@@ -44,11 +42,11 @@ namespace ArenaShooter.AI
             _inputController.WorldMouseMove(_target.position);
             _inputController.ScreenMouseMove(_target.position);
 
-            if(_inCharge)
+            if (_inCharge)
             {
                 _inputController.Move(_chargeVelocity);
             }
-            else if(_isChargeOnCooldown && !_isWandering)
+            else if (_isChargeOnCooldown && !_isWandering)
             {
                 var rndInCirclePosition = UnityEngine.Random.insideUnitCircle * _radiusOfInteraction;
                 var positionNearTarget = new Vector3(_target.position.x + rndInCirclePosition.x, _target.position.y + rndInCirclePosition.y, 0f);
@@ -58,7 +56,7 @@ namespace ArenaShooter.AI
                 //TODO: Подвязать к событию контроллер
                 OnChangeMoveSpeed?.Invoke(_wanderingSpeed);
             }
-            else if(_isWandering)
+            else if (_isWandering)
             {
                 _inputController.Move(_wanderingVelocity);
 
