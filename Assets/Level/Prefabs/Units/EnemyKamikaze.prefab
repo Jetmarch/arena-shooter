@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flashMaterial: {fileID: 2100000, guid: 849907df48fe1734bbb5ce43dc39d3b8, type: 2}
   _flashDuration: 0.15
+  _spriteRenderer: {fileID: 0}
 --- !u!1 &2844808653825295335
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +159,9 @@ MonoBehaviour:
   _pursueDistance: 10
   _attackDistance: 1.5
   _timeBetweenAttacks: 10
+  _attackCount: 3
+  _playerScanner: {fileID: 0}
+  _inputController: {fileID: 0}
 --- !u!114 &5019129349766656066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +208,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.35
 --- !u!50 &6797092983888219558
 Rigidbody2D:
   serializedVersion: 4
@@ -245,6 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 250
+  _rigidbody: {fileID: 0}
 --- !u!114 &3938561883768956516
 MonoBehaviour:
   m_ObjectHideFlags: 0
