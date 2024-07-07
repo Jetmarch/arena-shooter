@@ -7,6 +7,11 @@ namespace ArenaShooter.UI
         public override void InstallBindings()
         {
             Container.Bind<HealthBarController>().AsSingle();
+            Container.Bind<HordeScenarioActView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<CapturePointScenarioActView>().FromComponentInHierarchy().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<HordeScenarioActController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<CapturePointScenarioActController>().AsSingle().NonLazy();
         }
     }
 }

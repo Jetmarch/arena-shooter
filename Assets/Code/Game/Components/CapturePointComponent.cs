@@ -26,6 +26,9 @@ namespace ArenaShooter.Components
         [SerializeField]
         private bool _isCaptureAvailable;
 
+        public float CaptureCurrentProgress => _captureCurrentProgress;
+        public float CaptureMaxProgress => _captureMaxProgress;
+
         public void Construct(PlayerScannerComponent playerScannerComponent)
         {
             _playerScannerComponent = playerScannerComponent;

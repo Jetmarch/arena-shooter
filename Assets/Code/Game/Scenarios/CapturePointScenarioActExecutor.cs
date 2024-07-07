@@ -31,6 +31,7 @@ namespace ArenaShooter.Scenarios
 
         public CapturePointComponent CurrentPoint { get { return _capturePoints[_currentPoint]; } }
 
+
         [Inject]
         private void Construct(UnitManager unitManager)
         {

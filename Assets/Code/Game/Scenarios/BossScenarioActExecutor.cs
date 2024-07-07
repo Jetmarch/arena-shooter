@@ -1,5 +1,6 @@
 using ArenaShooter.Components;
 using ArenaShooter.Units;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -12,6 +13,10 @@ namespace ArenaShooter.Scenarios
 
         private UnitManager _unitManager;
         private BossScenarioActData _data;
+
+        private GameObject _bossUnit;
+
+        public GameObject BossUnit { get { return _bossUnit; } }
 
         [Inject]
         private void Construct(UnitManager unitManager)
@@ -31,8 +36,8 @@ namespace ArenaShooter.Scenarios
             OnScenarioActStart();
             _data = bossData;
 
-            var bossUnit = _unitManager.CreateUnit(Units.Factories.UnitType.Boss, _bossSpawnPoint.GetRandomPointInside(), null);
-            var dieMechanic = bossUnit.GetComponent<UnitDieMechanic>();
+            _bossUnit = _unitManager.CreateUnit(Units.Factories.UnitType.Boss, _bossSpawnPoint.GetRandomPointInside(), null);
+            var dieMechanic = _bossUnit.GetComponent<UnitDieMechanic>();
             if (dieMechanic == null)
             {
                 throw new System.Exception("Boss doesn't have UnitDieMechanic. Fix it");

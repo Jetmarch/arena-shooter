@@ -1,5 +1,6 @@
 using ArenaShooter.Components;
 using ArenaShooter.Units;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,10 @@ namespace ArenaShooter.Scenarios
         private UnitManager _unitManager;
         private HordeScenarioActData _data;
         private bool _spawnInProcess;
+        private int _diedUnits;
+
+        public IReadOnlyCollection<GameObject> HordeUnits { get {  return _hordeUnits; } }
+        public event Action HordeUnitDied;
 
         [Inject]
         private void Construct(UnitManager unitManager)
@@ -31,7 +36,6 @@ namespace ArenaShooter.Scenarios
             _unitManager = unitManager;
             _scenarioType = ScenarioType.Horde;
             _currentSpawnPoint = 0;
-
         }
 
         public override void Execute(BaseScenarioActData data)
@@ -39,12 +43,31 @@ namespace ArenaShooter.Scenarios
             var hordeData = data as HordeScenarioActData;
             if (hordeData == null)
             {
-                throw new System.Exception($"Type mismatch between ScenarioType and ScenarioActData type!");
+                throw new Exception($"Type mismatch between ScenarioType and ScenarioActData type!");
             }
 
-            OnScenarioActStart();
+            _diedUnits = 0;
             _data = hordeData;
+            OnScenarioActStart();
             StartCoroutine(SpawnHorde(_data));
+        }
+
+        public int GetCountOfUnitsInHorde()
+        {
+            if (_data == null) return 0;
+            int countOfUnits = 0;
+
+            foreach(var unitData in _data.EnemyData)
+            {
+                countOfUnits += unitData.CountOfEnemies;
+            }
+
+            return countOfUnits;
+        }
+
+        public int GetCountOfRemainingUnits()
+        {
+            return GetCountOfUnitsInHorde() - _diedUnits;
         }
 
         private IEnumerator SpawnHorde(HordeScenarioActData hordeData)
@@ -83,7 +106,9 @@ namespace ArenaShooter.Scenarios
         {
             if (_hordeUnits.Contains(obj))
             {
+                _diedUnits++;
                 _hordeUnits.Remove(obj);
+                HordeUnitDied?.Invoke();
             }
 
             if (_hordeUnits.Count <= 0 && !_spawnInProcess)

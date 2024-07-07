@@ -13,13 +13,21 @@ namespace ArenaShooter.UI
 
         public void Setup(string bossName, float currentProgress, float maxProgress)
         {
+            _progressBarView.gameObject.SetActive(true);
+            _bossNameText.gameObject.SetActive(true);
             _progressBarView.Setup(currentProgress, maxProgress);
             _bossNameText.text = bossName;
         }
 
-        public void Show(float currentProgress)
+        public void UpdateProgress(float progress)
         {
-            _progressBarView.Show(currentProgress);
+            _progressBarView.Show(progress);
+        }
+
+        public void Hide()
+        {
+            _progressBarView.gameObject.SetActive(false);
+            _bossNameText.gameObject.SetActive(false);
         }
     }
 }

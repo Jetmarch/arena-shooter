@@ -76,6 +76,10 @@ namespace ArenaShooter.Installers
             }
 
             Container.BindInstance(scenarioActExecutors).AsSingle();
+
+            Container.Bind<HordeScenarioActExecutor>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<CapturePointScenarioActExecutor>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<BossScenarioActExecutor>().FromComponentInHierarchy().AsSingle();
         }
 
         private void BindUI()
