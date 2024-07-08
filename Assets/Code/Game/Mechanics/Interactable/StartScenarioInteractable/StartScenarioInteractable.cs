@@ -1,4 +1,5 @@
 using ArenaShooter.Inputs;
+using System;
 using UnityEngine;
 
 namespace ArenaShooter.Mechanics
@@ -11,6 +12,9 @@ namespace ArenaShooter.Mechanics
 
         private bool _canInteract;
 
+        public event Action OnActivate;
+        public event Action OnDeactivate;
+
         public StartScenarioInteractable(GameLoopManager gameLoopManager, IInteractInputProvider inputProvider)
         {
             _gameLoopManager = gameLoopManager;
@@ -20,14 +24,18 @@ namespace ArenaShooter.Mechanics
 
         public void Activate(GameObject _)
         {
+            if (_gameLoopManager.State != GameState.None) return;
+
             _inputProvider.OnInteract += Interact;
             _canInteract = true;
+            OnActivate?.Invoke();
         }
 
         public void Deactivate(GameObject _)
         {
             _inputProvider.OnInteract -= Interact;
             _canInteract = false;
+            OnDeactivate?.Invoke();
         }
 
         public bool CanInteract()
@@ -38,6 +46,7 @@ namespace ArenaShooter.Mechanics
         public void Interact()
         {
             if (!CanInteract()) return;
+            if (_gameLoopManager.State != GameState.None) return;
 
             _gameLoopManager.StartGame();
         }

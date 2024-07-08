@@ -9,10 +9,13 @@ namespace ArenaShooter.UI
     {
         [SerializeField]
         private ProgressBarView _progressBarView;
+        [SerializeField]
+        private TextMeshProUGUI _hordeLabel;
         
         public void Setup(float currentValue, float maxValue)
         {
             _progressBarView.gameObject.SetActive(true);
+            _hordeLabel.gameObject.SetActive(true);
             _progressBarView.Setup(currentValue, maxValue);
         }
 
@@ -24,6 +27,7 @@ namespace ArenaShooter.UI
         public void Hide()
         {
             _progressBarView.gameObject.SetActive(false);
+            _hordeLabel.gameObject.SetActive(false);
         }
     }
 }

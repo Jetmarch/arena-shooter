@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using DG.Tweening;
+using ArenaShooter.Mechanics;
 
 namespace ArenaShooter.Installers
 {
@@ -31,8 +32,7 @@ namespace ArenaShooter.Installers
         [SerializeField]
         private ArenaScenarioConfiguration _arenaScenarioConfig;
 
-        [SerializeField]
-        private UIPrefabContainer _playerUIPrefabContainer;
+        
 
         public override void InstallBindings()
         {
@@ -53,8 +53,7 @@ namespace ArenaShooter.Installers
             Container.Bind<ScorePointsStorage>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AddScorePointsOnEnemyDeathController>().AsSingle().NonLazy();
             Container.Bind<ArenaScenarioExecutor>().FromComponentInHierarchy().AsSingle();
-
-            BindUI();
+            Container.BindInterfacesAndSelfTo<StartScenarioInteractable>().AsSingle().NonLazy();
         }
 
         private void BindCamera()
@@ -82,17 +81,6 @@ namespace ArenaShooter.Installers
             Container.Bind<HordeScenarioActExecutor>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CapturePointScenarioActExecutor>().FromComponentInHierarchy().AsSingle();
             Container.Bind<BossScenarioActExecutor>().FromComponentInHierarchy().AsSingle();
-        }
-
-        private void BindUI()
-        {
-            Container.Bind<UIPrefabContainer>().FromInstance(_playerUIPrefabContainer).AsSingle();
-            Container.BindInterfacesAndSelfTo<PlayerUICreateController>().AsSingle().NonLazy();
-
-
-            Container.Bind<AnnouncementScreenView>().FromComponentInHierarchy().AsSingle();
-            Container.BindInterfacesAndSelfTo<DefeatScreenController>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<VictoryScreenController>().AsSingle().NonLazy();
         }
 
         //TODO: Убрать это

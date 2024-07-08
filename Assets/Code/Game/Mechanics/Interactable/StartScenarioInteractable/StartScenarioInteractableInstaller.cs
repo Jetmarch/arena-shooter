@@ -16,7 +16,7 @@ namespace ArenaShooter.Mechanics
         {
             Container.Bind<PlayerScannerComponent>().FromInstance(_scanner).AsSingle();
 
-            Container.BindInterfacesAndSelfTo<StartScenarioInteractable>().AsSingle().NonLazy();
+            //Container.BindInterfacesAndSelfTo<StartScenarioInteractable>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<StartScenarioController>().AsSingle().NonLazy();
         }
 

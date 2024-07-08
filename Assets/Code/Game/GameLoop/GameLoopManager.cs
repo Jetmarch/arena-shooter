@@ -15,6 +15,10 @@ namespace ArenaShooter
         [SerializeField]
         private List<IGameFixedUpdateListener> _fixedUpdateListeners = new();
 
+        private GameState _state;
+
+        public GameState State { get { return _state; } }
+
         private void Awake()
         {
             IGameLoopListener.OnRegister += OnRegister;
@@ -70,6 +74,7 @@ namespace ArenaShooter
         [ContextMenu("Start game")]
         public void StartGame()
         {
+            _state = GameState.Running;
             for (int i = 0; i < _listeners.Count; i++)
             {
                 if (_listeners[i] is IGameStartListener startGameListener)
@@ -81,6 +86,7 @@ namespace ArenaShooter
         [ContextMenu("Pause game")]
         public void PauseGame()
         {
+            _state = GameState.Paused;
             for (int i = 0; i < _listeners.Count; i++)
             {
                 if (_listeners[i] is IGamePauseListener pauseGameListener)
@@ -92,6 +98,7 @@ namespace ArenaShooter
         [ContextMenu("Resume game")]
         public void ResumeGame()
         {
+            _state = GameState.Running;
             for (int i = 0; i < _listeners.Count; i++)
             {
                 if (_listeners[i] is IGameResumeListener resumeGameListener)
@@ -103,6 +110,7 @@ namespace ArenaShooter
         [ContextMenu("Finish game")]
         public void FinishGame()
         {
+            _state = GameState.Finished;
             for (int i = 0; i < _listeners.Count; i++)
             {
                 if (_listeners[i] is IGameFinishListener finishGameListener)
