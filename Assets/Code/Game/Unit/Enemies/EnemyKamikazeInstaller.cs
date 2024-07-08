@@ -42,7 +42,7 @@ namespace ArenaShooter.Units.Enemies
             _moveComponent.Construct(_rigidbody);
             _brain.Construct(_inputController, _playerScanner);
             _triggerComponent.Construct();
-            _playerScanner.Construct(_triggerComponent);
+            //_playerScanner.Construct(_triggerComponent);
             _spriteFlashMechanic.Construct(_spriteRenderer);
 
             Container.Bind<UnitDieMechanic>().FromComponentOn(gameObject).AsSingle();

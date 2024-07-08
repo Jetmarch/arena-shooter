@@ -23,7 +23,6 @@ namespace ArenaShooter.AI
 
         protected bool _isAttacking;
 
-
         protected Transform _target;
 
         public void Construct(AIInputController inputController, PlayerScannerComponent playerScanner)

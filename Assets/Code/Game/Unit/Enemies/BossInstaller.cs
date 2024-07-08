@@ -65,7 +65,6 @@ namespace ArenaShooter.Units.Enemies
             _moveComponent.Construct(_rigidbody);
             _weaponChangeMechanic.Construct(_weaponStorage);
             _circleTrigger.Construct();
-            _playerScanner.Construct(_circleTrigger);
             _spriteFlashMechanic.Construct(_spriteRenderer);
             _bossBrain.Construct(_inputController);
 

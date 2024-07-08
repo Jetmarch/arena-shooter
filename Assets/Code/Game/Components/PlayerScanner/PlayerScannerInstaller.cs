@@ -13,7 +13,6 @@ namespace ArenaShooter.Components
         public override void InstallBindings()
         {
             _circleTriggerComponent.Construct();
-            _scanner.Construct(_circleTriggerComponent);
 
             Container.Bind<CircleTrigger2DComponent>().FromInstance(_circleTriggerComponent).AsSingle();
             Container.Bind<PlayerScannerComponent>().FromInstance(_scanner).AsSingle();

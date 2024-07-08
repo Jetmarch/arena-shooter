@@ -50,6 +50,9 @@ TagManager:
   - name: Walls
     uniqueID: 354488965
     locked: 0
+  - name: Decorations
+    uniqueID: 3720217863
+    locked: 0
   - name: Characters
     uniqueID: 268550243
     locked: 0

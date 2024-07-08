@@ -31,8 +31,6 @@ namespace ArenaShooter.Units.Enemies
         [SerializeField]
         private PlayerScannerComponent _playerScanner;
         [SerializeField]
-        private BaseWeaponInstaller _weaponInstaller;
-        [SerializeField]
         private SpriteFlashMechanic _spriteFlashMechanic;
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
@@ -57,7 +55,6 @@ namespace ArenaShooter.Units.Enemies
             _moveComponent.Construct(_rigidbody);
             _brain.Construct(_inputController, _playerScanner);
             _triggerComponent.Construct();
-            _playerScanner.Construct(_triggerComponent);
             _spriteFlashMechanic.Construct(_spriteRenderer);
 
             _weaponChangeMechanic.Construct(_weaponStorage);
@@ -98,7 +95,6 @@ namespace ArenaShooter.Units.Enemies
             _brain = GetComponent<AIBrain>();
             _triggerComponent = GetComponentInChildren<CircleTrigger2DComponent>();
             _playerScanner = GetComponentInChildren<PlayerScannerComponent>();
-            _weaponInstaller = GetComponentInChildren<BaseWeaponInstaller>();
             _spriteFlashMechanic = GetComponentInChildren<SpriteFlashMechanic>();
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _unitTemporaryInvulnerableMechanic = GetComponent<UnitTemporaryInvulnerableMechanic>();

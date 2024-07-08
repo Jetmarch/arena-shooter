@@ -26,16 +26,18 @@ namespace ArenaShooter.Units.Enemies
         [SerializeField]
         private PlayerScannerComponent _playerScanner;
         [SerializeField]
-        private CircleTrigger2DComponent _playerScannerTrigger;
+        private Trigger2DComponent _damageTrigger;
 
         [SerializeField]
-        private Trigger2DComponent _damageTrigger;
+        private MeleeAIBrain _meleeAIBrain;
+
+        [SerializeField]
+        private AIInputController _inputController;
 
         public override void InstallBindings()
         {
-            _playerScannerTrigger.Construct();
-            _playerScanner.Construct(_playerScannerTrigger);
             _spriteFlashMechanic.Construct(_spriteRenderer);
+            _meleeAIBrain.Construct(_inputController, _playerScanner);
 
             Container.Bind<MeleeAIBrain>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<UnitDieMechanic>().FromComponentOn(gameObject).AsSingle();
@@ -66,9 +68,9 @@ namespace ArenaShooter.Units.Enemies
             _spriteFlashMechanic = GetComponentInChildren<SpriteFlashMechanic>();
             _unitTemporaryInvulnerableMechanic = GetComponent<UnitTemporaryInvulnerableMechanic>();
             _healthComponent = GetComponentInChildren<HealthComponent>();
-
-            _playerScannerTrigger = GetComponentInChildren<CircleTrigger2DComponent>();
+            _inputController = GetComponent<AIInputController>();
             _playerScanner = GetComponentInChildren<PlayerScannerComponent>();
+            _meleeAIBrain = GetComponent<MeleeAIBrain>();
         }
 #endif
     }
