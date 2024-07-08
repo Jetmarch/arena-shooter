@@ -31,8 +31,6 @@ namespace ArenaShooter.Scenarios
             {
                 throw new System.Exception($"Type mismatch between ScenarioType and ScenarioActData type!");
             }
-
-            OnScenarioActStart();
             _data = bossData;
 
             _bossUnit = _unitManager.CreateUnit(Units.Factories.UnitType.Boss, _bossSpawnPoint.GetRandomPointInside(), null);
@@ -43,6 +41,7 @@ namespace ArenaShooter.Scenarios
             }
 
             dieMechanic.OnDie += OnBossDie;
+            OnScenarioActStart();
         }
 
         private void OnBossDie(GameObject obj)

@@ -21,13 +21,14 @@ namespace ArenaShooter.UI
         {
             _executor.ScenarioActStart += SetupView;
             _executor.ScenarioActFinish += _view.Hide;
-            _healthComponent.CurrentHealthChanged += _view.UpdateProgress;
         }
 
         public void LateDispose()
         {
             _executor.ScenarioActStart -= SetupView;
             _executor.ScenarioActFinish -= _view.Hide;
+
+            if (_healthComponent == null) return;
             _healthComponent.CurrentHealthChanged -= _view.UpdateProgress;
         }
 
@@ -35,6 +36,7 @@ namespace ArenaShooter.UI
         {
             _healthComponent = _executor.BossUnit.GetComponent<HealthComponent>();
             _view.Setup(_executor.BossUnit.name, _healthComponent.CurrentHealth, _healthComponent.MaxHealth);
+            _healthComponent.CurrentHealthChanged += _view.UpdateProgress;
         }
     }
 }
