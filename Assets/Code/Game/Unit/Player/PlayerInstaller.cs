@@ -48,6 +48,9 @@ namespace ArenaShooter.Units.Player
         [SerializeField]
         private CameraShakeData _shakeCameraDataOnHit;
 
+        [SerializeField]
+        private ParticleSystem _footstepEffect;
+
         [Inject]
         private PlayerWeaponFactory _weaponFactory;
 
@@ -106,6 +109,8 @@ namespace ArenaShooter.Units.Player
             Container.BindInterfacesAndSelfTo<HitSoundController>().AsSingle().NonLazy();
 
             Container.BindInterfacesAndSelfTo<CameraShakeOnPlayerHitController>().AsSingle().WithArguments(_shakeCameraDataOnHit).NonLazy();
+
+            Container.BindInterfacesAndSelfTo<UnitFootstepEffectController>().AsSingle().WithArguments(_footstepEffect).NonLazy();
         }
 
         private void AppendConditions()
@@ -147,6 +152,7 @@ namespace ArenaShooter.Units.Player
             _unitTemporaryInvulnerableMechanic = GetComponent<UnitTemporaryInvulnerableMechanic>();
             _healthComponent = GetComponentInChildren<HealthComponent>();
             _audioSource = GetComponentInChildren<AudioSource>();
+            _footstepEffect = GetComponentInChildren<ParticleSystem>();
         }
 #endif
     }

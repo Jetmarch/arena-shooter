@@ -13,17 +13,21 @@ MonoBehaviour:
   m_Name: ArenaScenarioConfiguration
   m_EditorClassIdentifier: 
   _scenarioActs:
-  - Type: 3
-    EnemyData: []
+  - Type: 1
+    EnemyData:
+    - UnitType: 2
+      CountOfEnemies: 1
+    - UnitType: 3
+      CountOfEnemies: 1
+    - UnitType: 4
+      CountOfEnemies: 1
     TimeToCapture: 0
     BossPrefab: {fileID: 0}
   - Type: 2
     EnemyData: []
     TimeToCapture: 0
     BossPrefab: {fileID: 0}
-  - Type: 1
-    EnemyData:
-    - UnitType: 4
-      CountOfEnemies: 2
+  - Type: 3
+    EnemyData: []
     TimeToCapture: 0
     BossPrefab: {fileID: 0}
