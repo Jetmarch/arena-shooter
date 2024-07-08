@@ -40,4 +40,9 @@ namespace ArenaShooter.Inputs
     {
         event Action<Vector3> OnWorldMouseMove;
     }
+
+    public interface IInteractInputProvider
+    {
+        event Action OnInteract;
+    }
 }

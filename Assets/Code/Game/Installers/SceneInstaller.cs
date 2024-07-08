@@ -37,6 +37,8 @@ namespace ArenaShooter.Installers
         public override void InstallBindings()
         {
             BindCamera();
+
+            Container.Bind<GameLoopManager>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ProjectileFactory>().FromComponentInHierarchy().AsSingle();
             Container.Bind<PlayerWeaponFactory>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<UnitManager>().FromComponentInHierarchy().AsSingle();

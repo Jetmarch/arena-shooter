@@ -2,6 +2,7 @@ using ArenaShooter.Components.Triggers;
 using ArenaShooter.Units.Player;
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace ArenaShooter.Components
 {
@@ -11,11 +12,12 @@ namespace ArenaShooter.Components
         [SerializeField]
         private float _scannerRadius = 10f;
 
-
+        
         private CircleTrigger2DComponent _trigger;
 
         public event Action<GameObject> OnPlayerDetected;
         public event Action<GameObject> OnPlayerLost;
+
 
         public void Construct(CircleTrigger2DComponent trigger)
         {
@@ -31,7 +33,7 @@ namespace ArenaShooter.Components
             _trigger.SetTriggerRadius(radius);
         }
 
-        private void OnScannerTriggerEnter(GameObject obj)
+        public void OnScannerTriggerEnter(GameObject obj)
         {
             var player = obj.GetComponent<PlayerInstaller>();
             if (player == null) return;
@@ -39,7 +41,7 @@ namespace ArenaShooter.Components
             OnPlayerDetected?.Invoke(player.gameObject);
         }
 
-        private void OnScannerTriggerExit(GameObject obj)
+        public void OnScannerTriggerExit(GameObject obj)
         {
             var player = obj.GetComponent<PlayerInstaller>();
             if (player == null) return;

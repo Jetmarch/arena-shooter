@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace ArenaShooter.Inputs
 {
     public sealed class KeyboardAndMouseInputController : MonoBehaviour,
         IMoveInputProvider, IScreenMouseMoveInputProvider, IWorldMouseMoveInputProvider,
         IShootInputProvider, IReloadInputProvider, IChangeWeaponInputProvider, IDashInputProvider,
-        IGameUpdateListener
+        IGameUpdateListener, IInteractInputProvider
     {
         [SerializeField]
         private KeyCode _moveUpKey = KeyCode.W;
@@ -21,6 +22,8 @@ namespace ArenaShooter.Inputs
         private KeyCode _dashKey = KeyCode.LeftShift;
         [SerializeField]
         private KeyCode _reloadKey = KeyCode.R;
+        [SerializeField]
+        private KeyCode _interact = KeyCode.E;
 
         public event Action<Vector2> OnMove;
         public event Action<Vector3> OnScreenMouseMove;
@@ -31,13 +34,18 @@ namespace ArenaShooter.Inputs
         public event Action OnChangeWeaponDown;
         public event Action OnDash;
         public event Action<Vector3> OnWorldMouseMove;
-
+        public event Action OnInteract;
 
         private Camera _camera;
 
-        private void Start()
+        [Inject]
+        private void Construct(Camera camera)
         {
-            _camera = Camera.main;
+            _camera = camera;
+        }
+
+        private void OnEnable()
+        {
             IGameLoopListener.Register(this);
         }
 
@@ -57,6 +65,7 @@ namespace ArenaShooter.Inputs
             Reload();
             Shoot();
             ShootHold();
+            Interact();
         }
 
         private void ScreenMouseMove()
@@ -136,6 +145,14 @@ namespace ArenaShooter.Inputs
             if (Input.GetMouseButton(0))
             {
                 OnShootHold?.Invoke();
+            }
+        }
+
+        private void Interact()
+        {
+            if(Input.GetKeyDown(_interact))
+            {
+                OnInteract?.Invoke();
             }
         }
 

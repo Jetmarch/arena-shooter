@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace ArenaShooter.Components
 {
-    [RequireComponent(typeof(PlayerScannerComponent))]
     public class CapturePointComponent : MonoBehaviour, IGameUpdateListener
     {
         [SerializeField]
@@ -13,8 +12,6 @@ namespace ArenaShooter.Components
 
         [SerializeField]
         private float _captureSpeed = 2f;
-
-        private PlayerScannerComponent _playerScannerComponent;
 
         public event Action<float> CaptureProgress;
         public event Action PointActivated;
@@ -29,39 +26,18 @@ namespace ArenaShooter.Components
         public float CaptureCurrentProgress => _captureCurrentProgress;
         public float CaptureMaxProgress => _captureMaxProgress;
 
-        public void Construct(PlayerScannerComponent playerScannerComponent)
-        {
-            _playerScannerComponent = playerScannerComponent;
-            _playerScannerComponent.OnPlayerDetected += OnPlayerEnterPoint;
-            _playerScannerComponent.OnPlayerLost += OnPlayerExitPoint;
-        }
-
-        private void OnEnable()
-        {
-            IGameLoopListener.Register(this);
-            if (_playerScannerComponent == null) return;
-            _playerScannerComponent.OnPlayerDetected += OnPlayerEnterPoint;
-            _playerScannerComponent.OnPlayerLost += OnPlayerExitPoint;
-        }
-
-        private void OnDisable()
-        {
-            IGameLoopListener.Unregister(this);
-            if (_playerScannerComponent == null) return;
-            _playerScannerComponent.OnPlayerDetected -= OnPlayerEnterPoint;
-            _playerScannerComponent.OnPlayerLost -= OnPlayerExitPoint;
-        }
-
-        private void OnPlayerEnterPoint(GameObject obj)
+        public void OnPlayerEnterPoint(GameObject _)
         {
             Debug.Log("Player on the point!");
             _isPlayerOnPoint = true;
+            IGameLoopListener.Register(this);
         }
 
-        private void OnPlayerExitPoint(GameObject obj)
+        public void OnPlayerExitPoint(GameObject _)
         {
             Debug.Log("Player out");
             _isPlayerOnPoint = false;
+            IGameLoopListener.Unregister(this);
         }
 
         public void ActivatePoint()
