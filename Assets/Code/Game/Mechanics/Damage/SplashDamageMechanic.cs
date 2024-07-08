@@ -28,11 +28,13 @@ namespace ArenaShooter.Mechanics
             {
                 if (affectedTargets[i].transform.gameObject == _owner) continue;
 
+                HitGameObject?.Invoke(affectedTargets[i].transform.gameObject);
+
                 var health = affectedTargets[i].transform.gameObject.GetComponent<HealthComponent>();
                 if (health == null) continue;
 
                 health.SetCurrentHealth(health.CurrentHealth - _damage);
-                HitGameObject?.Invoke(health.gameObject);
+                
             }
         }
 
