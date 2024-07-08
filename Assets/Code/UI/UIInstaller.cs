@@ -1,4 +1,5 @@
 using ArenaShooter.Mechanics;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,9 @@ namespace ArenaShooter.UI
     {
         [SerializeField]
         private UIPrefabContainer _playerUIPrefabContainer;
+
+        [SerializeField]
+        private SceneNameProvider _sceneNameProvider;
         public override void InstallBindings()
         {
             Container.Bind<UIPrefabContainer>().FromInstance(_playerUIPrefabContainer).AsSingle();
@@ -18,6 +22,8 @@ namespace ArenaShooter.UI
             Container.Bind<StartScenarioInteractableView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<AnnouncementScreenView>().FromComponentInHierarchy().AsSingle();
 
+            Container.Bind<SceneNameProvider>().FromInstance(_sceneNameProvider).AsSingle();
+
             Container.BindInterfacesAndSelfTo<PlayerUICreateController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DefeatScreenController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<VictoryScreenController>().AsSingle().NonLazy();
@@ -25,6 +31,25 @@ namespace ArenaShooter.UI
             Container.BindInterfacesAndSelfTo<CapturePointScenarioActController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BossScenarioActController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<StartScenarioInteractableController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<AnnouncementScreenButtonsController>().AsSingle().NonLazy();
+        }
+    }
+
+    [Serializable]
+    public class SceneNameProvider
+    {
+        [SerializeField]
+        private string _menuSceneName;
+        [SerializeField]
+        private string _arenaSceneName;
+
+        public string MenuSceneName => _menuSceneName;
+        public string ArenaSceneName => _arenaSceneName;
+
+        public SceneNameProvider(string menuSceneName, string arenaSceneName)
+        {
+            _menuSceneName = menuSceneName;
+            _arenaSceneName = arenaSceneName;
         }
     }
 }
