@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 268550243
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5171125220873100548, guid: 0edae087b5e546f49be2028c44709213, type: 3}
+  m_Sprite: {fileID: 8668417898455192498, guid: cb7cfb83e8a49d64f9c4005e39a1d179, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -239,7 +239,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.05
 --- !u!50 &7321364177824276481
 Rigidbody2D:
   serializedVersion: 4
@@ -501,6 +501,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4918450366258573837, guid: 0e2a412059e036146a6b8deaf9ac3149, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5306892319898316527, guid: 0e2a412059e036146a6b8deaf9ac3149, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.339
@@ -613,6 +617,10 @@ PrefabInstance:
     - target: {fileID: 3429429043503600203, guid: 8172edfff4a9ee2419080d25d336b06e, type: 3}
       propertyPath: m_Name
       value: MegaProjectileGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463645831744896839, guid: 8172edfff4a9ee2419080d25d336b06e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

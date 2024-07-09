@@ -12,7 +12,10 @@ namespace ArenaShooter.Projectiles
         private Rigidbody2D _rigidbody; //TODO: Помещать в контейнер конкретного GameObject
         [SerializeField]
         private Move2DComponent _moveComponent;
-
+        [SerializeField]
+        private ParticleSystem _explosionParticles;
+        [SerializeField]
+        private SpriteRenderer _spriteRenderer;
         public override void InstallBindings()
         {
             _moveComponent.Construct(_rigidbody);
@@ -20,10 +23,11 @@ namespace ArenaShooter.Projectiles
 
             Container.Bind<Trigger2DComponent>().FromComponentOn(gameObject).AsSingle();
             Container.BindInterfacesAndSelfTo<DamageMechanic>().FromComponentOn(gameObject).AsSingle();
-            Container.Bind<ProjectileDestroyOnHitMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<Move2DComponent>().FromComponentOn(gameObject).AsSingle();
 
             Container.BindInterfacesAndSelfTo<DamageController>().AsSingle().NonLazy();
+
+            Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitMechanic>().AsSingle().WithArguments(_explosionParticles, _spriteRenderer, gameObject).NonLazy();
             Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitController>().AsSingle().NonLazy();
         }
 
@@ -33,6 +37,8 @@ namespace ArenaShooter.Projectiles
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _moveComponent = GetComponent<Move2DComponent>();
+            _explosionParticles = GetComponentInChildren<ParticleSystem>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 #endif
 
