@@ -7,7 +7,7 @@ namespace ArenaShooter.Inputs
     public sealed class KeyboardAndMouseInputController : MonoBehaviour,
         IMoveInputProvider, IScreenMouseMoveInputProvider, IWorldMouseMoveInputProvider,
         IShootInputProvider, IReloadInputProvider, IChangeWeaponInputProvider, IDashInputProvider,
-        IGameUpdateListener, IInteractInputProvider
+        IGameUpdateListener, IInteractInputProvider, IMenuInputProvider
     {
         [SerializeField]
         private KeyCode _moveUpKey = KeyCode.W;
@@ -24,6 +24,8 @@ namespace ArenaShooter.Inputs
         private KeyCode _reloadKey = KeyCode.R;
         [SerializeField]
         private KeyCode _interact = KeyCode.E;
+        [SerializeField]
+        private KeyCode _menuKey = KeyCode.Escape;
 
         public event Action<Vector2> OnMove;
         public event Action<Vector3> OnScreenMouseMove;
@@ -35,8 +37,10 @@ namespace ArenaShooter.Inputs
         public event Action OnDash;
         public event Action<Vector3> OnWorldMouseMove;
         public event Action OnInteract;
+        public event Action OnMenu;
 
         private Camera _camera;
+        
 
         [Inject]
         private void Construct(Camera camera)
@@ -66,6 +70,7 @@ namespace ArenaShooter.Inputs
             Shoot();
             ShootHold();
             Interact();
+            Menu();
         }
 
         private void ScreenMouseMove()
@@ -156,5 +161,12 @@ namespace ArenaShooter.Inputs
             }
         }
 
+        private void Menu()
+        {
+            if(Input.GetKeyDown(_menuKey))
+            {
+                OnMenu?.Invoke();
+            }
+        }
     }
 }

@@ -1,0 +1,30 @@
+using ArenaShooter.Inputs;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Zenject;
+
+namespace ArenaShooter
+{
+    public class GamePauseController : IInitializable, ILateDisposable
+    {
+        private GameLoopManager _gameLoopManager;
+        private IMenuInputProvider _inputProvider;
+
+        public GamePauseController(GameLoopManager gameLoopManager, IMenuInputProvider inputProvider)
+        {
+            _gameLoopManager = gameLoopManager;
+            _inputProvider = inputProvider;
+        }
+
+        public void Initialize()
+        {
+            _inputProvider.OnMenu += _gameLoopManager.ToggleGame;
+        }
+
+        public void LateDispose()
+        {
+            _inputProvider.OnMenu -= _gameLoopManager.ToggleGame;
+        }
+    }
+}

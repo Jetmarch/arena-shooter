@@ -24,7 +24,7 @@ namespace ArenaShooter.Mechanics
 
         public void Activate(GameObject _)
         {
-            if (_gameLoopManager.State != GameState.None) return;
+            if (_gameLoopManager.State != GameState.Running) return;
 
             _inputProvider.OnInteract += Interact;
             _canInteract = true;
@@ -46,7 +46,7 @@ namespace ArenaShooter.Mechanics
         public void Interact()
         {
             if (!CanInteract()) return;
-            if (_gameLoopManager.State != GameState.None) return;
+            if (_gameLoopManager.State != GameState.Running) return;
 
             _gameLoopManager.StartGame();
         }

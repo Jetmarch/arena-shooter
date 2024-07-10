@@ -88,7 +88,7 @@ namespace ArenaShooter.Weapons
             Container.Bind<WeaponReloadMechanic>().FromInstance(_weaponReloadMechanic).AsSingle();
             Container.Bind<WeaponDelayBetweenShotsMechanic>().FromInstance(_delayBetweenShotsMechanic).AsSingle();
             Container.Bind<BaseWeaponShootMechanic>().FromInstance(_shootMechanic).AsSingle();
-            Container.Bind<WeaponFlipSpriteMechanic>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<WeaponFlipSpriteMechanic>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AmmoInClipDecreaseMechanic>().AsSingle().WithArguments(_amountOfAmmoOnOneShot, _ammoClipStorage).NonLazy();
         }
 

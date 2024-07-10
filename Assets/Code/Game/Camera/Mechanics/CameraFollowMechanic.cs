@@ -5,7 +5,7 @@ using Zenject;
 namespace ArenaShooter.CameraScripts
 {
     [RequireComponent(typeof(FollowTargetComponent))]
-    public class CameraFollowMechanic : MonoBehaviour, IGameFixedUpdateListener
+    public class CameraFollowMechanic : MonoBehaviour, IGameFixedUpdateListener, IGamePauseListener
     {
         [SerializeField]
         private Transform _target;
@@ -19,6 +19,8 @@ namespace ArenaShooter.CameraScripts
         private Camera _camera;
 
         private Vector3 _mousePos;
+
+        private bool _isPaused;
 
         [Inject]
         public void Constuct(Camera camera)
@@ -43,6 +45,8 @@ namespace ArenaShooter.CameraScripts
 
         public void OnFixedUpdate(float delta)
         {
+            if (_isPaused) return;
+
             if (_target == null) return;
 
             Follow(_mousePos);
@@ -69,6 +73,16 @@ namespace ArenaShooter.CameraScripts
         private void OnValidate()
         {
             _followTargetComponent = GetComponent<FollowTargetComponent>();
+        }
+
+        public void OnPauseGame()
+        {
+            _isPaused = true;
+        }
+
+        public void OnResumeGame()
+        {
+            _isPaused = false;
         }
 #endif
     }

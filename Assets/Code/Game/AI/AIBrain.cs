@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ArenaShooter.AI
 {
-    public class AIBrain : MonoBehaviour, IGameUpdateListener
+    public class AIBrain : MonoBehaviour, IGameUpdateListener, IGamePauseListener
     {
         [SerializeField]
         protected float _pursueDistance = 10f;
@@ -24,6 +24,8 @@ namespace ArenaShooter.AI
         protected bool _isAttacking;
 
         protected Transform _target;
+
+        private bool _isPaused;
 
         public void Construct(AIInputController inputController, PlayerScannerComponent playerScanner)
         {
@@ -64,6 +66,7 @@ namespace ArenaShooter.AI
 
         public void OnUpdate(float delta)
         {
+            if (_isPaused) return;
             UpdateAI();
         }
 
@@ -110,6 +113,16 @@ namespace ArenaShooter.AI
         public void SetTarget(Transform target)
         {
             _target = target;
+        }
+
+        public void OnPauseGame()
+        {
+            _isPaused = true;
+        }
+
+        public void OnResumeGame()
+        {
+            _isPaused = false;
         }
     }
 }

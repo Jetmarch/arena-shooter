@@ -1,13 +1,15 @@
 using UnityEngine;
+using Zenject;
 
 namespace ArenaShooter.Weapons
 {
     /// <summary>
     /// Отражает спрайт оружия по оси Y
     /// </summary>
-    public class WeaponFlipSpriteMechanic
+    public class WeaponFlipSpriteMechanic : IInitializable, ILateDisposable, IGamePauseListener
     {
         private SpriteRenderer _spriteRenderer;
+        private bool _isPaused;
 
         public WeaponFlipSpriteMechanic(SpriteRenderer spriteRenderer)
         {
@@ -16,6 +18,8 @@ namespace ArenaShooter.Weapons
 
         public void FlipWeaponSprite(Vector3 mousePos)
         {
+            if (_isPaused) return;
+
             if (_spriteRenderer == null) return;
             //Проверяка на какой половине экрана находится указатель мыши
             //Левая сторона
@@ -28,6 +32,26 @@ namespace ArenaShooter.Weapons
             {
                 _spriteRenderer.flipY = false;
             }
+        }
+
+        public void Initialize()
+        {
+            IGameLoopListener.Register(this);
+        }
+
+        public void LateDispose()
+        {
+            IGameLoopListener.Unregister(this);
+        }
+
+        public void OnPauseGame()
+        {
+            _isPaused = true;
+        }
+
+        public void OnResumeGame()
+        {
+            _isPaused = false;
         }
     }
 }

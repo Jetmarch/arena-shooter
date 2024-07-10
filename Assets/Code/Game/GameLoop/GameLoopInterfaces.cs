@@ -26,10 +26,6 @@ namespace ArenaShooter
     public interface IGamePauseListener : IGameLoopListener
     {
         void OnPauseGame();
-    }
-
-    public interface IGameResumeListener : IGameLoopListener
-    {
         void OnResumeGame();
     }
 

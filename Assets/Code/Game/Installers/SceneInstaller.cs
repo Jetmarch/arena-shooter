@@ -54,6 +54,8 @@ namespace ArenaShooter.Installers
             Container.BindInterfacesAndSelfTo<AddScorePointsOnEnemyDeathController>().AsSingle().NonLazy();
             Container.Bind<ArenaScenarioExecutor>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<StartScenarioInteractable>().AsSingle().NonLazy();
+
+            Container.BindInterfacesAndSelfTo<GamePauseController>().AsSingle().NonLazy();
         }
 
         private void BindCamera()
@@ -64,7 +66,7 @@ namespace ArenaShooter.Installers
             Container.BindInterfacesAndSelfTo<CameraMouseMoveController>().AsSingle().NonLazy();
 
             Container.Bind<CameraShakeMechanic>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<CameraShakeOnEnemyDieController>().AsSingle().WithArguments(_shakeCameraDataOnEnemyDied).NonLazy();
+            //Container.BindInterfacesAndSelfTo<CameraShakeOnEnemyDieController>().AsSingle().WithArguments(_shakeCameraDataOnEnemyDied).NonLazy();
         }
 
         private void BindScenarioActExecutors()

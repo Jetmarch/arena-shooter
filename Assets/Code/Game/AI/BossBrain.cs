@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArenaShooter.AI
 {
-    public class BossBrain : MonoBehaviour, IGameUpdateListener
+    public class BossBrain : MonoBehaviour, IGameUpdateListener, IGamePauseListener
     {
         [SerializeField]
         private float _radiusOfInteraction = 3f;
@@ -19,6 +19,8 @@ namespace ArenaShooter.AI
         private Transform _target;
 
         private AIInputController _controller;
+
+        private bool _isPaused;
 
         public void Construct(AIInputController controller)
         {
@@ -37,6 +39,8 @@ namespace ArenaShooter.AI
 
         public void OnUpdate(float delta)
         {
+            if (_isPaused) return;
+
             if (_target == null || _isAttackPhase)
             {
                 _controller.Move(Vector2.zero);
@@ -80,6 +84,16 @@ namespace ArenaShooter.AI
         public void OnAttackEnd()
         {
             _isAttackPhase = false;
+        }
+
+        public void OnPauseGame()
+        {
+            _isPaused = true;
+        }
+
+        public void OnResumeGame()
+        {
+            _isPaused = false;
         }
     }
 }

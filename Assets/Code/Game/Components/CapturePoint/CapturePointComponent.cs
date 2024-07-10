@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArenaShooter.Components
 {
-    public class CapturePointComponent : MonoBehaviour, IGameUpdateListener
+    public class CapturePointComponent : MonoBehaviour, IGameUpdateListener, IGamePauseListener
     {
         [SerializeField]
         private float _captureCurrentProgress = 0f;
@@ -66,6 +66,16 @@ namespace ArenaShooter.Components
                 Debug.Log("Point captured!");
                 DeactivatePoint();
             }
+        }
+
+        public void OnPauseGame()
+        {
+            _isCaptureAvailable = false;
+        }
+
+        public void OnResumeGame()
+        {
+            _isCaptureAvailable = true;
         }
     }
 }

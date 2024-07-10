@@ -8,7 +8,7 @@ using Zenject;
 
 namespace ArenaShooter.Scenarios
 {
-    public class HordeScenarioActExecutor : BaseScenarioActExecutor
+    public class HordeScenarioActExecutor : BaseScenarioActExecutor, IGamePauseListener
     {
         [SerializeField]
         private List<GameObject> _hordeUnits = new();
@@ -26,6 +26,8 @@ namespace ArenaShooter.Scenarios
         private HordeScenarioActData _data;
         private bool _spawnInProcess;
         private int _diedUnits;
+
+        private bool _isPaused;
 
         public IReadOnlyCollection<GameObject> HordeUnits { get {  return _hordeUnits; } }
         public event Action HordeUnitDied;
@@ -78,6 +80,7 @@ namespace ArenaShooter.Scenarios
                 for (int i = 0; i < enemy.CountOfEnemies; i++)
                 {
                     yield return new WaitForSeconds(_delayBetweenUnitSpawn);
+                    yield return new WaitUntil(() => _isPaused == false);
                     var newUnit = _unitManager.CreateUnit(enemy.UnitType, _spawnPoints[_currentSpawnPoint].GetRandomPointInside(), null);
                     _hordeUnits.Add(newUnit);
                 }
@@ -121,6 +124,26 @@ namespace ArenaShooter.Scenarios
         {
             _unitManager.UnitDie -= OnHordeUnitDie;
             base.OnScenarioActFinish();
+        }
+
+        public void OnPauseGame()
+        {
+            _isPaused = true;
+        }
+
+        public void OnResumeGame()
+        {
+            _isPaused = false;
+        }
+
+        private void OnEnable()
+        {
+            IGameLoopListener.Register(this);
+        }
+
+        private void OnDisable()
+        {
+            IGameLoopListener.Unregister(this);
         }
     }
 }

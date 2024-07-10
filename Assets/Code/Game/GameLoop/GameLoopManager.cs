@@ -23,6 +23,7 @@ namespace ArenaShooter
         {
             IGameLoopListener.OnRegister += OnRegister;
             IGameLoopListener.OnUnregister += OnUnregister;
+            _state = GameState.Running;
         }
 
         private void OnUnregister(IGameLoopListener obj)
@@ -83,6 +84,22 @@ namespace ArenaShooter
                 }
             }
         }
+
+        [ContextMenu("Toggle game")]
+        public void ToggleGame()
+        {
+            if (_state == GameState.Running)
+            {
+                PauseGame();
+            }
+            else if (_state == GameState.Paused)
+            {
+                ResumeGame();
+            }
+
+            Debug.Log(_state);
+        }
+
         [ContextMenu("Pause game")]
         public void PauseGame()
         {
@@ -101,7 +118,7 @@ namespace ArenaShooter
             _state = GameState.Running;
             for (int i = 0; i < _listeners.Count; i++)
             {
-                if (_listeners[i] is IGameResumeListener resumeGameListener)
+                if (_listeners[i] is IGamePauseListener resumeGameListener)
                 {
                     resumeGameListener.OnResumeGame();
                 }

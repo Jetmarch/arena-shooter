@@ -45,4 +45,9 @@ namespace ArenaShooter.Inputs
     {
         event Action OnInteract;
     }
+
+    public interface IMenuInputProvider
+    {
+        event Action OnMenu;
+    }
 }

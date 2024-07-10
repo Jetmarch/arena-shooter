@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ArenaShooter.Components
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public sealed class Move2DComponent : MonoBehaviour, IGameFixedUpdateListener
+    public sealed class Move2DComponent : MonoBehaviour, IGameFixedUpdateListener, IGamePauseListener
     {
         [SerializeField]
         private float _moveSpeed = 250f;
@@ -18,6 +18,9 @@ namespace ArenaShooter.Components
         public Vector2 Velocity { get { return _velocity; } }
         public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
         public CompositeCondition Condition { get { return _condition; } }
+
+        private bool _isPaused;
+        private Vector2 _velocityBeforePause;
 
         public void Construct(Rigidbody2D rigidbody)
         {
@@ -41,7 +44,22 @@ namespace ArenaShooter.Components
 
         public void OnFixedUpdate(float delta)
         {
+            if (_isPaused) return;
+
             _rigidbody.velocity = _velocity * delta * _moveSpeed;
+        }
+
+        public void OnPauseGame()
+        {
+            _isPaused = true;
+            _velocityBeforePause = _rigidbody.velocity;
+            _rigidbody.velocity = Vector2.zero;
+        }
+
+        public void OnResumeGame()
+        {
+            _isPaused = false;
+            _rigidbody.velocity = _rigidbody.velocity;
         }
     }
 }

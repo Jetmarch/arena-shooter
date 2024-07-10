@@ -6,7 +6,7 @@ using Zenject;
 
 namespace ArenaShooter.Weapons
 {
-    public abstract class BaseWeaponShootMechanic : MonoBehaviour
+    public abstract class BaseWeaponShootMechanic : MonoBehaviour, IGamePauseListener
     {
         [SerializeField]
         protected Transform _projectileSpawnPoint;
@@ -17,6 +17,9 @@ namespace ArenaShooter.Weapons
         protected GameObject _owner;
 
         private CompositeCondition _condition = new CompositeCondition();
+
+        private bool _isPaused;
+
         public CompositeCondition Condition { get { return _condition; } }
 
         public event Action ShootComplete;
@@ -29,6 +32,7 @@ namespace ArenaShooter.Weapons
 
         protected bool CanShoot()
         {
+            if (_isPaused) return false;
             if (!_condition.IsTrue()) return false;
             return true;
         }
@@ -53,5 +57,25 @@ namespace ArenaShooter.Weapons
         }
 
         protected abstract void ShootMechanic();
+
+        public void OnPauseGame()
+        {
+            _isPaused = true;
+        }
+
+        public void OnResumeGame()
+        {
+            _isPaused = false;
+        }
+
+        private void OnEnable()
+        {
+            IGameLoopListener.Register(this);
+        }
+
+        private void OnDisable()
+        {
+            IGameLoopListener.Unregister(this);
+        }
     }
 }

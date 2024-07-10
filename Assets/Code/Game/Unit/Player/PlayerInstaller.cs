@@ -95,6 +95,7 @@ namespace ArenaShooter.Units.Player
             Container.Bind<UnitDashMechanic>().FromInstance(_dashMechanic).AsSingle();
             Container.Bind<SpriteFlashMechanic>().FromInstance(_flashMechanic).AsSingle();
             Container.BindInterfacesAndSelfTo<WeaponRotateMechanic>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<UnitFootstepEffectMechanic>().AsSingle().WithArguments(_footstepEffect).NonLazy();
         }
 
         private void BindMechanicsControllers()
@@ -110,7 +111,7 @@ namespace ArenaShooter.Units.Player
 
             Container.BindInterfacesAndSelfTo<CameraShakeOnPlayerHitController>().AsSingle().WithArguments(_shakeCameraDataOnHit).NonLazy();
 
-            Container.BindInterfacesAndSelfTo<UnitFootstepEffectController>().AsSingle().WithArguments(_footstepEffect).NonLazy();
+            Container.BindInterfacesAndSelfTo<UnitFootstepEffectController>().AsSingle().NonLazy();
         }
 
         private void AppendConditions()
