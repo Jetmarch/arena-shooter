@@ -44,11 +44,6 @@ namespace ArenaShooter.Weapons
         //на текущий момент
         private bool _isAutomatic;
 
-        //private IShootInputProvider _shootInputProvider;
-        //private IScreenMouseMoveInputProvider _screenMouseMoveInputProvider;
-        //private IWorldMouseMoveInputProvider _worldMouseMoveInputProvider;
-        //private IReloadInputProvider _reloadInputProvider;
-
         public override void InstallBindings()
         {
             ConstructComponents();
@@ -57,16 +52,6 @@ namespace ArenaShooter.Weapons
             BindControllers();
             AppendConditions();
         }
-
-        //TODO: ѕродумать автоматическую подв€зку оружи€ к носителю
-        //public void Construct(IShootInputProvider shootInputProvider, IScreenMouseMoveInputProvider mouseMoveInputProvider,
-        //    IWorldMouseMoveInputProvider worldMouseMoveProvider, IReloadInputProvider reloadInputProvider)
-        //{
-        //    _shootInputProvider = shootInputProvider;
-        //    _screenMouseMoveInputProvider = mouseMoveInputProvider;
-        //    _worldMouseMoveInputProvider = worldMouseMoveProvider;
-        //    _reloadInputProvider = reloadInputProvider;
-        //}
 
         private void ConstructComponents()
         {
@@ -114,13 +99,6 @@ namespace ArenaShooter.Weapons
 
         private void AppendConditions()
         {
-            //TODO: ѕридумать как примен€ть conditions
-            //¬озможно стоит сделать обертку
-            //_shootMechanic.Condition.Append(_weaponReloadMechanic.IsNotReloading);
-            ////_shootMechanic.Condition.Append(_ammoInClipDecreaseMechanic.IsEnoughAmmoToShoot);
-            //_shootMechanic.Condition.Append(_delayBetweenShotsMechanic.CanShoot);
-            //_shootMechanic.Condition.Append(IsGameObjectActive);
-            //_weaponReloadMechanic.Condition.Append(IsGameObjectActive);
             Container.Bind<WeaponFacade>().FromInstance(_weaponFacade).AsSingle();
             Container.BindInterfacesAndSelfTo<WeaponConditionInstaller>().AsSingle().NonLazy();
         }

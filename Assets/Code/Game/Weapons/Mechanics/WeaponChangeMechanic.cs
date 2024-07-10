@@ -57,6 +57,10 @@ namespace ArenaShooter.Weapons
         private bool CanChangeWeapon()
         {
             if (_isPaused) return false;
+            if (CurrentWeapon.WeaponReloadMechanic != null)
+            {
+                if (CurrentWeapon.WeaponReloadMechanic.IsReloading) return false;
+            }
             if (!_condition.IsTrue())
                 return false;
             return true;

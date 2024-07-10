@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1720561586184491230}
   - component: {fileID: 2465280135694446562}
   - component: {fileID: 1044494430972739882}
+  - component: {fileID: 6733797819040672057}
   m_Layer: 0
   m_Name: MegaProjectileGun
   m_TagString: Untagged
@@ -78,6 +79,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ammoClipStorage: {fileID: 2465280135694446562}
   _weaponShootMechanic: {fileID: 1720561586184491230}
+  _weaponReloadMechanic: {fileID: 6733797819040672057}
+--- !u!114 &6733797819040672057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3429429043503600203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de2ca35414125a42b8f14d1c06670aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reloadSpeed: 0
 --- !u!1 &4463645831744896839
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +165,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -564410983
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -8651338047936424927, guid: 0edae087b5e546f49be2028c44709213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

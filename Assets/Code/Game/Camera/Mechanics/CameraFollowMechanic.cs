@@ -69,12 +69,6 @@ namespace ArenaShooter.CameraScripts
             _target = target;
         }
 
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            _followTargetComponent = GetComponent<FollowTargetComponent>();
-        }
-
         public void OnPauseGame()
         {
             _isPaused = true;
@@ -83,6 +77,12 @@ namespace ArenaShooter.CameraScripts
         public void OnResumeGame()
         {
             _isPaused = false;
+        }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            _followTargetComponent = GetComponent<FollowTargetComponent>();
         }
 #endif
     }
