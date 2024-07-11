@@ -1,18 +1,17 @@
 using ArenaShooter.Audio;
 using ArenaShooter.CameraScripts;
 using ArenaShooter.Inputs;
+using ArenaShooter.Mechanics;
+using ArenaShooter.Projectiles;
 using ArenaShooter.Scenarios;
-using ArenaShooter.UI;
 using ArenaShooter.Units;
 using ArenaShooter.Units.Factories;
 using ArenaShooter.Units.Player;
 using ArenaShooter.Weapons;
-using ArenaShooter.Projectiles;
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using DG.Tweening;
-using ArenaShooter.Mechanics;
 
 namespace ArenaShooter.Installers
 {
@@ -32,7 +31,7 @@ namespace ArenaShooter.Installers
         [SerializeField]
         private ArenaScenarioConfiguration _arenaScenarioConfig;
 
-        
+
 
         public override void InstallBindings()
         {

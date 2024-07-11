@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace ArenaShooter.Weapons
 {
-    //TODO: Выделить обойму, как отдельную сущность
     public sealed class WeaponReloadMechanic : MonoBehaviour
     {
         [SerializeField]

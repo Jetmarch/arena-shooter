@@ -8,7 +8,7 @@ using Zenject;
 
 namespace ArenaShooter.Scenarios
 {
-    public class CapturePointScenarioActExecutor : BaseScenarioActExecutor
+    public class CapturePointScenarioActExecutor : BaseScenarioActExecutor, IGamePauseListener
     {
         [SerializeField]
         private List<CapturePointComponent> _capturePoints;
@@ -28,6 +28,8 @@ namespace ArenaShooter.Scenarios
         private Coroutine _spawnEnemiesCoroutine;
 
         private UnitManager _unitManager;
+
+        private bool _isPaused;
 
         public CapturePointComponent CurrentPoint { get { return _capturePoints[_currentPoint]; } }
 
@@ -74,6 +76,7 @@ namespace ArenaShooter.Scenarios
                     _spawnedUnits.Add(newEnemy);
                 }
                 yield return new WaitForSeconds(_timeBetweenSpawnUnits);
+                yield return new WaitUntil(() => _isPaused == false);
             }
         }
 
@@ -109,6 +112,26 @@ namespace ArenaShooter.Scenarios
         {
             _currentPoint++;
             _currentPoint %= _capturePoints.Count;
+        }
+
+        public void OnPauseGame()
+        {
+            _isPaused = true;
+        }
+
+        public void OnResumeGame()
+        {
+            _isPaused = false;
+        }
+
+        private void OnEnable()
+        {
+            IGameLoopListener.Register(this);
+        }
+
+        private void OnDisable()
+        {
+            IGameLoopListener.Unregister(this);
         }
     }
 }
