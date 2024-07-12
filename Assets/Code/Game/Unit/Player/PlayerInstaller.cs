@@ -52,6 +52,8 @@ namespace ArenaShooter.Units.Player
         private ParticleSystem _footstepEffect;
 
         [Inject]
+        private WeaponSet _weaponSet;
+        [Inject]
         private PlayerWeaponFactory _weaponFactory;
 
         public override void InstallBindings()
@@ -84,7 +86,6 @@ namespace ArenaShooter.Units.Player
             Container.Bind<WeaponsStorage>().FromInstance(_weaponStorage).AsSingle();
             Container.Bind<SpriteRenderer>().FromInstance(_spriteRenderer).AsSingle();
             Container.Bind<AudioSource>().FromInstance(_audioSource).AsSingle();
-
             Container.Bind<AudioComponent>().AsSingle().NonLazy();
         }
 
@@ -96,6 +97,7 @@ namespace ArenaShooter.Units.Player
             Container.Bind<SpriteFlashMechanic>().FromInstance(_flashMechanic).AsSingle();
             Container.BindInterfacesAndSelfTo<WeaponRotateMechanic>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<UnitFootstepEffectMechanic>().AsSingle().WithArguments(_footstepEffect).NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerWeaponGiver>().AsSingle().NonLazy();
         }
 
         private void BindMechanicsControllers()
@@ -108,9 +110,7 @@ namespace ArenaShooter.Units.Player
             Container.BindInterfacesAndSelfTo<TemporaryInvulnerabilityOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<WeaponRotateController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<HitSoundController>().AsSingle().NonLazy();
-
             Container.BindInterfacesAndSelfTo<CameraShakeOnPlayerHitController>().AsSingle().WithArguments(_shakeCameraDataOnHit).NonLazy();
-
             Container.BindInterfacesAndSelfTo<UnitFootstepEffectController>().AsSingle().NonLazy();
         }
 
@@ -130,12 +130,8 @@ namespace ArenaShooter.Units.Player
 
         public override void Start()
         {
-            //For test
-            //TODO: Переместить в PlayerWeaponGiver
-            _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.Revolver, _weaponListParent.position, _weaponListParent));
-            _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.Shotgun, _weaponListParent.position, _weaponListParent));
-            _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.MachineGun, _weaponListParent.position, _weaponListParent));
-            _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(WeaponType.RocketLauncher, _weaponListParent.position, _weaponListParent));
+            _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(_weaponSet.PrimaryWeapon));
+            _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(_weaponSet.SecondaryWeapon));
             _weaponChangeMechanic.OnChangeWeaponUp();
             SetWeaponsOwner();
         }

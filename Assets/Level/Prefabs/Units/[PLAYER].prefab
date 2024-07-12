@@ -349,6 +349,7 @@ MonoBehaviour:
   _weaponsStorage: {fileID: 8805141141273371615}
   _weaponChangeMechanic: {fileID: 5911664064081198475}
   _healthComponent: {fileID: 8331677765335964353}
+  _weaponList: {fileID: 5374596255816858695}
 --- !u!114 &5106855117183840813
 MonoBehaviour:
   m_ObjectHideFlags: 0

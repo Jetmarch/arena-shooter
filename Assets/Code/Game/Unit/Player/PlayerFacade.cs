@@ -15,9 +15,14 @@ namespace ArenaShooter.Units.Player
         [SerializeField]
         private HealthComponent _healthComponent;
 
+        [SerializeField]
+        private Transform _weaponList;
+
         public WeaponsStorage WeaponsStorage { get { return _weaponsStorage; } }
         public HealthComponent HealthComponent { get { return _healthComponent; } }
         public WeaponChangeMechanic WeaponChangeMechanic { get { return _weaponChangeMechanic; } }
+
+        public Transform WeaponList { get { return _weaponList; } }
 
 #if UNITY_EDITOR
         private void OnValidate()

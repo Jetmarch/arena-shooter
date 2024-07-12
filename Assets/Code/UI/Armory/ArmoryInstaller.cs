@@ -19,9 +19,6 @@ namespace ArenaShooter.UI
 
         public override void InstallBindings()
         {
-            Container.Bind<WeaponSet>().AsSingle();
-            Container.Bind<ArtefactSet>().AsSingle();
-
             InstallWeapons();
             InstallArtefacts();
         }
