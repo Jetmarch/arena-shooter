@@ -1,4 +1,4 @@
-
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +13,14 @@ namespace ArenaShooter.UI
         protected TextMeshProUGUI _name;
         [SerializeField]
         protected TextMeshProUGUI _description;
+        [SerializeField]
+        protected Image _backgroundImage;
+        [SerializeField]
+        protected Color _selectedColor;
+        [SerializeField]
+        protected Color _defaultColor = Color.white;
+        [SerializeField]
+        private float _colorChangeDuration = 0.3f;
 
         public virtual void Setup(IItemPresenter presenter)
         {
@@ -20,6 +28,18 @@ namespace ArenaShooter.UI
             _name.text = presenter.Name;
             _description.text = presenter.Description;
             _image.SetNativeSize();
+        }
+
+        public void SelectItemAnimation()
+        {
+            _backgroundImage.DOComplete();
+            _backgroundImage.DOBlendableColor(_selectedColor, _colorChangeDuration);
+        }
+
+        public void DeselectItemAnimation()
+        {
+            _backgroundImage.DOComplete();
+            _backgroundImage.DOBlendableColor(_defaultColor, _colorChangeDuration);
         }
     }
 }

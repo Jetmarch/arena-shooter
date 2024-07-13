@@ -30,6 +30,7 @@ namespace ArenaShooter.UI
         public void OnPointerClick(PointerEventData eventData)
         {
             _presenter.ChooseArtefact(_type);
+            SelectItemAnimation();
         }
     }
 }

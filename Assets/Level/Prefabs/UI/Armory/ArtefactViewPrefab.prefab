@@ -484,4 +484,8 @@ MonoBehaviour:
   _image: {fileID: 3883608736057717384}
   _name: {fileID: 2064137213192186468}
   _description: {fileID: 922274735815074366}
+  _backgroundImage: {fileID: 6370264675749696160}
+  _selectedColor: {r: 0.11764706, g: 0.9254902, b: 0.16620235, a: 1}
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _colorChangeDuration: 0.3
   _type: 0

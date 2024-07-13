@@ -1,5 +1,3 @@
-using ArenaShooter.Artefacts;
-using ArenaShooter.Weapons;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -25,19 +23,25 @@ namespace ArenaShooter.UI
 
         private void InstallWeapons()
         {
-            foreach(var weapon in _armoryConfig.Weapons)
+            var weaponViews = new List<ItemView>();
+            var itemContainer = new ItemContainerPresenter(weaponViews);
+            foreach (var weapon in _armoryConfig.Weapons)
             {
                 var weaponView = _weaponViewContainer.CreateWeaponView();
-                Container.BindInterfacesAndSelfTo<WeaponPresenter>().AsCached().WithArguments(weapon, weaponView);
+                Container.BindInterfacesAndSelfTo<WeaponPresenter>().AsCached().WithArguments(weapon, weaponView, itemContainer);
+                weaponViews.Add(weaponView);
             }
         }
 
         private void InstallArtefacts()
         {
+            var artefactViews = new List<ItemView>();
+            var itemContainer = new ItemContainerPresenter(artefactViews);
             foreach (var artefact in _armoryConfig.Artefacts)
             {
                 var artefactView = _artefactViewContainer.CreateArtefactView();
-                Container.BindInterfacesAndSelfTo<ArtefactPresenter>().AsCached().WithArguments(artefact, artefactView);
+                Container.BindInterfacesAndSelfTo<ArtefactPresenter>().AsCached().WithArguments(artefact, artefactView, itemContainer);
+                artefactViews.Add(artefactView);
             }
         }
     }

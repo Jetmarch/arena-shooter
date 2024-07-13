@@ -8,9 +8,9 @@ namespace ArenaShooter.UI
     {
         [SerializeField]
         private WeaponType _type;
+        private IWeaponPresenter _presenter;
         public WeaponType Type { get { return _type; } set { _type = value; } }
 
-        private IWeaponPresenter _presenter;
 
         public override void Setup(IItemPresenter presenter)
         {
@@ -26,7 +26,8 @@ namespace ArenaShooter.UI
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            _presenter.ChooseWeapon(_type);
+            _presenter.SelectWeapon(_type);
+            SelectItemAnimation();
         }
     }
 }

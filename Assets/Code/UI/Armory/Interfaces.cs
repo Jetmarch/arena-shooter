@@ -10,12 +10,14 @@ namespace ArenaShooter.UI
         Sprite Sprite { get; }
         string Name { get; }
         string Description { get; }
+
+        bool IsChoosed { get; }
     }
 
     public interface IWeaponPresenter : IItemPresenter
     {
         WeaponType WeaponType { get; }
-        void ChooseWeapon(WeaponType weaponType);
+        void SelectWeapon(WeaponType weaponType);
     }
 
     public interface IArtefactPresenter : IItemPresenter
@@ -24,9 +26,9 @@ namespace ArenaShooter.UI
         void ChooseArtefact(ArtefactType artefactType);
     }
 
-    public interface IWeaponContainerPresenter
+    public interface IItemContainerPresenter
     {
-        List<IWeaponPresenter> Weapons { get; }
+        void ClearSelectedItem();
     }
 
     public interface IArmoryContainerModel

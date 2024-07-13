@@ -407,6 +407,10 @@ MonoBehaviour:
   _image: {fileID: 6308605504597666564}
   _name: {fileID: 8299516206297942860}
   _description: {fileID: 7099699679290370158}
+  _backgroundImage: {fileID: 4410159581103818994}
+  _selectedColor: {r: 0.112309396, g: 0.972549, b: 0.08627448, a: 1}
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _colorChangeDuration: 0.3
   _type: 0
 --- !u!1 &6922080866095239905
 GameObject:
