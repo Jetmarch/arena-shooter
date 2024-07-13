@@ -240,6 +240,7 @@ MonoBehaviour:
   _moveComponent: {fileID: 5934177093177697277}
   _explosionParticles: {fileID: 8442005248127529879}
   _spriteRenderer: {fileID: 1957195769780224829}
+  _countOfHitBeforeDestroy: 1
 --- !u!114 &2946640202226766192
 MonoBehaviour:
   m_ObjectHideFlags: 0

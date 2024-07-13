@@ -10,6 +10,8 @@ namespace ArenaShooter.Projectiles
         private SpriteRenderer _spriteRenderer;
         [SerializeField]
         private ParticleSystem _explosionParticles;
+        [SerializeField]
+        private int _countOfHitBeforeDestroy = 1;
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<SplashDamageMechanic>().FromComponentOn(gameObject).AsSingle();
@@ -17,7 +19,7 @@ namespace ArenaShooter.Projectiles
 
             Container.BindInterfacesAndSelfTo<ProjectileImpactAfterDelayController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitController>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitMechanic>().AsSingle().WithArguments(_explosionParticles, _spriteRenderer, gameObject).NonLazy();
+            Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitMechanic>().AsSingle().WithArguments(_explosionParticles, _spriteRenderer, gameObject, _countOfHitBeforeDestroy).NonLazy();
         }
 
 #if UNITY_EDITOR

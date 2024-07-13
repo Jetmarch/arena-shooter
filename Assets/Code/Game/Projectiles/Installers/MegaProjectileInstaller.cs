@@ -17,6 +17,8 @@ namespace ArenaShooter.Projectiles
         private ParticleSystem _explosionParticles;
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
+        [SerializeField]
+        private int _countOfHitBeforeDestroy = 1;
         public override void InstallBindings()
         {
             _moveComponent.Construct(_rigidbody);
@@ -28,7 +30,7 @@ namespace ArenaShooter.Projectiles
 
             Container.BindInterfacesAndSelfTo<DamageController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ProjectileSpreadOnHitController>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitMechanic>().AsSingle().WithArguments(_explosionParticles, _spriteRenderer, gameObject).NonLazy();
+            Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitMechanic>().AsSingle().WithArguments(_explosionParticles, _spriteRenderer, gameObject, _countOfHitBeforeDestroy).NonLazy();
             Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitController>().AsSingle().NonLazy();
         }
 
