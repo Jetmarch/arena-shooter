@@ -22,7 +22,8 @@ namespace ArenaShooter.UI
             Container.Bind<StartScenarioInteractableView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<AnnouncementScreenView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<GameMenuView>().FromComponentInHierarchy().AsSingle();
-
+            Container.Bind<ScorePointsView>().FromComponentInHierarchy().AsSingle();
+            
             Container.Bind<SceneNameProvider>().FromInstance(_sceneNameProvider).AsSingle();
 
             Container.BindInterfacesAndSelfTo<PlayerUICreateController>().AsSingle().NonLazy();
@@ -34,7 +35,7 @@ namespace ArenaShooter.UI
             Container.BindInterfacesAndSelfTo<StartScenarioInteractableController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AnnouncementScreenButtonsController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameMenuController>().AsSingle().NonLazy();
-            
+            Container.BindInterfacesAndSelfTo<ScorePointsController>().AsSingle().NonLazy();
         }
     }
 

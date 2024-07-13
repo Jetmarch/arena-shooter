@@ -19,22 +19,19 @@ namespace ArenaShooter.Mechanics
         {
             _gameLoopManager = gameLoopManager;
             _inputProvider = inputProvider;
-            _canInteract = false;
+            _canInteract = true;
         }
 
         public void Activate(GameObject _)
         {
-            if (_gameLoopManager.State != GameState.Running) return;
-
+            if (!CanInteract()) return;
             _inputProvider.OnInteract += Interact;
-            _canInteract = true;
             OnActivate?.Invoke();
         }
 
         public void Deactivate(GameObject _)
         {
             _inputProvider.OnInteract -= Interact;
-            _canInteract = false;
             OnDeactivate?.Invoke();
         }
 
@@ -46,9 +43,9 @@ namespace ArenaShooter.Mechanics
         public void Interact()
         {
             if (!CanInteract()) return;
-            if (_gameLoopManager.State != GameState.Running) return;
 
             _gameLoopManager.StartGame();
+            _canInteract = false;
         }
     }
 }

@@ -4,6 +4,7 @@ using ArenaShooter.Inputs;
 using ArenaShooter.Mechanics;
 using ArenaShooter.Projectiles;
 using ArenaShooter.Scenarios;
+using ArenaShooter.UI;
 using ArenaShooter.Units;
 using ArenaShooter.Units.Factories;
 using ArenaShooter.Units.Player;
@@ -31,8 +32,6 @@ namespace ArenaShooter.Installers
         [SerializeField]
         private ArenaScenarioConfiguration _arenaScenarioConfig;
 
-
-
         public override void InstallBindings()
         {
             BindCamera();
@@ -55,6 +54,8 @@ namespace ArenaShooter.Installers
             Container.BindInterfacesAndSelfTo<StartScenarioInteractable>().AsSingle().NonLazy();
 
             Container.BindInterfacesAndSelfTo<GamePauseController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PauseGameOnVictoryController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PauseGameOnDefeatController>().AsSingle().NonLazy();
         }
 
         private void BindCamera()
