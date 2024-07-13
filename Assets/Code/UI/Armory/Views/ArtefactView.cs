@@ -1,13 +1,10 @@
 using ArenaShooter.Artefacts;
-using ArenaShooter.Weapons;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace ArenaShooter.UI
 {
-    public class ArtefactView : ItemView, IPointerClickHandler
+    public class ArtefactView : ItemView, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField]
         private ArtefactType _type;
@@ -30,7 +27,16 @@ namespace ArenaShooter.UI
         public void OnPointerClick(PointerEventData eventData)
         {
             _presenter.ChooseArtefact(_type);
-            SelectItemAnimation();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _presenter.ShowDescription();
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            _presenter.HideDescription();
         }
     }
 }

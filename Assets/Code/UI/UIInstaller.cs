@@ -34,6 +34,7 @@ namespace ArenaShooter.UI
             Container.BindInterfacesAndSelfTo<StartScenarioInteractableController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AnnouncementScreenButtonsController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameMenuController>().AsSingle().NonLazy();
+            
         }
     }
 

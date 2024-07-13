@@ -10,8 +10,8 @@ namespace ArenaShooter.UI
         Sprite Sprite { get; }
         string Name { get; }
         string Description { get; }
-
-        bool IsChoosed { get; }
+        void ShowDescription();
+        void HideDescription();
     }
 
     public interface IWeaponPresenter : IItemPresenter

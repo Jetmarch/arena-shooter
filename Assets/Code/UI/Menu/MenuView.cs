@@ -6,6 +6,9 @@ namespace ArenaShooter.UI
     public class MenuView : MonoBehaviour
     {
         [SerializeField]
+        private GameObject _menuContainer;
+
+        [SerializeField]
         private Button _startGameBtn;
         [SerializeField]
         private Button _armoryBtn;
@@ -15,5 +18,15 @@ namespace ArenaShooter.UI
         public Button StartGameBtn { get { return _startGameBtn; } }
         public Button ArmoryBtn { get { return _armoryBtn; } }
         public Button ExitGameBtn { get { return _exitGameBtn; } }
+
+        public void Show()
+        {
+            _menuContainer.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            _menuContainer.SetActive(false);
+        }
     }
 }

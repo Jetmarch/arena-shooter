@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,9 @@ namespace ArenaShooter.UI
         [SerializeField]
         private ArtefactViewContainer _artefactViewContainer;
 
+        [SerializeField]
+        private TextMeshProUGUI _itemDescriptionLabel;
+
         public override void InstallBindings()
         {
             InstallWeapons();
@@ -28,7 +32,7 @@ namespace ArenaShooter.UI
             foreach (var weapon in _armoryConfig.Weapons)
             {
                 var weaponView = _weaponViewContainer.CreateWeaponView();
-                Container.BindInterfacesAndSelfTo<WeaponPresenter>().AsCached().WithArguments(weapon, weaponView, itemContainer);
+                Container.BindInterfacesAndSelfTo<WeaponPresenter>().AsCached().WithArguments(weapon, weaponView, itemContainer, _itemDescriptionLabel);
                 weaponViews.Add(weaponView);
             }
         }
@@ -40,7 +44,7 @@ namespace ArenaShooter.UI
             foreach (var artefact in _armoryConfig.Artefacts)
             {
                 var artefactView = _artefactViewContainer.CreateArtefactView();
-                Container.BindInterfacesAndSelfTo<ArtefactPresenter>().AsCached().WithArguments(artefact, artefactView, itemContainer);
+                Container.BindInterfacesAndSelfTo<ArtefactPresenter>().AsCached().WithArguments(artefact, artefactView, itemContainer, _itemDescriptionLabel);
                 artefactViews.Add(artefactView);
             }
         }

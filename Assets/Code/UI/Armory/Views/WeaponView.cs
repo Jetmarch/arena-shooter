@@ -4,13 +4,12 @@ using UnityEngine.EventSystems;
 
 namespace ArenaShooter.UI
 {
-    public class WeaponView : ItemView, IPointerClickHandler
+    public class WeaponView : ItemView, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField]
         private WeaponType _type;
         private IWeaponPresenter _presenter;
         public WeaponType Type { get { return _type; } set { _type = value; } }
-
 
         public override void Setup(IItemPresenter presenter)
         {
@@ -27,7 +26,16 @@ namespace ArenaShooter.UI
         public void OnPointerClick(PointerEventData eventData)
         {
             _presenter.SelectWeapon(_type);
-            SelectItemAnimation();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _presenter.ShowDescription();
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            _presenter.HideDescription();
         }
     }
 }

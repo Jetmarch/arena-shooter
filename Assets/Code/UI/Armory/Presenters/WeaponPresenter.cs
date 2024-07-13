@@ -1,5 +1,6 @@
 using ArenaShooter.Weapons;
 using System;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -11,47 +12,53 @@ namespace ArenaShooter.UI
         private WeaponView _view;
         private WeaponSet _weaponSet;
         private IItemContainerPresenter _weaponContainerPresenter;
-
-        private bool _isChoosed;
+        private TextMeshProUGUI _descriptionLabel;
 
         public WeaponType WeaponType => _weaponConfig.WeaponType;
         public Sprite Sprite => _weaponConfig.Sprite;
         public string Name => _weaponConfig.Name;
         public string Description => _weaponConfig.Description;
-        public bool IsChoosed => _isChoosed;
 
         public Action<bool> OnWeaponChoosed;
 
-        public WeaponPresenter(WeaponConfig weaponConfig, WeaponView weaponView, WeaponSet weaponSet, IItemContainerPresenter weaponContainerPresenter)
+        public WeaponPresenter(WeaponConfig weaponConfig, WeaponView weaponView, WeaponSet weaponSet, IItemContainerPresenter weaponContainerPresenter, TextMeshProUGUI descriptionLabel)
         {
             _weaponConfig = weaponConfig;
             _view = weaponView;
             _weaponSet = weaponSet;
             _weaponContainerPresenter = weaponContainerPresenter;
+            _descriptionLabel = descriptionLabel;
         }
 
         public void SelectWeapon(WeaponType weaponType)
         {
             _weaponSet.SecondaryWeapon = weaponType;
             _weaponContainerPresenter.ClearSelectedItem();
+            _view.SelectItemAnimation();
         }
 
         public void Initialize()
         {
-            SetChooseState();
+            SetSelectState();
             _view.Setup(this);
         }
 
-        private void SetChooseState()
+        private void SetSelectState()
         {
             if(_weaponSet.SecondaryWeapon == _weaponConfig.WeaponType)
             {
-                _isChoosed = true;
+                SelectWeapon(_weaponConfig.WeaponType);
             }
-            else
-            {
-                _isChoosed= false;
-            }
+        }
+
+        public void ShowDescription()
+        {
+            _descriptionLabel.text = Description;
+        }
+
+        public void HideDescription()
+        {
+            _descriptionLabel.text = string.Empty;
         }
     }
 }

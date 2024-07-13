@@ -7,14 +7,13 @@ namespace ArenaShooter.UI
 {
     public class MenuController : IInitializable, ILateDisposable
     {
-        [SerializeField]
         private MenuView _menuView;
+        private ArmoryView _armoryView;
 
-        //private WeaponryView _weaponryView;
-
-        public MenuController(MenuView menuView)
+        public MenuController(MenuView menuView, ArmoryView armoryView)
         {
             _menuView = menuView;
+            _armoryView = armoryView;
         }
 
         public void Initialize()
@@ -22,6 +21,7 @@ namespace ArenaShooter.UI
             _menuView.StartGameBtn.onClick.AddListener(StartGame);
             _menuView.ExitGameBtn.onClick.AddListener(ExitGame);
             _menuView.ArmoryBtn.onClick.AddListener(OpenArmory);
+            _menuView.Show();
         }
 
         public void LateDispose()
@@ -48,8 +48,8 @@ namespace ArenaShooter.UI
 
         private void OpenArmory()
         {
-            Debug.LogWarning("Armory will be soon");
-            //_weaponryView.Open();
+            _menuView.Hide();
+            _armoryView.Show();
         }
     }
 }
