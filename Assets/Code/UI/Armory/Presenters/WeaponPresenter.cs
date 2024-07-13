@@ -45,7 +45,7 @@ namespace ArenaShooter.UI
 
         private void SetSelectState()
         {
-            if(_weaponSet.SecondaryWeapon == _weaponConfig.WeaponType)
+            if (_weaponSet.SecondaryWeapon == _weaponConfig.WeaponType)
             {
                 SelectWeapon(_weaponConfig.WeaponType);
             }

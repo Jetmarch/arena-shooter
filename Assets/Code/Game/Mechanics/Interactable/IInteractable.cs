@@ -1,6 +1,3 @@
-using UnityEngine;
-
-
 namespace ArenaShooter.Mechanics
 {
     public interface IInteractable

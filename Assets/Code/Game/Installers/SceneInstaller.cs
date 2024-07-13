@@ -4,7 +4,6 @@ using ArenaShooter.Inputs;
 using ArenaShooter.Mechanics;
 using ArenaShooter.Projectiles;
 using ArenaShooter.Scenarios;
-using ArenaShooter.UI;
 using ArenaShooter.Units;
 using ArenaShooter.Units.Factories;
 using ArenaShooter.Units.Player;

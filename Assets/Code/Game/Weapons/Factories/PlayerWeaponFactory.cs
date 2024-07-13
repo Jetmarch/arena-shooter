@@ -34,7 +34,7 @@ namespace ArenaShooter.Weapons
 
         public WeaponFacade CreateWeapon(WeaponType type)
         {
-            if(_playerProvider.Player == null)
+            if (_playerProvider.Player == null)
             {
                 throw new Exception($"WeaponFactory: Player is not created yet!");
             }

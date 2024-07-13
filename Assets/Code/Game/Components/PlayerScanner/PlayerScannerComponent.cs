@@ -2,7 +2,6 @@ using ArenaShooter.Components.Triggers;
 using ArenaShooter.Units.Player;
 using System;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.Components
 {

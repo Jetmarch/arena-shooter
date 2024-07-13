@@ -1,7 +1,4 @@
 using ArenaShooter.Components;
-using ArenaShooter.Components.Triggers;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 

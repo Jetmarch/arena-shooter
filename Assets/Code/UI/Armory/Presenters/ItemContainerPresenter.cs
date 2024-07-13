@@ -13,7 +13,7 @@ namespace ArenaShooter.UI
 
         public void ClearSelectedItem()
         {
-            foreach(var item in _itemViews)
+            foreach (var item in _itemViews)
             {
                 item.DeselectItemAnimation();
             }

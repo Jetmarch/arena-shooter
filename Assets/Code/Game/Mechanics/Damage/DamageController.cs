@@ -1,5 +1,4 @@
 ﻿using ArenaShooter.Components.Triggers;
-using ArenaShooter.Mechanics;
 using Zenject;
 
 namespace ArenaShooter.Mechanics

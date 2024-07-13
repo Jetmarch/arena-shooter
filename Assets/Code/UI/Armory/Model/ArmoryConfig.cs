@@ -35,7 +35,7 @@ namespace ArenaShooter.UI
     }
 
     [Serializable]
-    public class WeaponConfig 
+    public class WeaponConfig
     {
         [SerializeField]
         private Sprite _sprite;
@@ -53,7 +53,7 @@ namespace ArenaShooter.UI
     }
 
     [Serializable]
-    public class ArtefactConfig 
+    public class ArtefactConfig
     {
         [SerializeField]
         private Sprite _sprite;

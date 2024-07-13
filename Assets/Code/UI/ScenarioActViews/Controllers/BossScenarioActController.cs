@@ -1,6 +1,5 @@
 using ArenaShooter.Components;
 using ArenaShooter.Scenarios;
-using UnityEngine;
 using Zenject;
 
 namespace ArenaShooter.UI

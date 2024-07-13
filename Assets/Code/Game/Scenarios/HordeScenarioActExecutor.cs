@@ -29,7 +29,7 @@ namespace ArenaShooter.Scenarios
 
         private bool _isPaused;
 
-        public IReadOnlyCollection<GameObject> HordeUnits { get {  return _hordeUnits; } }
+        public IReadOnlyCollection<GameObject> HordeUnits { get { return _hordeUnits; } }
         public event Action HordeUnitDied;
 
         [Inject]
@@ -59,7 +59,7 @@ namespace ArenaShooter.Scenarios
             if (_data == null) return 0;
             int countOfUnits = 0;
 
-            foreach(var unitData in _data.EnemyData)
+            foreach (var unitData in _data.EnemyData)
             {
                 countOfUnits += unitData.CountOfEnemies;
             }

@@ -40,7 +40,7 @@ namespace ArenaShooter.Inputs
         public event Action OnMenu;
 
         private Camera _camera;
-        
+
 
         [Inject]
         private void Construct(Camera camera)
@@ -155,7 +155,7 @@ namespace ArenaShooter.Inputs
 
         private void Interact()
         {
-            if(Input.GetKeyDown(_interact))
+            if (Input.GetKeyDown(_interact))
             {
                 OnInteract?.Invoke();
             }
@@ -163,7 +163,7 @@ namespace ArenaShooter.Inputs
 
         private void Menu()
         {
-            if(Input.GetKeyDown(_menuKey))
+            if (Input.GetKeyDown(_menuKey))
             {
                 OnMenu?.Invoke();
             }

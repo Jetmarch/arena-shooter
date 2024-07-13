@@ -1,6 +1,5 @@
 using ArenaShooter.Inputs;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 

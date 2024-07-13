@@ -1,6 +1,4 @@
 using ArenaShooter.Artefacts;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -46,7 +44,7 @@ namespace ArenaShooter.UI
 
         private void SetChooseState()
         {
-            if(_artefactSet.PrimaryArtefact == _artefactConfig.ArtefactType)
+            if (_artefactSet.PrimaryArtefact == _artefactConfig.ArtefactType)
             {
                 ChooseArtefact(_artefactConfig.ArtefactType);
             }

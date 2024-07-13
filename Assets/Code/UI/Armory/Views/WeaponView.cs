@@ -14,7 +14,7 @@ namespace ArenaShooter.UI
         public override void Setup(IItemPresenter presenter)
         {
             var weaponPresenter = presenter as IWeaponPresenter;
-            if(weaponPresenter == null)
+            if (weaponPresenter == null)
             {
                 throw new System.Exception($"Type mismatch! Presenter is not IWeaponPresenter. Actual type: {presenter.GetType().Name}");
             }

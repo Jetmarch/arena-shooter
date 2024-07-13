@@ -38,7 +38,7 @@ namespace ArenaShooter.Weapons
 
         public void RotateWeapon(Vector3 mousePos)
         {
-            if(_isPaused) return;
+            if (_isPaused) return;
 
             var currentWeapon = _weaponChangeMechanic.CurrentWeapon;
             if (currentWeapon == null) return;

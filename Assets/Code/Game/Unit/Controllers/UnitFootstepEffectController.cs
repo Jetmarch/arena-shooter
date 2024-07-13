@@ -1,5 +1,4 @@
 using ArenaShooter.Inputs;
-using UnityEngine;
 using Zenject;
 
 namespace ArenaShooter.Units

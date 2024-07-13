@@ -1,10 +1,8 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using Zenject;
 
 namespace ArenaShooter.Projectiles
 {
-    public class ProjectileDestroyOnHitMechanic 
+    public class ProjectileDestroyOnHitMechanic
     {
         private ParticleSystem _explosionEffect;
         private SpriteRenderer _spriteRenderer;

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace ArenaShooter.UI
         public WeaponView CreateWeaponView()
         {
             var weaponView = Instantiate(_weaponViewPrefab, transform).GetComponent<WeaponView>();
-            if(weaponView == null)
+            if (weaponView == null)
             {
                 throw new System.Exception($"{_weaponViewPrefab.name} prefab does not contain WeaponView component!");
             }

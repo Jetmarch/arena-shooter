@@ -1,4 +1,3 @@
-using ArenaShooter.Mechanics;
 using System;
 using UnityEngine;
 using Zenject;
@@ -23,7 +22,7 @@ namespace ArenaShooter.UI
             Container.Bind<AnnouncementScreenView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<GameMenuView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ScorePointsView>().FromComponentInHierarchy().AsSingle();
-            
+
             Container.Bind<SceneNameProvider>().FromInstance(_sceneNameProvider).AsSingle();
 
             Container.BindInterfacesAndSelfTo<PlayerUICreateController>().AsSingle().NonLazy();

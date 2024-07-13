@@ -1,5 +1,4 @@
 using ArenaShooter.Weapons;
-using Zenject;
 
 namespace ArenaShooter.Units.Player
 {

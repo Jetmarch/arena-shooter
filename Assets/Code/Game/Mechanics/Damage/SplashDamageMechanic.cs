@@ -34,7 +34,7 @@ namespace ArenaShooter.Mechanics
                 if (health == null) continue;
 
                 health.SetCurrentHealth(health.CurrentHealth - _damage);
-                
+
             }
         }
 

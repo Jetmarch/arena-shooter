@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -11,7 +9,7 @@ namespace ArenaShooter.UI
         private ProgressBarView _progressBarView;
         [SerializeField]
         private TextMeshProUGUI _hordeLabel;
-        
+
         public void Setup(float currentValue, float maxValue)
         {
             _progressBarView.gameObject.SetActive(true);
