@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 8080332045017608664}
   - component: {fileID: 6643504970536710159}
   - component: {fileID: 3420140773928514261}
-  - component: {fileID: 2476590587655317190}
+  - component: {fileID: 3600081810261864551}
   m_Layer: 6
   m_Name: MegaProjectile
   m_TagString: Untagged
@@ -254,8 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5c4271431f9764e8b454be720d6987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 450640581617432208}
-  _moveComponent: {fileID: 4971147980997272825}
 --- !u!114 &6643504970536710159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,8 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dc278e80ace0d4caa4babb57b67c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destroyOnHitMechanic: {fileID: 2476590587655317190}
---- !u!114 &2476590587655317190
+  _destroyOnHitMechanic: {fileID: 3600081810261864551}
+--- !u!114 &3600081810261864551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,7 +294,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7480251586211078169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88448af78b66ec542b1be4c5b7bdbe4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 70e60e276c57c224ba5bcf00af2de248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _explosionEffect: {fileID: 3711969089781005714}

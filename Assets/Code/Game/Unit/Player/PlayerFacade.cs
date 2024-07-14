@@ -24,6 +24,8 @@ namespace ArenaShooter.Units.Player
 
         public Transform WeaponList { get { return _weaponList; } }
 
+        public WeaponFacade CurrentWeapon { get { return WeaponChangeMechanic.CurrentWeapon; } }
+
 #if UNITY_EDITOR
         private void OnValidate()
         {

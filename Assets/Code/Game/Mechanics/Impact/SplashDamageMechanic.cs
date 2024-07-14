@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ArenaShooter.Mechanics
 {
-    public class SplashDamageMechanic : MonoBehaviour, IDamageMechanic
+    public class SplashDamageMechanic : MonoBehaviour, IImpactMechanic
     {
         [SerializeField]
         private float _damageRadius = 2f;

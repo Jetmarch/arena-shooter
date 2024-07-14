@@ -6,7 +6,7 @@ namespace ArenaShooter.Weapons
     {
         [SerializeField]
         private int _countOfProjectiles = 6;
-        protected override void ShootMechanic()
+        public override void ShootMechanic()
         {
             var angleStep = 360 / _countOfProjectiles;
             for (int i = 0; i < _countOfProjectiles; i++)

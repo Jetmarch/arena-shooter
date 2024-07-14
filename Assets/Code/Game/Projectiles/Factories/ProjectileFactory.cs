@@ -24,7 +24,7 @@ namespace ArenaShooter.Projectiles
         [SerializeField]
         private Transform _projectilePool;
 
-        public Action<ProjectileFacade> OnProjectileCreated;
+        public Action<ProjectileFacade, GameObject> OnProjectileCreated;
 
         [Inject]
         public void Construct(DiContainer container)
@@ -42,7 +42,7 @@ namespace ArenaShooter.Projectiles
             //TODO: Перенести в пул
             var createdProjectile = _container.InstantiatePrefab(projectile, position, rotation, _projectilePool);
 
-            var damageMechanic = createdProjectile.GetComponent<IDamageMechanic>();
+            var damageMechanic = createdProjectile.GetComponent<IImpactMechanic>();
             if (damageMechanic == null)
             {
                 throw new Exception($"ProjectileFactory: Projectile with {type} does not contain IProjectileDamageMechanic!");
@@ -61,7 +61,7 @@ namespace ArenaShooter.Projectiles
                 throw new Exception($"ProjectileFactory: Projectile with {type} does not contain ProjectileFacade!");
             }
 
-            OnProjectileCreated?.Invoke(projectileFacade);
+            OnProjectileCreated?.Invoke(projectileFacade, owner);
 
             return projectileFacade;
         }

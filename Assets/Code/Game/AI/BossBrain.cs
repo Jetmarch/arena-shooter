@@ -1,14 +1,17 @@
 using ArenaShooter.Inputs;
+using System.Collections;
 using UnityEngine;
 
 namespace ArenaShooter.AI
 {
-    public class BossBrain : MonoBehaviour, IGameUpdateListener, IGamePauseListener
+    public class BossBrain : MonoBehaviour, IGameUpdateListener, IGamePauseListener, IAIBrain
     {
         [SerializeField]
         private float _radiusOfInteraction = 3f;
         [SerializeField]
         private float _maxMovePhaseTime = 3f;
+        [SerializeField]
+        protected float _maxStunTime = 2f;
 
         private bool _isAttackPhase = false;
         private bool _isMovePhase = false;
@@ -18,13 +21,13 @@ namespace ArenaShooter.AI
 
         private Transform _target;
 
-        private AIInputController _controller;
+        private AIInputController _inputController;
 
         private bool _isPaused;
 
         public void Construct(AIInputController controller)
         {
-            _controller = controller;
+            _inputController = controller;
         }
 
         private void OnEnable()
@@ -43,15 +46,15 @@ namespace ArenaShooter.AI
 
             if (_target == null || _isAttackPhase)
             {
-                _controller.Move(Vector2.zero);
+                _inputController.Move(Vector2.zero);
                 return;
             }
-            _controller.ScreenMouseMove(_target.position);
-            _controller.WorldMouseMove(_target.position);
+            _inputController.ScreenMouseMove(_target.position);
+            _inputController.WorldMouseMove(_target.position);
 
             if (!_isMovePhase)
             {
-                var rndInCirclePosition = UnityEngine.Random.insideUnitCircle * _radiusOfInteraction;
+                var rndInCirclePosition = Random.insideUnitCircle * _radiusOfInteraction;
                 var positionNearTarget = new Vector3(_target.position.x + rndInCirclePosition.x, _target.position.y + rndInCirclePosition.y, 0f);
                 _desiredPosition = (positionNearTarget - transform.position).normalized;
 
@@ -60,13 +63,13 @@ namespace ArenaShooter.AI
             }
             else if (_isMovePhase)
             {
-                _controller.Move(_desiredPosition);
+                _inputController.Move(_desiredPosition);
                 _movePhaseTime += delta;
                 if (Vector2.Distance(transform.position, _desiredPosition) < 0.1f || _movePhaseTime >= _maxMovePhaseTime)
                 {
                     _isMovePhase = false;
-                    _controller.Shoot();
-                    _controller.Move(Vector2.zero);
+                    _inputController.Shoot();
+                    _inputController.Move(Vector2.zero);
                 }
             }
         }
@@ -88,12 +91,35 @@ namespace ArenaShooter.AI
 
         public void OnPauseGame()
         {
-            _isPaused = true;
+            StopBrain();
         }
 
         public void OnResumeGame()
         {
+            StartBrain();
+        }
+
+        public void StartBrain()
+        {
             _isPaused = false;
+        }
+
+        public void StopBrain()
+        {
+            _isPaused = true;
+            _inputController.Move(Vector2.zero);
+        }
+
+        public void Stun()
+        {
+            StartCoroutine(Stunned());
+        }
+
+        private IEnumerator Stunned()
+        {
+            StopBrain();
+            yield return new WaitForSeconds(_maxStunTime);
+            StartBrain();
         }
     }
 }

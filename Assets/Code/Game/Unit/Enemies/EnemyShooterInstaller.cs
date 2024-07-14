@@ -81,7 +81,7 @@ namespace ArenaShooter.Units.Enemies
             _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
         }
 
-        private void Start()
+        public override void Start()
         {
             _weaponStorage.AddWeapon(Container.InstantiatePrefab(_weaponPrefab, _weaponParent).GetComponent<WeaponFacade>());
         }

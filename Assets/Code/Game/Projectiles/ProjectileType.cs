@@ -7,6 +7,7 @@ namespace ArenaShooter.Projectiles
         Machinegun,
         Rocket,
         MegaProjectile,
-        Explosion
+        Explosion,
+        StunProjectile
     }
 }

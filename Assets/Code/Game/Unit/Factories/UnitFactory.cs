@@ -7,6 +7,13 @@ namespace ArenaShooter.Units.Factories
 {
     public class UnitFactory : MonoBehaviour
     {
+        [Serializable]
+        public struct UnitFactoryData
+        {
+            public UnitType UnitType;
+            public GameObject UnitPrefab;
+        }
+
         [SerializeField]
         private List<UnitFactoryData> _units;
         private DiContainer _container;
@@ -16,13 +23,6 @@ namespace ArenaShooter.Units.Factories
         private void Construct(DiContainer container)
         {
             _container = container;
-        }
-
-        [Serializable]
-        public class UnitFactoryData
-        {
-            public UnitType UnitType;
-            public GameObject UnitPrefab;
         }
 
         public GameObject CreateUnit(UnitType type, Vector3 position, Transform parent)

@@ -7,10 +7,10 @@ namespace ArenaShooter.Projectiles
 {
     public class ProjectileSpreadOnHitController : IInitializable
     {
-        private IDamageMechanic _damageMechanic;
+        private IImpactMechanic _damageMechanic;
         private SpreadProjectilesMechanic _spreadProjectileMechanic;
 
-        public ProjectileSpreadOnHitController(IDamageMechanic damageMechanic, SpreadProjectilesMechanic spreadProjectileMechanic)
+        public ProjectileSpreadOnHitController(IImpactMechanic damageMechanic, SpreadProjectilesMechanic spreadProjectileMechanic)
         {
             _damageMechanic = damageMechanic;
             _spreadProjectileMechanic = spreadProjectileMechanic;

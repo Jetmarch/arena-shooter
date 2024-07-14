@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ArenaShooter.Projectiles
 {
-    public class ProjectileDestroyOnHitMechanic : MonoBehaviour
+    public class ProjectileDestroyMechanic : MonoBehaviour
     {
         [SerializeField]
         private ParticleSystem _explosionEffect;
@@ -13,7 +13,7 @@ namespace ArenaShooter.Projectiles
         [SerializeField]
         private int _countOfHitBeforeDestroy;
 
-        public ProjectileDestroyOnHitMechanic(ParticleSystem explosionEffect, SpriteRenderer spriteRenderer, int countOfHitBeforeDestroy)
+        public ProjectileDestroyMechanic(ParticleSystem explosionEffect, SpriteRenderer spriteRenderer, int countOfHitBeforeDestroy)
         {
             _explosionEffect = explosionEffect;
             _spriteRenderer = spriteRenderer;

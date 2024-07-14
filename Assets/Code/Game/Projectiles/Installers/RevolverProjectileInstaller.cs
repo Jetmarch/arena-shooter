@@ -12,9 +12,9 @@ namespace ArenaShooter.Projectiles
             Container.Bind<Trigger2DComponent>().FromComponentOn(gameObject).AsSingle();
             Container.BindInterfacesAndSelfTo<DamageMechanic>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<Move2DComponent>().FromComponentOn(gameObject).AsSingle();
-            Container.Bind<ProjectileDestroyOnHitMechanic>().FromComponentOn(gameObject).AsSingle();
+            Container.Bind<ProjectileDestroyMechanic>().FromComponentOn(gameObject).AsSingle();
 
-            Container.BindInterfacesAndSelfTo<DamageController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ImpactController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ProjectileDestroyOnHitController>().AsSingle().NonLazy();
         }
 

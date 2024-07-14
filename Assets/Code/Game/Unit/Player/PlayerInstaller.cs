@@ -1,9 +1,11 @@
+using ArenaShooter.Artefacts;
 using ArenaShooter.Audio;
 using ArenaShooter.CameraScripts;
 using ArenaShooter.Components;
 using ArenaShooter.Unit;
 using ArenaShooter.Units.Enemies;
 using ArenaShooter.Weapons;
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -54,7 +56,11 @@ namespace ArenaShooter.Units.Player
         [Inject]
         private WeaponSet _weaponSet;
         [Inject]
+        private ArtefactSet _artefactSet;
+        [Inject]
         private PlayerWeaponFactory _weaponFactory;
+        [Inject]
+        private ArtefactFactory _artefactFactory;
 
         public override void InstallBindings()
         {
@@ -130,10 +136,18 @@ namespace ArenaShooter.Units.Player
 
         public override void Start()
         {
+            StartCoroutine(DelayedWeaponAndArtefactInstall());
+        }
+
+        private IEnumerator DelayedWeaponAndArtefactInstall()
+        {
+            yield return new WaitForSeconds(0.5f);
             _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(_weaponSet.PrimaryWeapon));
             _weaponStorage.AddWeapon(_weaponFactory.CreateWeapon(_weaponSet.SecondaryWeapon));
             _weaponChangeMechanic.OnChangeWeaponUp();
             SetWeaponsOwner();
+
+            _artefactFactory.CreateArtefact(_artefactSet.PrimaryArtefact);
         }
 
 #if UNITY_EDITOR

@@ -5,10 +5,10 @@ namespace ArenaShooter.Projectiles
 {
     public class ProjectileDestroyOnHitController : IInitializable, ILateDisposable
     {
-        private ProjectileDestroyOnHitMechanic _destroyOnHitMechanic;
-        private IDamageMechanic _damageMechanic;
+        private ProjectileDestroyMechanic _destroyOnHitMechanic;
+        private IImpactMechanic _damageMechanic;
 
-        public ProjectileDestroyOnHitController(ProjectileDestroyOnHitMechanic destroyOnHitMechanic, IDamageMechanic damageMechanic)
+        public ProjectileDestroyOnHitController(ProjectileDestroyMechanic destroyOnHitMechanic, IImpactMechanic damageMechanic)
         {
             _destroyOnHitMechanic = destroyOnHitMechanic;
             _damageMechanic = damageMechanic;

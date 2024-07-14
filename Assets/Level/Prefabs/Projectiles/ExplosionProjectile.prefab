@@ -183,7 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c995fc39827e5409fb3eaded84e8be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectileFacade: {fileID: 5921429325948007316}
 --- !u!114 &5921429325948007316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +205,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7562640711934236345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88448af78b66ec542b1be4c5b7bdbe4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 70e60e276c57c224ba5bcf00af2de248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _explosionEffect: {fileID: 1041554389758671836}

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ArenaShooter.Mechanics
 {
-    public interface IDamageMechanic
+    public interface IImpactMechanic
     {
         event Action<GameObject> HitGameObject;
         GameObject Owner { get; set; }

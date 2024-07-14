@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ArenaShooter.AI
 {
-    public class AIBrain : MonoBehaviour, IGameUpdateListener, IGamePauseListener
+    public class AIBrain : MonoBehaviour, IGameUpdateListener, IGamePauseListener, IAIBrain
     {
         [SerializeField]
         protected float _pursueDistance = 10f;
@@ -15,6 +15,8 @@ namespace ArenaShooter.AI
         protected float _timeBetweenAttacks = 1f;
         [SerializeField]
         protected int _attackCount = 3;
+        [SerializeField]
+        protected float _maxStunTime = 2f;
 
         [SerializeField]
         protected PlayerScannerComponent _playerScanner;
@@ -117,12 +119,35 @@ namespace ArenaShooter.AI
 
         public void OnPauseGame()
         {
-            _isPaused = true;
+            StopBrain();
         }
 
         public void OnResumeGame()
         {
+            StartBrain();
+        }
+
+        public void StartBrain()
+        {
             _isPaused = false;
+        }
+
+        public void StopBrain()
+        {
+            _isPaused = true;
+            _inputController.Move(Vector2.zero);
+        }
+
+        public void Stun()
+        {
+            StartCoroutine(Stunned());
+        }
+
+        private IEnumerator Stunned()
+        {
+            StopBrain();
+            yield return new WaitForSeconds(_maxStunTime);
+            StartBrain();
         }
     }
 }

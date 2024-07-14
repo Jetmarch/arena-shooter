@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ArenaShooter.Mechanics
 {
-    public class DamageMechanic : MonoBehaviour, IDamageMechanic
+    public class DamageMechanic : MonoBehaviour, IImpactMechanic
     {
         [SerializeField]
         private float _minDamage;

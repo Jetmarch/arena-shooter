@@ -54,7 +54,7 @@ namespace ArenaShooter.Units.Enemies
             Container.BindInterfacesAndSelfTo<SpriteFlashOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<TemporaryInvulnerabilityOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<EnemyMeleeChangeSpeedController>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<DamageController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ImpactController>().AsSingle().NonLazy();
 
             _healthComponent.Condition.Append(_unitTemporaryInvulnerableMechanic.IsNotInvulnerable);
         }

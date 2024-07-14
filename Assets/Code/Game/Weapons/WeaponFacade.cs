@@ -20,6 +20,9 @@ namespace ArenaShooter.Weapons
         public WeaponRotateMechanic WeaponRotateMechanic { get { return _weaponRotateMechanic; } }
         public WeaponReloadMechanic WeaponReloadMechanic { get { return _weaponReloadMechanic; } }
 
+        public Quaternion Rotation { get { return transform.rotation; } }
+        public Vector3 Position { get { return transform.position; } }
+
 #if UNITY_EDITOR
         private void OnValidate()
         {

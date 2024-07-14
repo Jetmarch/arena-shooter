@@ -6,9 +6,9 @@ namespace ArenaShooter.Projectiles
     public class ProjectileImpactAfterDelayController : IInitializable, ILateDisposable
     {
         private ProjectileImpactAfterDelayMechanic _impactMechanic;
-        private IDamageMechanic _damageMechanic;
+        private IImpactMechanic _damageMechanic;
 
-        public ProjectileImpactAfterDelayController(ProjectileImpactAfterDelayMechanic impactMechanic, IDamageMechanic damageMechanic)
+        public ProjectileImpactAfterDelayController(ProjectileImpactAfterDelayMechanic impactMechanic, IImpactMechanic damageMechanic)
         {
             _impactMechanic = impactMechanic;
             _damageMechanic = damageMechanic;

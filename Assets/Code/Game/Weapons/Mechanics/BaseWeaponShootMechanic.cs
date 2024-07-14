@@ -56,7 +56,7 @@ namespace ArenaShooter.Weapons
             _owner = onwer;
         }
 
-        protected abstract void ShootMechanic();
+        public abstract void ShootMechanic();
 
         public void OnPauseGame()
         {
