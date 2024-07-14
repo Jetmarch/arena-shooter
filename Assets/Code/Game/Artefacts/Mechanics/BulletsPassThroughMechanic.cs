@@ -15,6 +15,7 @@ namespace ArenaShooter.Artefacts
 
         public void SetProjectileHitCount(ProjectileFacade projectileFacade, GameObject owner)
         {
+            if (_playerFacade == null) return;
             if (owner != _playerFacade.gameObject) return;
 
             projectileFacade.DestroyOnHitMechanic.SetCountOfHitBeforeDestroy(int.MaxValue);

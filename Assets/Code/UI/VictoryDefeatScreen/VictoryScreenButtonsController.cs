@@ -3,12 +3,12 @@ using Zenject;
 
 namespace ArenaShooter.UI
 {
-    public class AnnouncementScreenButtonsController : IInitializable, ILateDisposable
+    public class VictoryScreenButtonsController : IInitializable, ILateDisposable
     {
-        private AnnouncementScreenView _view;
+        private VictoryScreenView _view;
         private SceneNameProvider _sceneNameProvider;
 
-        public AnnouncementScreenButtonsController(AnnouncementScreenView view, SceneNameProvider sceneNameProvider)
+        public VictoryScreenButtonsController(VictoryScreenView view, SceneNameProvider sceneNameProvider)
         {
             _view = view;
             _sceneNameProvider = sceneNameProvider;
@@ -18,12 +18,14 @@ namespace ArenaShooter.UI
         {
             _view.ToMenuBtn.onClick.AddListener(LoadMenuScene);
             _view.RestartBtn.onClick.AddListener(RestartArenaScene);
+            _view.NextLevelBtn.onClick.AddListener(NextArenaScene);
         }
 
         public void LateDispose()
         {
             _view.ToMenuBtn.onClick.RemoveListener(LoadMenuScene);
             _view.RestartBtn.onClick.RemoveListener(RestartArenaScene);
+            _view.NextLevelBtn.onClick.RemoveListener(NextArenaScene);
         }
 
         private void LoadMenuScene()
@@ -33,7 +35,12 @@ namespace ArenaShooter.UI
 
         private void RestartArenaScene()
         {
-            SceneManager.LoadScene(_sceneNameProvider.ArenaSceneName);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        private void NextArenaScene()
+        {
+            SceneManager.LoadScene(_sceneNameProvider.NextSceneName);
         }
     }
 

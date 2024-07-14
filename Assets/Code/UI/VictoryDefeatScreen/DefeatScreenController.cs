@@ -5,29 +5,30 @@ namespace ArenaShooter.UI
 {
     public class DefeatScreenController : IInitializable, ILateDisposable
     {
-        private IPlayerProvider _playerProvider;
-        private AnnouncementScreenView _announcementScreenView;
+        private GameConditionManager _gameConditionManager;
+        private DefeatScreenView _defeatScreenView;
+        private string _defeatText;
 
-        public DefeatScreenController(IPlayerProvider playerProvider, AnnouncementScreenView announcementScreenView)
+        public DefeatScreenController(GameConditionManager gameConditionManager, DefeatScreenView defeatScreenView, string defeatText)
         {
-            _playerProvider = playerProvider;
-            _announcementScreenView = announcementScreenView;
+            _gameConditionManager = gameConditionManager;
+            _defeatScreenView = defeatScreenView;
+            _defeatText = defeatText;
         }
 
         public void Initialize()
         {
-            _playerProvider.OnPlayerDied += OnPlayerDied;
+            _gameConditionManager.OnDefeat += OnDefeat;
         }
 
         public void LateDispose()
         {
-            _playerProvider.OnPlayerDied -= OnPlayerDied;
+            _gameConditionManager.OnDefeat -= OnDefeat;
         }
 
-        private void OnPlayerDied(PlayerFacade obj)
+        private void OnDefeat()
         {
-            //TODO: Перенести в текст конфиги
-            _announcementScreenView.ShowText("DEFEAT");
+            _defeatScreenView.Show(_defeatText);
         }
     }
 }

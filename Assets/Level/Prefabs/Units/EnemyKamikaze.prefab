@@ -156,10 +156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b5b849f2cd039468b16c8cc1d5804f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pursueDistance: 10
+  _pursueDistance: 50
   _attackDistance: 1.5
   _timeBetweenAttacks: 10
   _attackCount: 3
+  _maxStunTime: 2
   _playerScanner: {fileID: 0}
   _inputController: {fileID: 0}
 --- !u!114 &5019129349766656066
@@ -382,7 +383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 909785642075889280, guid: 6d37daebf431f96459c49a3bafd2423a, type: 3}
       propertyPath: m_Radius
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1708234750908934308, guid: 6d37daebf431f96459c49a3bafd2423a, type: 3}
       propertyPath: m_Name

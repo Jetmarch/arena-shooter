@@ -4,13 +4,13 @@ using UnityEngine.UI;
 
 namespace ArenaShooter.UI
 {
-    public class AnnouncementScreenView : MonoBehaviour
+    public class VictoryScreenView : MonoBehaviour
     {
         [SerializeField]
         private TextMeshProUGUI _announceText;
 
         [SerializeField]
-        private GameObject _announceBlock;
+        private GameObject _container;
 
         [SerializeField]
         private Button _toMenuBtn;
@@ -18,23 +18,22 @@ namespace ArenaShooter.UI
         [SerializeField]
         private Button _restartBtn;
 
+        [SerializeField]
+        private Button _nextLevelBtn;
+
         public Button ToMenuBtn => _toMenuBtn;
         public Button RestartBtn => _restartBtn;
+        public Button NextLevelBtn => _nextLevelBtn;
 
-        public void ShowText(string text)
+        public void Show(string text)
         {
             _announceText.text = text;
-            _announceBlock.SetActive(true);
-
-            _restartBtn.gameObject.SetActive(true);
-            _toMenuBtn.gameObject.SetActive(true);
+            _container.SetActive(true);
         }
 
         public void Hide()
         {
-            _announceBlock.SetActive(false);
-            _restartBtn.gameObject.SetActive(false);
-            _toMenuBtn.gameObject.SetActive(false);
+            _container.SetActive(false);
         }
     }
 }

@@ -52,14 +52,12 @@ namespace ArenaShooter.Scenarios
 
         private void OnScenarioActFinish()
         {
-            Debug.Log("Scenario act finish");
             _currentScenarioAct++;
             StartCoroutine(ExecuteCurrentAct());
         }
 
         private void OnScenarioActStart()
         {
-            Debug.Log("Scenario act start");
         }
 
         public void OnStartGame()
@@ -85,7 +83,6 @@ namespace ArenaShooter.Scenarios
             }
             else
             {
-                Debug.Log("Scenario end!");
                 OnScenarioFinish?.Invoke();
                 yield break;
             }

@@ -57,6 +57,7 @@ namespace ArenaShooter.Installers
             Container.BindInterfacesAndSelfTo<GamePauseController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PauseGameOnVictoryController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PauseGameOnDefeatController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<GameConditionManager>().AsSingle().NonLazy();
         }
 
         private void BindCamera()

@@ -8,11 +8,13 @@ namespace ArenaShooter.UI
     {
         private MenuView _menuView;
         private ArmoryView _armoryView;
+        private string _gameSceneName;
 
-        public MenuController(MenuView menuView, ArmoryView armoryView)
+        public MenuController(MenuView menuView, ArmoryView armoryView, string gameSceneName)
         {
             _menuView = menuView;
             _armoryView = armoryView;
+            _gameSceneName = gameSceneName;
         }
 
         public void Initialize()
@@ -32,8 +34,7 @@ namespace ArenaShooter.UI
 
         private void StartGame()
         {
-            //TODO: Передавать название сцены через конфигурации или что-то в этом духе
-            SceneManager.LoadScene("ArenaScene");
+            SceneManager.LoadScene(_gameSceneName);
         }
 
         private void ExitGame()

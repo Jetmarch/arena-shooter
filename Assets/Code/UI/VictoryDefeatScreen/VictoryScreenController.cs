@@ -5,29 +5,30 @@ namespace ArenaShooter.UI
 {
     public class VictoryScreenController : IInitializable, ILateDisposable
     {
-        private ArenaScenarioExecutor _scenarioExecutor;
-        private AnnouncementScreenView _announcementScreenView;
+        private VictoryScreenView _victoryScreenView;
+        private GameConditionManager _gameConditionManager;
+        private string _victoryText;
 
-        public VictoryScreenController(ArenaScenarioExecutor scenarioExecutor, AnnouncementScreenView announcementScreenView)
+        public VictoryScreenController(GameConditionManager gameConditionManager, VictoryScreenView victoryScreenView, string victoryText)
         {
-            _scenarioExecutor = scenarioExecutor;
-            _announcementScreenView = announcementScreenView;
+            _gameConditionManager = gameConditionManager;
+            _victoryScreenView = victoryScreenView;
+            _victoryText = victoryText;
         }
 
         public void Initialize()
         {
-            _scenarioExecutor.OnScenarioFinish += OnScenarionFinish;
+            _gameConditionManager.OnVictory += OnVictory;
         }
 
         public void LateDispose()
         {
-            _scenarioExecutor.OnScenarioFinish -= OnScenarionFinish;
+            _gameConditionManager.OnVictory -= OnVictory;
         }
 
-        private void OnScenarionFinish()
+        private void OnVictory()
         {
-            //TODO: Перенести в текст конфиги
-            _announcementScreenView.ShowText("VICTORY");
+            _victoryScreenView.Show(_victoryText);
         }
     }
 }
