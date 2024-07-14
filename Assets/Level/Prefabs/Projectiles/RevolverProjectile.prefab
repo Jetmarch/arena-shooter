@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 17986641294685647}
   - component: {fileID: 7820146740230575042}
   - component: {fileID: 2946640202226766192}
+  - component: {fileID: 1184419015921547052}
+  - component: {fileID: 4872040729950768504}
   m_Layer: 6
   m_Name: RevolverProjectile
   m_TagString: Untagged
@@ -169,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 450
-  _rigidbody: {fileID: 0}
+  _rigidbody: {fileID: 4334372058563688730}
 --- !u!114 &2594590499336249952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,9 +240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 4334372058563688730}
   _moveComponent: {fileID: 5934177093177697277}
-  _explosionParticles: {fileID: 8442005248127529879}
-  _spriteRenderer: {fileID: 1957195769780224829}
-  _countOfHitBeforeDestroy: 1
 --- !u!114 &2946640202226766192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +258,35 @@ MonoBehaviour:
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
+--- !u!114 &1184419015921547052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8061884974603674031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46dc278e80ace0d4caa4babb57b67c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyOnHitMechanic: {fileID: 4872040729950768504}
+--- !u!114 &4872040729950768504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8061884974603674031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88448af78b66ec542b1be4c5b7bdbe4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosionEffect: {fileID: 8442005248127529879}
+  _spriteRenderer: {fileID: 1957195769780224829}
+  _isDestroyed: 0
+  _countOfHitBeforeDestroy: 1
 --- !u!1001 &4921386989640050042
 PrefabInstance:
   m_ObjectHideFlags: 0

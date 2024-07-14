@@ -97,6 +97,8 @@ GameObject:
   - component: {fileID: 4834437299037533027}
   - component: {fileID: 8559445484996584957}
   - component: {fileID: 5561144230267121064}
+  - component: {fileID: 5921429325948007316}
+  - component: {fileID: 8967225594299325400}
   m_Layer: 6
   m_Name: ExplosionProjectile
   m_TagString: Untagged
@@ -181,8 +183,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c995fc39827e5409fb3eaded84e8be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectileFacade: {fileID: 5921429325948007316}
+--- !u!114 &5921429325948007316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562640711934236345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46dc278e80ace0d4caa4babb57b67c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyOnHitMechanic: {fileID: 8967225594299325400}
+--- !u!114 &8967225594299325400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562640711934236345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88448af78b66ec542b1be4c5b7bdbe4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosionEffect: {fileID: 1041554389758671836}
   _spriteRenderer: {fileID: 3758499753566446438}
-  _explosionParticles: {fileID: 1041554389758671836}
+  _isDestroyed: 0
+  _countOfHitBeforeDestroy: 1
 --- !u!1001 &8393199968900412882
 PrefabInstance:
   m_ObjectHideFlags: 0

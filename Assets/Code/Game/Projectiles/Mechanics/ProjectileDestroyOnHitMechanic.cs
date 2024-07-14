@@ -2,19 +2,21 @@ using UnityEngine;
 
 namespace ArenaShooter.Projectiles
 {
-    public class ProjectileDestroyOnHitMechanic
+    public class ProjectileDestroyOnHitMechanic : MonoBehaviour
     {
+        [SerializeField]
         private ParticleSystem _explosionEffect;
+        [SerializeField]
         private SpriteRenderer _spriteRenderer;
-        private GameObject _projectile;
-        private bool _isDestroyed;
+        [SerializeField]
+        private bool _isDestroyed = false;
+        [SerializeField]
         private int _countOfHitBeforeDestroy;
 
-        public ProjectileDestroyOnHitMechanic(ParticleSystem explosionEffect, SpriteRenderer spriteRenderer, GameObject projectile, int countOfHitBeforeDestroy)
+        public ProjectileDestroyOnHitMechanic(ParticleSystem explosionEffect, SpriteRenderer spriteRenderer, int countOfHitBeforeDestroy)
         {
             _explosionEffect = explosionEffect;
             _spriteRenderer = spriteRenderer;
-            _projectile = projectile;
             _isDestroyed = false;
             _countOfHitBeforeDestroy = countOfHitBeforeDestroy;
         }
@@ -27,8 +29,13 @@ namespace ArenaShooter.Projectiles
             if (_isDestroyed) return;
             _spriteRenderer.enabled = false;
             _explosionEffect.Play();
-            Object.Destroy(_projectile, _explosionEffect.main.duration);
+            Destroy(gameObject, _explosionEffect.main.duration);
             _isDestroyed = true;
+        }
+
+        public void SetCountOfHitBeforeDestroy(int countOfHitBeforeDestroy)
+        {
+            _countOfHitBeforeDestroy = countOfHitBeforeDestroy;
         }
     }
 }

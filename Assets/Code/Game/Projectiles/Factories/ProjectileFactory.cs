@@ -24,13 +24,15 @@ namespace ArenaShooter.Projectiles
         [SerializeField]
         private Transform _projectilePool;
 
+        public Action<ProjectileFacade> OnProjectileCreated;
+
         [Inject]
         public void Construct(DiContainer container)
         {
             _container = container;
         }
 
-        public GameObject CreateProjectile(ProjectileType type, Vector3 position, Quaternion rotation, GameObject owner)
+        public ProjectileFacade CreateProjectile(ProjectileType type, Vector3 position, Quaternion rotation, GameObject owner)
         {
             var projectile = _projectiles.Find(x => x.Type == type).ProjectilePrefab;
             if (projectile == null)
@@ -53,8 +55,15 @@ namespace ArenaShooter.Projectiles
             {
                 spreadProjectiles.SetOwner(owner);
             }
+            var projectileFacade = createdProjectile.GetComponent<ProjectileFacade>();
+            if(projectileFacade == null)
+            {
+                throw new Exception($"ProjectileFactory: Projectile with {type} does not contain ProjectileFacade!");
+            }
 
-            return createdProjectile;
+            OnProjectileCreated?.Invoke(projectileFacade);
+
+            return projectileFacade;
         }
     }
 }
