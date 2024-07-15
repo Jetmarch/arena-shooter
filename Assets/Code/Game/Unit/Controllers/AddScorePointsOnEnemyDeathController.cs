@@ -28,7 +28,9 @@ namespace ArenaShooter.Units
         private void AddScorePoints(GameObject deadUnit)
         {
             //TODO: Добавить в противника возможность задавать количество очков за его убийство
-            _scorePointsStorage.AddScorePoints(10);
+            var giveScorePointsMechanic = deadUnit.GetComponent<UnitGiveScorePointsMechanic>();
+            if (giveScorePointsMechanic == null) return;
+            _scorePointsStorage.AddScorePoints(giveScorePointsMechanic.GetScorePoints());
         }
     }
 }

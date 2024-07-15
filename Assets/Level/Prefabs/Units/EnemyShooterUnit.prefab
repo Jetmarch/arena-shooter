@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 183295074010827517}
   - component: {fileID: 3249852926387603231}
   - component: {fileID: 1793111857508383525}
+  - component: {fileID: 7629622098778279679}
   m_Layer: 8
   m_Name: EnemyShooterUnit
   m_TagString: Untagged
@@ -363,6 +364,19 @@ MonoBehaviour:
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
+--- !u!114 &7629622098778279679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8330127567208185171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1dd206bc6e85f4489a584f4069504bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amountOfPoints: 10
 --- !u!1001 &6277377195692452188
 PrefabInstance:
   m_ObjectHideFlags: 0

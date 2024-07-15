@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 3262102019333787978}
   - component: {fileID: 2493004703465785417}
   - component: {fileID: 4283611016525051530}
+  - component: {fileID: -517169273068173786}
   m_Layer: 8
   m_Name: EnemyKamikaze
   m_TagString: Untagged
@@ -333,6 +334,19 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 257223462317496611}
   _healthComponent: {fileID: 3938561883768956516}
   _unitTemporaryInvulnerableMechanic: {fileID: 3262102019333787978}
+--- !u!114 &-517169273068173786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2844808653825295335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1dd206bc6e85f4489a584f4069504bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amountOfPoints: 3
 --- !u!1001 &3269885781642179839
 PrefabInstance:
   m_ObjectHideFlags: 0
