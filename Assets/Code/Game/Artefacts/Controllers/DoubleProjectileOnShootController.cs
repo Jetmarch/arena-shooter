@@ -17,7 +17,7 @@ namespace ArenaShooter.Artefacts
 
         public void Initialize()
         {
-            foreach(var weapon in _weaponsStorage.Weapons)
+            foreach (var weapon in _weaponsStorage.Weapons)
             {
                 weapon.WeaponShootMechanic.ShootComplete += _mechanic.DoubleShot;
             }

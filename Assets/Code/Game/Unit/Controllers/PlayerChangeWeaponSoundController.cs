@@ -1,6 +1,5 @@
 using ArenaShooter.Audio;
 using ArenaShooter.Weapons;
-using UnityEngine;
 using Zenject;
 
 

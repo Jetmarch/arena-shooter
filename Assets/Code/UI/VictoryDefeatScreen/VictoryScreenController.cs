@@ -1,4 +1,3 @@
-using ArenaShooter.Scenarios;
 using Zenject;
 
 namespace ArenaShooter.UI

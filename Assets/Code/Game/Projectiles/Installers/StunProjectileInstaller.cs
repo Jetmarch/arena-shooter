@@ -1,7 +1,6 @@
-using ArenaShooter.Components.Triggers;
 using ArenaShooter.Components;
+using ArenaShooter.Components.Triggers;
 using ArenaShooter.Mechanics;
-using UnityEngine;
 using Zenject;
 
 namespace ArenaShooter.Projectiles

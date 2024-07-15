@@ -1,4 +1,3 @@
-using ArenaShooter.Units.Player;
 using Zenject;
 
 namespace ArenaShooter.UI

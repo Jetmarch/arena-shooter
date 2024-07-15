@@ -1,5 +1,4 @@
 using ArenaShooter.Scenarios;
-using UnityEngine;
 using Zenject;
 
 

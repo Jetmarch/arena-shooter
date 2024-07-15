@@ -1,7 +1,6 @@
 using ArenaShooter.Scenarios;
 using ArenaShooter.Units.Player;
 using System;
-using UnityEngine;
 using Zenject;
 
 namespace ArenaShooter

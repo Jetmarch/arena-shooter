@@ -23,8 +23,8 @@ namespace ArenaShooter.Artefacts
         {
             if (Random.value > _doubleShotChance) return;
 
-            
-            
+
+
             _coroutineCreator.StartCoroutine(DelayedShot());
         }
 

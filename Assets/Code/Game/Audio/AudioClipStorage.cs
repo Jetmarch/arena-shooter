@@ -28,9 +28,9 @@ namespace ArenaShooter.Audio
         [ContextMenu("Find all audio clips")]
         private void FindAllAudioClips()
         {
-            _audioClips = new SerializableDictionaryBase<string, AudioClip> ();
-            var audioClipGuids = AssetDatabase.FindAssets("t:audioClip", new[] {"Assets/Audio/Sound", "Assets/Audio/Music", "Assets/Audio/Sound/ShootingSound" });
-            foreach(var guid in audioClipGuids)
+            _audioClips = new SerializableDictionaryBase<string, AudioClip>();
+            var audioClipGuids = AssetDatabase.FindAssets("t:audioClip", new[] { "Assets/Audio/Sound", "Assets/Audio/Music", "Assets/Audio/Sound/ShootingSound" });
+            foreach (var guid in audioClipGuids)
             {
                 var assetPath = AssetDatabase.GUIDToAssetPath(guid);
                 var audioClip = (AudioClip)AssetDatabase.LoadAssetAtPath(assetPath, typeof(AudioClip));

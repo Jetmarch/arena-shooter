@@ -16,7 +16,7 @@ namespace ArenaShooter.Mechanics
             if (_owner == obj) return;
 
             var aiBrain = obj.GetComponent<IAIBrain>();
-            if(aiBrain == null) return;
+            if (aiBrain == null) return;
 
             aiBrain.Stun();
 

@@ -56,7 +56,7 @@ namespace ArenaShooter.Projectiles
                 spreadProjectiles.SetOwner(owner);
             }
             var projectileFacade = createdProjectile.GetComponent<ProjectileFacade>();
-            if(projectileFacade == null)
+            if (projectileFacade == null)
             {
                 throw new Exception($"ProjectileFactory: Projectile with {type} does not contain ProjectileFacade!");
             }
