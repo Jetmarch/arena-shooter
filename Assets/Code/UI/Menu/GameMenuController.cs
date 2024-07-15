@@ -1,4 +1,7 @@
 using ArenaShooter.Inputs;
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
+using UnityEngine;
+#endif
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -37,7 +40,7 @@ namespace ArenaShooter.UI
 
         private void ExitGame()
         {
-#if !UNITY_EDITOR
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
             Application.Quit();
 #elif UNITY_EDITOR
             EditorApplication.isPlaying = false;

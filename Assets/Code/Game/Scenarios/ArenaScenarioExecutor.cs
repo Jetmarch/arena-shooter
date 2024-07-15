@@ -6,7 +6,7 @@ using Zenject;
 
 namespace ArenaShooter.Scenarios
 {
-    public class ArenaScenarioExecutor : MonoBehaviour, IGameStartListener
+    public class ArenaScenarioExecutor : MonoBehaviour, IGameStartListener, IGamePauseListener
     {
         [SerializeField]
         private int _currentScenarioAct;
@@ -16,6 +16,8 @@ namespace ArenaShooter.Scenarios
 
         private List<BaseScenarioActData> _scenarioActData;
         private List<BaseScenarioActExecutor> _scenarioActExecutors;
+
+        private bool _isPaused;
 
         public event Action OnScenarioStart;
         public event Action OnScenarioFinish;
@@ -71,6 +73,7 @@ namespace ArenaShooter.Scenarios
             if (CanExecute())
             {
                 yield return new WaitForSeconds(_delayBetweenActs);
+                yield return new WaitUntil(() => _isPaused == false);
                 var actData = _scenarioActData[_currentScenarioAct];
                 foreach (var actExecutor in _scenarioActExecutors)
                 {
@@ -91,6 +94,16 @@ namespace ArenaShooter.Scenarios
         private bool CanExecute()
         {
             return _currentScenarioAct < _scenarioActData.Count;
+        }
+
+        public void OnPauseGame()
+        {
+            _isPaused = true;
+        }
+
+        public void OnResumeGame()
+        {
+            _isPaused = false;
         }
     }
 }
