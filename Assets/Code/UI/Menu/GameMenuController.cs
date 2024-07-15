@@ -14,18 +14,22 @@ namespace ArenaShooter.UI
         private GameMenuView _menuView;
         private GameLoopManager _gameLoopManager;
         private string _menuSceneName;
+        private GameConditionManager _gameConditionManager;
 
-        public GameMenuController(IMenuInputProvider inputProvider, GameMenuView menuView, GameLoopManager gameLoopManager, string menuSceneName)
+        public GameMenuController(IMenuInputProvider inputProvider, GameMenuView menuView, GameLoopManager gameLoopManager, string menuSceneName, GameConditionManager gameConditionManager)
         {
             _inputProvider = inputProvider;
             _menuView = menuView;
             _gameLoopManager = gameLoopManager;
             _menuSceneName = menuSceneName;
+            _gameConditionManager = gameConditionManager;
         }
 
         public void Initialize()
         {
-            _inputProvider.OnMenu += _menuView.Toggle;
+            _gameConditionManager.OnVictory += Deactivate;
+            _gameConditionManager.OnDefeat += Deactivate;
+            _inputProvider.OnMenu += ToggleMenu;
             _menuView.RestartGameBtn.onClick.AddListener(RestartGame);
             _menuView.ExitGameBtn.onClick.AddListener(ExitGame);
             _menuView.ResumeGameBtn.onClick.AddListener(ResumeGame);
@@ -34,7 +38,9 @@ namespace ArenaShooter.UI
 
         public void LateDispose()
         {
-            _inputProvider.OnMenu -= _menuView.Toggle;
+            _gameConditionManager.OnVictory -= Deactivate;
+            _gameConditionManager.OnDefeat -= Deactivate;
+            _inputProvider.OnMenu -= ToggleMenu;
             _menuView.RestartGameBtn.onClick.RemoveListener(RestartGame);
             _menuView.ExitGameBtn.onClick.RemoveListener(ExitGame);
             _menuView.ResumeGameBtn.onClick.RemoveListener(ResumeGame);
@@ -64,6 +70,17 @@ namespace ArenaShooter.UI
 #elif UNITY_EDITOR
             EditorApplication.isPlaying = false;
 #endif
+        }
+
+        private void ToggleMenu()
+        {
+            if (_gameConditionManager.GameCondition != GameCondition.Battle) return;
+            _menuView.Toggle();
+        }
+
+        private void Deactivate()
+        {
+            _menuView.Hide();
         }
     }
 }

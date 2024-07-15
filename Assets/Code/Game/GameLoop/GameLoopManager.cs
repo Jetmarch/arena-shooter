@@ -97,7 +97,6 @@ namespace ArenaShooter
                 ResumeGame();
             }
 
-            Debug.Log(_state);
         }
 
         [ContextMenu("Pause game")]
