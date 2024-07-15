@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56af8e4866d1e5d418be1a5d80a7d482, type: 3}
+  m_Name: AudioClipStorage
+  m_EditorClassIdentifier: 
+  _audioClips:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues:
+    - ambience
+    - change_weapon
+    - defeat_sound
+    - empty_clip_sound
+    - hit_sound
+    - machine_gun_shoot_sound
+    - menu_item_click
+    - reload_sound
+    - revolver_shoot_sound
+    - cannon_01
+    - cannon_02
+    - card
+    - crossbow
+    - electronic_01
+    - electronic_02
+    - heal
+    - laser_01
+    - laser_02
+    - machine_gun
+    - magic_01
+    - magic_02
+    - magic_03
+    - start_scenario_sound
+    - victory_sound
+    _keys:
+    - ambience
+    - change_weapon
+    - defeat_sound
+    - empty_clip_sound
+    - hit_sound
+    - machine_gun_shoot_sound
+    - menu_item_click
+    - reload_sound
+    - revolver_shoot_sound
+    - cannon_01
+    - cannon_02
+    - card
+    - crossbow
+    - electronic_01
+    - electronic_02
+    - heal
+    - laser_01
+    - laser_02
+    - machine_gun
+    - magic_01
+    - magic_02
+    - magic_03
+    - start_scenario_sound
+    - victory_sound
+    _values:
+    - {fileID: 8300000, guid: b3587d6919c99cb4397da9c21e2c5e8a, type: 3}
+    - {fileID: 8300000, guid: cbd3fb24028d9f44d8874cc210f4f2b1, type: 3}
+    - {fileID: 8300000, guid: b5d85bdfd9a45e44f99c401e5931167f, type: 3}
+    - {fileID: 8300000, guid: e4c1a9d9a11a1bf4d82f00dbfa02e645, type: 3}
+    - {fileID: 8300000, guid: d81109307a7b11e478b25805cc53ad05, type: 3}
+    - {fileID: 8300000, guid: 2c880cd823fe7584dbca39626d616f87, type: 3}
+    - {fileID: 8300000, guid: d7d99567a25b8bb4fbc78b76fb4f65fb, type: 3}
+    - {fileID: 8300000, guid: d23ca0882ba587845949ec49e1538c99, type: 3}
+    - {fileID: 8300000, guid: fe8ca535a2d0ceb4c8fcaea83aa20f00, type: 3}
+    - {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
+    - {fileID: 8300000, guid: 8401456349c492a489ed90469e317e43, type: 3}
+    - {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
+    - {fileID: 8300000, guid: d9419ba0bfac1e84a95418ac5851caf6, type: 3}
+    - {fileID: 8300000, guid: a245ee5d75348c84a89ffb7992f1dc82, type: 3}
+    - {fileID: 8300000, guid: ab297b593498a6e47ba84de770477cbe, type: 3}
+    - {fileID: 8300000, guid: c48a972d3d024c2408a3331750786a29, type: 3}
+    - {fileID: 8300000, guid: 4310474905e266640852f43bd609a1a4, type: 3}
+    - {fileID: 8300000, guid: 06ada5590eba8d6489b36c6f3c54ff78, type: 3}
+    - {fileID: 8300000, guid: 3061c7b9b32d894478e4126ccce25ca3, type: 3}
+    - {fileID: 8300000, guid: b1b9c1f0ea1fcae439ed1a4d44ff05fd, type: 3}
+    - {fileID: 8300000, guid: 78419f98379502c4dbfb2774bc94e7c1, type: 3}
+    - {fileID: 8300000, guid: 5e1a9f876d3dafd47bc6b3dde25135fa, type: 3}
+    - {fileID: 8300000, guid: 0c3eea87d05091744a2535baa1b3f179, type: 3}
+    - {fileID: 8300000, guid: 45e94cdef4cec1d40976cfb6998cdb64, type: 3}

@@ -21,21 +21,21 @@ namespace ArenaShooter.UI
         {
             _executor.ScenarioActStart += SetupView;
             _executor.ScenarioActFinish += _view.Hide;
-            _executor.CurrentPoint.CaptureProgress += _view.UpdateProgress;
+            _executor.CurrentCapturePoint.CaptureProgress += _view.UpdateProgress;
         }
 
         public void LateDispose()
         {
             _executor.ScenarioActStart -= SetupView;
             _executor.ScenarioActFinish -= _view.Hide;
-            _executor.CurrentPoint.CaptureProgress -= _view.UpdateProgress;
+            _executor.CurrentCapturePoint.CaptureProgress -= _view.UpdateProgress;
         }
 
         private void SetupView()
         {
-            _view.Setup(_executor.CurrentPoint.CaptureCurrentProgress,
-                _executor.CurrentPoint.CaptureMaxProgress,
-                _executor.CurrentPoint.transform,
+            _view.Setup(_executor.CurrentCapturePoint.CaptureCurrentProgress,
+                _executor.CurrentCapturePoint.CaptureMaxProgress,
+                _executor.CurrentCapturePoint.transform,
                 _camera);
         }
     }

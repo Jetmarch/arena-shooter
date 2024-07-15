@@ -32,6 +32,13 @@ namespace ArenaShooter.Installers
         [SerializeField]
         private ArenaScenarioConfiguration _arenaScenarioConfig;
 
+        [SerializeField]
+        private string _defeatSoundName;
+        [SerializeField]
+        private string _victorySoundName;
+        [SerializeField]
+        private string _scenarioStartSoundName;
+
         public override void InstallBindings()
         {
             BindCamera();
@@ -58,6 +65,8 @@ namespace ArenaShooter.Installers
             Container.BindInterfacesAndSelfTo<PauseGameOnVictoryController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PauseGameOnDefeatController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameConditionManager>().AsSingle().NonLazy();
+
+            BindAudio();
         }
 
         private void BindCamera()
@@ -85,6 +94,13 @@ namespace ArenaShooter.Installers
             Container.Bind<HordeScenarioActExecutor>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CapturePointScenarioActExecutor>().FromComponentInHierarchy().AsSingle();
             Container.Bind<BossScenarioActExecutor>().FromComponentInHierarchy().AsSingle();
+        }
+
+        private void BindAudio()
+        {
+            Container.BindInterfacesAndSelfTo<PlaySoundOnVictoryController>().AsSingle().WithArguments(_victorySoundName).NonLazy();
+            Container.BindInterfacesAndSelfTo<PlaySoundOnDefeatController>().AsSingle().WithArguments(_defeatSoundName).NonLazy();
+            Container.BindInterfacesAndSelfTo<PlaySoundOnScenarioStartController>().AsSingle().WithArguments(_scenarioStartSoundName).NonLazy();
         }
 
         //TODO: Убрать это

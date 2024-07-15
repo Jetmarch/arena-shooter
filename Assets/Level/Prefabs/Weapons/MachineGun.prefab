@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ammoClipStorage: {fileID: 8562116468498757347}
   _weaponShootMechanic: {fileID: 3053750822945519636}
+  _weaponReloadMechanic: {fileID: 7552912547472586213}
 --- !u!114 &8830793383747281559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +130,8 @@ MonoBehaviour:
   _delayBetweenShotsMechanic: {fileID: 1168213287272203612}
   _spriteRenderer: {fileID: 6708170270130192639}
   _weaponFacade: {fileID: 5836770636505758686}
-  _shootSoundName: machine_gun_shot
+  _shootSoundName: machine_gun_shoot_sound
+  _reloadSoundName: reload_sound
   _amountOfAmmoOnOneShot: 1
   _audioSource: {fileID: 2193357024881124371}
   _gunShellParticles: {fileID: 3131877686537559946}

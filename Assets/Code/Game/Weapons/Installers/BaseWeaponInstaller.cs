@@ -28,6 +28,8 @@ namespace ArenaShooter.Weapons
 
         [SerializeField]
         private string _shootSoundName;
+        [SerializeField]
+        private string _reloadSoundName;
 
         [SerializeField]
         private int _amountOfAmmoOnOneShot = 1;
@@ -47,9 +49,15 @@ namespace ArenaShooter.Weapons
         public override void InstallBindings()
         {
             ConstructComponents();
+
             BindMechanics();
+
             BindComponents();
+
             BindControllers();
+
+            BindAudio();
+
             AppendConditions();
         }
 
@@ -64,7 +72,6 @@ namespace ArenaShooter.Weapons
             Container.Bind<SpriteRenderer>().FromInstance(_spriteRenderer).AsSingle();
             Container.Bind<AudioSource>().FromInstance(_audioSource).AsSingle();
             Container.Bind<AudioComponent>().AsSingle().NonLazy();
-            Container.Bind<string>().FromInstance(_shootSoundName).AsSingle();
             Container.Bind<ParticleSystem>().FromInstance(_gunShellParticles).AsSingle();
         }
 
@@ -93,8 +100,13 @@ namespace ArenaShooter.Weapons
                 Container.BindInterfacesAndSelfTo<WeaponShootController>().AsSingle().NonLazy();
             }
 
-            Container.BindInterfacesAndSelfTo<ShootSoundController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GunShellParticlesController>().AsSingle().NonLazy();
+        }
+
+        private void BindAudio()
+        {
+            Container.BindInterfacesAndSelfTo<ShootSoundController>().AsSingle().WithArguments(_shootSoundName).NonLazy();
+            Container.BindInterfacesAndSelfTo<ReloadSoundController>().AsSingle().WithArguments(_reloadSoundName).NonLazy();
         }
 
         private void AppendConditions()

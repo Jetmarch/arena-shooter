@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 250
-  _rigidbody: {fileID: 0}
+  _rigidbody: {fileID: 190503011097071287}
 --- !u!114 &2931462436165528020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,6 +379,8 @@ MonoBehaviour:
     Vibrato: 15
     Randomness: 90
   _footstepEffect: {fileID: 7208240382840825959}
+  _hitSoundName: hit_sound
+  _changeWeaponSoundName: change_weapon
 --- !u!114 &5689391225771231078
 MonoBehaviour:
   m_ObjectHideFlags: 0

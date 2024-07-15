@@ -1,5 +1,6 @@
 using ArenaShooter.Components;
 using ArenaShooter.Units;
+using ArenaShooter.Units.Factories;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +18,13 @@ namespace ArenaShooter.Scenarios
         private List<SpawnPointComponent> _spawnPoints;
 
         [SerializeField]
-        private int _currentPoint = 0;
+        private List<UnitType> _unitsToSpawn;
+
+        [SerializeField]
+        private int _currentCapturePoint = 0;
+
+        [SerializeField]
+        private int _currentSpawnPoint = 0;
 
         [SerializeField]
         private int _maxUnits = 20;
@@ -31,7 +38,8 @@ namespace ArenaShooter.Scenarios
 
         private bool _isPaused;
 
-        public CapturePointComponent CurrentPoint { get { return _capturePoints[_currentPoint]; } }
+        public CapturePointComponent CurrentCapturePoint { get { return _capturePoints[_currentCapturePoint]; } }
+        public SpawnPointComponent CurrentSpawnPoint { get { return _spawnPoints[_currentSpawnPoint]; } }
 
 
         [Inject]
@@ -51,8 +59,8 @@ namespace ArenaShooter.Scenarios
             }
 
             OnScenarioActStart();
-            CurrentPoint.ActivatePoint();
-            CurrentPoint.PointCaptured += OnPointCaptured;
+            CurrentCapturePoint.ActivatePoint();
+            CurrentCapturePoint.PointCaptured += OnPointCaptured;
             _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemies());
             _unitManager.UnitDie += OnSpawnedEnemyDie;
         }
@@ -72,8 +80,9 @@ namespace ArenaShooter.Scenarios
                 if (_spawnedUnits.Count < _maxUnits)
                 {
                     //Just for test
-                    var newEnemy = _unitManager.CreateUnit(Units.Factories.UnitType.EnemyShooter, _spawnPoints[0].GetRandomPointInside(), null);
+                    var newEnemy = _unitManager.CreateUnit(GetRandomUnitType(), CurrentSpawnPoint.GetRandomPointInside(), null);
                     _spawnedUnits.Add(newEnemy);
+                    SetNextSpawnPoint();
                 }
                 yield return new WaitForSeconds(_timeBetweenSpawnUnits);
                 yield return new WaitUntil(() => _isPaused == false);
@@ -82,9 +91,9 @@ namespace ArenaShooter.Scenarios
 
         private void OnPointCaptured()
         {
-            CurrentPoint.PointCaptured -= OnPointCaptured;
+            CurrentCapturePoint.PointCaptured -= OnPointCaptured;
             _unitManager.UnitDie -= OnSpawnedEnemyDie;
-            SetNextPoint();
+            SetNextCapturePoint();
             OnScenarioActFinish();
             StopCoroutine(_spawnEnemiesCoroutine);
             KillAllSpawnedEnemies();
@@ -108,10 +117,21 @@ namespace ArenaShooter.Scenarios
             _spawnedUnits.Clear();
         }
 
-        private void SetNextPoint()
+        private void SetNextCapturePoint()
         {
-            _currentPoint++;
-            _currentPoint %= _capturePoints.Count;
+            _currentCapturePoint++;
+            _currentCapturePoint %= _capturePoints.Count;
+        }
+
+        private void SetNextSpawnPoint()
+        {
+            _currentSpawnPoint++;
+            _currentSpawnPoint %= _spawnPoints.Count;
+        }
+
+        private UnitType GetRandomUnitType()
+        {
+            return _unitsToSpawn[UnityEngine.Random.Range(0, _unitsToSpawn.Count)];
         }
 
         public void OnPauseGame()

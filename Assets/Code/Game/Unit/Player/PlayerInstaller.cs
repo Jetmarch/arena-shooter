@@ -53,6 +53,11 @@ namespace ArenaShooter.Units.Player
         [SerializeField]
         private ParticleSystem _footstepEffect;
 
+        [SerializeField]
+        private string _hitSoundName;
+        [SerializeField]
+        private string _changeWeaponSoundName;
+
         [Inject]
         private WeaponSet _weaponSet;
         [Inject]
@@ -71,6 +76,8 @@ namespace ArenaShooter.Units.Player
             BindMechanics();
 
             BindMechanicsControllers();
+
+            BindAudio();
 
             AppendConditions();
         }
@@ -115,9 +122,14 @@ namespace ArenaShooter.Units.Player
             Container.BindInterfacesAndSelfTo<SpriteFlashOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<TemporaryInvulnerabilityOnHitController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<WeaponRotateController>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<HitSoundController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CameraShakeOnPlayerHitController>().AsSingle().WithArguments(_shakeCameraDataOnHit).NonLazy();
             Container.BindInterfacesAndSelfTo<UnitFootstepEffectController>().AsSingle().NonLazy();
+        }
+
+        private void BindAudio()
+        {
+            Container.BindInterfacesAndSelfTo<HitSoundController>().AsSingle().WithArguments(_hitSoundName).NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerChangeWeaponSoundController>().AsSingle().WithArguments(_changeWeaponSoundName).NonLazy();
         }
 
         private void AppendConditions()

@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de2ca35414125a42b8f14d1c06670aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _reloadSpeed: 0.7
+  _reloadSpeed: 0.3
 --- !u!114 &7351649344067694024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +115,8 @@ MonoBehaviour:
   _delayBetweenShotsMechanic: {fileID: 7849193754461850481}
   _spriteRenderer: {fileID: 769251535284104164}
   _weaponFacade: {fileID: -2681969314212602647}
-  _shootSoundName: revolver_shot
+  _shootSoundName: revolver_shoot_sound
+  _reloadSoundName: reload_sound
   _amountOfAmmoOnOneShot: 1
   _audioSource: {fileID: 8355645950621980123}
   _gunShellParticles: {fileID: 3591808232787076570}
@@ -134,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ammoClipStorage: {fileID: 7351649344067694024}
   _weaponShootMechanic: {fileID: 7963146312427705933}
+  _weaponReloadMechanic: {fileID: 1610326859159231703}
 --- !u!114 &6573767039965174361
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5026,7 +5026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de2ca35414125a42b8f14d1c06670aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _reloadSpeed: 0
+  _reloadSpeed: 0.7
 --- !u!114 &7370565892695866985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5087,6 +5087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ammoClipStorage: {fileID: 8670415720261372308}
   _weaponShootMechanic: {fileID: 7370565892695866985}
+  _weaponReloadMechanic: {fileID: 5976815053789852209}
 --- !u!114 &7558430649790565092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5105,7 +5106,8 @@ MonoBehaviour:
   _delayBetweenShotsMechanic: {fileID: 8647621421291789095}
   _spriteRenderer: {fileID: 1898828930790085030}
   _weaponFacade: {fileID: 3067636080292402200}
-  _shootSoundName: shotgun_shot
+  _shootSoundName: cannon_01
+  _reloadSoundName: reload_sound
   _amountOfAmmoOnOneShot: 1
   _audioSource: {fileID: 1645133365781546641}
   _gunShellParticles: {fileID: 7691555411765865182}

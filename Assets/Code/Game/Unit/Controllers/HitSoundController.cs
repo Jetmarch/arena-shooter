@@ -9,11 +9,13 @@ namespace ArenaShooter.Unit
     {
         private AudioComponent _audioComponent;
         private HealthComponent _healthComponent;
+        private string _hitSoundName;
 
-        public HitSoundController(AudioComponent audioComponent, HealthComponent healthComponent)
+        public HitSoundController(AudioComponent audioComponent, HealthComponent healthComponent, string hitSoundName)
         {
             _audioComponent = audioComponent;
             _healthComponent = healthComponent;
+            _hitSoundName = hitSoundName;
         }
 
         public void Initialize()
@@ -28,7 +30,7 @@ namespace ArenaShooter.Unit
 
         private void PlayHitSound(float _)
         {
-            _audioComponent.Play("hit");
+            _audioComponent.Play(_hitSoundName);
         }
     }
 }

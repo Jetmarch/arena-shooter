@@ -16,7 +16,6 @@ namespace ArenaShooter.Units
             {
                 _isDead = true;
                 OnDie?.Invoke(gameObject);
-                Debug.Log($"Object {gameObject.name} is dead");
                 //TODO: Remove it
                 Destroy(gameObject);
             }

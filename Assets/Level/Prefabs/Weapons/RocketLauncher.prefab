@@ -359,7 +359,8 @@ MonoBehaviour:
   _delayBetweenShotsMechanic: {fileID: 725411724057132651}
   _spriteRenderer: {fileID: 6767473881601848225}
   _weaponFacade: {fileID: -7260438451661836453}
-  _shootSoundName: rocketlauncher_shot
+  _shootSoundName: cannon_02
+  _reloadSoundName: reload_sound
   _amountOfAmmoOnOneShot: 1
   _audioSource: {fileID: 9032515802511982233}
   _gunShellParticles: {fileID: 8898176598020244694}
@@ -378,6 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ammoClipStorage: {fileID: 2473309055817131466}
   _weaponShootMechanic: {fileID: 60820411742922684}
+  _weaponReloadMechanic: {fileID: 6358759703652030451}
 --- !u!114 &4090506579864593024
 MonoBehaviour:
   m_ObjectHideFlags: 0
